@@ -1,0 +1,3 @@
+[submodule "libftTester"]
+	path = cursus/lvl0/Libft/tests/libftTester
+	url = https://github.com/Tripouille/libftTester
