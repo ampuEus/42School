@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
+#    By: david <david@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/18 11:52:35 by daampuru          #+#    #+#              #
-#    Updated: 2022/05/03 20:52:09 by daampuru         ###   ########.fr        #
+#    Updated: 2022/05/04 17:04:13 by david            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 %.o: %.c
 	$(CC) -c $(CFLAGS) $^
 
-
+# ---------- subject ----------
 all: $(NAME)
 
 $(NAME): $(MANDATORY_OBJ)
@@ -41,11 +41,13 @@ re: fclean $(NAME)
 bonus: $(ALL_OBJ)
 	ar rcs $(NAME) $(ALL_OBJ)
 
+# ---------- Other ----------
 norminette:
 	norminette -R CheckForbiddenSourceHeader | grep Error
 
+# ---------- Testers  ----------
 libftTester:
 	make -iC ../tests/libftTester LIBFT_PATH=../../src/
-	
+
 
 .PHONY: all clean fclean re bonus
