@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 21:06:52 by daampuru          #+#    #+#             */
-/*   Updated: 2022/04/28 20:07:11 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/05/04 16:45:52 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 size_t	cnt_words(char const *str, char delimiter)
 {
@@ -25,19 +24,20 @@ size_t	cnt_words(char const *str, char delimiter)
 		if (*str++ == delimiter)
 			is_delimiter = 1;
 		else
-		{	
+		{
 			words += is_delimiter;
 			is_delimiter = 0;
 		}
 	}
 	if (!words && is_delimiter)
-		return(0);
+		return (0);
 	if (!words)
-		return(1);
+		return (1);
 	return (words);
 }
 
-char **save_words(char **save_place, char const *str, size_t words, char delimiter)
+char	**save_words( \
+			char **save_place, char const *str, size_t words, char delimiter)
 {
 	size_t	aux_words;
 	size_t	str_len;
@@ -46,12 +46,13 @@ char **save_words(char **save_place, char const *str, size_t words, char delimit
 	aux_words = 0;
 	str_len = 0;
 	count = 0;
-	while (aux_words < words)	
+	while (aux_words < words)
 	{
 		if (str[count] == delimiter || count >= ft_strlen(str))
 		{
 			if (str_len != 0)
-				save_place[aux_words++] = ft_substr(str, count - str_len, str_len);
+				save_place[aux_words++] = \
+					ft_substr(str, count - str_len, str_len);
 			str_len = 0;
 		}
 		else
@@ -61,7 +62,7 @@ char **save_words(char **save_place, char const *str, size_t words, char delimit
 	return (save_place);
 }
 
-char **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**output;
 	size_t	words;
@@ -69,7 +70,6 @@ char **ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	words = cnt_words(s, c);
-	//printf("%i--", words);
 	output = (char **)malloc((words + 1) * sizeof(char *));
 	if (output)
 	{

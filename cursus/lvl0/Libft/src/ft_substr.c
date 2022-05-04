@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 12:20:20 by daampuru          #+#    #+#             */
-/*   Updated: 2022/04/24 13:08:40 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/05/04 16:47:22 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (src_len < len)
 		len = ++src_len;
 	else
-		len++;	
+		len++;
 	output = malloc(len * sizeof(char));
 	if (output)
 		ft_strlcpy(output, src, len);

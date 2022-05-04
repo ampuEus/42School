@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 14:27:34 by daampuru          #+#    #+#             */
-/*   Updated: 2022/05/01 14:37:57 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/05/04 16:46:13 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*tmp;
 
@@ -22,7 +22,7 @@ void ft_lstadd_back(t_list **lst, t_list *new)
 	{
 		tmp = ft_lstlast(*lst);
 		tmp->next = new;
-		return;
+		return ;
 	}
 	*lst = new;
 }
