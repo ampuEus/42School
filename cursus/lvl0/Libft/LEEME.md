@@ -4,7 +4,7 @@
 Este proyecto consiste en programar una librería en C. Aquí se han hecho muchas funciones básicas de propósito general que serán la base los programar hecho en la escuela 42.
 
 ## ¿Qué es Libft?
-Libft es un proyecto con el propósito de recrear algunas [funciones estándar de C](https://www.tutorialspoint.com/c_standard_library/index.html) ("libc.a"), y otras que aunque no sean estándar pueden ser útiles, para después hacer tu propia librería y usarla en los futuros programar del curso de 42 (ya que no se permiten usar funciones que no hay hecho uno mismo). De esta manera se aprende cómo funcionan estas funciones básicas codificándolas desde cero.
+Libft es un proyecto con el propósito de recrear algunas [funciones estándar de C](https://www.tutorialspoint.com/c_standard_library/index.html) ("libc.a"), y otras que aunque no sean estándar pueden ser útiles, para después hacer tu propia librería y usarla en los futuros programar del curso de 42 (ya que no se permiten usar funciones que no haya hecho uno mismo). De esta manera se aprende cómo funcionan estas funciones básicas codificándolas desde cero.
 
 ## Guia rápida
 ```bash
