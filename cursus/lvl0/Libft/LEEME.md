@@ -201,6 +201,10 @@ make fclean
             <td>Envía la cadena <i>s</i> al descriptor de archivo dado.</td>
         </tr>
         <tr>
+            <td><a href=src/ft_split.c>ft_split</a></td>
+            <td>Reserva un array de strings resultante de separar la string <i>s</i> en substrings utilizando el caracter <i>c</i> como delimitador. El array debe terminar con un puntero NULL.</td>
+        </tr>
+        <tr>
             <td><a href=src/ft_strdup.c>ft_strdup</a></td>
             <td>Devuelve un puntero a una cadena de bytes terminada en nulo, que es un duplicado de la cadena.</td>
         </tr>

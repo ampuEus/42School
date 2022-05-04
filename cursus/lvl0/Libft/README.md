@@ -200,6 +200,10 @@ make fclean
             <td>Outputs the string <i>s</i> to the given file descriptor.</td>
         </tr>
         <tr>
+            <td><a href=src/ft_split.c>ft_split</a></td>
+            <td>Allocates and returns an array of strings obtained by splitting <i>s</i> using the character <i>c</i> as a delimiter. The array must end with a NULL pointer.</td>
+        </tr>
+        <tr>
             <td><a href=src/ft_strdup.c>ft_strdup</a></td>
             <td>Returns a pointer to a null-terminated byte string, which is a duplicate of the string.</td>
         </tr>
