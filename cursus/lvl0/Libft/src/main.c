@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 22:55:45 by daampuru          #+#    #+#             */
-/*   Updated: 2022/05/04 16:52:56 by david            ###   ########.fr       */
+/*   Updated: 2022/05/06 23:50:39 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 
 int	main(void)
 {
-	t_list	*l = NULL;
+	int tab[7] = {-49, 49, 1, -1, 0, -2, 2};
 
-	ft_lstadd_front(&l, ft_lstnew((void *)1));
+	printf("(%s)", (char *)ft_memchr(tab, -1, 7));
 	return (0);
 }
