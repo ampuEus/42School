@@ -17,14 +17,12 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	size_t			count;
 	unsigned int	point;
 
-	if (!dst || !src)
-		return (0);
 	count = ft_strlen(src);
 	if (!dstsize)
 		return (count);
 	point = 0;
 	while (src[point] && point < dstsize - 1)
-	{	
+	{
 		dst[point] = src[point];
 		point++;
 	}
