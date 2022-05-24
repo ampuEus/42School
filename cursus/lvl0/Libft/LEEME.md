@@ -40,6 +40,10 @@ make fclean
 ```
 - Testers usados
   - Tripouille/libftTester: https://github.com/Tripouille/libftTester
+  - y3ll0w42/libft-war-machine: https://github.com/y3ll0w42/libft-war-machine
+  - xicodomingues/francinette: https://github.com/xicodomingues/francinette
+
+NOTA: Yo uso linux para el desarrollo y he visto que algunas funciones no pasan los tests en linux pero el mismo código sí que lo pasa en mac, así que mi consejo es pasar las pruebas en los macs de vuestro cluster.
 
 ## Funciones incluidas
 [Makefile](src/Makefile), [main.c](src/main.c), [libft.h](src/libft.h)
@@ -240,39 +244,39 @@ make fclean
     </thead>
     <tbody>
         <tr>
-            <td><a href=src/ft_lstadd_back.c>ft_lstadd_back</a></td>
+            <td><a href=src/ft_lstadd_back_bonus.c>ft_lstadd_back</a></td>
             <td>Agrega el elemento al final de la lista.</td>
         </tr>
         <tr>
-            <td><a href=src/ft_lstadd_front.c>ft_lstadd_front</a></td>
+            <td><a href=src/ft_lstadd_front_bonus.c>ft_lstadd_front</a></td>
             <td>Agrega el elemento al final de la lista.</td>
         </tr>
         <tr>
-            <td><a href=src/ft_lstclear.c>ft_lstclear</a></td>
+            <td><a href=src/ft_lstclear_bonus.c>ft_lstclear</a></td>
             <td>Elimina y libera el elemento dado y todos los sucesores de ese elemento, usando una función dada y <i>free()</i></td>
         </tr>
         <tr>
-            <td><a href=src/ft_lstdelone.c>ft_lstdelone</a></td>
+            <td><a href=src/ft_lstdelone_bonus.c>ft_lstdelone</a></td>
             <td>Toma como parámetro un elemento y libera la memoria del contenido del elemento usando una función dada como parámetro y libera el elemento.</td>
         </tr>
         <tr>
-            <td><a href=src/ft_lstiter.c>ft_lstiter</a></td>
+            <td><a href=src/ft_lstiter_bonus.c>ft_lstiter</a></td>
             <td>Itera la lista y aplica una función al contenido de cada elemento.</td>
         </tr>
         <tr>
-            <td><a href=src/ft_lstlast.c>ft_lstlast</a></td>
+            <td><a href=src/ft_lstlast_bonus.c>ft_lstlast</a></td>
             <td>Devuelve el último elemento de la lista.</td>
         </tr>
         <tr>
-            <td><a href=src/ft_lstmap.c>ft_lstmap</a></td>
+            <td><a href=src/ft_lstmap_bonus.c>ft_lstmap</a></td>
             <td>Itera la lista y aplica una función al contenido de cada elemento. Crea una nueva lista resultante de las sucesivas aplicaciones de la función. Se utiliza una función <i>del</i> para eliminar el contenido de un elemento si es necesario.</td>
         </tr>
         <tr>
-            <td><a href=src/ft_lstnew.c>ft_lstnew</a></td>
+            <td><a href=src/ft_lstnew_bonus.c>ft_lstnew</a></td>
             <td>Devuelve un nuevo elemento.</td>
         </tr>
         <tr>
-            <td><a href=src/ft_lstsize.c>ft_lstsize</a></td>
+            <td><a href=src/ft_lstsize_bonus.c>ft_lstsize</a></td>
             <td>Cuenta el número de elementos en una lista.</td>
         </tr>
     </tbody>

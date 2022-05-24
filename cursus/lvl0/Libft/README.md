@@ -1,4 +1,4 @@
-# Libft: My first C library 
+# Libft: My first C library
 ***Officially finished at 2022-xx-xx / Grade: xxx of 100 / Versión en [español](LEEME.md)***
 
 This project is about programming a library in C. Many general purpose functions have been made on which future 42 school programs will be built.
@@ -40,6 +40,10 @@ make fclean
 ```
 - Used testers
   - Tripouille/libftTester: https://github.com/Tripouille/libftTester
+  - y3ll0w42/libft-war-machine: https://github.com/y3ll0w42/libft-war-machine
+  - xicodomingues/francinette: https://github.com/xicodomingues/francinette
+
+NOTE: I use linux for development and I have seen that some functions do not pass the tests in linux but the same code passes in mac, so my advice is to pass the tests in the macs of your cluster.
 
 ## Included functions
 [Makefile](src/Makefile), [main.c](src/main.c), [libft.h](src/libft.h)
@@ -239,39 +243,39 @@ make fclean
     </thead>
     <tbody>
         <tr>
-            <td><a href=src/ft_lstadd_back.c>ft_lstadd_back</a></td>
+            <td><a href=src/ft_lstadd_back_bonus.c>ft_lstadd_back</a></td>
             <td>Adds the element at the end of the list.</td>
         </tr>
         <tr>
-            <td><a href=src/ft_lstadd_front.c>ft_lstadd_front</a></td>
+            <td><a href=src/ft_lstadd_front_bonus.c>ft_lstadd_front</a></td>
             <td>Adds the element at the beginning of the list.</td>
         </tr>
         <tr>
-            <td><a href=src/ft_lstclear.c>ft_lstclear</a></td>
+            <td><a href=src/ft_lstclear_bonus.c>ft_lstclear</a></td>
             <td>Deletes and frees the given element and every successor of that element, using a given function and <i>free()</i>.</td>
         </tr>
         <tr>
-            <td><a href=src/ft_lstdelone.c>ft_lstdelone</a></td>
+            <td><a href=src/ft_lstdelone_bonus.c>ft_lstdelone</a></td>
             <td>Takes as a parameter an element and frees the memory of the element’s content using a function given as a parameter and free the element.</td>
         </tr>
         <tr>
-            <td><a href=src/ft_lstiter.c>ft_lstiter</a></td>
+            <td><a href=src/ft_lstiter_bonus.c>ft_lstiter</a></td>
             <td>Iterates the list and applies a function to the content of each element.</td>
         </tr>
         <tr>
-            <td><a href=src/ft_lstlast.c>ft_lstlast</a></td>
+            <td><a href=src/ft_lstlast_bonus.c>ft_lstlast</a></td>
             <td>Returns the last element of the list.</td>
         </tr>
         <tr>
-            <td><a href=src/ft_lstmap.c>ft_lstmap</a></td>
+            <td><a href=src/ft_lstmap_bonus.c>ft_lstmap</a></td>
             <td>Iterates the list and applies a function to the content of each element. Creates a new list resulting of the successive applications of the function. A <i>del</i> function is used to delete the content of an element if needed.</td>
         </tr>
         <tr>
-            <td><a href=src/ft_lstnew.c>ft_lstnew</a></td>
+            <td><a href=src/ft_lstnew_bonus.c>ft_lstnew</a></td>
             <td>Returns a new element.</td>
         </tr>
         <tr>
-            <td><a href=src/ft_lstsize.c>ft_lstsize</a></td>
+            <td><a href=src/ft_lstsize_bonus.c>ft_lstsize</a></td>
             <td>Counts the number of elements in a list.</td>
         </tr>
     </tbody>
