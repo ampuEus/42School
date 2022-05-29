@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:53:01 by daampuru          #+#    #+#             */
-/*   Updated: 2022/05/20 20:29:31 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/05/29 15:18:22 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,11 @@
 # endif
 
 char	*get_next_line(int fd);
+
+size_t	ft_strlen(const char *s);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strdup(const char *s1);
+int	findchr(const char *s, int c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif
