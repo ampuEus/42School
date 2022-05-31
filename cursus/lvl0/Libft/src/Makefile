@@ -6,7 +6,7 @@
 #    By: david <david@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/18 11:52:35 by daampuru          #+#    #+#              #
-#    Updated: 2022/05/24 21:00:59 by david            ###   ########.fr        #
+#    Updated: 2022/05/31 18:00:08 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ MANDATORY_SRC := ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.
 	ft_atoi.c ft_calloc.c \
 	ft_itoa.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_split.c \
 	ft_strdup.c ft_striteri.c ft_strjoin.c ft_strmapi.c ft_strtrim.c ft_substr.c
+
 MANDATORY_OBJ = $(MANDATORY_SRC:.c=.o)
 
 #ALL_SRC := $(shell find . \( -name '*.c' -a -not -name 'main.c' \))
@@ -28,16 +29,18 @@ BONUS_SRC := ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstclear_bonus.c 
 	ft_lstmap_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c
 BONUS_OBJ = $(BONUS_SRC:.c=.o)
 
+INCLUDES = libft.h
+
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror  #-fsanitize=address
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $^
 
 # ---------- subject ----------
-all: $(NAME) bonus
+all: $(NAME)
 
-$(NAME): $(MANDATORY_OBJ)
+$(NAME): $(MANDATORY_OBJ) $(INCLUDES)
 	ar rcs $(NAME) $(MANDATORY_OBJ)
 
 clean:
@@ -48,8 +51,8 @@ fclean: clean
 
 re: fclean $(NAME)
 
-bonus: $(BONUS_OBJ)
-	ar rcs $(NAME) $(BONUS_OBJ)
+bonus: $(BONUS_OBJ) $(MANDATORY_OBJ) $(INCLUDES)
+	ar rcs $(NAME) $(BONUS_OBJ) $(MANDATORY_OBJ)
 
 # ---------- Other ----------
 norminette:
