@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 20:27:06 by daampuru          #+#    #+#             */
-/*   Updated: 2022/05/29 19:25:43 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/05/30 18:25:49 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *s)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char		*output;
+	char			*output;
 	unsigned int	point;
 
 	if (!s1 || !s2)
@@ -70,7 +70,7 @@ int	findchr(const char *s, int c)
 	int	pos;
 
 	if (!s)
-		return (-1);
+		return (0);
 	pos = 0;
 	while (s[pos])
 	{
@@ -78,7 +78,7 @@ int	findchr(const char *s, int c)
 			return (pos);
 		pos++;
 	}
-	return (pos);
+	return (0);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -92,14 +92,14 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (ft_strlen(s) < start)
 		return (ft_strdup(""));
 	src = (char *)s + start;
-	count = ft_strlen(src);
-	if (count < len)
-		len = ++count;
+	if (ft_strlen(src) < len)
+		len = ft_strlen(src) + 1;
 	else
 		len++;
 	output = malloc(len * sizeof(char));
 	if (output)
 	{
+		count = 0;
 		while (src[count] && count < len - 1)
 		{
 			output[count] = src[count];
