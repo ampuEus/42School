@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:53:37 by daampuru          #+#    #+#             */
-/*   Updated: 2022/05/30 23:07:20 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/06/02 18:47:14 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	temp = ft_strjoin(mem, "");
-	mem = 0;
+	if (mem)
+		free(mem);
 	rec = 1;
 	while (!findchr(temp, '\n') && rec)
 	{
@@ -39,7 +40,7 @@ char	*get_next_line(int fd)
 		if (!temp)
 			temp = ft_strdup(bf);
 		else
-			temp = ft_strjoin(temp, bf);
+			temp = ft_strjoin(temp, bf); //problema doble malloc, hace falta una auxiliar
 	}
 	if (!temp || !*temp)
 	{
