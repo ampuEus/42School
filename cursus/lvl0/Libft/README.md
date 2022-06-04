@@ -1,5 +1,5 @@
 # Libft: My first C library
-***Officially finished at 2022-xx-xx / Grade: xxx of 100 / Versión en [español](LEEME.md)***
+***Officially finished at 2022-05-31 / Grade: 125 of 100 / Versión en [español](LEEME.md)***
 
 This project is about programming a library in C. Many general purpose functions have been made on which future 42 school programs will be built.
 
