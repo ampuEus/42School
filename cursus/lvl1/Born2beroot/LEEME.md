@@ -1,0 +1,691 @@
+# Born2beroot
+***Oficialmete terminado el xx/xx/2022 / Nota xxx de 100 / [English](README.md) version***
+
+Esta práctica es una introducción a la administración de sistemas. En esta prática se han interiorizado los principios de:
+
+- La creación de **maquinas virtuales**
+- La **instalación de SO** con unas reglas de particiones y encriptación estrictas
+- **Seguridad**. Con la implementación de sudo, un firewall y una política de contraseñas fuerte
+- **Acceso remoto**. Implementando un servidor SSH
+- **Gestión de usuarios**. Trabajando con usuarios, grupos y sus privilegios
+- **Monitorización**. Sabiendo como extraer información sobre la maquina (RAM disponible, número de conexiones activas, comandos ejecutados mediante sudo...)
+
+## Software utiliado[^1]
+- VM: [VirtualBox](https://www.virtualbox.org/)  6.1
+- OS: [Debian bullseye](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/) 11.3.0 ([Debian vs CentOS](annex/1_Debian_VS_CentOS.es.md))
+
+## 1. CREACIÓN DE LA [MÁQUINA VIRTUAL](annex/2_Que_es_una_VM.md)
+En la parte superior de la ventana principal de VirtualBox, haz clic en **Nuevo** para comenzar.
+
+![Imagen de VirtualBox](img\1_StartWindow.png)
+
+Ponle un nombre a la máquina, decide dónde instalarla y especifica qué linux se va a instalar en la VM (en mi caso, Debian). Si vas a utilizar los equipos de tu cluster de 42 por razones de espacio, tienes que ubicarla en **/sgoinfre/goinfre/Perso/your_42_login**. Otra opción puede ser colocarlo en un USB con suficiente espacio o en un disco duro externo.
+
+![Imagen de VirtualBox](img\2_CfgPage1.png)
+
+Como no se van a instalar programas que vayan a consumir mucha RAM, como puede ser el entorno grafico u otros tipos de utilidades que están corriendo en segundo plano, los **1024MB** que están por defecto **son suficientes**, pero para asegurar yo le **he puesto el doble 2GB**.
+
+![Imagen de VirtualBox](img\3_CfgPage2.png)
+
+Ahora hay que elegir la opción de **crear un nuevo disco duro virtual**.
+
+![Imagen de VirtualBox](img\4_CfgPage3.png)
+
+Aquí se dejará la partición por defecto de VirtualBox, **VirtualBox Disk Image**.
+
+![Imagen de VirtualBox](img\5_CfgPage4.png)
+
+La opción por defecto de dejar que el disco duro **se asigne dinámicamente** está bien.
+
+![Imagen de VirtualBox](img\6_CfgPage5.png)
+
+Para el tamaño del disco duro, **12 GB son suficientes** tanto para las partes obligatorias como para las adicionales. Ten en cuenta que cuanto más grande sea el tamaño del disco, más tiempo llevará la creación de la firma, algo no conveniente para la evaluación de Born2beroot.
+
+![Imagen de VirtualBox](img\7_CfgPage6.png)
+
+Fin, machina virtual Born2beroot creada.
+
+![Imagen de VirtualBox](img\8_VMcreationEnd.png)
+
+## INSTALANDO DEBIAN EN LA VM
+Antes de ejecutar la maquina virtual, al no tener este ningún sistema operativo, hay que asignarle el .iso de OS que te has descargado para poder boot-ear desde él.
+
+|![Imagen de VirtualBox](img\9_BootISO1.png)|![Imagen de VirtualBox](img\10_BootISO2.png)|![Imagen de VirtualBox](img\11_BootISO3.png)|
+|-|-|-|
+
+Una vez hecho esto, al arrancar la VM te aparece el menú de instalación de Debian con diferentes opciones. A ti te interesa una de las 2 primeras: Graphical install o Install. Las dos sirven para instalar el OS solo que la primera tiene una interfaz gráfica algo más simple. En este caso, se usará la opción de siempre “**Install**”, aunque la forma de proceder es muy parecida en cualquiera de las 2 opciones
+
+![Imagen de VirtualBox](img\12_InstalationMenu.png)
+
+El primer paso es elegir el lenguaje de instalación que tú quieras, en mi caso lo dejaré en **inglés**.
+
+![Imagen de VirtualBox](img\13_InstalationCfg1.png)
+
+Después toca elegir tú región geográfica (para temas relacionados con la zona horaria, formatos de números, texto…). **Para el objetivo de este ejercicio es indiferente**.
+
+![Imagen de VirtualBox](img\14_InstalationCfg2.png)
+
+Ahora hay que elegir la distribución de teclado que quieras usar [más info](https://es.wikipedia.org/wiki/Distribuci%C3%B3n_del_teclado), en mi caso, yo uso un teclado basado en la distribución española.
+
+![Imagen de VirtualBox](img\15_InstalationCfg3.png)
+
+En cuanto al nombre de la máquina, el ejercicio especifica que el nombre debe estar compuesto por **tú login de la intra seguido de 42**.
+
+![Imagen de VirtualBox](img\16_InstalationCfg4.png)
+
+El nombre de dominio no es necesario configurarlo en esta práctica, así que **déjalo en blanco**.
+
+![Imagen de VirtualBox](img\17_InstalationCfg5.png)
+
+Para la contraseña del usuario root, tienes que definir una contraseña fuerte siguiendo las normas que establece el enunciado de este ejercicio.
+
+![Imagen de VirtualBox](img\18_InstalationCfg6.png)
+
+Una vez configurado el administrador, toca crear un usuario. El nombre, recomendable que sea tú login de la intra, ya que es el usuario que se va a evaluar, y la contraseña que tiene que seguir las mismas normas que la contraseña del root.
+
+|![Imagen de VirtualBox](img\19_InstalationCfg7.png)|![Imagen de VirtualBox](img\20_InstalationCfg8.png)|![Imagen de VirtualBox](img\21_InstalationCfg9.png)|
+|-|-|-|
+
+### PARTICIÓN MANUAL
+Ahora toca particionar el disco. Aunque el instalador de diferentes opciones, las particiones que se piden en la parte obligatoria y en el bonus obligan a usas el **modo manual**. [más información sobre las particiones, LVM y la encriptación](annex/3_Particiones_LVM_Encriptacion.md)
+
+![Imagen de VirtualBox](img\22_InstalationCfg10.png)
+
+Ahora hay que elegir el disco donde se van ha crear las particiones (solo debería de haber uno llamado “**SCSIX (0,0,0) (sda) - […] HARDDISK**”). Vas a tener que crear 2 particiones una para el boot loader y otra partición cifrada donde estarán los volúmenes LVM.
+
+|![Imagen de VirtualBox](img\23_InstalationCfg11.png)|![Imagen de VirtualBox](img\24_InstalationCfg12.png)|
+|-|-|
+
+En el siguiente paso se te mostrará la nueva tabla de particiones creada donde hay que ir haciendo la segmentación que se quiere. La primera partición que se va ha crear va ha ser la de boot, que NO debe estar encriptada, ya que si no ni siquiera te arrancaría el OS. Selecciona el **espacio libre** que hay en el disco.
+
+![Imagen de VirtualBox](img\25_InstalationCfg13.png)
+
+Crea una **nueva partición**.
+
+![Imagen de VirtualBox](img\26_InstalationCfg14.png)
+
+Un espacio de **500 MB** debería ser suficiente.
+
+![Imagen de VirtualBox](img\27_InstalationCfg15.png)
+
+La partición debe ser de tipo **primaria**.
+
+![Imagen de VirtualBox](img\28_InstalationCfg16.png)
+
+Y, el boot, es recomendable crearlo al **inicio**.
+
+![Imagen de VirtualBox](img\29_InstalationCfg17.png)
+
+Ahora hay que decirle para que se va ha utilizar la partición, en este caso se **montará** como **/boot**.
+
+|![Imagen de VirtualBox](img\30_InstalationCfg18.png)|![Imagen de VirtualBox](img\31_InstalationCfg19.png)|
+|-|-|
+
+Por último, se da a **aceptar**. Ya has creado la partición de arranque.
+
+![Imagen de VirtualBox](img\32_InstalationCfg20.png)
+
+Ahora toca crear la partición LVM donde estarán todos los demás volúmenes. Así que selecciona el espacio libre que queda y crear una nueva partición.
+
+|![Imagen de VirtualBox](img\33_InstalationCfg21.png)|![Imagen de VirtualBox](img\34_InstalationCfg22.png)|
+|-|-|
+
+En cuanto al tamaño, selecciona el espacio restante del disco.
+
+![Imagen de VirtualBox](img\35_InstalationCfg23.png)
+
+Esta vez será de tipo **lógica**.
+
+![Imagen de VirtualBox](img\36_InstalationCfg24.png)
+
+Y para el punto de montaje **no hay que definir nada** y darle a **hecho**. Más Adelante volverás a esta partición y la modificarás para cumplir con los volúmenes exigidos por el enunciado.
+
+|![Imagen de VirtualBox](img\37_InstalationCfg25.png)|![Imagen de VirtualBox](img\38_InstalationCfg26.png)|![Imagen de VirtualBox](img\39_InstalationCfg27.png)|
+|-|-|-|
+
+### ENCRIPTACIÓN DE DISCO
+Tras crear la partición para el LVM toca encriptarla, para ello ve a encriptar volúmenes.
+
+![Imagen de VirtualBox](img\40_InstalationCfg28.png)
+
+Si tienes dos particiones como aparece en la imagen dale a **sí**.
+
+![Imagen de VirtualBox](img\41_InstalationCfg29.png)
+
+Y empieza a **encriptar las particiones**, no olvides que la partición que contiene el arranque no hay que encriptarla.
+
+![Imagen de VirtualBox](img\42_InstalationCfg30.png)
+
+**Selecciona** (poniendo te encima y presionando la tecla de espacio) la partición para **LVM** y **continua**.
+
+![Imagen de VirtualBox](img\43_InstalationCfg31.png)
+
+Después clica en **hecho, finalizar** y **sí**. Y espera a que el proceso de encriptación termine.
+
+|![Imagen de VirtualBox](img\44_InstalationCfg32.png)|![Imagen de VirtualBox](img\45_InstalationCfg33.png)|![Imagen de VirtualBox](img\46_InstalationCfg34.png)|
+|-|-|-|
+
+Una vez que el instalador termine de cifrar los datos de la partición, tienes que **elegir una contraseña** de desencriptado. Esta contraseña debe ser segura y no puedes olvidarla, de lo contrario no podrás acceder a la máquina Born2beroot.
+
+![Imagen de VirtualBox](img\47_InstalationCfg35.png)
+
+### CONFIGURANDO LVM
+#### Creación de grupo de volúmenes lógicos
+Es hora de crear los volúmenes lógicos que pide el ejercicio dentro de la partición encriptada.
+
+|![Imagen de VirtualBox](img\48_InstalationCfg36.png)|![Imagen de VirtualBox](img\49_InstalationCfg37.png)|
+|-|-|
+
+Para que LVM pueda administrar volúmenes lógicos, primero hay que crear un grupo de volúmenes.
+
+![Imagen de VirtualBox](img\50_InstalationCfg38.png)
+
+Ahora debes **asignarle un nombre al grupo**, en mi caso usaré el mismo que se usa en el enunciado del ejercicio “LVMGroup”.
+
+![Imagen de VirtualBox](img\51_InstalationCfg39.png)
+
+Por último, **selecciona SOLO** la **partición** que has **encriptado** a el grupo, NO asignes la partición de arranque.
+
+![Imagen de VirtualBox](img\52_InstalationCfg40.png)
+
+#### Creación de volumen lógico
+Ahora que tienes el grupo de volúmenes creado y la partición lógica cifrada está asignada a él, hay que crear los volúmenes lógicos uno por uno. Como ejemplo haré la root, que debe estar presente tanto para las partes obligatorias como para las de bonificación. Para ello ve a **crear volumen lógico**.
+
+![Imagen de VirtualBox](img\53_InstalationCfg41.png)
+
+Selecciona el grupo **donde** vas a **albergar la partición**.
+
+![Imagen de VirtualBox](img\54_InstalationCfg42.png)
+
+Y asígnale un **nombre** y un **espacio en disco**. En mi caso lo llamaré "root" y un tamaño de 3GB tendría que ser suficiente para cumplir con los objetivos de la práctica obligatoria y bonus.
+
+|![Imagen de VirtualBox](img\55_InstalationCfg43.png)|![Imagen de VirtualBox](img\56_InstalationCfg44.png)|
+|-|-|
+
+Y listo, ya se ha creado la primera partición. Ahora solo te queda repetir el proceso…
+
+1.	Crear un volumen lógico
+2.	Elegir el grupo
+3.	Darle un nombre
+4.	Asignarle un espacio en disco (más abajo tienes una captura de como he organizado yo los tamaños de las distintas particiones[^2])
+
+…hasta tener todas las particiones que pide el ejercicio (yo te recomiendo hacer también los de la parte bonus), cuando hayas acabado de particionar dale a terminar.
+
+![Imagen de VirtualBox](img\57_InstalationCfg45.png)
+
+#### Configurando las particiones
+Una vez creados los volúmenes toca asignarles una “tarea” dentro del OS. Para que, en este caso Debian, pueda usarlos como corresponda. Para hacer esto se tienen que especificar el file system y punto de montaje de para volumen.
+
+Como ejemplo, volveré a utilizar la partición root.
+
+![Imagen de VirtualBox](img\58_InstalationCfg46.png)
+
+Al querer decirle al OS como tiene que usar la partición voy a clicar en usar **como:..**
+
+![Imagen de VirtualBox](img\59_InstalationCfg47.png)
+
+Elijo el *file system Ext4**.
+
+![Imagen de VirtualBox](img\60_InstalationCfg48.png)
+
+Y en cuanto al **punto de montaje**, elijo el que le corresponde a la partición **root**.
+
+|![Imagen de VirtualBox](img\61_InstalationCfg49.png)|![Imagen de VirtualBox](img\62_InstalationCfg50.png)|![Imagen de VirtualBox](img\63_InstalationCfg51.png)|
+|-|-|-|
+
+Ahora solo te queda repetir nuevamente el proceso…
+
+1.	Elegir un volumen lógico
+2.	Ir a “usar como”
+3.	Elegir el file system Ext4 (Menos en swap, el cual hay que elegir el file system “swap” y no hay que seleccionar un punto de montaje)
+4.	Seleccionar el punto de montaje dependiendo de la función que vaya a tener esa partición (menos para var-log que hay ponerlo manualmente en “/var/log”)
+
+…hasta tener todas las particiones que pide el ejercicio, cuando hayas acabado de particionar dale a finalizar partición y escribir cambios en el disco. Después clica en Sí.
+
+#### Instalando sistema base de Debian
+En este último paso se va ha instalar el sistema base y para ello hay que definir algunos parámetros:
+- Al **escaneo** dale a **no**
+- Para el servidor de descarga de los paquetes de Debian tienes que elegir un **país** (normalmente cuando más cercano sea el país a tú ubicación mejor) y un **mirror**
+- La conexión **proxy** puedes dejarla **vacía**
+- Y no hace falta participar en el estudio estadístico
+
+
+|![Imagen de VirtualBox](img\64_InstalationCfg52.png)|![Imagen de VirtualBox](img\65_InstalationCfg53.png)|![Imagen de VirtualBox](img\66_InstalationCfg54.png)|
+|-|-|-|
+|![Imagen de VirtualBox](img\67_InstalationCfg55.png)|![Imagen de VirtualBox](img\68_InstalationCfg56.png)|
+
+Para la selección de software, no hace falta poner **ninguno**, se instalará lo que se necesite más adelante. Así que **desmarca todas las casillas** seleccionándolas y presionando la barra espaciadora. Después dale a continuar.
+
+![Imagen de VirtualBox](img\69_InstalationCfg57.png)
+
+Dale a que **sí** que quieres instalar [GRUB](https://www.gnu.org/software/grub/)
+
+![Imagen de VirtualBox](img\70_InstalationCfg58.png)
+
+Y se instalará en “**/dev/sda**”
+
+![Imagen de VirtualBox](img\71_InstalationCfg59.png)
+
+¡FIN! Ya tienes instalado Debian en tú VM.
+
+![Imagen de VirtualBox](img\72_InstalationCfg60.png)
+
+### ACCEDIENDO A Born2beroot
+Ahora se reiniciará la VM. Al arrancar te pedirá la contraseña para descifrar la partición encriptada, y luego las credenciales del usuario que creaste al inicio del proceso de instalación.
+
+Para verificar que la instalación es correcta, puedes probar algunos comandos:
+- **cat /etc/os-release**. Para comprobar la información del sistema operativo
+- **lsblk**. Para revisar nuestras particiones
+- **apt –v**. Comprueba si el administrador de paquetes está instalado de forma predeterminada
+- **date**. Para comprobar la zona horaria (Tiene que coincidir con el país que pusiste en la instalación). Aunque si es incorrecta, no es muy importante para Born2beroot.
+
+![Imagen de VirtualBox](img\73_DebianInstalled.png)
+
+## CONFIGURANDO UN DEBIAN COMO SERVIDOR
+### IMPLEMENTACIÓN DE sudo
+#### INSTALACIÓN
+Para instalar un programa en el servidor, tienes que iniciar sesión como root.
+```bash
+su root
+```
+> Nota que cuando te logueas como root el símbolo de la consola de comandos pasa de '$' a '#' mientras te mantienes como usuario root.
+
+Una vez como root, antes de instalar nada es recomendable actualizar la lista de los programas que se pueden descargar del repositorio. Además de, como todavía no está el servidor en producción, es recomendable actualizar los programas que están ya instalados en el sistema.
+```bash
+apt update # Actualiza la lista de paquetes
+apt upgrade # Actualiza los paquetes instalados en el sistema
+apt install sudo # Instalación de la utilidad sudo
+```
+Ahora toca dar los privilegios de ejecutar sudo a el usuario deseado. Para hacer esto hay diferentes formas, pero la más correcta y apropiada es añadir al usuario a un grupo que tenga los privilegios que tú quieras darle. A la hora de instalar el programa sudo, este ya tiene un grupo por defecto que tiene los privilegios de sudo llamado "sudo".
+
+Aunque para cerciorarte del nombre puedes ejecutar el comando `sudo visudo` y fijarte si existe un grupo que se llama así:
+
+![Fichero visudo](img/74_visudo.png)
+
+Explicación:
+```bash
+%sudo ALL=(ALL:ALL) ALL
+└─┬─┘ └┬┘  └──┬──┘  └┬┘
+  │    │      │      └────╴> El comando en sí
+  │    │      └────> Usuario que puede ejecutar el comando
+  │    └────> El host al que se le aplica lo igualado
+  └────> Usuario (en este caso grupo ya que tiene el prefijo '%') al que se aplica el comando
+```
+> Sabiendo esto, otra de las muchas formas de dar privilegios a un usuario puede ser añadirlo directamente y darle los privilegios que quieras, pero no suele ser una buena praxis.
+
+Para añadir el usuario a un grupo hay diferentes formas, la que yo uso es:
+```bash
+sudo usermod -aG sudo daampuru
+└┬─┘ └──┬──┘  ││ └┬─┘ └──┬───┘
+ │      │     ││  │      └────> Es usuario en sí
+ │      │     ││  └────> El grupo al que quieres unir al usuario
+ │      │     │└────> A el grupo deseado
+ │      │     └────> Con las opciones de "append" (agregar)
+ │      └────> Para modificar la información de login de los usuarios
+ └────> Ejecuta el comando sudo
+```
+> ATENCIÓN: Mucho ojo de no olvidarte la opción *a* ya que si solo pones "-G" el usuario seleccionado se borrará de todos los demás grupos en los que este y solo estará en este. Una forma más fácil es `adduser <username> sudo`
+
+Una vez añadido el usuario al grupo, hay que refrescar la información de login de dicho usuario. Esto se hace deslogueandote y volviéndote a loguear:
+```bash
+exit # Con este comando te deslogueas como usuario root
+exit # Con este segundo exit te deslogueas como tú usuario normal
+```
+Una vez logueado de nuevo con tu usuario normal prueba a ver si poder usar sudo, ejecutando un comando que necesite permisos root o también puedes ejecutar el comando `whoami` te dice con que usuario estas logeado:
+```bash
+whoami # Si lo haces si el sudo te devolverá tu usuario normal
+sudo whoami # Y si lo hacer con sudo te tiene que devolver que lo ha ejecutado el usuario root
+```
+
+#### CONFIGURACIÓN DE sudo
+Por temas de seguridad, la práctica Born2beroot exige hacerle unas configuraciones extra a los ajustes de sudo que viene por defecto:
+
+- El grupo sudo tiene un máximo de 3 intentos para introducir la contraseña correcta
+- Cuando se utilice sudo y la contraseña sea incorrecta debe salir un mensaje personalizado
+- Para cada comando ejecutado con sudo, tanto el input como el output deben quedar archivados en el directorio /var/log/sudo/.
+- El modo TTY debe estar activado por razones de seguridad. [TODO ¿QUÉ ES TTY???????????????????????????????????????]
+
+Para añadir estos parámetros al programa sudo hay que modificar el fichero *sudoers.tmp*. Para abrir/modificar este fichero es recomendable utilizar el propio comando que te
+proporciona sudo, en vez de abrirlo como si fuera un fichero normal. Además de tener que abrirlo como usuario root.
+
+```bash
+sudo visudo
+```
+
+Ahora tienes que añadir las siguientes líneas al fichero:
+
+```bash
+Defaults passwd_tries=3 # Se expecifica un máximo de 3 intentos
+Defaults badpass_message="Logging atempts with wrong password, try again." # Mesaje de error personalizado
+Defaults logfile="/var/log/sudo/sudo.log" # Lugar donde se guardarán las interacciones con sudo
+Defaults log_input # Guarda los input
+Defaults log_output # Guarda los output
+Defaults requiretty # Obliga a estar TTY abierto
+```
+> Si no existe el directorio donde quieres guardar los logs, tendrás que crearlo con `mkdir`.
+
+### IMPLEMENTACIÓN DE AppArmor: Limitación de sudo
+Desde Debian 10 (TODO MIRAR A VER SI ESTO ES CIERTO) AppArmor viene preinstalado en Debian, por lo que yo usaré este mismo (además de ser más fácil de utilizar). Para ver AppArmor esta instalado y corriento correctamente hay que ejecutar lo siguiente:
+```bash
+sudo aa-status
+```
+
+Y tiene que aparecerta algo parecido a esto:
+```bash
+apparmor module is loaded.
+3 profiles are loaded.
+[...]
+```
+
+En este caso si todo está bien deja la configuración por defecto.
+
+### IMPLEMENTACIÓN DE UFW (**U**ncompicated **F**ire**w**all)
+#### INTALACIÓN Y ACTIVACIÓN
+Para instalarlo haz:
+
+```bash
+sudo apt install ufw
+sudo ufw enable
+```
+
+Si todo ha ido bien tiene que aparecerte el mensaje *Firewall is active and enabled on system startup*. Además para ver si efectivamente UFW se está corriendo en segundo plano puedes ejecutar el siguiente comando:
+```bash
+sudo ufw status verbose # NOTA: La opción "verbose" es opcional, solo añade más información a la respuesta
+```
+#### GESTIÓN DE LAS REGLAS
+Aunque de mometo no es necesario aplicar ninguna regla en concreto, voy a enseñarte los primeros pasos para que sepas como crear, eliminar y monitorizar las reglas.
+
+- Creación de reglas
+```bash
+sudo ufw allow 4242 # Permite la entrada de trafico por el puerto 4242
+sudo ufw deny 8080 # Deniega la entrada de trafico por el puerto 8080
+```
+Estas reglas no se aplican únicamente a los puertos de tú servidor, también se pueden aplicar a IPs por ejemplo.
+
+- Monitorización de reglas activas
+```bash
+sudo ufw status numbered
+```
+
+- Eliminación de reglas
+```bash
+sudo ufw delete allow 4242
+sudo ufw delete deny 8080
+
+# Otra forma sería usando el id que obtienes con el comando de status numbered
+sudo ufw delete 2
+```
+> NOTA: Ten cuidado porque si intentas borrar más de una regla a la vez usando el id tienes que ordenarlos de mayor a menor, ya que si empiezas borrando los de meyor valor los de mayor valor iran tomando esos valores.
+
+
+### IMPLEMENTACIÓN DE UN SERVIDOR SSH (**S**ecure **Sh**ell) EN Born2beroot
+#### INSTALAR
+Otro requisito de la práctica es la posibilidad de conectarse a tú servidor de forma remota y hacerlo por el puerto 4242. Para ello te dicen que utilices el protocolo SSH, para poder usarlo de forma sencilla existen diferentes programas pero el más usado en Linux es **OpenSSH**, el cual se puede implementar de dos formas como cliente (sirve para conectarse a otro ordenador) y/o servidor (sirve para que otros ordenadores se conecten). A tí te interesa implementar un servidor con OpenSSH.
+
+```bash
+sudo apt install openssh-server
+```
+
+Para ver el estado del servidor ssh
+
+```bash
+sudo systemctl status ssh
+```
+
+#### CONFIGURAR EL SERVIDOR SSH
+ Como puedes ver, el servidor esta preconfigurado para que acepte las conexión procedentes del puerto 22, mira la línea `Server listening on :: port 22`. Para que el servidor solo acepte conexiones que vengan del puerto 4242 tienes que modificar la configuración por defecto del ssh. El archivo de configuración esta en */etc/ssh/sshd_config*.
+
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+
+Una vez abierto busca la línea `# Port 22`, descomentala y cambia el 22 por el 4242.
+
+|![Fichero de configuración del ssh por defecto](img/75_sshd_config_default.png)|![Fichero de configuración del ssh modificado](img/76_sshd_config.png)|
+|-|-|
+
+Una vez guardado el servidor ssh devería cambiar el puerto de escucha automaticamente, si no es así prueba a reiniciar el servicio ssh.
+
+```bash
+sudo systemctl restart ssh
+```
+ Por último, hay que autorizar al firewall UFW que autorice las conexiones de entrada por el puerto 4242. Además de añadir esta regla, es posible que tengas que eliminar una nueva regla que permite las conexiones por el puerto 22 que se a creado automaticamente al instalar OpenSSH.
+
+```bash
+sudo ufw allow 4242
+sudo delete allow ssh # To delete port 22 rule
+```
+
+#### REDIRECCIONAMIENTO DE PUERTOS CON VIRTUALBOX
+Para poder conectarte a la VM desde otro ordenador a traves de SSH tienes que redireccionar el puerto del host (el PC donde tienes instalada la VM) al propio puerto de la máquina virtual. En el caso de que trabajes con VirtualBox ve ha los ajustes de Born2beroot, una vez allí ve ha *network -> Adapter 1 -> Advanced -> Port Forwarding*
+
+|![Redireccionando el puerto parte 1](img/77_PortForwarding1.png)|![Redireccionando el puerto parte 2](img/78_PortForwarding2.png)|
+|-|-|
+
+Una vez hecho esto ya deberias de poder conectarte vía ssh, pero si quieres asegurar vuelve a reiniciar el servicio.
+
+```bash
+sudo systemctl restart ssh
+```
+
+#### CONEXIÓN A UN SERVIDOR SSH
+Para conectarte desde otro ordenador te hace falta tener un cliente ssh instalado. Suponiendo que ya lo tengas, lo único que tienes que hacer es abrir una terminal y
+
+```bash
+ssh daampuru@localhost -p 4242
+└┬┘ └──┬───┘ └───┬───┘  │ └┬─┘
+ │     │         │      │  └────> Puerto por el que quieres conectarte
+ │     │         │      └────> Opción de poder eleguir otro puerto que no sea el de por defecto
+ │     │         └────> IP a la que quieres conectarte
+ │     └────> Usuario del sistema al que quieres conectarte
+ └────> Comando para usar el cliente ssh
+```
+> NOTA: Como la VM comparte la dirección IP del host, puedes usar la dirección IP local del host. Puedes usar *Localhost* el cual es un atajo interno del PC usado para referirse a su propia dirección IP, la cual es 127.0.0.1 (puedes usar cualquiera de las dos).
+
+En la primera conexión a traves de un cliente ssh te pide un certificado para entablecer una conexión segura.
+
+![Primera conexión al servidor](img/79_SshConection1.png)
+
+Una vez dentro, es como estar en el propio servidor Born2beroot pero de forma remota.
+
+![Conexión al servidor](img/80_SshConection2.png)
+
+Para desconectarte de la conexión SSH solo tienes que ejecutar el comando `exit`
+
+
+### MONITORIZACIÓN DEL SERVIDOR
+La siguiente etapa de la guia es hacer el script *monitoring.sh* el cual debe ejecutarse cada 10 minutos desde el arranque del equipo y mostrar la información deseada en todas las terminales activas. Información ha mostrar:
+
+| Información                                                                           | Comando                                                                             |
+|---------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| La arquitectura de tu sistema operativo y su versión de kernel.                       | uname -srvmo                                                                        |
+| El número de núcleos físicos.                                                         | grep 'physical id' /proc/cpuinfo \| uniq \| wc -l                                   |
+| El número de núcleos virtuales.                                                       | grep processor /proc/cpuinfo \| uniq \| wc -l                                       |
+| La memoria RAM disponible actualmente en tu servidor y su porcentaje de uso.          | **Used:** free -h \| grep Mem \| awk '{print $3}'<br> **Total:** free -h \| grep Mem \| awk '{print $2}'<br> **Percentage:** free -k \| grep Mem \| awk '{printf("%.2f%%"), $3 / $2 * 100}'<br> |
+| La memoria disponible actualmente en tu servidor y su utilización como un porcentaje. | **Used:** df -h --total \| grep total \| awk '{print $3}'<br> **Total:** df -h --total \| grep total \| awk '{print $2}'<br> **Percentage:** df -k --total \| grep total \| awk '{print $5}'<br> |
+| El porcentaje actual de uso de tus núcleos (la CPU).                                   | top -bn1 \| grep '^%Cpu' \| cut -c 9- \| xargs \| awk '{printf("%.1f%%"), $2 + $4}' |
+| La fecha y hora del último reinicio.                                                  | who -b \| awk '{print($3 " " $4)}'                                                  |
+| Si LVM está activo o no.                                                              | if [ $(lsblk \| grep lvm \| wc -l) -eq 0 ]; then echo no; else echo yes; fi         |
+| El número de conexiones activas.                                                      | grep TCP /proc/net/sockstat \| awk '{print $3}'                                     |
+| El número de usuarios del servidor.                                                   | who \| wc -l                                                                        |
+| La dirección IPv4 de tu servidor y su MAC (Media Access Control)                      | **IP:** hostname -I \| awk '{print $1}'<br> **MAC:** ip link show \| grep link/ether \| awk '{print $2} |
+| El número de comandos ejecutados con sudo                                             | grep COMMAND /var/log/sudo/sudo.log \| wc -l                                        |
+
+Algunos comandos solo los puede ejecutar el usuario root por lo que tienes 2 opciones:
+1. Te logueas como root y crear/modificas el fichero
+2. Lo haces con un usuario normal y despues le cambias el dueño (`chown`) para que sea del root
+
+Una vez creado el fichero tienes que darle derechos de ejecución `chmod +x monitoring.sh`
+
+#### ENVIAR UN MENSAJE A CADA TERMINAL
+Para enviar un mensaje a cada terminal (broadcast) existe el comando `wall`, el cual te permite emitir un mensaje a todos los usuarios a la vez en todos los terminales. Además, puede recibir como texto a mostrar el contenido de un archivo.
+
+De forma predeterminada, el anuncio tiene como prefijo un banner, pero ese banner es opcional en este proyecto.
+
+```bash
+wall "message"    # Con banner
+wall -n "message" # Sin banner
+```
+
+
+
+#### ENVIAR EL MENSAJE CADA 10 MINUTOS
+Para este cometido existe el servicio `crontab` (**c**h**ron**o **tab**le) que te permite la ejecución de scripts o software de forma automática cuando ocurre un evento en concreto que tú le hayas asignado, como puede ser una fecha y hora determinada o en un intervalo de tiempo específico.
+
+Este es un programa que viene preinstalado con el propio Debian y para que se ejecute en segundo plano siempre que arranques el equipo usa el siguiente comando:
+
+```bash
+systemctl enable cron
+```
+
+Para programas los trabajos *cron* usa archivos llamados *crontab*. Logueado como root tienes que crear uno de estos archivos.
+
+```bash
+crontab -e * * * * * <command to execute>
+         │ │ │ │ │ └────> Selecciona el día de la semana (0 - 6, 0 = Domingo)
+         │ │ │ │ └────> Selecciona el mes del año (1 - 12)
+         │ │ │ └────> Selecciona el día de la semana (1 - 31)
+         │ │ └────> Seleciona la hora (0 - 23)
+         │ └────> Selecciona el minuto (0 - 59)
+         └────> Edita los crontab del usuario
+```
+> NOTA: '*' significa cualquier valor
+
+Para ejecutar el archivo de monitoreo cada 10 minutos hay que usar la siguiente combinación.
+
+```bash
+crontab -e */10 * * * * ./root/monitoring.sh
+```
+> Suponiendo que */root/monitoring.sh* sea donde tienes el archivo.
+
+Y para que la salida del comando se muestre en todas las terminales hay que añadirle el comando `wall`, otra manera de hacerlo es introducir el comando `wall` directamente en el script.
+
+```bash
+crontab -e */10 * * * * ./root/monitoring.sh | wall
+```
+
+Aun así, este script se ejecutará cada 10 minutos de cada hora (00:10, 00:20, 00:30 ...) no cada 10 minutos desde que se **arranca el sistema**. Para conseguir esto tendrás un nuevo script que combine el comando `spleet` y que sepa ha que hora se ha iniciado en sistema.
+
+#### CALCULAR CUANDO SE HA INICIADO EL SISTEMA
+Crea un nuevo script llamado *sleep.sh*. Este script, calculará la cantidad de segundos entre el tiempo de arranque preciso y el décimo minuto. Para hacer los calculos puedes usar la calculadora basada en terminal `bc`, por lo que primero tienes que instalarla en el sistema
+
+```bash
+sudo apt install bc
+```
+
+Por otro lado el código fuente de sleep.sh es:
+
+```bash
+#!bin/bash
+
+# Get boot time minutes and seconds
+BOOT_MIN=$(uptime -s | cut -d ":" -f 2)
+BOOT_SEC=$(uptime -s | cut -d ":" -f 3)
+
+# Calculate number of seconds between the nearest 10th minute of the hour and boot time:
+# Ex: if boot time was 11:43:36
+# 43 % 10 = 3 minutes since 40th minute of the hour
+# 3 * 60 = 180 seconds since 40th minute of the hour
+# 180 + 36 = 216 seconds between nearest 10th minute of the hour and boot
+DELAY=$(bc <<< $BOOT_MIN%10*60+$BOOT_SEC)
+
+# Wait that number of seconds
+sleep $DELAY
+```
+
+Por último añade este archivo al comando de crontab, de este modo cron llamará a `sleep.sh` y este pasado X tiempo llamará a `monitoring.sh`:
+
+```bash
+*/10 * * * * bash /root/sleep.sh && bash /root/monitoring.sh
+```
+
+
+
+
+---------
+
+#### IMPLEMENTACIÓN DE UN SISTEMA FUERTE DE CONTRASEÑAS
+-	La contraseña expira en 30 días
+-	El número mínimo de días permitido antes de modificar una contraseña son 2
+-	Características mínimas de la contraseña:
+o	10 caracteres de longitud
+o	Una mayúscula y un número
+o	No puede tener más de 3 veces consecutivas el mismo carácter
+-	La contraseña no puede contener el nombre del usuario.
+-	La contraseña debe tener al menos 7 caracteres que no sean parte de la antigua contraseña (la contraseña de root no tiene que seguir esta norma)
+-	La contraseña para root debe seguir esta política.
+
+
+### GESTIÓN DEL HOSTNAME, USUARIOS Y GRUPOS
+La última cosa ha tener en cuenta es que a la hora de la defensa se te pedirá que:
+- Cambies el hostname del sistema
+- Crees un nuevo usuario, le cambies el nombre ...
+- Y lo añadas a un grupo
+
+#### MODIFICAR EL HOSTNAME
+Para modificar el hostname tienes 2 opciones:
+1. Usar el comando `sudo hostnamectl set-hostname <new_hotsname>`
+2. Editarlo directamente el archivo */etc/hostname*
+
+Para comprobar que efectivamente el nombre ha cambiado puedes ejecutar:
+```bash
+hostnamectl status
+```
+> Si ves que todavía no ha cambiado el nombre, prueba a reiniciar el equipo.
+
+#### GESTIÓN DE USUARIOS
+Comandos útiles para hacer la gestion de usuarios:
+
+| Comando                                                                            | Descripción                                                                |
+|------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| useradd                                                                            | Creates a new user                                                         |
+| usermod                                                                            | Changes the user's paramenters: -l (username), -c (full name), -g (groups) |
+| userdel -r                                                                         | Deletes a user and all associated files                                    |
+| id -u                                                                              | Displays user ID                                                           |
+| users                                                                              | Show a list of all currently logged in users                               |
+| cat /etc/passwd \| cut -d ":" -f 1<br>*or*<br>cat /etc/passwd \| awk -F '{print $1}' | Displays a list of all users on the machine                                |
+
+#### GESTIÓN DE GRUPOS
+Comandos útiles para hacer la gestion de grupos:
+
+| Comando      | Descripción                             |
+|--------------|-----------------------------------------|
+| groupadd     | Creates a new group                     |
+| gpasswd -a   | Adds a user to a group                  |
+| gpasswd -d   | Removes a user from a group             |
+| groupdel     | Deletes a group                         |
+| id -g        | Shows a user's main group ID            |
+| getent group | Displays a list of all users in a group |
+
+
+----------
+
+### POSIBLES ERRORES
+#### \*ERROR\* Failed to send host log message
+At machine boot, we may notice the following error: [DRM :vmw_host_log [VMWGFX]] *ERROR* Failed to send host log message. It is a small issue with the graphics controller which does not affect the machine’s operation. However, it isn’t very nice to see. We can easily solve this error by changing our graphics controller:
+
+    Turn off the virtual machine,
+    Go to VirtualBox >> Machine >> Settings,
+    Go to Display >> Screen >> Graphics Controller,
+    Choose VBoxVGA.
+
+
+### PARTE BONUS
+En la parte bonus a parte de crear las particiones extra que se pedian a la hora de la instalación del SO, hay que crear una paginaweb con **WordPress**. Como backend te dices que:
+- El servidor HTTP a implementar tiene que ser **Lighttpd**
+- Para programar el servdor por la parte del backend hay que usar **PHP**
+- En cuanto a la implementación de la base de datos se va ha usar **MariaDB**
+
+#### LIGHTTPD
+#### PHP
+#### MariaDB
+#### WORDPRESS
+#### SERVICIO EXTRA: Fail2Ban
+
+
+
+
+
+[^1]: Son las últimas versiones estables de los respectivos programas en la fecha que se está haciendo este ejercicio
+
+[^2]: Si le das un valor muy bajo a “var” a la hora de instalar el sistema base puede darte problemas.
