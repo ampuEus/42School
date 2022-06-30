@@ -11,195 +11,195 @@ Esta práctica es una introducción a la administración de sistemas. En esta pr
 - **Monitorización**. Sabiendo como extraer información sobre la maquina (RAM disponible, número de conexiones activas, comandos ejecutados mediante sudo...)
 
 ## Software utiliado[^1]
-- VM: [VirtualBox](https://www.virtualbox.org/)  6.1
+- VM: [VirtualBox](https://www.virtualbox.org/) 6.1
 - OS: [Debian bullseye](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/) 11.3.0 ([Debian vs CentOS](annex/1_Debian_VS_CentOS.es.md))
 
 ## 1. CREACIÓN DE LA [MÁQUINA VIRTUAL](annex/2_Que_es_una_VM.md)
 En la parte superior de la ventana principal de VirtualBox, haz clic en **Nuevo** para comenzar.
 
-![Imagen de VirtualBox](img\1_StartWindow.png)
+![Imagen de VirtualBox](img/1_StartWindow.png)
 
 Ponle un nombre a la máquina, decide dónde instalarla y especifica qué linux se va a instalar en la VM (en mi caso, Debian). Si vas a utilizar los equipos de tu cluster de 42 por razones de espacio, tienes que ubicarla en **/sgoinfre/goinfre/Perso/your_42_login**. Otra opción puede ser colocarlo en un USB con suficiente espacio o en un disco duro externo.
 
-![Imagen de VirtualBox](img\2_CfgPage1.png)
+![Imagen de VirtualBox](img/2_CfgPage1.png)
 
 Como no se van a instalar programas que vayan a consumir mucha RAM, como puede ser el entorno grafico u otros tipos de utilidades que están corriendo en segundo plano, los **1024MB** que están por defecto **son suficientes**, pero para asegurar yo le **he puesto el doble 2GB**.
 
-![Imagen de VirtualBox](img\3_CfgPage2.png)
+![Imagen de VirtualBox](img/3_CfgPage2.png)
 
 Ahora hay que elegir la opción de **crear un nuevo disco duro virtual**.
 
-![Imagen de VirtualBox](img\4_CfgPage3.png)
+![Imagen de VirtualBox](img/4_CfgPage3.png)
 
 Aquí se dejará la partición por defecto de VirtualBox, **VirtualBox Disk Image**.
 
-![Imagen de VirtualBox](img\5_CfgPage4.png)
+![Imagen de VirtualBox](img/5_CfgPage4.png)
 
 La opción por defecto de dejar que el disco duro **se asigne dinámicamente** está bien.
 
-![Imagen de VirtualBox](img\6_CfgPage5.png)
+![Imagen de VirtualBox](img/6_CfgPage5.png)
 
 Para el tamaño del disco duro, **12 GB son suficientes** tanto para las partes obligatorias como para las adicionales. Ten en cuenta que cuanto más grande sea el tamaño del disco, más tiempo llevará la creación de la firma, algo no conveniente para la evaluación de Born2beroot.
 
-![Imagen de VirtualBox](img\7_CfgPage6.png)
+![Imagen de VirtualBox](img/7_CfgPage6.png)
 
 Fin, machina virtual Born2beroot creada.
 
-![Imagen de VirtualBox](img\8_VMcreationEnd.png)
+![Imagen de VirtualBox](img/8_VMcreationEnd.png)
 
 ## INSTALANDO DEBIAN EN LA VM
 Antes de ejecutar la maquina virtual, al no tener este ningún sistema operativo, hay que asignarle el .iso de OS que te has descargado para poder boot-ear desde él.
 
-|![Imagen de VirtualBox](img\9_BootISO1.png)|![Imagen de VirtualBox](img\10_BootISO2.png)|![Imagen de VirtualBox](img\11_BootISO3.png)|
+|![Imagen de VirtualBox](img/9_BootISO1.png)|![Imagen de VirtualBox](img/10_BootISO2.png)|![Imagen de VirtualBox](img/11_BootISO3.png)|
 |-|-|-|
 
 Una vez hecho esto, al arrancar la VM te aparece el menú de instalación de Debian con diferentes opciones. A ti te interesa una de las 2 primeras: Graphical install o Install. Las dos sirven para instalar el OS solo que la primera tiene una interfaz gráfica algo más simple. En este caso, se usará la opción de siempre “**Install**”, aunque la forma de proceder es muy parecida en cualquiera de las 2 opciones
 
-![Imagen de VirtualBox](img\12_InstalationMenu.png)
+![Imagen de VirtualBox](img/12_InstalationMenu.png)
 
 El primer paso es elegir el lenguaje de instalación que tú quieras, en mi caso lo dejaré en **inglés**.
 
-![Imagen de VirtualBox](img\13_InstalationCfg1.png)
+![Imagen de VirtualBox](img/13_InstalationCfg1.png)
 
 Después toca elegir tú región geográfica (para temas relacionados con la zona horaria, formatos de números, texto…). **Para el objetivo de este ejercicio es indiferente**.
 
-![Imagen de VirtualBox](img\14_InstalationCfg2.png)
+![Imagen de VirtualBox](img/14_InstalationCfg2.png)
 
 Ahora hay que elegir la distribución de teclado que quieras usar [más info](https://es.wikipedia.org/wiki/Distribuci%C3%B3n_del_teclado), en mi caso, yo uso un teclado basado en la distribución española.
 
-![Imagen de VirtualBox](img\15_InstalationCfg3.png)
+![Imagen de VirtualBox](img/15_InstalationCfg3.png)
 
 En cuanto al nombre de la máquina, el ejercicio especifica que el nombre debe estar compuesto por **tú login de la intra seguido de 42**.
 
-![Imagen de VirtualBox](img\16_InstalationCfg4.png)
+![Imagen de VirtualBox](img/16_InstalationCfg4.png)
 
 El nombre de dominio no es necesario configurarlo en esta práctica, así que **déjalo en blanco**.
 
-![Imagen de VirtualBox](img\17_InstalationCfg5.png)
+![Imagen de VirtualBox](img/17_InstalationCfg5.png)
 
 Para la contraseña del usuario root, tienes que definir una contraseña fuerte siguiendo las normas que establece el enunciado de este ejercicio.
 
-![Imagen de VirtualBox](img\18_InstalationCfg6.png)
+![Imagen de VirtualBox](img/18_InstalationCfg6.png)
 
 Una vez configurado el administrador, toca crear un usuario. El nombre, recomendable que sea tú login de la intra, ya que es el usuario que se va a evaluar, y la contraseña que tiene que seguir las mismas normas que la contraseña del root.
 
-|![Imagen de VirtualBox](img\19_InstalationCfg7.png)|![Imagen de VirtualBox](img\20_InstalationCfg8.png)|![Imagen de VirtualBox](img\21_InstalationCfg9.png)|
+|![Imagen de VirtualBox](img/19_InstalationCfg7.png)|![Imagen de VirtualBox](img/20_InstalationCfg8.png)|![Imagen de VirtualBox](img/21_InstalationCfg9.png)|
 |-|-|-|
 
 ### PARTICIÓN MANUAL
 Ahora toca particionar el disco. Aunque el instalador de diferentes opciones, las particiones que se piden en la parte obligatoria y en el bonus obligan a usas el **modo manual**. [más información sobre las particiones, LVM y la encriptación](annex/3_Particiones_LVM_Encriptacion.md)
 
-![Imagen de VirtualBox](img\22_InstalationCfg10.png)
+![Imagen de VirtualBox](img/22_InstalationCfg10.png)
 
 Ahora hay que elegir el disco donde se van ha crear las particiones (solo debería de haber uno llamado “**SCSIX (0,0,0) (sda) - […] HARDDISK**”). Vas a tener que crear 2 particiones una para el boot loader y otra partición cifrada donde estarán los volúmenes LVM.
 
-|![Imagen de VirtualBox](img\23_InstalationCfg11.png)|![Imagen de VirtualBox](img\24_InstalationCfg12.png)|
+|![Imagen de VirtualBox](img/23_InstalationCfg11.png)|![Imagen de VirtualBox](img/24_InstalationCfg12.png)|
 |-|-|
 
 En el siguiente paso se te mostrará la nueva tabla de particiones creada donde hay que ir haciendo la segmentación que se quiere. La primera partición que se va ha crear va ha ser la de boot, que NO debe estar encriptada, ya que si no ni siquiera te arrancaría el OS. Selecciona el **espacio libre** que hay en el disco.
 
-![Imagen de VirtualBox](img\25_InstalationCfg13.png)
+![Imagen de VirtualBox](img/25_InstalationCfg13.png)
 
 Crea una **nueva partición**.
 
-![Imagen de VirtualBox](img\26_InstalationCfg14.png)
+![Imagen de VirtualBox](img/26_InstalationCfg14.png)
 
 Un espacio de **500 MB** debería ser suficiente.
 
-![Imagen de VirtualBox](img\27_InstalationCfg15.png)
+![Imagen de VirtualBox](img/27_InstalationCfg15.png)
 
 La partición debe ser de tipo **primaria**.
 
-![Imagen de VirtualBox](img\28_InstalationCfg16.png)
+![Imagen de VirtualBox](img/28_InstalationCfg16.png)
 
 Y, el boot, es recomendable crearlo al **inicio**.
 
-![Imagen de VirtualBox](img\29_InstalationCfg17.png)
+![Imagen de VirtualBox](img/29_InstalationCfg17.png)
 
 Ahora hay que decirle para que se va ha utilizar la partición, en este caso se **montará** como **/boot**.
 
-|![Imagen de VirtualBox](img\30_InstalationCfg18.png)|![Imagen de VirtualBox](img\31_InstalationCfg19.png)|
+|![Imagen de VirtualBox](img/30_InstalationCfg18.png)|![Imagen de VirtualBox](img/31_InstalationCfg19.png)|
 |-|-|
 
 Por último, se da a **aceptar**. Ya has creado la partición de arranque.
 
-![Imagen de VirtualBox](img\32_InstalationCfg20.png)
+![Imagen de VirtualBox](img/32_InstalationCfg20.png)
 
 Ahora toca crear la partición LVM donde estarán todos los demás volúmenes. Así que selecciona el espacio libre que queda y crear una nueva partición.
 
-|![Imagen de VirtualBox](img\33_InstalationCfg21.png)|![Imagen de VirtualBox](img\34_InstalationCfg22.png)|
+|![Imagen de VirtualBox](img/33_InstalationCfg21.png)|![Imagen de VirtualBox](img/34_InstalationCfg22.png)|
 |-|-|
 
 En cuanto al tamaño, selecciona el espacio restante del disco.
 
-![Imagen de VirtualBox](img\35_InstalationCfg23.png)
+![Imagen de VirtualBox](img/35_InstalationCfg23.png)
 
 Esta vez será de tipo **lógica**.
 
-![Imagen de VirtualBox](img\36_InstalationCfg24.png)
+![Imagen de VirtualBox](img/36_InstalationCfg24.png)
 
 Y para el punto de montaje **no hay que definir nada** y darle a **hecho**. Más Adelante volverás a esta partición y la modificarás para cumplir con los volúmenes exigidos por el enunciado.
 
-|![Imagen de VirtualBox](img\37_InstalationCfg25.png)|![Imagen de VirtualBox](img\38_InstalationCfg26.png)|![Imagen de VirtualBox](img\39_InstalationCfg27.png)|
+|![Imagen de VirtualBox](img/37_InstalationCfg25.png)|![Imagen de VirtualBox](img/38_InstalationCfg26.png)|![Imagen de VirtualBox](img/39_InstalationCfg27.png)|
 |-|-|-|
 
 ### ENCRIPTACIÓN DE DISCO
 Tras crear la partición para el LVM toca encriptarla, para ello ve a encriptar volúmenes.
 
-![Imagen de VirtualBox](img\40_InstalationCfg28.png)
+![Imagen de VirtualBox](img/40_InstalationCfg28.png)
 
 Si tienes dos particiones como aparece en la imagen dale a **sí**.
 
-![Imagen de VirtualBox](img\41_InstalationCfg29.png)
+![Imagen de VirtualBox](img/41_InstalationCfg29.png)
 
 Y empieza a **encriptar las particiones**, no olvides que la partición que contiene el arranque no hay que encriptarla.
 
-![Imagen de VirtualBox](img\42_InstalationCfg30.png)
+![Imagen de VirtualBox](img/42_InstalationCfg30.png)
 
 **Selecciona** (poniendo te encima y presionando la tecla de espacio) la partición para **LVM** y **continua**.
 
-![Imagen de VirtualBox](img\43_InstalationCfg31.png)
+![Imagen de VirtualBox](img/43_InstalationCfg31.png)
 
 Después clica en **hecho, finalizar** y **sí**. Y espera a que el proceso de encriptación termine.
 
-|![Imagen de VirtualBox](img\44_InstalationCfg32.png)|![Imagen de VirtualBox](img\45_InstalationCfg33.png)|![Imagen de VirtualBox](img\46_InstalationCfg34.png)|
+|![Imagen de VirtualBox](img/44_InstalationCfg32.png)|![Imagen de VirtualBox](img/45_InstalationCfg33.png)|![Imagen de VirtualBox](img/46_InstalationCfg34.png)|
 |-|-|-|
 
 Una vez que el instalador termine de cifrar los datos de la partición, tienes que **elegir una contraseña** de desencriptado. Esta contraseña debe ser segura y no puedes olvidarla, de lo contrario no podrás acceder a la máquina Born2beroot.
 
-![Imagen de VirtualBox](img\47_InstalationCfg35.png)
+![Imagen de VirtualBox](img/47_InstalationCfg35.png)
 
 ### CONFIGURANDO LVM
 #### Creación de grupo de volúmenes lógicos
 Es hora de crear los volúmenes lógicos que pide el ejercicio dentro de la partición encriptada.
 
-|![Imagen de VirtualBox](img\48_InstalationCfg36.png)|![Imagen de VirtualBox](img\49_InstalationCfg37.png)|
+|![Imagen de VirtualBox](img/48_InstalationCfg36.png)|![Imagen de VirtualBox](img/49_InstalationCfg37.png)|
 |-|-|
 
 Para que LVM pueda administrar volúmenes lógicos, primero hay que crear un grupo de volúmenes.
 
-![Imagen de VirtualBox](img\50_InstalationCfg38.png)
+![Imagen de VirtualBox](img/50_InstalationCfg38.png)
 
 Ahora debes **asignarle un nombre al grupo**, en mi caso usaré el mismo que se usa en el enunciado del ejercicio “LVMGroup”.
 
-![Imagen de VirtualBox](img\51_InstalationCfg39.png)
+![Imagen de VirtualBox](img/51_InstalationCfg39.png)
 
 Por último, **selecciona SOLO** la **partición** que has **encriptado** a el grupo, NO asignes la partición de arranque.
 
-![Imagen de VirtualBox](img\52_InstalationCfg40.png)
+![Imagen de VirtualBox](img/52_InstalationCfg40.png)
 
 #### Creación de volumen lógico
 Ahora que tienes el grupo de volúmenes creado y la partición lógica cifrada está asignada a él, hay que crear los volúmenes lógicos uno por uno. Como ejemplo haré la root, que debe estar presente tanto para las partes obligatorias como para las de bonificación. Para ello ve a **crear volumen lógico**.
 
-![Imagen de VirtualBox](img\53_InstalationCfg41.png)
+![Imagen de VirtualBox](img/53_InstalationCfg41.png)
 
 Selecciona el grupo **donde** vas a **albergar la partición**.
 
-![Imagen de VirtualBox](img\54_InstalationCfg42.png)
+![Imagen de VirtualBox](img/54_InstalationCfg42.png)
 
 Y asígnale un **nombre** y un **espacio en disco**. En mi caso lo llamaré "root" y un tamaño de 3GB tendría que ser suficiente para cumplir con los objetivos de la práctica obligatoria y bonus.
 
-|![Imagen de VirtualBox](img\55_InstalationCfg43.png)|![Imagen de VirtualBox](img\56_InstalationCfg44.png)|
+|![Imagen de VirtualBox](img/55_InstalationCfg43.png)|![Imagen de VirtualBox](img/56_InstalationCfg44.png)|
 |-|-|
 
 Y listo, ya se ha creado la primera partición. Ahora solo te queda repetir el proceso…
@@ -211,26 +211,26 @@ Y listo, ya se ha creado la primera partición. Ahora solo te queda repetir el p
 
 …hasta tener todas las particiones que pide el ejercicio (yo te recomiendo hacer también los de la parte bonus), cuando hayas acabado de particionar dale a terminar.
 
-![Imagen de VirtualBox](img\57_InstalationCfg45.png)
+![Imagen de VirtualBox](img/57_InstalationCfg45.png)
 
 #### Configurando las particiones
 Una vez creados los volúmenes toca asignarles una “tarea” dentro del OS. Para que, en este caso Debian, pueda usarlos como corresponda. Para hacer esto se tienen que especificar el file system y punto de montaje de para volumen.
 
 Como ejemplo, volveré a utilizar la partición root.
 
-![Imagen de VirtualBox](img\58_InstalationCfg46.png)
+![Imagen de VirtualBox](img/58_InstalationCfg46.png)
 
 Al querer decirle al OS como tiene que usar la partición voy a clicar en usar **como:..**
 
-![Imagen de VirtualBox](img\59_InstalationCfg47.png)
+![Imagen de VirtualBox](img/59_InstalationCfg47.png)
 
 Elijo el *file system Ext4**.
 
-![Imagen de VirtualBox](img\60_InstalationCfg48.png)
+![Imagen de VirtualBox](img/60_InstalationCfg48.png)
 
 Y en cuanto al **punto de montaje**, elijo el que le corresponde a la partición **root**.
 
-|![Imagen de VirtualBox](img\61_InstalationCfg49.png)|![Imagen de VirtualBox](img\62_InstalationCfg50.png)|![Imagen de VirtualBox](img\63_InstalationCfg51.png)|
+|![Imagen de VirtualBox](img/61_InstalationCfg49.png)|![Imagen de VirtualBox](img/62_InstalationCfg50.png)|![Imagen de VirtualBox](img/63_InstalationCfg51.png)|
 |-|-|-|
 
 Ahora solo te queda repetir nuevamente el proceso…
@@ -250,25 +250,25 @@ En este último paso se va ha instalar el sistema base y para ello hay que defin
 - Y no hace falta participar en el estudio estadístico
 
 
-|![Imagen de VirtualBox](img\64_InstalationCfg52.png)|![Imagen de VirtualBox](img\65_InstalationCfg53.png)|![Imagen de VirtualBox](img\66_InstalationCfg54.png)|
+|![Imagen de VirtualBox](img/64_InstalationCfg52.png)|![Imagen de VirtualBox](img/65_InstalationCfg53.png)|![Imagen de VirtualBox](img/66_InstalationCfg54.png)|
 |-|-|-|
-|![Imagen de VirtualBox](img\67_InstalationCfg55.png)|![Imagen de VirtualBox](img\68_InstalationCfg56.png)|
+|![Imagen de VirtualBox](img/67_InstalationCfg55.png)|![Imagen de VirtualBox](img/68_InstalationCfg56.png)|
 
 Para la selección de software, no hace falta poner **ninguno**, se instalará lo que se necesite más adelante. Así que **desmarca todas las casillas** seleccionándolas y presionando la barra espaciadora. Después dale a continuar.
 
-![Imagen de VirtualBox](img\69_InstalationCfg57.png)
+![Imagen de VirtualBox](img/69_InstalationCfg57.png)
 
 Dale a que **sí** que quieres instalar [GRUB](https://www.gnu.org/software/grub/)
 
-![Imagen de VirtualBox](img\70_InstalationCfg58.png)
+![Imagen de VirtualBox](img/70_InstalationCfg58.png)
 
 Y se instalará en “**/dev/sda**”
 
-![Imagen de VirtualBox](img\71_InstalationCfg59.png)
+![Imagen de VirtualBox](img/71_InstalationCfg59.png)
 
 ¡FIN! Ya tienes instalado Debian en tú VM.
 
-![Imagen de VirtualBox](img\72_InstalationCfg60.png)
+![Imagen de VirtualBox](img/72_InstalationCfg60.png)
 
 ### ACCEDIENDO A Born2beroot
 Ahora se reiniciará la VM. Al arrancar te pedirá la contraseña para descifrar la partición encriptada, y luego las credenciales del usuario que creaste al inicio del proceso de instalación.
@@ -279,7 +279,7 @@ Para verificar que la instalación es correcta, puedes probar algunos comandos:
 - **apt –v**. Comprueba si el administrador de paquetes está instalado de forma predeterminada
 - **date**. Para comprobar la zona horaria (Tiene que coincidir con el país que pusiste en la instalación). Aunque si es incorrecta, no es muy importante para Born2beroot.
 
-![Imagen de VirtualBox](img\73_DebianInstalled.png)
+![Imagen de VirtualBox](img/73_DebianInstalled.png)
 
 ## CONFIGURANDO UN DEBIAN COMO SERVIDOR
 ### IMPLEMENTACIÓN DE sudo
