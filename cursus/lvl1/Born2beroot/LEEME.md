@@ -660,6 +660,147 @@ Comandos útiles para hacer la gestion de grupos:
 
 ----------
 
+
+
+
+### PARTE BONUS
+En la parte bonus a parte de crear las particiones extra que se pedian a la hora de la instalación del SO, hay que crear una pagina web ([aquí](annex/6_Breve_Introduccion_a_las_paginasWeb.md) tienes una pequeña introducción) con **WordPress**. Y como backend te dicen que debes implementar lo siguiente:
+- El servidor HTTP a implementar tiene que ser **Lighttpd**
+- Para programar el servidor para la parte del backend hay que usar **PHP**
+- En cuanto a la implementación de la base de datos se va ha usar **MariaDB**
+
+#### PHP
+En el momento en que estoy escribiendo esta guia, A la hora de instalar PHP si ejecutas `sudo apt list php` puedes ver como en Debian 11 la version estable de PHP es la 7.4, aunque ya este la versión 8 disponible. En un principio con la version 7.4 no tendrías que tener ningún problema. Además de PHP 7.4 también hacen falta los paquetes* php-common*, *php-cgi*,  *php-cli* y *php-mysql* ya que son necesarios para WordPress.
+
+```bash
+sudo apt update
+sudo apt install php php-common php-cgi php-cli php-mysql
+php -v # Para comprobar que versión se ha instalado
+```
+
+#### LIGHTTPD
+Antes de empezar con la instalación de lighttp, si has instalado primero PHP es posible se te haya instalado apache2 como dependencia de php (para comprobar si está o no en el sistema puedes ejecutar `sudo apt list apache2` y si al final del paquete pone *[installed]* es que esta instalado), por lo que para evitar posibles conflitos si esta instalado ejecuta `sudo apt purge apache2` para eliminarlo del sistema.
+
+Para instalar lighttpd simplemente tienes que ejecutar:
+
+```bash
+sudo apt install lighttpd
+lighttpd -v # Para comprobar que efectivamente se ha instalado
+```
+
+Una vez instalado, toca activarlo y hacer que el servidio empiece a funcionan en segundo plano al arranquar el ordenador.
+
+```bash
+sudo systemctl start lighttpd
+sudo systemctl enable lighttpd
+sudo systemctl status lighttpd
+```
+
+Una vez combrobado con el comando `status` que el servicio esta ejecutandose, tienes que decirle al firewall que permita pasar trafico con el protocolo *http* (o lo que es lo mismo por el puerto 80 y protocolo TCP/IP)
+
+```bash
+sudo ufw allow http
+sudo ufw status
+```
+
+Y como ya has hecho con el puerto 4242 a la hora de permitir conexiones con SSH, tienes que volver a enrutar los puertos de la VM con los de su host. *Settings >> Network >> Adapter 1 >> Advanced >> Port Forwarding* y para que el host pueda seguir usando el puerto 80 vas a usar su puero 8080, así no tendrás interferencias con el trafico de datos:
+
+![Enrutado de puertos entre host y VM para lighttpd](img/81_PortForward_Lighttpd.png)
+
+Para testar que efectivamente el servidor web de Born2beroot esta funcionando correctamente intenta conectarte a él. Vete al navegador del host de la VM y como la VM esta alojada en tú propio ordenador como dirección escribe la *localhost* (o 127.0.0.1) y como puerto el 8080 (que en realizadad es el 80 de la VM).
+
+![Pagína de inicio del servidor web](img/82_Lighttpd_server_working.png)
+
+¡PERFECTOOO! Ya tienes tu servidor web corriendo correctamente en la VM.
+
+##### ACTIVACIÓN de FastCGI (**Fast** **C**ommon **G**atewway **I**nterface)
+Pero todavía queda hacer que se vean las pagínas dinámicar que se crean con PHP. A la hora de instalar PHP se ha creado un directorio donde dejar las pagínas web creadas con PHP */var/www/html/*, para crear una pagína simple que muestre la información de php ejecuta:
+
+```bash
+sudo nano /var/www/html/info.php
+```
+
+Dentro del script escribe:
+
+```php
+<?php
+phpinfo();
+?>
+```
+
+Si buscas la dirección *http://localhost/info-php* en tú navegador te responderá con el error *403 Forbidden*.
+
+Para arreglar esto tienes que entender el paradigna de las paginas web dinamicas y estaticas.En las **webs estaticas**, el servidor web enviaba inmediatamente páginas HTML preescritas para cada solicitud HTTP que recibía. Por otro lado, en las **webs dinámicas**, el servidor web no responde de inmediato, sino que transfiere los datos de la solicitud HTTP a una aplicación externab (en este caso PHP) que los interpreta y le devuelve el código HTML generado al servidor web, y el este responde a la solicitud.
+
+En la comunicación entre la aplicación externa y el servidor web es donde entra FastCGI, el cual es un protocolo binario que permite dicha comunicación. Necesitas configurar este protocolo entre lighttpd y PHP para poder acceder a la página *info.php* desde un navegador web.
+
+```bash
+sudo lighty-enable-mod fastcgi # Habilita el modo CGI
+sudo ligthty-enable-mod fastcgi-php # Habilita la comunicación CGI con PHP
+sudo service lighttpd force-reload # Reinicia el servicio para efectuar los cambios
+```
+
+Ahora si intentas leer la pagína *info.php* en tú ordenador veras algo parecido a esto:
+
+![Pagína PHP vía Lighttpd con FastCGI ](img/83_Lighttpd_and_PHP_working.png)
+
+#### MariaDB
+Para que el Wordpress almacene los datos de la web hay que usar MariaDB. Para instalarlo haz:
+
+```bash
+sudo apt install mariadb-server
+```
+
+Ahora inicialo y haz que se ejecute siempre en segundo plano al arrancar el equipo.
+
+```bash
+sudo systemctl start mariadb
+sudo systemctl enable mariadb
+systemctl status mariadb
+```
+
+Para hacer una ![instalación más segura](https://dev.mysql.com/doc/refman/5.7/en/mysql-secure-installation.html) ejecuta:
+
+```bash
+sudo mysql_secure_installation
+```
+
+Ahora toca rellenar los campos que te piden al ejecutar el comando anterior
+
+```bash
+Enter current password for root (enter for none): <Enter>
+Switch to unix_socket authentication [Y/n]: Y
+Set root password? [Y/n]: Y
+New password: SuperLuna!26
+Re-enter new password: SuperLuna!26
+Remove anonymous users? [Y/n]: Y
+Disallow root login remotely? [Y/n]: Y
+Remove test database and access to it? [Y/n]:  Y
+Reload privilege tables now? [Y/n]:  Y
+```
+
+Por último reinicia MariaDB para que se implemente la nueva configuración.
+
+```bash
+sudo systemctl restart mariadb
+```
+
+
+
+
+
+
+
+#### WORDPRESS
+#### SERVICIO EXTRA: Fail2Ban
+
+
+
+
+
+
+
+
 ### POSIBLES ERRORES
 #### \*ERROR\* Failed to send host log message
 At machine boot, we may notice the following error: [DRM :vmw_host_log [VMWGFX]] *ERROR* Failed to send host log message. It is a small issue with the graphics controller which does not affect the machine’s operation. However, it isn’t very nice to see. We can easily solve this error by changing our graphics controller:
@@ -668,20 +809,6 @@ At machine boot, we may notice the following error: [DRM :vmw_host_log [VMWGFX]]
     Go to VirtualBox >> Machine >> Settings,
     Go to Display >> Screen >> Graphics Controller,
     Choose VBoxVGA.
-
-
-### PARTE BONUS
-En la parte bonus a parte de crear las particiones extra que se pedian a la hora de la instalación del SO, hay que crear una paginaweb con **WordPress**. Como backend te dices que:
-- El servidor HTTP a implementar tiene que ser **Lighttpd**
-- Para programar el servdor por la parte del backend hay que usar **PHP**
-- En cuanto a la implementación de la base de datos se va ha usar **MariaDB**
-
-#### LIGHTTPD
-#### PHP
-#### MariaDB
-#### WORDPRESS
-#### SERVICIO EXTRA: Fail2Ban
-
 
 
 
