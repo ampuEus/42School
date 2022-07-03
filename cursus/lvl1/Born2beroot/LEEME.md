@@ -14,6 +14,57 @@ Esta práctica es una introducción a la administración de sistemas. En esta pr
 - VM: [VirtualBox](https://www.virtualbox.org/) 6.1
 - OS: [Debian bullseye](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/) 11.3.0 ([Debian vs CentOS](annex/1_Debian_VS_CentOS.es.md))
 
+
+
+## Índice:
+* [1. CREACIÓN DE LA [MÁQUINA VIRTUAL](annex/2_Que_es_una_VM.md)](#1-creaci-n-de-la--m-quina-virtual)
+* [INSTALANDO DEBIAN EN LA VM](#instalando-debian-en-la-vm)
+  + [PARTICIÓN MANUAL](#partici-n-manual)
+  + [ENCRIPTACIÓN DE DISCO](#encriptaci-n-de-disco)
+  + [CONFIGURANDO LVM](#configurando-lvm)
+    - [Creación de grupo de volúmenes lógicos](#creaci-n-de-grupo-de-vol-menes-l-gicos)
+    - [Creación de volumen lógico](#creaci-n-de-volumen-l-gico)
+    - [Configurando las particiones](#configurando-las-particiones)
+    - [Instalando sistema base de Debian](#instalando-sistema-base-de-debian)
+  + [ACCEDIENDO A Born2beroot](#accediendo-a-born2beroot)
+* [CONFIGURANDO UN DEBIAN COMO SERVIDOR](#configurando-un-debian-como-servidor)
+  + [IMPLEMENTACIÓN DE sudo](#implementaci-n-de-sudo)
+    - [INSTALACIÓN](#instalaci-n)
+    - [CONFIGURACIÓN DE sudo](#configuraci-n-de-sudo)
+  + [IMPLEMENTACIÓN DE AppArmor: Limitación de sudo](#implementaci-n-de-apparmor--limitaci-n-de-sudo)
+  + [IMPLEMENTACIÓN DE UFW (**U**ncompicated **F**ire**w**all)](#implementaci-n-de-ufw----u--ncompicated---f--ire--w--all-)
+    - [INTALACIÓN Y ACTIVACIÓN](#intalaci-n-y-activaci-n)
+    - [GESTIÓN DE LAS REGLAS](#gesti-n-de-las-reglas)
+  + [IMPLEMENTACIÓN DE UN SERVIDOR SSH (**S**ecure **Sh**ell) EN Born2beroot](#implementaci-n-de-un-servidor-ssh----s--ecure---sh--ell--en-born2beroot)
+    - [INSTALAR](#instalar)
+    - [CONFIGURAR EL SERVIDOR SSH](#configurar-el-servidor-ssh)
+    - [REDIRECCIONAMIENTO DE PUERTOS CON VIRTUALBOX](#redireccionamiento-de-puertos-con-virtualbox)
+    - [CONEXIÓN A UN SERVIDOR SSH](#conexi-n-a-un-servidor-ssh)
+  + [MONITORIZACIÓN DEL SERVIDOR](#monitorizaci-n-del-servidor)
+    - [ENVIAR UN MENSAJE A CADA TERMINAL](#enviar-un-mensaje-a-cada-terminal)
+    - [ENVIAR EL MENSAJE CADA 10 MINUTOS](#enviar-el-mensaje-cada-10-minutos)
+    - [CALCULAR CUANDO SE HA INICIADO EL SISTEMA](#calcular-cuando-se-ha-iniciado-el-sistema)
+  + [IMPLEMENTACIÓN DE UN SISTEMA FUERTE DE CONTRASEÑAS](#implementaci-n-de-un-sistema-fuerte-de-contrase-as)
+  + [GESTIÓN DEL HOSTNAME, USUARIOS Y GRUPOS](#gesti-n-del-hostname--usuarios-y-grupos)
+    - [MODIFICAR EL HOSTNAME](#modificar-el-hostname)
+    - [GESTIÓN DE USUARIOS](#gesti-n-de-usuarios)
+    - [GESTIÓN DE GRUPOS](#gesti-n-de-grupos)
+  + [PARTE BONUS](#parte-bonus)
+    - [PHP](#php)
+    - [LIGHTTPD](#lighttpd)
+      * [ACTIVACIÓN de FastCGI (**Fast** **C**ommon **G**atewway **I**nterface)](#activaci-n-de-fastcgi----fast-----c--ommon---g--atewway---i--nterface-)
+    - [MariaDB](#mariadb)
+    - [WORDPRESS](#wordpress)
+    - [SERVICIO EXTRA: Fail2Ban](#servicio-extra--fail2ban)
+  + [POSIBLES ERRORES](#posibles-errores)
+    - [\*ERROR\* Failed to send host log message](#--error---failed-to-send-host-log-message)
+
+
+
+
+
+
+
 ## 1. CREACIÓN DE LA [MÁQUINA VIRTUAL](annex/2_Que_es_una_VM.md)
 En la parte superior de la ventana principal de VirtualBox, haz clic en **Nuevo** para comenzar.
 
@@ -599,21 +650,100 @@ Por último añade este archivo al comando de crontab, de este modo cron llamar�
 */10 * * * * bash /root/sleep.sh && bash /root/monitoring.sh
 ```
 
+### IMPLEMENTACIÓN DE UN SISTEMA FUERTE DE CONTRASEÑAS
+> NOTA: Si tienes pensado hacer la parte bonus te recomiendo que pospogas este apartado hasta tenerla hecha, así no tendras que andar cambiando la contraseñas ni andar preocupandote de sí van a expirar o no.
 
-
-
----------
-
-#### IMPLEMENTACIÓN DE UN SISTEMA FUERTE DE CONTRASEÑAS
+Las caracteristicas que te piden para configurar la politica de contraseñas es:
 -	La contraseña expira en 30 días
 -	El número mínimo de días permitido antes de modificar una contraseña son 2
--	Características mínimas de la contraseña:
-o	10 caracteres de longitud
-o	Una mayúscula y un número
-o	No puede tener más de 3 veces consecutivas el mismo carácter
+- El usuario debe recibir un mensaje de aviso 7 días antes de que su contraseña expire.
+-	Mínimo 10 caracteres de longitud
+- Mínimo  una mayúscula y un número
+- Mínimo no puede tener más de 3 veces consecutivas el mismo carácter
 -	La contraseña no puede contener el nombre del usuario.
 -	La contraseña debe tener al menos 7 caracteres que no sean parte de la antigua contraseña (la contraseña de root no tiene que seguir esta norma)
--	La contraseña para root debe seguir esta política.
+
+Las regla se arriba hay que separarlos en dos grupos, los 3 trineros que tienen que ber con los días y el resto que definen como tiene que ser las contraseñas.
+
+Para los tres primeros tiene que modificar el archivo:
+
+```bash
+sudo nano /etc/login.defs
+```
+
+Y en el apartado *Password aging controls* (línea 160) cambia los siguientes valores:
+
+```bash
+PASS_MAX_DAYS 30
+PASS_MIN_DAYS 2
+PASS_WARN_AGE 7
+```
+
+Pero cuidado, estos cambios no se aplican de forma automática a los usuarios preexistentes (el *root* y *daampuru* en mi caso). Para modificar estas reglas necesitas usa el commando `chage`:
+
+```bash
+sudo chage -M 30 root
+sudo chage -M 30 daampuru
+sudo chage -m 2 root
+sudo chage -m 2 daampuru
+sudo chage -W 7 root
+sudo chage -W 7 daampuru
+# Para comprobar, el flag "-l" sirve para ver las reglas que tiene puestas
+sudo chage -l root
+sudo chage -l daampuru
+```
+
+Para aplicar las demás caracteristicas hace falta que te descarges el siguiente paquete:
+
+```bash
+sudo apt install libpam-pwquality
+```
+
+Y para imponer pas caracteristicas que se quieren en las contraseñas hay que configurar el archivo */etc/security/pwquality.conf*
+
+```bash
+# Number of characters in the new password that must not be present in the
+# old password.
+difok = 7
+# The minimum acceptable size for the new password (plus one if
+# credits are not disabled which is the default)
+minlen = 10
+# The maximum credit for having digits in the new password. If less than 0
+# it is the minimun number of digits in the new password.
+dcredit = -1
+# The maximum credit for having uppercase characters in the new password.
+# If less than 0 it is the minimun number of uppercase characters in the new
+# password.
+ucredit = -1
+
+# [...]
+
+# The maximum number of allowed consecutive same characters in the new password.
+# The check is disabled if the value is 0.
+maxrepeat = 3
+
+# [...]
+
+# Whether to check it it contains the user name in some form.
+# The check is disabled if the value is 0.
+usercheck = 1
+
+# [...]
+
+# Prompt user at most N times before returning with error. The default is 1.
+retry = 3
+# Enforces pwquality checks on the root user password.
+# Enabled if the option is present.
+enforce_for_root
+
+# [...]
+```
+
+Por último, cambia las contraseñas del root y tú usuario para que cumplan con la nueva politica de contraseñas:
+
+```bash
+sudo passwd <user/root>
+```
 
 
 ### GESTIÓN DEL HOSTNAME, USUARIOS Y GRUPOS
@@ -759,7 +889,7 @@ sudo systemctl enable mariadb
 systemctl status mariadb
 ```
 
-Para hacer una ![instalación más segura](https://dev.mysql.com/doc/refman/5.7/en/mysql-secure-installation.html) ejecuta:
+Para hacer una [instalación más segura](https://dev.mysql.com/doc/refman/5.7/en/mysql-secure-installation.html) ejecuta:
 
 ```bash
 sudo mysql_secure_installation
@@ -785,20 +915,144 @@ Por último reinicia MariaDB para que se implemente la nueva configuración.
 sudo systemctl restart mariadb
 ```
 
+Una vez instalado, vas a loguearte a MariaDB como root (OJO como root de la base de datos no el usuario root de la VM).
 
+```bash
+mysql -u root -p
+```
 
+> Antes de empezar a usar la dase de datos, tienes que saber que hay que usar su propio lenguaje (*SQL*) para poder gestionar las dases de datos y sus tablas. Yo te recomiendo que hagas una pausa y aprendas como hacer CRUD (**C**reate, **R**ead, **U**pdate y **D**elete) en SQL (aquí te dejo un [cheatsheet](annex/SQL_Chearsheet.png) y [aquí](https://sqliteonline.com/) un compilador online para que pruebes). Esto es algo básico en todas las bases de datos que quieras usar.
 
+Para crear la base de datos de WordPress tienes que:
 
+```SQL
+MariaDB [(none)]> CREATE DATABASE wordpress; --Crea la base de datos llamada "wordpress_db"
+MariaDB [(none)]> CREATE USER 'admin'@'localhost' IDENTIFIED BY 'check42_MVP'; --Crea un nuevo usuario con contraseña
+MariaDB [(none)]> GRANT ALL ON wordpress_db.* TO 'admin'@'localhost' IDENTIFIED BY 'check42_MVP' WITH GRANT OPTION; --Da privilegios de super usuario a "admin" en el contexto de esa base de datos
+MariaDB [(none)]> FLUSH PRIVILEGES;
+MariaDB [(none)]> EXIT;
+```
 
+Para comprobar que has creado la base de datos puedes ejecutar estando logueado como root en MariaDB:
+
+```bash
+MariaDB [(none)]> show databases;
+```
+
+La salida debe ser parecida a:
+
+```bash
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| wordpress          |
++--------------------+
+```
 
 #### WORDPRESS
+Por último toca instalar y configurar Wordpress
+
+```bash
+sudo apt install wordpress
+```
+
+Una vez instalado te vas ha basar en el script de ejemplo que tiene el propio wordpress en */usr/share/wordpress/wp-config-sample.php*[^3] y */usr/share/wordpress/wp-admin*, copialo al directorio del servidor web, abrelo con un editor de texto (`nano` por ejemplo) y modifica los siguientes apartados:
+
+```bash
+sudo cp -r /usr/share/wordpress/ /var/www/html/
+sudo mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
+sudo nano /var/www/html/wp-config.php
+```
+
+```php
+<?php
+/* [...] */
+/** The name of the database for WordPress */
+define( 'DB_NAME', 'wordpress' );
+
+/** Database username */
+define( 'DB_USER', 'admin' );
+
+/** Database password */
+define( 'DB_PASSWORD', 'SuperLuna!26' );
+
+/** Database host */
+define( 'DB_HOST', 'localhost' );
+/* [...] */
+?>
+```
+
+Por último, tienes que darle permisos al usuario `www-data` ([aquí](https://askubuntu.com/questions/873839/what-is-the-www-data-user) te dejo una breve explicación de porqué se utiliza), que se ha creado en la instalación del servidor web, para que pueda leer los archivos de la pagína web.
+
+```bash
+sudo chown -R www-data:www-data /var/www/html/
+sudo chmod -R 755 /var/www/html/
+sudo systemctl restart lighttpd
+```
+
+Como puedes ver poniendo *http://localhost:8080/wordpress/wp-admin/install.php* en tú navegador te saldrá un pequeño set-up del wordpress, solo te queda rellenarlo como quieras.
+
+![Instalador de Wordpress](84_Wordpress_Setup.png)
+
 #### SERVICIO EXTRA: Fail2Ban
+Como servicio extra, uno de los más utiles a mi parecer para cualquier servidor (aun más si tienes un servidor SSH activado como es tú caso) es `Fail2ban`[^4], se trata de un programa para la prevención de intrusos en un sistema, que actúa penalizando o bloqueando las conexiones remotas que intentan accesos por fuerza bruta. Si encuentra múltiples intentos de inicio de sesión fallidos o ataques automáticos desde una dirección IP, puede bloquearla con el firewall, ya sea de manera temporal o permanente.
 
+Para la instalación:
 
+```bash
+sudo apt install fail2ban
+sudo systemctl start fail2ban
+sudo systemctl enable fail2ban
+sudo systemctl status fail2ban
+```
 
+Y para la configuración hay que modificar el fichero */etc/fail2ban/jail.local*:
 
+```bash
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+sudo nano /etc/fail2ban/jail.local
+```
 
+Vete hasta el apartado sobre SSH (sobre la línea 280) y añade lo siguiente:
 
+```bash
+# [...]
+
+#
+# SSH servers
+#
+
+[sshd]
+
+# To use more aggressive sshd modes set filter parameter "mode" in jail.local:
+# normal (default), ddos, extra or aggressive (combines all).
+# See "tests/files/logs/sshd" or "filter.d/sshd.conf" for usage example and details.
+# mode   = normal
+enabled  = true
+maxretry = 3
+findtime = 10m
+bantime  = 1d
+port     = 4242
+logpath  = %(sshd_log)s
+backend  = %(sshd_backend)s
+
+# [...]
+```
+
+Una vez tengas todo funcionando, para ver los logs de los intentos fallidos solo tienes que hace lo siguiente:
+
+```bash
+sudo fail2ban-client status
+sudo fail2ban-client status sshd
+sudo tail -f /var/log/fail2ban.log
+```
+
+Para probar que Fail2ban realmente está prohibiendo las direcciones IP, puedes cambiar el tiempo de prohibición de SSH a un valor más bajo, como 15 minutos, en el archivo de configuración /etc/fail2ban/jail.local. Luego intenta conectarse varias veces desde la máquina host a través de SSH con la contraseña incorrecta. Después de algunos intentos, debería rechazar la conexión y el comando fail2ban-client status sshd debería mostrar la dirección IP prohibida.
+
+Y ya esta. Ya tienes Born2beroot finalizada.
 
 
 ### POSIBLES ERRORES
@@ -816,3 +1070,7 @@ At machine boot, we may notice the following error: [DRM :vmw_host_log [VMWGFX]]
 [^1]: Son las últimas versiones estables de los respectivos programas en la fecha que se está haciendo este ejercicio
 
 [^2]: Si le das un valor muy bajo a “var” a la hora de instalar el sistema base puede darte problemas.
+
+[^3]: [Aquí](https://blog.ostermiller.org/install-wordpress-apt-ubuntu-host-multiple-blog-domains/) tienes todo lo que instala y donde lo instala wordpress hacerlo mediante `apt`
+
+[^4]: [Aquí](https://www.youtube.com/watch?v=PAK7I1cKwzA) te dejo un video explicativo muy bueno del gran Pelado Nerd
