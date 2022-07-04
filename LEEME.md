@@ -11,8 +11,8 @@ Repositorio github oficial: https://github.com/42School
 Intranet: https://signin.intra.42.fr/users/sign_in
 
 ## Material de apoyo
-https://42evaluators.com/
-https://pool-sky-ed9.notion.site/FT_Cursus-0382f1442a0c43229c0723b3fae1e773
+- https://42evaluators.com/
+- https://pool-sky-ed9.notion.site/FT_Cursus-0382f1442a0c43229c0723b3fae1e773
 
 ## En caso de que quieras usar un ordenador propio te recomiendo instalar[^1]:
 Instalación del header de 42: https://github.com/42Paris/42header
