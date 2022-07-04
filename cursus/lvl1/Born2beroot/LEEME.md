@@ -10,10 +10,10 @@ Esta práctica es una introducción a la administración de sistemas. En esta pr
 - **Gestión de usuarios**. Trabajando con usuarios, grupos y sus privilegios
 - **Monitorización**. Sabiendo como extraer información sobre la maquina (RAM disponible, número de conexiones activas, comandos ejecutados mediante sudo...)
 
+
 ## Software utiliado[^1]
 - VM: [VirtualBox](https://www.virtualbox.org/) 6.1
 - OS: [Debian bullseye](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/) 11.3.0 ([Debian vs CentOS](annex/1_Debian_VS_CentOS.es.md))
-
 
 
 ## Índice:
@@ -58,11 +58,6 @@ Esta práctica es una introducción a la administración de sistemas. En esta pr
     - [SERVICIO EXTRA: Fail2Ban](#servicio-extra--fail2ban)
   + [POSIBLES ERRORES](#posibles-errores)
     - [\*ERROR\* Failed to send host log message](#--error---failed-to-send-host-log-message)
-
-
-
-
-
 
 
 ## 1. CREACIÓN DE LA [MÁQUINA VIRTUAL](annex/2_Que_es_una_VM.md)
@@ -333,7 +328,7 @@ Para verificar que la instalación es correcta, puedes probar algunos comandos:
 ![Imagen de VirtualBox](img/73_DebianInstalled.png)
 
 ## CONFIGURANDO UN DEBIAN COMO SERVIDOR
-### IMPLEMENTACIÓN DE sudo
+### IMPLEMENTACIÓN DE [sudo](annex/5_Root_Superuser_Sudo.es.md)
 #### INSTALACIÓN
 Para instalar un programa en el servidor, tienes que iniciar sesión como root.
 ```bash
@@ -342,6 +337,7 @@ su root
 > Nota que cuando te logueas como root el símbolo de la consola de comandos pasa de '$' a '#' mientras te mantienes como usuario root.
 
 Una vez como root, antes de instalar nada es recomendable actualizar la lista de los programas que se pueden descargar del repositorio. Además de, como todavía no está el servidor en producción, es recomendable actualizar los programas que están ya instalados en el sistema.
+Todo esto se hace mediante la utilidad `[apt](annex/4_Gestion_de_paquetes_Debian.md)`:
 ```bash
 apt update # Actualiza la lista de paquetes
 apt upgrade # Actualiza los paquetes instalados en el sistema
@@ -394,7 +390,7 @@ Por temas de seguridad, la práctica Born2beroot exige hacerle unas configuracio
 - El grupo sudo tiene un máximo de 3 intentos para introducir la contraseña correcta
 - Cuando se utilice sudo y la contraseña sea incorrecta debe salir un mensaje personalizado
 - Para cada comando ejecutado con sudo, tanto el input como el output deben quedar archivados en el directorio /var/log/sudo/.
-- El modo TTY debe estar activado por razones de seguridad. [TODO ¿QUÉ ES TTY???????????????????????????????????????]
+- El modo TTY[^3] debe estar activado por razones de seguridad.
 
 Para añadir estos parámetros al programa sudo hay que modificar el fichero *sudoers.tmp*. Para abrir/modificar este fichero es recomendable utilizar el propio comando que te
 proporciona sudo, en vez de abrirlo como si fuera un fichero normal. Además de tener que abrirlo como usuario root.
@@ -416,7 +412,7 @@ Defaults requiretty # Obliga a estar TTY abierto
 > Si no existe el directorio donde quieres guardar los logs, tendrás que crearlo con `mkdir`.
 
 ### IMPLEMENTACIÓN DE AppArmor: Limitación de sudo
-Desde Debian 10 (TODO MIRAR A VER SI ESTO ES CIERTO) AppArmor viene preinstalado en Debian, por lo que yo usaré este mismo (además de ser más fácil de utilizar). Para ver AppArmor esta instalado y corriento correctamente hay que ejecutar lo siguiente:
+Desde Debian 10 [AppArmor](annex/6_Que_es_AppArmor.md) viene preinstalado en Debian, por lo que yo usaré este mismo (además de ser más fácil de utilizar). Para ver AppArmor esta instalado y corriento correctamente hay que ejecutar lo siguiente:
 ```bash
 sudo aa-status
 ```
@@ -430,7 +426,7 @@ apparmor module is loaded.
 
 En este caso si todo está bien deja la configuración por defecto.
 
-### IMPLEMENTACIÓN DE UFW (**U**ncompicated **F**ire**w**all)
+### IMPLEMENTACIÓN DE [UFW](annex/7_Que_es_UFW.md) (**U**ncompicated **F**ire**w**all)
 #### INTALACIÓN Y ACTIVACIÓN
 Para instalarlo haz:
 
@@ -638,7 +634,7 @@ BOOT_SEC=$(uptime -s | cut -d ":" -f 3)
 # 43 % 10 = 3 minutes since 40th minute of the hour
 # 3 * 60 = 180 seconds since 40th minute of the hour
 # 180 + 36 = 216 seconds between nearest 10th minute of the hour and boot
-DELAY=$(bc <<< $BOOT_MIN%10*60+$BOOT_SEC)
+DELAY=$(bc <<< $BOOT_MIN % 10 * 60 + $BOOT_SEC)
 
 # Wait that number of seconds
 sleep $DELAY
@@ -788,13 +784,8 @@ Comandos útiles para hacer la gestion de grupos:
 | getent group | Displays a list of all users in a group |
 
 
-----------
-
-
-
-
 ### PARTE BONUS
-En la parte bonus a parte de crear las particiones extra que se pedian a la hora de la instalación del SO, hay que crear una pagina web ([aquí](annex/6_Breve_Introduccion_a_las_paginasWeb.md) tienes una pequeña introducción) con **WordPress**. Y como backend te dicen que debes implementar lo siguiente:
+En la parte bonus a parte de crear las particiones extra que se pedian a la hora de la instalación del SO, hay que crear una pagina web ([aquí](annex/9_Breve_Introduccion_a_las_paginasWeb.md) tienes una pequeña introducción) con **WordPress**. Y como backend te dicen que debes implementar lo siguiente:
 - El servidor HTTP a implementar tiene que ser **Lighttpd**
 - Para programar el servidor para la parte del backend hay que usar **PHP**
 - En cuanto a la implementación de la base de datos se va ha usar **MariaDB**
@@ -959,7 +950,7 @@ Por último toca instalar y configurar Wordpress
 sudo apt install wordpress
 ```
 
-Una vez instalado te vas ha basar en el script de ejemplo que tiene el propio wordpress en */usr/share/wordpress/wp-config-sample.php*[^3] y */usr/share/wordpress/wp-admin*, copialo al directorio del servidor web, abrelo con un editor de texto (`nano` por ejemplo) y modifica los siguientes apartados:
+Una vez instalado te vas ha basar en el script de ejemplo que tiene el propio wordpress en */usr/share/wordpress/wp-config-sample.php*[^4] y */usr/share/wordpress/wp-admin*, copialo al directorio del servidor web, abrelo con un editor de texto (`nano` por ejemplo) y modifica los siguientes apartados:
 
 ```bash
 sudo cp -r /usr/share/wordpress/ /var/www/html/
@@ -998,7 +989,7 @@ Como puedes ver poniendo *http://localhost:8080/wordpress/wp-admin/install.php* 
 ![Instalador de Wordpress](84_Wordpress_Setup.png)
 
 #### SERVICIO EXTRA: Fail2Ban
-Como servicio extra, uno de los más utiles a mi parecer para cualquier servidor (aun más si tienes un servidor SSH activado como es tú caso) es `Fail2ban`[^4], se trata de un programa para la prevención de intrusos en un sistema, que actúa penalizando o bloqueando las conexiones remotas que intentan accesos por fuerza bruta. Si encuentra múltiples intentos de inicio de sesión fallidos o ataques automáticos desde una dirección IP, puede bloquearla con el firewall, ya sea de manera temporal o permanente.
+Como servicio extra, uno de los más utiles a mi parecer para cualquier servidor (aun más si tienes un servidor SSH activado como es tú caso) es `Fail2ban`[^5], se trata de un programa para la prevención de intrusos en un sistema, que actúa penalizando o bloqueando las conexiones remotas que intentan accesos por fuerza bruta. Si encuentra múltiples intentos de inicio de sesión fallidos o ataques automáticos desde una dirección IP, puede bloquearla con el firewall, ya sea de manera temporal o permanente.
 
 Para la instalación:
 
@@ -1071,6 +1062,8 @@ At machine boot, we may notice the following error: [DRM :vmw_host_log [VMWGFX]]
 
 [^2]: Si le das un valor muy bajo a “var” a la hora de instalar el sistema base puede darte problemas.
 
-[^3]: [Aquí](https://blog.ostermiller.org/install-wordpress-apt-ubuntu-host-multiple-blog-domains/) tienes todo lo que instala y donde lo instala wordpress hacerlo mediante `apt`
+[^3]: Modo TTY (Texto) o Gráfico (Gestor de ventanas). Desde el punto de vista de un Servidor el arranque en modo terminal supone un ahorro de recursos, ya que casi todas las consultas que realizamos sobre el mismo, se suelen gestionar mediante SSH.
 
-[^4]: [Aquí](https://www.youtube.com/watch?v=PAK7I1cKwzA) te dejo un video explicativo muy bueno del gran Pelado Nerd
+[^4]: [Aquí](https://blog.ostermiller.org/install-wordpress-apt-ubuntu-host-multiple-blog-domains/) tienes todo lo que instala y donde lo instala wordpress hacerlo mediante `apt`
+
+[^5]: [Aquí](https://www.youtube.com/watch?v=PAK7I1cKwzA) te dejo un video explicativo muy bueno del gran Pelado Nerd
