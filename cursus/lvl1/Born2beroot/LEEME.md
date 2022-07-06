@@ -317,11 +317,11 @@ Y se instalará en “**/dev/sda**”
 ![Imagen de VirtualBox](img/72_InstalationCfg60.png)
 
 ### ACCEDIENDO A Born2beroot
-Ahora se reiniciará la VM. Al arrancar te pedirá la contraseña para descifrar la partición encriptada, y luego las credenciales del usuario que creaste al inicio del proceso de instalación.
+Ahora reinicia la VM. Al arrancar te pedirá la contraseña para descifrar la partición encriptada, y luego las credenciales del usuario que creaste al inicio del proceso de instalación.
 
 Para verificar que la instalación es correcta, puedes probar algunos comandos:
 - **cat /etc/os-release**. Para comprobar la información del sistema operativo
-- **lsblk**. Para revisar nuestras particiones
+- **lsblk**. Para revisar tus particiones
 - **apt –v**. Comprueba si el administrador de paquetes está instalado de forma predeterminada
 - **date**. Para comprobar la zona horaria (Tiene que coincidir con el país que pusiste en la instalación). Aunque si es incorrecta, no es muy importante para Born2beroot.
 
@@ -329,12 +329,12 @@ Para verificar que la instalación es correcta, puedes probar algunos comandos:
 
 ## CONFIGURANDO UN DEBIAN COMO SERVIDOR
 ### IMPLEMENTACIÓN DE [sudo](annex/5_Root_Superuser_Sudo.es.md)
-#### INSTALACIÓN
+#### sudo INSTALACIÓN
 Para instalar un programa en el servidor, tienes que iniciar sesión como root.
 ```bash
 su root
 ```
-> Nota que cuando te logueas como root el símbolo de la consola de comandos pasa de '$' a '#' mientras te mantienes como usuario root.
+> Nota que cuando te logues como root el símbolo de la consola de comandos pasa de '$' a '#' mientras te mantienes como usuario root.
 
 Una vez como root, antes de instalar nada es recomendable actualizar la lista de los programas que se pueden descargar del repositorio. Además de, como todavía no está el servidor en producción, es recomendable actualizar los programas que están ya instalados en el sistema.
 Todo esto se hace mediante la utilidad `[apt](annex/4_Gestion_de_paquetes_Debian.md)`:
@@ -378,9 +378,9 @@ Una vez añadido el usuario al grupo, hay que refrescar la información de login
 exit # Con este comando te deslogueas como usuario root
 exit # Con este segundo exit te deslogueas como tú usuario normal
 ```
-Una vez logueado de nuevo con tu usuario normal prueba a ver si poder usar sudo, ejecutando un comando que necesite permisos root o también puedes ejecutar el comando `whoami` te dice con que usuario estas logeado:
+Una vez logueado de nuevo con tu usuario normal prueba a ver si poder usar sudo, ejecutando un comando que necesite permisos root o también puedes ejecutar el comando `whoami` te dice con qué usuario estas logeado:
 ```bash
-whoami # Si lo haces si el sudo te devolverá tu usuario normal
+whoami # Si lo haces sin el sudo te devolverá tu usuario normal
 sudo whoami # Y si lo hacer con sudo te tiene que devolver que lo ha ejecutado el usuario root
 ```
 
@@ -389,18 +389,14 @@ Por temas de seguridad, la práctica Born2beroot exige hacerle unas configuracio
 
 - El grupo sudo tiene un máximo de 3 intentos para introducir la contraseña correcta
 - Cuando se utilice sudo y la contraseña sea incorrecta debe salir un mensaje personalizado
-- Para cada comando ejecutado con sudo, tanto el input como el output deben quedar archivados en el directorio /var/log/sudo/.
+- Para cada comando ejecutado con sudo, tanto el input como el output deben quedar archivados en el directorio */var/log/sudo/*.
 - El modo TTY[^3] debe estar activado por razones de seguridad.
 
-Para añadir estos parámetros al programa sudo hay que modificar el fichero *sudoers.tmp*. Para abrir/modificar este fichero es recomendable utilizar el propio comando que te
-proporciona sudo, en vez de abrirlo como si fuera un fichero normal. Además de tener que abrirlo como usuario root.
-
+Para añadir estos parámetros al programa sudo hay que modificar el fichero *sudoers.tmp*. Para abrir/modificar este fichero es recomendable utilizar el propio comando que te proporciona sudo, en vez de abrirlo como si fuera un fichero normal. Además de tener que abrirlo como usuario root.
 ```bash
 sudo visudo
 ```
-
 Ahora tienes que añadir las siguientes líneas al fichero:
-
 ```bash
 Defaults passwd_tries=3 # Se expecifica un máximo de 3 intentos
 Defaults badpass_message="Logging atempts with wrong password, try again." # Mesaje de error personalizado
@@ -412,42 +408,39 @@ Defaults requiretty # Obliga a estar TTY abierto
 > Si no existe el directorio donde quieres guardar los logs, tendrás que crearlo con `mkdir`.
 
 ### IMPLEMENTACIÓN DE AppArmor: Limitación de sudo
-Desde Debian 10 [AppArmor](annex/6_Que_es_AppArmor.md) viene preinstalado en Debian, por lo que yo usaré este mismo (además de ser más fácil de utilizar). Para ver AppArmor esta instalado y corriento correctamente hay que ejecutar lo siguiente:
+Desde Debian 10 [AppArmor](annex/6_Que_es_AppArmor.md) viene preinstalado en Debian, por lo que yo usaré este mismo (además de ser más fácil de utilizar). Para ver AppArmor está instalado y corriendo correctamente hay que ejecutar lo siguiente:
 ```bash
 sudo aa-status
 ```
-
 Y tiene que aparecerta algo parecido a esto:
 ```bash
 apparmor module is loaded.
 3 profiles are loaded.
 [...]
 ```
-
 En este caso si todo está bien deja la configuración por defecto.
 
 ### IMPLEMENTACIÓN DE [UFW](annex/7_Que_es_UFW.md) (**U**ncompicated **F**ire**w**all)
 #### INTALACIÓN Y ACTIVACIÓN
 Para instalarlo haz:
-
 ```bash
 sudo apt install ufw
 sudo ufw enable
 ```
-
-Si todo ha ido bien tiene que aparecerte el mensaje *Firewall is active and enabled on system startup*. Además para ver si efectivamente UFW se está corriendo en segundo plano puedes ejecutar el siguiente comando:
+Si todo ha ido bien tiene que aparecerte el mensaje *Firewall is active and enabled on system startup*. Además, para ver si efectivamente UFW se está corriendo en segundo plano puedes ejecutar el siguiente comando:
 ```bash
 sudo ufw status verbose # NOTA: La opción "verbose" es opcional, solo añade más información a la respuesta
 ```
+
 #### GESTIÓN DE LAS REGLAS
-Aunque de mometo no es necesario aplicar ninguna regla en concreto, voy a enseñarte los primeros pasos para que sepas como crear, eliminar y monitorizar las reglas.
+Aunque de momento no es necesario aplicar ninguna regla en concreto, voy a enseñarte los primeros pasos para que sepas como crear, eliminar y monitorizar las reglas.
 
 - Creación de reglas
 ```bash
-sudo ufw allow 4242 # Permite la entrada de trafico por el puerto 4242
-sudo ufw deny 8080 # Deniega la entrada de trafico por el puerto 8080
+sudo ufw allow 4242 # Permite la entrada de tráfico por el puerto 4242
+sudo ufw deny 8080 # Deniega la entrada de tráfico por el puerto 8080
 ```
-Estas reglas no se aplican únicamente a los puertos de tú servidor, también se pueden aplicar a IPs por ejemplo.
+> Estas reglas no se aplican únicamente a los puertos de tú servidor, también se pueden aplicar a IPs por ejemplo.
 
 - Monitorización de reglas activas
 ```bash
@@ -462,7 +455,7 @@ sudo ufw delete deny 8080
 # Otra forma sería usando el id que obtienes con el comando de status numbered
 sudo ufw delete 2
 ```
-> NOTA: Ten cuidado porque si intentas borrar más de una regla a la vez usando el id tienes que ordenarlos de mayor a menor, ya que si empiezas borrando los de meyor valor los de mayor valor iran tomando esos valores.
+> NOTA: Ten cuidado porque si intentas borrar más de una regla a la vez usando el id tienes que ordenarlos de mayor a menor, ya que si empiezas borrando los de menor valor los de mayor valor irán tomando esos valores.
 
 
 ### IMPLEMENTACIÓN DE UN SERVIDOR SSH (**S**ecure **Sh**ell) EN Born2beroot
@@ -634,7 +627,7 @@ BOOT_SEC=$(uptime -s | cut -d ":" -f 3)
 # 43 % 10 = 3 minutes since 40th minute of the hour
 # 3 * 60 = 180 seconds since 40th minute of the hour
 # 180 + 36 = 216 seconds between nearest 10th minute of the hour and boot
-DELAY=$(bc <<< $BOOT_MIN % 10 * 60 + $BOOT_SEC)
+DELAY=$(bc <<< $BOOT_MIN%10*60+$BOOT_SEC)
 
 # Wait that number of seconds
 sleep $DELAY
@@ -752,6 +745,7 @@ La última cosa ha tener en cuenta es que a la hora de la defensa se te pedirá 
 Para modificar el hostname tienes 2 opciones:
 1. Usar el comando `sudo hostnamectl set-hostname <new_hotsname>`
 2. Editarlo directamente el archivo */etc/hostname*
+3. NOTA: Si te sale el error `sudo: unable to resolve host <nuevo nombre del host>: Name or service not known` también deberas añadirlo al archivo */etc/hots*
 
 Para comprobar que efectivamente el nombre ha cambiado puedes ejecutar:
 ```bash
@@ -764,12 +758,13 @@ Comandos útiles para hacer la gestion de usuarios:
 
 | Comando                                                                            | Descripción                                                                |
 |------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| adduser                                                                            | Creates a new complete user                                                |
 | useradd                                                                            | Creates a new user                                                         |
 | usermod                                                                            | Changes the user's paramenters: -l (username), -c (full name), -g (groups) |
 | userdel -r                                                                         | Deletes a user and all associated files                                    |
 | id -u                                                                              | Displays user ID                                                           |
 | users                                                                              | Show a list of all currently logged in users                               |
-| cat /etc/passwd \| cut -d ":" -f 1<br>*or*<br>cat /etc/passwd \| awk -F '{print $1}' | Displays a list of all users on the machine                                |
+| cat /etc/passwd \| cut -d ":" -f 1<br>*or*<br>cat /etc/passwd \| awk -F '{print $1}' | Displays a list of all users on the machine                              |
 
 #### GESTIÓN DE GRUPOS
 Comandos útiles para hacer la gestion de grupos:
@@ -986,7 +981,7 @@ sudo systemctl restart lighttpd
 
 Como puedes ver poniendo *http://localhost:8080/wordpress/wp-admin/install.php* en tú navegador te saldrá un pequeño set-up del wordpress, solo te queda rellenarlo como quieras.
 
-![Instalador de Wordpress](84_Wordpress_Setup.png)
+![Instalador de Wordpress](img/84_Wordpress_Setup.png)
 
 #### SERVICIO EXTRA: Fail2Ban
 Como servicio extra, uno de los más utiles a mi parecer para cualquier servidor (aun más si tienes un servidor SSH activado como es tú caso) es `Fail2ban`[^5], se trata de un programa para la prevención de intrusos en un sistema, que actúa penalizando o bloqueando las conexiones remotas que intentan accesos por fuerza bruta. Si encuentra múltiples intentos de inicio de sesión fallidos o ataques automáticos desde una dirección IP, puede bloquearla con el firewall, ya sea de manera temporal o permanente.

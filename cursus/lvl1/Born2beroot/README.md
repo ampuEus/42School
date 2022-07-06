@@ -269,22 +269,157 @@ END! You already have Debian installed on your VM.
 ![VirtualBox image](img/72_InstalationCfg60.png)
 
 ### LOGGING INTO Born2beroot
-Ahora se reiniciará la VM. Al arrancar te pedirá la contraseña para descifrar la partición encriptada, y luego las credenciales del usuario que creaste al inicio del proceso de instalación.
-Para verificar que la instalación es correcta, puedes probar algunos comandos:
-- **cat /etc/os-release**. Para comprobar la información del sistema operativo
-- **lsblk**. Para revisar nuestras particiones
-- **apt –v**. Comprueba si el administrador de paquetes está instalado de forma predeterminada
-- **date**. Para comprobar la zona horaria (Tiene que coincidir con el país que pusiste en la instalación). Aunque si es incorrecta, no es muy importante para Born2beroot.
+Now restart the VM. At boot it will ask you for the password to decrypt the encrypted partition, and then the credentials of the user you created at the beginning of the installation process.
+
+To verify that the installation is correct, you can try a few commands:
+- **cat /etc/os-release**. To check the operating system information
+- **lsblk**. To review yours partitions
+- **apt –v**. Check if the package manager is installed by default
+- **date**. To check the time zone (It has to match the country you put in the installation). Although if it is incorrect, it is not very important for Born2beroot.
 
 ![VirtualBox image](img/73_DebianInstalled.png)
 
 ## CONFIGURING A DEBIAN AS A SERVER
-### sudo implementation
-#### Installation
-To install a program on the server you need to login as a root.
+### [sudo](annex/5_Root_Superuser_Sudo.en.md) IMPLEMENTATION
+#### sudo INSTALLATION
+To install a program on the server, you have to log in as root.
+```bash
+su root
+```
+> Note that when you log in as root the console command prompt changes from '$' to '#' while you remain root.
+
+Once as root, before installing anything, it is recommended to update the list of programs that can be downloaded from the repository. In addition to that, since the server is not yet in production, it is recommended to update the programs that are already installed on the system.
+This is all done using the `[apt](annex/4_Debian_Package_Management.md)` utility:
+```bash
+apt update # Update the list of packages
+apt upgrade # Upgrade packages installed on the system
+apt install sudo # Install the sudo utility
+```
+Now it's time to give the privileges to execute sudo to the desired user. There are different ways to do this, but the most correct and appropriate way is to add the user to a group that has the privileges that you want to give them. When you install the sudo program, it already has a default group that has sudo privileges called "sudo".
+
+Although to make sure of the name you can run the `sudo visudo` command and see if there is a group named like this:
+
+![Visudo file](img/74_visudo.png)
+
+Explanation:
+```bash
+%sudo ALL=(ALL:ALL) ALL
+└─┬─┘ └┬┘  └──┬──┘  └┬┘
+  │    │      │      └────╴> The command itself
+  │    │      └────> User who can execute the command
+  │    └────> The host to which the match is applied
+  └────> User (in this case group since it has the prefix '%') to which the command applies
+```
+> Knowing this, another of the many ways to give privileges to a user can be to add it directly and give it the privileges you want, but this is not usually a good practice.
+
+To add the user to a group there are different ways, the one I use is:
+```bash
+sudo usermod -aG sudo daampuru
+└┬─┘ └──┬──┘  ││ └┬─┘ └──┬───┘
+ │      │     ││  │      └────> Is user itself
+ │      │     ││  └────> The group you want to join the user to
+ │      │     │└────> To the desired group
+ │      │     └────> With the "append" options
+ │      └────> To modify the login information of users
+ └────> Run sudo command
+```
+> ATTENTION: Be very careful not to forget the *a* option since if you only put "-G" the selected user will be deleted from all the other groups in which he is and will only be in this one. An easier way is `adduser <username> sudo`
+
+Once the user is added to the group, the login information of said user must be refreshed. This is done by logging out and logging back in:
+```bash
+exit # With this command you log out as root user
+exit # With this second exit you log out as your normal user
+```
+Once logged in again with your normal user try to see if you can use sudo, executing a command that needs root permissions or you can also execute the command `whoami` tells you what user you are logged in with:
+```bash
+whoami # If you do it without sudo will return your normal username
+sudo whoami # And if you do it with sudo it has to return that the root user has executed it
+```
+
+#### sudo CONFIGURATION
+For security reasons, the Born2beroot practice requires making some extra configurations to the sudo settings that come by default:
+
+- The sudo group has a maximum of 3 attempts to enter the correct password
+- When sudo is used and the password is incorrect, a personalized message should appear
+- For each command executed with sudo, both the input and the output must be archived in the */var/log/sudo/* directory.
+- TTY[^3] mode must be enabled for security reasons.
+
+To add these parameters to the sudo program you have to modify the *sudoers.tmp* file. To open/modify this file, it is recommended to use the command that provides sudo, instead of opening it as if it were a normal file. In addition you have to open it as root user.
+```bash
+sudo visudo
+```
+Now you have to add the following lines to the file:
+```bash
+Defaults passwd_tries=3 # Specify a maximum of 3 attempts
+Defaults badpass_message="Logging attempts with wrong password, try again." # Custom error message
+Defaults logfile="/var/log/sudo/sudo.log" # Place where interactions with sudo will be saved
+Defaults log_input # Saves the inputs
+Defaults log_output # Save the output
+Defaults requiretty # Requires TTY to be open
+```
+> If the directory where you want to save the logs does not exist, you will have to create it with `mkdir`.
+
+### AppArmor IMPLEMENTATION: sudo limitation
+Since Debian 10 [AppArmor](annex/6_What_is_AppArmor.md) comes pre-installed in Debian, so I will use this one (Also it is easier to use). To see AppArmor is installed and running correctly, you have to execute the following:
+```bash
+sudo aa-status
+```
+And something similar to this should appear:
+```bash
+apparmor module is loaded.
+3 profiles are loaded.
+[...]
+```
+In this case, if everything is fine, leave the default configuration.
+
+### IMPLEMENTATION OF [UFW](annex/7_What_is_UFW.md) (**U**ncompicated **F**ire**w**all)
+#### INSTALLATION AND ACTIVATION
+To install it do:
+```bash
+sudo apt install ufw
+sudo ufw enable
+```
+If everything went well, the message *Firewall is active and enabled on system startup* should appear. Also, to see if UFW is actually running in the background, you can run the following command:
+```bash
+sudo ufw status verbose # NOTE: The "verbose" option is optional, it just adds more information to the response
+```
+
+#### RULES MANAGEMENT
+Although at the moment it is not necessary to apply any specific rule, I am going to show you the first steps so that you know how to create, delete and monitoring the rules.
+
+- Creation of rules
+```bash
+sudo ufw allow 4242 # Allow traffic to enter through port 4242
+sudo ufw deny 8080 # Deny traffic from entering port 8080
+```
+> These rules do not only apply to the ports of your server, they can also be applied to IPs for example.
+
+- Monitoring of active rules
+```bash
+sudo ufw status numbered
+```
+
+- Removal of rules
+```bash
+sudo ufw delete allow 4242
+sudo ufw delete deny 8080
+
+# Another way would be using the id you get with the status numbered command
+sudo ufw delete 2
+```
+> NOTE: Be careful because if you try to delete more than one rule at the same time using the id you have to order them from highest to lowest, since if you start deleting the ones with the lowest value, the ones with the highest value will take those values.
+
+
+
 
 
 
 [^1]: These are the latest stable versions of the respective programs on the date this exercise is being carried out.
 
 [^2]: If you give a very low value to “var” when installing the base system, it can give you problems.
+
+[^3]: TTY (Text/Terminal) or Graphic (Window Manager) mode. From the point of view of a server, starting in terminal mode saves resources, since almost all the queries that we carry out on it are usually managed through SSH.
+
+[^4]: [Here](https://blog.ostermiller.org/install-wordpress-apt-ubuntu-host-multiple-blog-domains/) you have everything that installs and where wordpress installs it do it through `apt `
+
+[^5]: [Here](https://www.youtube.com/watch?v=PAK7I1cKwzA) I leave you a very good explanatory video of the great Pelado Nerd
