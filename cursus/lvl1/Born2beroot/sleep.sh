@@ -9,7 +9,7 @@ BOOT_SEC=$(uptime -s | cut -d ":" -f 3)
 # 43 % 10 = 3 minutes since 40th minute of the hour
 # 3 * 60 = 180 seconds since 40th minute of the hour
 # 180 + 36 = 216 seconds between nearest 10th minute of the hour and boot
-DELAY=$(bc <<< $BOOT_MIN % 10 * 60 + $BOOT_SEC)
+DELAY=$(bc <<< $BOOT_MIN%10*60+$BOOT_SEC)
 
 # Wait that number of seconds
 sleep $DELAY
