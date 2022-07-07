@@ -17,47 +17,47 @@ Esta práctica es una introducción a la administración de sistemas. En esta pr
 
 
 ## Índice:
-* [1. CREACIÓN DE LA [MÁQUINA VIRTUAL](annex/2_Que_es_una_VM.md)](#1-creaci-n-de-la--m-quina-virtual)
-* [INSTALANDO DEBIAN EN LA VM](#instalando-debian-en-la-vm)
-  + [PARTICIÓN MANUAL](#partici-n-manual)
-  + [ENCRIPTACIÓN DE DISCO](#encriptaci-n-de-disco)
-  + [CONFIGURANDO LVM](#configurando-lvm)
-    - [Creación de grupo de volúmenes lógicos](#creaci-n-de-grupo-de-vol-menes-l-gicos)
-    - [Creación de volumen lógico](#creaci-n-de-volumen-l-gico)
-    - [Configurando las particiones](#configurando-las-particiones)
-    - [Instalando sistema base de Debian](#instalando-sistema-base-de-debian)
-  + [ACCEDIENDO A Born2beroot](#accediendo-a-born2beroot)
-* [CONFIGURANDO UN DEBIAN COMO SERVIDOR](#configurando-un-debian-como-servidor)
-  + [IMPLEMENTACIÓN DE sudo](#implementaci-n-de-sudo)
-    - [INSTALACIÓN](#instalaci-n)
-    - [CONFIGURACIÓN DE sudo](#configuraci-n-de-sudo)
-  + [IMPLEMENTACIÓN DE AppArmor: Limitación de sudo](#implementaci-n-de-apparmor--limitaci-n-de-sudo)
-  + [IMPLEMENTACIÓN DE UFW (**U**ncompicated **F**ire**w**all)](#implementaci-n-de-ufw----u--ncompicated---f--ire--w--all-)
-    - [INTALACIÓN Y ACTIVACIÓN](#intalaci-n-y-activaci-n)
-    - [GESTIÓN DE LAS REGLAS](#gesti-n-de-las-reglas)
-  + [IMPLEMENTACIÓN DE UN SERVIDOR SSH (**S**ecure **Sh**ell) EN Born2beroot](#implementaci-n-de-un-servidor-ssh----s--ecure---sh--ell--en-born2beroot)
-    - [INSTALAR](#instalar)
-    - [CONFIGURAR EL SERVIDOR SSH](#configurar-el-servidor-ssh)
-    - [REDIRECCIONAMIENTO DE PUERTOS CON VIRTUALBOX](#redireccionamiento-de-puertos-con-virtualbox)
-    - [CONEXIÓN A UN SERVIDOR SSH](#conexi-n-a-un-servidor-ssh)
-  + [MONITORIZACIÓN DEL SERVIDOR](#monitorizaci-n-del-servidor)
-    - [ENVIAR UN MENSAJE A CADA TERMINAL](#enviar-un-mensaje-a-cada-terminal)
-    - [ENVIAR EL MENSAJE CADA 10 MINUTOS](#enviar-el-mensaje-cada-10-minutos)
-    - [CALCULAR CUANDO SE HA INICIADO EL SISTEMA](#calcular-cuando-se-ha-iniciado-el-sistema)
-  + [IMPLEMENTACIÓN DE UN SISTEMA FUERTE DE CONTRASEÑAS](#implementaci-n-de-un-sistema-fuerte-de-contrase-as)
-  + [GESTIÓN DEL HOSTNAME, USUARIOS Y GRUPOS](#gesti-n-del-hostname--usuarios-y-grupos)
-    - [MODIFICAR EL HOSTNAME](#modificar-el-hostname)
-    - [GESTIÓN DE USUARIOS](#gesti-n-de-usuarios)
-    - [GESTIÓN DE GRUPOS](#gesti-n-de-grupos)
-  + [PARTE BONUS](#parte-bonus)
-    - [PHP](#php)
-    - [LIGHTTPD](#lighttpd)
-      * [ACTIVACIÓN de FastCGI (**Fast** **C**ommon **G**atewway **I**nterface)](#activaci-n-de-fastcgi----fast-----c--ommon---g--atewway---i--nterface-)
-    - [MariaDB](#mariadb)
-    - [WORDPRESS](#wordpress)
-    - [SERVICIO EXTRA: Fail2Ban](#servicio-extra--fail2ban)
-  + [POSIBLES ERRORES](#posibles-errores)
-    - [\*ERROR\* Failed to send host log message](#--error---failed-to-send-host-log-message)
+- [1. CREACIÓN DE LA [MÁQUINA VIRTUAL](annex/2_Que_es_una_VM.md)](#1-creación-de-la-[máquina-virtual](annex-2-que-es-una-vmmd))
+- [INSTALANDO DEBIAN EN LA VM](#instalando-debian-en-la-vm)
+  * [PARTICIÓN MANUAL](#partición-manual)
+  * [ENCRIPTACIÓN DE DISCO](#encriptación-de-disco)
+  * [CONFIGURANDO LVM](#configurando-lvm)
+    + [Creación de grupo de volúmenes lógicos](#creación-de-grupo-de-volúmenes-lógicos)
+    + [Creación de volumen lógico](#creación-de-volumen-lógico)
+    + [Configurando las particiones](#configurando-las-particiones)
+    + [Instalando sistema base de Debian](#instalando-sistema-base-de-debian)
+  * [ACCEDIENDO A Born2beroot](#accediendo-a-born2beroot)
+- [2. CONFIGURANDO UN DEBIAN COMO SERVIDOR](#2-configurando-un-debian-como-servidor)
+  * [IMPLEMENTACIÓN DE [sudo](annex/5_Root_Superuser_Sudo.es.md)](#implementación-de--sudo--annex-5-root-superuser-sudoesmd-)
+    + [INSTALACIÓN de sudo](#instalación-de-sudo)
+    + [CONFIGURACIÓN DE sudo](#configuración-de-sudo)
+  * [IMPLEMENTACIÓN DE AppArmor: Limitación de sudo](#implementación-de-apparmor:-limitación-de-sudo)
+  * [IMPLEMENTACIÓN DE [UFW](annex/7_Que_es_UFW.md) (**U**ncompicated **F**ire**w**all)](#implementaci-n-de--ufw--annex-7-que-es-ufwmd-----u--ncompicated---f--ire--w--all-)
+    + [INTALACIÓN Y ACTIVACIÓN](#intalación-y-activación)
+    + [GESTIÓN DE LAS REGLAS](#gestión-de-las-reglas)
+  * [IMPLEMENTACIÓN DE UN SERVIDOR SSH EN Born2beroot](#implementación-de-un-servidor-ssh-en-born2beroot)
+    + [INSTALAR](#instalar)
+    + [CONFIGURAR EL SERVIDOR SSH](#configurar-el-servidor-ssh)
+    + [REDIRECCIONAMIENTO DE PUERTOS CON VIRTUALBOX](#redireccionamiento-de-puertos-con-virtualbox)
+    + [CONEXIÓN A UN SERVIDOR SSH](#conexión-a-un-servidor-ssh)
+  * [MONITORIZACIÓN DEL SERVIDOR](#monitorización-del-servidor)
+    + [ENVIAR UN MENSAJE A CADA TERMINAL](#enviar-un-mensaje-a-cada-terminal)
+    + [ENVIAR EL MENSAJE CADA 10 MINUTOS](#enviar-el-mensaje-cada-10-minutos)
+    + [CALCULAR CUANDO SE HA INICIADO EL SISTEMA](#calcular-cuando-se-ha-iniciado-el-sistema)
+  * [IMPLEMENTACIÓN DE UN SISTEMA FUERTE DE CONTRASEÑAS](#implementación-de-un-sistema-fuerte-de-contraseñas)
+  * [GESTIÓN DEL HOSTNAME, USUARIOS Y GRUPOS](#gestión-del-hostname,-usuarios-y-grupos)
+    + [MODIFICAR EL HOSTNAME](#modificar-el-hostname)
+    + [GESTIÓN DE USUARIOS](#gestión-de-usuarios)
+    + [GESTIÓN DE GRUPOS](#gestión-de-grupos)
+- [3. PARTE BONUS](#3-parte-bonus)
+  * [PHP](#php)
+  * [LIGHTTPD](#lighttpd)
+    + [ACTIVACIÓN de FastCGI (**Fast** **C**ommon **G**atewway **I**nterface)](#activación-de-fastcgi-(**fast**-**c**ommon-**g**atewway-**i**nterface))
+  * [MariaDB](#mariadb)
+  * [WORDPRESS](#wordpress)
+  * [SERVICIO EXTRA: Fail2Ban](#servicio-extra:-fail2ban)
+- [EXTRA: POSIBLES ERRORES](#extra:-posibles-errores)
+    + [\*ERROR\* Failed to send host log message](#\*error\*-failed-to-send-host-log-message)
 
 
 ## 1. CREACIÓN DE LA [MÁQUINA VIRTUAL](annex/2_Que_es_una_VM.md)
@@ -327,9 +327,9 @@ Para verificar que la instalación es correcta, puedes probar algunos comandos:
 
 ![Imagen de VirtualBox](img/73_DebianInstalled.png)
 
-## CONFIGURANDO UN DEBIAN COMO SERVIDOR
+## 2. CONFIGURANDO UN DEBIAN COMO SERVIDOR
 ### IMPLEMENTACIÓN DE [sudo](annex/5_Root_Superuser_Sudo.es.md)
-#### sudo INSTALACIÓN
+#### INSTALACIÓN de sudo
 Para instalar un programa en el servidor, tienes que iniciar sesión como root.
 ```bash
 su root
@@ -420,9 +420,9 @@ apparmor module is loaded.
 ```
 En este caso si todo está bien deja la configuración por defecto.
 
-### IMPLEMENTACIÓN DE [UFW](annex/7_Que_es_UFW.md) (**U**ncompicated **F**ire**w**all)
+### IMPLEMENTACIÓN DE UFW (**U**ncompicated **F**ire**w**all)
 #### INTALACIÓN Y ACTIVACIÓN
-Para instalarlo haz:
+Para instalar [UFW](annex/7_Que_es_UFW.md) haz:
 ```bash
 sudo apt install ufw
 sudo ufw enable
@@ -458,64 +458,55 @@ sudo ufw delete 2
 > NOTA: Ten cuidado porque si intentas borrar más de una regla a la vez usando el id tienes que ordenarlos de mayor a menor, ya que si empiezas borrando los de menor valor los de mayor valor irán tomando esos valores.
 
 
-### IMPLEMENTACIÓN DE UN SERVIDOR SSH (**S**ecure **Sh**ell) EN Born2beroot
+### IMPLEMENTACIÓN DE UN SERVIDOR SSH EN Born2beroot
 #### INSTALAR
-Otro requisito de la práctica es la posibilidad de conectarse a tú servidor de forma remota y hacerlo por el puerto 4242. Para ello te dicen que utilices el protocolo SSH, para poder usarlo de forma sencilla existen diferentes programas pero el más usado en Linux es **OpenSSH**, el cual se puede implementar de dos formas como cliente (sirve para conectarse a otro ordenador) y/o servidor (sirve para que otros ordenadores se conecten). A tí te interesa implementar un servidor con OpenSSH.
-
+Otro requisito de la práctica es la posibilidad de conectarse a tú servidor de forma remota y hacerlo por el puerto 4242. Para ello te dicen que utilices el protocolo [SSH](annex/8_Que_es_SSH.md), para poder usarlo de forma sencilla existen diferentes programas, pero el más usado en Linux es **OpenSSH**, el cual se puede implementar de dos formas como cliente (sirve para conectarse a otro ordenador) y/o servidor (sirve para que otros ordenadores se conecten). A ti te interesa implementar un servidor con OpenSSH.
 ```bash
 sudo apt install openssh-server
 ```
-
-Para ver el estado del servidor ssh
-
+Para ver el estado del servidor ssh:
 ```bash
 sudo systemctl status ssh
 ```
 
 #### CONFIGURAR EL SERVIDOR SSH
- Como puedes ver, el servidor esta preconfigurado para que acepte las conexión procedentes del puerto 22, mira la línea `Server listening on :: port 22`. Para que el servidor solo acepte conexiones que vengan del puerto 4242 tienes que modificar la configuración por defecto del ssh. El archivo de configuración esta en */etc/ssh/sshd_config*.
-
+ Como puedes ver, el servidor esta preconfigurado para que acepte las conexión procedentes del puerto 22, mira la línea `Server listening on :: port 22`. Para que el servidor solo acepte conexiones que vengan del puerto 4242 tienes que modificar la configuración por defecto del ssh. El archivo de configuración está en */etc/ssh/sshd_config*.
 ```bash
 sudo nano /etc/ssh/sshd_config
 ```
-
 Una vez abierto busca la línea `# Port 22`, descomentala y cambia el 22 por el 4242.
 
 |![Fichero de configuración del ssh por defecto](img/75_sshd_config_default.png)|![Fichero de configuración del ssh modificado](img/76_sshd_config.png)|
 |-|-|
 
-Una vez guardado el servidor ssh devería cambiar el puerto de escucha automaticamente, si no es así prueba a reiniciar el servicio ssh.
-
+Una vez guardado el servidor ssh devería cambiar el puerto de escucha automáticamente, si no es así prueba a reiniciar el servicio ssh.
 ```bash
 sudo systemctl restart ssh
 ```
- Por último, hay que autorizar al firewall UFW que autorice las conexiones de entrada por el puerto 4242. Además de añadir esta regla, es posible que tengas que eliminar una nueva regla que permite las conexiones por el puerto 22 que se a creado automaticamente al instalar OpenSSH.
-
+ Por último, hay que autorizar al firewall UFW que autorice las conexiones de entrada por el puerto 4242. Además de añadir esta regla, es posible que tengas que eliminar una nueva regla que permite las conexiones por el puerto 22 que se ha creado automáticamente al instalar OpenSSH.
 ```bash
 sudo ufw allow 4242
 sudo delete allow ssh # To delete port 22 rule
 ```
 
 #### REDIRECCIONAMIENTO DE PUERTOS CON VIRTUALBOX
-Para poder conectarte a la VM desde otro ordenador a traves de SSH tienes que redireccionar el puerto del host (el PC donde tienes instalada la VM) al propio puerto de la máquina virtual. En el caso de que trabajes con VirtualBox ve ha los ajustes de Born2beroot, una vez allí ve ha *network -> Adapter 1 -> Advanced -> Port Forwarding*
+Para poder conectarte a la VM desde otro ordenador a través de SSH tienes que redireccionar el puerto del host (el PC donde tienes instalada la VM) al propio puerto de la máquina virtual. En el caso de que trabajes con VirtualBox ve a los ajustes de Born2beroot, una vez allí ve ha *network -> Adapter 1 -> Advanced -> Port Forwarding*
 
 |![Redireccionando el puerto parte 1](img/77_PortForwarding1.png)|![Redireccionando el puerto parte 2](img/78_PortForwarding2.png)|
 |-|-|
 
-Una vez hecho esto ya deberias de poder conectarte vía ssh, pero si quieres asegurar vuelve a reiniciar el servicio.
-
+Una vez hecho esto ya deverias de poder conectarte vía ssh, pero si quieres asegurar vuelve a reiniciar el servicio.
 ```bash
 sudo systemctl restart ssh
 ```
 
 #### CONEXIÓN A UN SERVIDOR SSH
 Para conectarte desde otro ordenador te hace falta tener un cliente ssh instalado. Suponiendo que ya lo tengas, lo único que tienes que hacer es abrir una terminal y
-
 ```bash
 ssh daampuru@localhost -p 4242
 └┬┘ └──┬───┘ └───┬───┘  │ └┬─┘
  │     │         │      │  └────> Puerto por el que quieres conectarte
- │     │         │      └────> Opción de poder eleguir otro puerto que no sea el de por defecto
+ │     │         │      └────> Opción de poder elegir otro puerto que no sea el de por defecto
  │     │         └────> IP a la que quieres conectarte
  │     └────> Usuario del sistema al que quieres conectarte
  └────> Comando para usar el cliente ssh
@@ -534,7 +525,7 @@ Para desconectarte de la conexión SSH solo tienes que ejecutar el comando `exit
 
 
 ### MONITORIZACIÓN DEL SERVIDOR
-La siguiente etapa de la guia es hacer el script *monitoring.sh* el cual debe ejecutarse cada 10 minutos desde el arranque del equipo y mostrar la información deseada en todas las terminales activas. Información ha mostrar:
+La siguiente etapa de la guía es hacer el script *monitoring.sh* el cual debe ejecutarse cada 10 minutos desde el arranque del equipo y mostrar la información deseada en todas las terminales activas. Información a mostrar:
 
 | Información                                                                           | Comando                                                                             |
 |---------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
@@ -567,19 +558,14 @@ wall "message"    # Con banner
 wall -n "message" # Sin banner
 ```
 
-
-
 #### ENVIAR EL MENSAJE CADA 10 MINUTOS
 Para este cometido existe el servicio `crontab` (**c**h**ron**o **tab**le) que te permite la ejecución de scripts o software de forma automática cuando ocurre un evento en concreto que tú le hayas asignado, como puede ser una fecha y hora determinada o en un intervalo de tiempo específico.
 
 Este es un programa que viene preinstalado con el propio Debian y para que se ejecute en segundo plano siempre que arranques el equipo usa el siguiente comando:
-
 ```bash
 systemctl enable cron
 ```
-
 Para programas los trabajos *cron* usa archivos llamados *crontab*. Logueado como root tienes que crear uno de estos archivos.
-
 ```bash
 crontab -e * * * * * <command to execute>
          │ │ │ │ │ └────> Selecciona el día de la semana (0 - 6, 0 = Domingo)
@@ -592,29 +578,23 @@ crontab -e * * * * * <command to execute>
 > NOTA: '*' significa cualquier valor
 
 Para ejecutar el archivo de monitoreo cada 10 minutos hay que usar la siguiente combinación.
-
 ```bash
 crontab -e */10 * * * * ./root/monitoring.sh
 ```
 > Suponiendo que */root/monitoring.sh* sea donde tienes el archivo.
 
 Y para que la salida del comando se muestre en todas las terminales hay que añadirle el comando `wall`, otra manera de hacerlo es introducir el comando `wall` directamente en el script.
-
 ```bash
 crontab -e */10 * * * * ./root/monitoring.sh | wall
 ```
-
-Aun así, este script se ejecutará cada 10 minutos de cada hora (00:10, 00:20, 00:30 ...) no cada 10 minutos desde que se **arranca el sistema**. Para conseguir esto tendrás un nuevo script que combine el comando `spleet` y que sepa ha que hora se ha iniciado en sistema.
+Aun así, este script se ejecutará cada 10 minutos de cada hora (00:10, 00:20, 00:30 ...) no cada 10 minutos desde que se **arranca el sistema**. Para conseguir esto tendrás un nuevo script que combine el comando `sleep` y que sepa a qué hora se ha iniciado en sistema.
 
 #### CALCULAR CUANDO SE HA INICIADO EL SISTEMA
-Crea un nuevo script llamado *sleep.sh*. Este script, calculará la cantidad de segundos entre el tiempo de arranque preciso y el décimo minuto. Para hacer los calculos puedes usar la calculadora basada en terminal `bc`, por lo que primero tienes que instalarla en el sistema
-
+Crea un nuevo script llamado *sleep.sh*. Este script, calculará la cantidad de segundos entre el tiempo de arranque preciso y el décimo minuto. Para hacer los cálculos puedes usar la calculadora basada en terminal `bc`, por lo que primero tienes que instalarla en el sistema
 ```bash
 sudo apt install bc
 ```
-
-Por otro lado el código fuente de sleep.sh es:
-
+Por otro lado, el código fuente de sleep.sh es:
 ```bash
 #!bin/bash
 
@@ -632,44 +612,37 @@ DELAY=$(bc <<< $BOOT_MIN%10*60+$BOOT_SEC)
 # Wait that number of seconds
 sleep $DELAY
 ```
-
-Por último añade este archivo al comando de crontab, de este modo cron llamará a `sleep.sh` y este pasado X tiempo llamará a `monitoring.sh`:
-
+Por último, añade este archivo al comando de crontab, de este modo cron llamará a `sleep.sh` y este pasado *X* tiempo llamará a `monitoring.sh`:
 ```bash
 */10 * * * * bash /root/sleep.sh && bash /root/monitoring.sh
 ```
 
 ### IMPLEMENTACIÓN DE UN SISTEMA FUERTE DE CONTRASEÑAS
-> NOTA: Si tienes pensado hacer la parte bonus te recomiendo que pospogas este apartado hasta tenerla hecha, así no tendras que andar cambiando la contraseñas ni andar preocupandote de sí van a expirar o no.
+> NOTA: Si tienes pensado hacer la parte bonus te recomiendo que pospongas este apartado hasta tenerla hecha, así no tendrás que andar cambiando la contraseñas ni andar preocupándote de sí van a expirar o no.
 
-Las caracteristicas que te piden para configurar la politica de contraseñas es:
+Las características que te piden para configurar la política de contraseñas son:
 -	La contraseña expira en 30 días
 -	El número mínimo de días permitido antes de modificar una contraseña son 2
 - El usuario debe recibir un mensaje de aviso 7 días antes de que su contraseña expire.
 -	Mínimo 10 caracteres de longitud
-- Mínimo  una mayúscula y un número
-- Mínimo no puede tener más de 3 veces consecutivas el mismo carácter
+- Mínimo una mayúscula y un número
+- No puede tener más de 3 veces consecutivas el mismo carácter
 -	La contraseña no puede contener el nombre del usuario.
 -	La contraseña debe tener al menos 7 caracteres que no sean parte de la antigua contraseña (la contraseña de root no tiene que seguir esta norma)
 
-Las regla se arriba hay que separarlos en dos grupos, los 3 trineros que tienen que ber con los días y el resto que definen como tiene que ser las contraseñas.
+Las reglas se arriba hay que separarlos en dos grupos, los 3 primeros que tienen que ver con los días y el resto que definen como tiene que ser las contraseñas.
 
 Para los tres primeros tiene que modificar el archivo:
-
 ```bash
 sudo nano /etc/login.defs
 ```
-
 Y en el apartado *Password aging controls* (línea 160) cambia los siguientes valores:
-
 ```bash
 PASS_MAX_DAYS 30
 PASS_MIN_DAYS 2
 PASS_WARN_AGE 7
 ```
-
 Pero cuidado, estos cambios no se aplican de forma automática a los usuarios preexistentes (el *root* y *daampuru* en mi caso). Para modificar estas reglas necesitas usa el commando `chage`:
-
 ```bash
 sudo chage -M 30 root
 sudo chage -M 30 daampuru
@@ -681,15 +654,11 @@ sudo chage -W 7 daampuru
 sudo chage -l root
 sudo chage -l daampuru
 ```
-
-Para aplicar las demás caracteristicas hace falta que te descarges el siguiente paquete:
-
+Para aplicar las demás características hace falta que te descargues el siguiente paquete:
 ```bash
 sudo apt install libpam-pwquality
 ```
-
-Y para imponer pas caracteristicas que se quieren en las contraseñas hay que configurar el archivo */etc/security/pwquality.conf*
-
+Y para imponer las características que se quieren en las contraseñas hay que configurar el archivo */etc/security/pwquality.conf*
 ```bash
 # Number of characters in the new password that must not be present in the
 # old password.
@@ -727,16 +696,14 @@ enforce_for_root
 
 # [...]
 ```
-
-Por último, cambia las contraseñas del root y tú usuario para que cumplan con la nueva politica de contraseñas:
-
+Por último, cambia las contraseñas del root y tú usuario para que cumplan con la nueva política de contraseñas:
 ```bash
 sudo passwd <user/root>
 ```
 
 
 ### GESTIÓN DEL HOSTNAME, USUARIOS Y GRUPOS
-La última cosa ha tener en cuenta es que a la hora de la defensa se te pedirá que:
+La última cosa a tener en cuenta es que a la hora de la defensa se te pedirá que:
 - Cambies el hostname del sistema
 - Crees un nuevo usuario, le cambies el nombre ...
 - Y lo añadas a un grupo
@@ -745,7 +712,7 @@ La última cosa ha tener en cuenta es que a la hora de la defensa se te pedirá 
 Para modificar el hostname tienes 2 opciones:
 1. Usar el comando `sudo hostnamectl set-hostname <new_hotsname>`
 2. Editarlo directamente el archivo */etc/hostname*
-3. NOTA: Si te sale el error `sudo: unable to resolve host <nuevo nombre del host>: Name or service not known` también deberas añadirlo al archivo */etc/hots*
+3. NOTA: Si te sale el error `sudo: unable to resolve host <nuevo nombre del host>: Name or service not known` también deberás añadirlo al archivo */etc/hots*
 
 Para comprobar que efectivamente el nombre ha cambiado puedes ejecutar:
 ```bash
@@ -754,7 +721,7 @@ hostnamectl status
 > Si ves que todavía no ha cambiado el nombre, prueba a reiniciar el equipo.
 
 #### GESTIÓN DE USUARIOS
-Comandos útiles para hacer la gestion de usuarios:
+Comandos útiles para hacer la gestión de usuarios:
 
 | Comando                                                                            | Descripción                                                                |
 |------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
@@ -767,7 +734,7 @@ Comandos útiles para hacer la gestion de usuarios:
 | cat /etc/passwd \| cut -d ":" -f 1<br>*or*<br>cat /etc/passwd \| awk -F '{print $1}' | Displays a list of all users on the machine                              |
 
 #### GESTIÓN DE GRUPOS
-Comandos útiles para hacer la gestion de grupos:
+Comandos útiles para hacer la gestión de grupos:
 
 | Comando      | Descripción                             |
 |--------------|-----------------------------------------|
@@ -779,14 +746,14 @@ Comandos útiles para hacer la gestion de grupos:
 | getent group | Displays a list of all users in a group |
 
 
-### PARTE BONUS
-En la parte bonus a parte de crear las particiones extra que se pedian a la hora de la instalación del SO, hay que crear una pagina web ([aquí](annex/9_Breve_Introduccion_a_las_paginasWeb.md) tienes una pequeña introducción) con **WordPress**. Y como backend te dicen que debes implementar lo siguiente:
+## 3. PARTE BONUS
+En la parte bonus aparte de crear las particiones extra que se pedían a la hora de la instalación del SO, hay que crear una página web ([aquí](annex/9_Breve_Introduccion_a_las_paginasWeb.md) tienes una pequeña introducción) con **WordPress**. Y como backend te dicen que debes implementar lo siguiente:
 - El servidor HTTP a implementar tiene que ser **Lighttpd**
 - Para programar el servidor para la parte del backend hay que usar **PHP**
 - En cuanto a la implementación de la base de datos se va ha usar **MariaDB**
 
-#### PHP
-En el momento en que estoy escribiendo esta guia, A la hora de instalar PHP si ejecutas `sudo apt list php` puedes ver como en Debian 11 la version estable de PHP es la 7.4, aunque ya este la versión 8 disponible. En un principio con la version 7.4 no tendrías que tener ningún problema. Además de PHP 7.4 también hacen falta los paquetes* php-common*, *php-cgi*,  *php-cli* y *php-mysql* ya que son necesarios para WordPress.
+### PHP
+En el momento en que estoy escribiendo esta guía, A la hora de instalar PHP si ejecutas `sudo apt list php` puedes ver como en Debian 11 la versión estable de PHP es la 7.4, aunque ya este la versión 8 disponible. En un principio con la versión 7.4 no tendrías que tener ningún problema. Además de PHP 7.4 también hacen falta los paquetes* php-common*, *php-cgi*, *php-cli* y *php-mysql* ya que son necesarios para WordPress.
 
 ```bash
 sudo apt update
@@ -794,8 +761,8 @@ sudo apt install php php-common php-cgi php-cli php-mysql
 php -v # Para comprobar que versión se ha instalado
 ```
 
-#### LIGHTTPD
-Antes de empezar con la instalación de lighttp, si has instalado primero PHP es posible se te haya instalado apache2 como dependencia de php (para comprobar si está o no en el sistema puedes ejecutar `sudo apt list apache2` y si al final del paquete pone *[installed]* es que esta instalado), por lo que para evitar posibles conflitos si esta instalado ejecuta `sudo apt purge apache2` para eliminarlo del sistema.
+### LIGHTTPD
+Antes de empezar con la instalación de lighttp, si has instalado primero PHP es posible se te haya instalado apache2 como dependencia de php (para comprobar si está o no en el sistema puedes ejecutar `sudo apt list apache2` y si al final del paquete pone *[installed]* es que está instalado), por lo que para evitar posibles conflictos si está instalado ejecuta `sudo apt purge apache2` para eliminarlo del sistema.
 
 Para instalar lighttpd simplemente tienes que ejecutar:
 
@@ -804,7 +771,7 @@ sudo apt install lighttpd
 lighttpd -v # Para comprobar que efectivamente se ha instalado
 ```
 
-Una vez instalado, toca activarlo y hacer que el servidio empiece a funcionan en segundo plano al arranquar el ordenador.
+Una vez instalado, toca activarlo y hacer que el servicio empiece a funcionan en segundo plano al arrancar el ordenador.
 
 ```bash
 sudo systemctl start lighttpd
@@ -812,25 +779,25 @@ sudo systemctl enable lighttpd
 sudo systemctl status lighttpd
 ```
 
-Una vez combrobado con el comando `status` que el servicio esta ejecutandose, tienes que decirle al firewall que permita pasar trafico con el protocolo *http* (o lo que es lo mismo por el puerto 80 y protocolo TCP/IP)
+Una vez comprobado con el comando `status` que el servicio esta ejecutándose, tienes que decirle al firewall que permita pasar tráfico con el protocolo *http* (o lo que es lo mismo por el puerto 80 y protocolo TCP/IP)
 
 ```bash
 sudo ufw allow http
 sudo ufw status
 ```
 
-Y como ya has hecho con el puerto 4242 a la hora de permitir conexiones con SSH, tienes que volver a enrutar los puertos de la VM con los de su host. *Settings >> Network >> Adapter 1 >> Advanced >> Port Forwarding* y para que el host pueda seguir usando el puerto 80 vas a usar su puero 8080, así no tendrás interferencias con el trafico de datos:
+Y como ya has hecho con el puerto 4242 a la hora de permitir conexiones con SSH, tienes que volver a enrutar los puertos de la VM con los de su host. *Settings >> Network >> Adapter 1 >> Advanced >> Port Forwarding* y para que el host pueda seguir usando el puerto 80 vas a usar su puerto 8080, así no tendrás interferencias con el tráfico de datos:
 
 ![Enrutado de puertos entre host y VM para lighttpd](img/81_PortForward_Lighttpd.png)
 
-Para testar que efectivamente el servidor web de Born2beroot esta funcionando correctamente intenta conectarte a él. Vete al navegador del host de la VM y como la VM esta alojada en tú propio ordenador como dirección escribe la *localhost* (o 127.0.0.1) y como puerto el 8080 (que en realizadad es el 80 de la VM).
+Para testar que efectivamente el servidor web de Born2beroot está funcionando correctamente intenta conectarte a él. Vete al navegador del host de la VM y como la VM esta alojada en tú propio ordenador como dirección escribe la *localhost* (o 127.0.0.1) y como puerto el 8080 (que en realidad es el 80 de la VM).
 
 ![Pagína de inicio del servidor web](img/82_Lighttpd_server_working.png)
 
 ¡PERFECTOOO! Ya tienes tu servidor web corriendo correctamente en la VM.
 
-##### ACTIVACIÓN de FastCGI (**Fast** **C**ommon **G**atewway **I**nterface)
-Pero todavía queda hacer que se vean las pagínas dinámicar que se crean con PHP. A la hora de instalar PHP se ha creado un directorio donde dejar las pagínas web creadas con PHP */var/www/html/*, para crear una pagína simple que muestre la información de php ejecuta:
+#### ACTIVACIÓN de FastCGI (**Fast** **C**ommon **G**atewway **I**nterface)
+Pero todavía queda hacer que se vean las páginas dinámicas que se crean con PHP. A la hora de instalar PHP se ha creado un directorio donde dejar las páginas web creadas con PHP */var/www/html/*, para crear una página simple que muestre la información de php ejecuta:
 
 ```bash
 sudo nano /var/www/html/info.php
@@ -846,7 +813,7 @@ phpinfo();
 
 Si buscas la dirección *http://localhost/info-php* en tú navegador te responderá con el error *403 Forbidden*.
 
-Para arreglar esto tienes que entender el paradigna de las paginas web dinamicas y estaticas.En las **webs estaticas**, el servidor web enviaba inmediatamente páginas HTML preescritas para cada solicitud HTTP que recibía. Por otro lado, en las **webs dinámicas**, el servidor web no responde de inmediato, sino que transfiere los datos de la solicitud HTTP a una aplicación externab (en este caso PHP) que los interpreta y le devuelve el código HTML generado al servidor web, y el este responde a la solicitud.
+Para arreglar esto tienes que entender el paradigma de las páginas web dinámicas y estáticas. En las **webs estáticas**, el servidor web enviaba inmediatamente páginas HTML pre-escritas para cada solicitud HTTP que recibía. Por otro lado, en las **webs dinámicas**, el servidor web no responde de inmediato, sino que transfiere los datos de la solicitud HTTP a una aplicación externa (en este caso PHP) que los interpreta y le devuelve el código HTML generado al servidor web, y el este responde a la solicitud.
 
 En la comunicación entre la aplicación externa y el servidor web es donde entra FastCGI, el cual es un protocolo binario que permite dicha comunicación. Necesitas configurar este protocolo entre lighttpd y PHP para poder acceder a la página *info.php* desde un navegador web.
 
@@ -856,18 +823,18 @@ sudo ligthty-enable-mod fastcgi-php # Habilita la comunicación CGI con PHP
 sudo service lighttpd force-reload # Reinicia el servicio para efectuar los cambios
 ```
 
-Ahora si intentas leer la pagína *info.php* en tú ordenador veras algo parecido a esto:
+Ahora si intentas leer la página *info.php* en tú ordenador veras algo parecido a esto:
 
-![Pagína PHP vía Lighttpd con FastCGI ](img/83_Lighttpd_and_PHP_working.png)
+![Página PHP vía Lighttpd con FastCGI ](img/83_Lighttpd_and_PHP_working.png)
 
-#### MariaDB
+### MariaDB
 Para que el Wordpress almacene los datos de la web hay que usar MariaDB. Para instalarlo haz:
 
 ```bash
 sudo apt install mariadb-server
 ```
 
-Ahora inicialo y haz que se ejecute siempre en segundo plano al arrancar el equipo.
+Ahora iniciarlo y haz que se ejecute siempre en segundo plano al arrancar el equipo.
 
 ```bash
 sudo systemctl start mariadb
@@ -881,7 +848,7 @@ Para hacer una [instalación más segura](https://dev.mysql.com/doc/refman/5.7/e
 sudo mysql_secure_installation
 ```
 
-Ahora toca rellenar los campos que te piden al ejecutar el comando anterior
+Después toca rellenar los campos que te piden al ejecutar el comando anterior
 
 ```bash
 Enter current password for root (enter for none): <Enter>
@@ -895,7 +862,7 @@ Remove test database and access to it? [Y/n]:  Y
 Reload privilege tables now? [Y/n]:  Y
 ```
 
-Por último reinicia MariaDB para que se implemente la nueva configuración.
+Por último, reinicia MariaDB para que se implemente la nueva configuración.
 
 ```bash
 sudo systemctl restart mariadb
@@ -907,7 +874,7 @@ Una vez instalado, vas a loguearte a MariaDB como root (OJO como root de la base
 mysql -u root -p
 ```
 
-> Antes de empezar a usar la dase de datos, tienes que saber que hay que usar su propio lenguaje (*SQL*) para poder gestionar las dases de datos y sus tablas. Yo te recomiendo que hagas una pausa y aprendas como hacer CRUD (**C**reate, **R**ead, **U**pdate y **D**elete) en SQL (aquí te dejo un [cheatsheet](annex/SQL_Chearsheet.png) y [aquí](https://sqliteonline.com/) un compilador online para que pruebes). Esto es algo básico en todas las bases de datos que quieras usar.
+> Antes de empezar a usar la base de datos, tienes que saber que hay que usar su propio lenguaje (*SQL*) para poder gestionar las bases de datos y sus tablas. Yo te recomiendo que hagas una pausa y aprendas como hacer CRUD (**C**reate, **R**ead, **U**pdate y **D**elete) en SQL (aquí te dejo un [cheatsheet](annex/SQL_Chearsheet.png) y [aquí](https://sqliteonline.com/) un compilador online para que pruebes). Esto es algo básico en todas las bases de datos que quieras usar.
 
 Para crear la base de datos de WordPress tienes que:
 
@@ -938,8 +905,8 @@ La salida debe ser parecida a:
 +--------------------+
 ```
 
-#### WORDPRESS
-Por último toca instalar y configurar Wordpress
+### WORDPRESS
+Por último, toca instalar y configurar Wordpress
 
 ```bash
 sudo apt install wordpress
@@ -971,7 +938,7 @@ define( 'DB_HOST', 'localhost' );
 ?>
 ```
 
-Por último, tienes que darle permisos al usuario `www-data` ([aquí](https://askubuntu.com/questions/873839/what-is-the-www-data-user) te dejo una breve explicación de porqué se utiliza), que se ha creado en la instalación del servidor web, para que pueda leer los archivos de la pagína web.
+Por último, tienes que darle permisos al usuario `www-data` ([aquí](https://askubuntu.com/questions/873839/what-is-the-www-data-user) te dejo una breve explicación de por qué se utiliza), que se ha creado en la instalación del servidor web, para que pueda leer los archivos de la página web.
 
 ```bash
 sudo chown -R www-data:www-data /var/www/html/
@@ -983,8 +950,8 @@ Como puedes ver poniendo *http://localhost:8080/wordpress/wp-admin/install.php* 
 
 ![Instalador de Wordpress](img/84_Wordpress_Setup.png)
 
-#### SERVICIO EXTRA: Fail2Ban
-Como servicio extra, uno de los más utiles a mi parecer para cualquier servidor (aun más si tienes un servidor SSH activado como es tú caso) es `Fail2ban`[^5], se trata de un programa para la prevención de intrusos en un sistema, que actúa penalizando o bloqueando las conexiones remotas que intentan accesos por fuerza bruta. Si encuentra múltiples intentos de inicio de sesión fallidos o ataques automáticos desde una dirección IP, puede bloquearla con el firewall, ya sea de manera temporal o permanente.
+### SERVICIO EXTRA: Fail2Ban
+Como servicio extra, uno de los más útiles a mi parecer para cualquier servidor (aún más si tienes un servidor SSH activado como es tú caso) es `Fail2ban`[^5], se trata de un programa para la prevención de intrusos en un sistema, que actúa penalizando o bloqueando las conexiones remotas que intentan accesos por fuerza bruta. Si encuentra múltiples intentos de inicio de sesión fallidos o ataques automáticos desde una dirección IP, puede bloquearla con el firewall, ya sea de manera temporal o permanente.
 
 Para la instalación:
 
@@ -1038,17 +1005,17 @@ sudo tail -f /var/log/fail2ban.log
 
 Para probar que Fail2ban realmente está prohibiendo las direcciones IP, puedes cambiar el tiempo de prohibición de SSH a un valor más bajo, como 15 minutos, en el archivo de configuración /etc/fail2ban/jail.local. Luego intenta conectarse varias veces desde la máquina host a través de SSH con la contraseña incorrecta. Después de algunos intentos, debería rechazar la conexión y el comando fail2ban-client status sshd debería mostrar la dirección IP prohibida.
 
-Y ya esta. Ya tienes Born2beroot finalizada.
+Y ya está. Ya tienes Born2beroot finalizada.
 
 
-### POSIBLES ERRORES
+## EXTRA: POSIBLES ERRORES
 #### \*ERROR\* Failed to send host log message
-At machine boot, we may notice the following error: [DRM :vmw_host_log [VMWGFX]] *ERROR* Failed to send host log message. It is a small issue with the graphics controller which does not affect the machine’s operation. However, it isn’t very nice to see. We can easily solve this error by changing our graphics controller:
+En el arranque de la máquina, puedes notar el siguiente error: *[DRM :vmw_host_log [VMWGFX]] \*ERROR\* Failed to send host log message*. Es un pequeño problema con el controlador de gráficos que no afecta el funcionamiento de la máquina. Sin embargo, no es muy agradable de ver. Puedes solucionar fácilmente este error cambiando el controlador de gráficos:
 
-    Turn off the virtual machine,
-    Go to VirtualBox >> Machine >> Settings,
-    Go to Display >> Screen >> Graphics Controller,
-    Choose VBoxVGA.
+1. Apague la máquina virtual,
+2. Vaya a VirtualBox >> Máquina >> Configuración,
+3. Vaya a Pantalla >> Pantalla >> Controlador de gráficos,
+4. Elija VBoxVGA.
 
 
 
