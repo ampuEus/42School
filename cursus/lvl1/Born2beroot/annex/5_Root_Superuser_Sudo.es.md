@@ -1,4 +1,6 @@
 # root, superusuario y sudo
+***[English](5_Root_Superuser_Sudo.en.md) version***
+
 En informática, el **superusuario** es una cuenta de usuario especial que se utiliza para la administración del sistema. Posee todos los derechos en todos los modos y puede hacer muchas cosas que un usuario común ni puede (cambiar el dueño o permisos a archivos, installar software, abrir puertos...).
 
 Por convención, en la mayoría de los sistemas Linux, el usuario **root** es el nombre de superusuario predeterminado. Aunque, independientemente del nombre, lo que realmente dice si un usuario es superusuario o no es que tiene el **ID de usuario** (uid) igual a **0**.

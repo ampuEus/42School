@@ -1,4 +1,6 @@
 # Breve introducción a las paginas web
+***[English](9_Brief_Introduction_to_the_Websites.md) version***
+
 Una definición simple sería *documento disponible en la www (**W**orld **W**ide **W**eb) codificado según sus estándares y con en un lenguaje específico conocido como HTML*. **La web es una aplicación de Internet** gracias al cual puede transferir datos (los **URLs**, **U**niform **R**esource **L**ocators, de las paginas web) a través de HTTP (**H**yper**t**ext **T**ransfer **P**rotocol)
 
 **Para acceder a ellas se usan navegadores de internet** (ej.: Mozilla Firefox, Opera, Chrome...), esto se encargas de recibir la información codificada del documento y mostrársela al usuario de forma "legible".

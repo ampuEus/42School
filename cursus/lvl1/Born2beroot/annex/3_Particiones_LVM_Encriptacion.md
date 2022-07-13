@@ -1,4 +1,5 @@
 # Partitions, LVM and Encryption
+***[English](3_Partitions_LVM_Encryption.md) version***
 ## ¿Por qué tener varias particiones?
 Desde el punto de vista de funcionamiento es indiferente tener todos los datos en una única partición o en varias. Lo que se consigue segmentado la información es protegerse de la corrupción o rotura de la partición ya que, si se tiene una para cada cosa, aunque deje de funcionar una aun se pueden recuperar los datos del resto de particiones y el daño es menor.
 Particiones para cumplir con la parte obligatoria:

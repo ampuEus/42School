@@ -1,4 +1,6 @@
 # Installing software on Debian
+***Versión en [español](4_Gestion_de_paquetes_Debian.md)***
+
 On Linux kernel operating systems, such as Debian, software is installed using software packages. These packages have everything you need to implement the expected functionality of the software on your computer. And the management of the packages is done through different [specialized programs](https://www.debian.org/doc/manuals/debian-faq/pkgtools.en.html) for handling these packages, some of them allow you to handle them at a low level (eg: dpkg) and others at a higher level (eg: synaptic).
 
 ## [APT](https://wiki.debian.org/Apt) (**A**dvanced **P**ackaging **T**ool)

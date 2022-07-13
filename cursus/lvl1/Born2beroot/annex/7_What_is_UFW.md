@@ -1,4 +1,6 @@
 # What is UFW?
+***Versión en [español](7_Que_es_UFW.md)***
+
 For a long time, Linux security was in the hands of *iptables* (which works with the underlying *netfilter* system). Although incredibly powerful, iptables are tricky, especially for newer users. To get the most out of that system, it can take weeks or months to get up to speed. Fortunately, there is UFW (**U**ncomplicated **F**ire**w**all) a much simpler interface to iptables that provides a much easier to use framework for managing netfilter and a command line interface to work with the firewall.
 
 [Here](https://wiki.debian.org/Uncomplicated%20Firewall%20%28ufw%29) I leave you a small guide on how to use.

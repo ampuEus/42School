@@ -1,4 +1,5 @@
 # ¿Qué es una máquina virtual?
+***[English](2_What_is_a_VM.md) version***
 
 Una máquina virtual (VM) es algo prácticamente idéntico a un ordenador normal. Ambos tienen una CPU, RAM, un disco duro, interfaces red, ... Además de poder instalar sistemas operativos y software en ellos. La diferencia reside en que un ordenador físico usa su propio hardware, mientras que la máquina virtual toma prestados los recursos físicos de su host. Por lo tanto, una máquina virtual es solo código, un ordenador virtual dentro de un servidor físico.
 

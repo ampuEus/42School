@@ -1,4 +1,6 @@
 # What is AppArmor?
+***Versión en [español](6_Que_es_AppArmor.md)***
+
 AppArmor ("**App**lication **Armor**") is a Linux kernel security module that allows the system administrator to restrict the capabilities of a program. Each program has an associated profile that controls its ability to access the network, its read, write, and execute permissions, among other things. This profile can be created manually or automatically. It complements the traditional Unix Discretionary Access Control (DAC) model by providing **m**andatory **Mandatory Access Control (MAC) a**ccess **c**ontrol).
 
 For example, one application that is restricted in Ubuntu's default settings is the Evince PDF viewer. Although Evince can run as your user account, it can only perform specific actions. Evince only has the minimum permissions necessary to run and work with PDF documents. If a vulnerability was discovered in Evince's PDF renderer and you opened a malicious PDF document that took over Evince, AppArmor would restrict the damage Evince could cause. In the traditional Linux security model, Evince would have access to everything that you have access to. With AppArmor, you only have access to the things that a PDF viewer needs to access.

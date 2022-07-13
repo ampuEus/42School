@@ -1,4 +1,5 @@
 # What is a Virtual Machine?
+***Versión en [español](2_Que_es_una_VM.md)***
 
 A virtual machine (VM) is something practically identical to a normal computer. They both have a CPU, RAM, a hard drive, network interfaces, ... It is also possible to install operating systems and software on them. The difference is that a physical computer uses its own hardware, while a virtual machine borrows physical resources from its host. Therefore, a virtual machine is just code, a virtual computer inside a physical server.
 

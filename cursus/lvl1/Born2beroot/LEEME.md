@@ -1,5 +1,5 @@
 # Born2beroot
-***Oficialmete terminado el xx/xx/2022 / Nota xxx de 100 / [English](README.md) version***
+***Oficialmete terminado el 08/07/2022 / Nota 125 de 100 / [English](README.md) version***
 
 Esta práctica es una introducción a la administración de sistemas. En esta prática se han interiorizado los principios de:
 
@@ -17,51 +17,50 @@ Esta práctica es una introducción a la administración de sistemas. En esta pr
 
 
 ## Índice:
-- [1. CREACIÓN DE LA [MÁQUINA VIRTUAL](annex/2_Que_es_una_VM.md)](#1-creación-de-la-[máquina-virtual](annex-2-que-es-una-vmmd))
-- [INSTALANDO DEBIAN EN LA VM](#instalando-debian-en-la-vm)
-  * [PARTICIÓN MANUAL](#partición-manual)
-  * [ENCRIPTACIÓN DE DISCO](#encriptación-de-disco)
-  * [CONFIGURANDO LVM](#configurando-lvm)
-    + [Creación de grupo de volúmenes lógicos](#creación-de-grupo-de-volúmenes-lógicos)
-    + [Creación de volumen lógico](#creación-de-volumen-lógico)
-    + [Configurando las particiones](#configurando-las-particiones)
-    + [Instalando sistema base de Debian](#instalando-sistema-base-de-debian)
-  * [ACCEDIENDO A Born2beroot](#accediendo-a-born2beroot)
+- [1. CREACIÓN DE LA MÁQUINA VIRTUAL](#1-creación-de-la-máquina-virtual)
+  * [1.1. INSTALANDO DEBIAN EN LA VM](#11-instalando-debian-en-la-vm)
+    + [1.1.1. PARTICIÓN MANUAL](#111-partición-manual)
+    + [1.1.2. ENCRIPTACIÓN DE DISCO](#112-encriptación-de-disco)
+    + [1.1.3. CONFIGURANDO LVM](#113-configurando-lvm)
+      - [1.1.3.1. Creación de grupo de volúmenes lógicos](#1131-creación-de-grupo-de-volúmenes-lógicos)
+      - [1.1.3.2. Creación de volumen lógico](#1132-creación-de-volumen-lógico)
+      - [1.1.3.3. Configurando las particiones](#1133-configurando-las-particiones)
+      - [1.1.3.4. Instalando sistema base de Debian](#1134-instalando-sistema-base-de-debian)
+  * [1.2. ACCEDIENDO A Born2beroot](#12-accediendo-a-born2beroot)
 - [2. CONFIGURANDO UN DEBIAN COMO SERVIDOR](#2-configurando-un-debian-como-servidor)
-  * [IMPLEMENTACIÓN DE [sudo](annex/5_Root_Superuser_Sudo.es.md)](#implementación-de--sudo--annex-5-root-superuser-sudoesmd-)
+  * [2.1. IMPLEMENTACIÓN DE sudo](#21-implementación-de-sudo)
     + [INSTALACIÓN de sudo](#instalación-de-sudo)
     + [CONFIGURACIÓN DE sudo](#configuración-de-sudo)
-  * [IMPLEMENTACIÓN DE AppArmor: Limitación de sudo](#implementación-de-apparmor:-limitación-de-sudo)
-  * [IMPLEMENTACIÓN DE [UFW](annex/7_Que_es_UFW.md) (**U**ncompicated **F**ire**w**all)](#implementaci-n-de--ufw--annex-7-que-es-ufwmd-----u--ncompicated---f--ire--w--all-)
-    + [INTALACIÓN Y ACTIVACIÓN](#intalación-y-activación)
-    + [GESTIÓN DE LAS REGLAS](#gestión-de-las-reglas)
-  * [IMPLEMENTACIÓN DE UN SERVIDOR SSH EN Born2beroot](#implementación-de-un-servidor-ssh-en-born2beroot)
-    + [INSTALAR](#instalar)
-    + [CONFIGURAR EL SERVIDOR SSH](#configurar-el-servidor-ssh)
-    + [REDIRECCIONAMIENTO DE PUERTOS CON VIRTUALBOX](#redireccionamiento-de-puertos-con-virtualbox)
-    + [CONEXIÓN A UN SERVIDOR SSH](#conexión-a-un-servidor-ssh)
-  * [MONITORIZACIÓN DEL SERVIDOR](#monitorización-del-servidor)
-    + [ENVIAR UN MENSAJE A CADA TERMINAL](#enviar-un-mensaje-a-cada-terminal)
-    + [ENVIAR EL MENSAJE CADA 10 MINUTOS](#enviar-el-mensaje-cada-10-minutos)
-    + [CALCULAR CUANDO SE HA INICIADO EL SISTEMA](#calcular-cuando-se-ha-iniciado-el-sistema)
-  * [IMPLEMENTACIÓN DE UN SISTEMA FUERTE DE CONTRASEÑAS](#implementación-de-un-sistema-fuerte-de-contraseñas)
-  * [GESTIÓN DEL HOSTNAME, USUARIOS Y GRUPOS](#gestión-del-hostname,-usuarios-y-grupos)
-    + [MODIFICAR EL HOSTNAME](#modificar-el-hostname)
-    + [GESTIÓN DE USUARIOS](#gestión-de-usuarios)
-    + [GESTIÓN DE GRUPOS](#gestión-de-grupos)
+  * [2.2. IMPLEMENTACIÓN DE AppArmor: Limitación de sudo](#22-implementación-de-apparmor:-limitación-de-sudo)
+  * [2.3. IMPLEMENTACIÓN DE UFW](#23-implementación-de-ufw)
+    + [2.3.1 INTALACIÓN Y ACTIVACIÓN](#231-intalación-y-activación)
+    + [2.3.2. GESTIÓN DE LAS REGLAS](#232-gestión-de-las-reglas)
+  * [2.4. IMPLEMENTACIÓN DE UN SERVIDOR SSH EN Born2beroot](#24-implementación-de-un-servidor-ssh-en-born2beroot)
+    + [2.4.1. INSTALAR](#241-instalar)
+    + [2.4.2. CONFIGURAR EL SERVIDOR SSH](#242-configurar-el-servidor-ssh)
+    + [2.4.3. REDIRECCIONAMIENTO DE PUERTOS CON VIRTUALBOX](#243-redireccionamiento-de-puertos-con-virtualbox)
+    + [2.4.4. CONEXIÓN A UN SERVIDOR SSH](#244-conexión-a-un-servidor-ssh)
+  * [2.5. MONITORIZACIÓN DEL SERVIDOR](#25-monitorización-del-servidor)
+    + [2.5.1. ENVIAR UN MENSAJE A CADA TERMINAL](#251-enviar-un-mensaje-a-cada-terminal)
+    + [2.5.2. ENVIAR EL MENSAJE CADA 10 MINUTOS](#252-enviar-el-mensaje-cada-10-minutos)
+    + [2.5.3. CALCULAR CUANDO SE HA INICIADO EL SISTEMA](#253-calcular-cuando-se-ha-iniciado-el-sistema)
+  * [2.6. IMPLEMENTACIÓN DE UN SISTEMA FUERTE DE CONTRASEÑAS](#26-implementación-de-un-sistema-fuerte-de-contraseñas)
+  * [2.7. GESTIÓN DEL HOSTNAME, USUARIOS Y GRUPOS](#27-gestión-del-hostname,-usuarios-y-grupos)
+    + [2.7.1. MODIFICAR EL HOSTNAME](#271-modificar-el-hostname)
+    + [2.7.2. GESTIÓN DE USUARIOS](#272-gestión-de-usuarios)
+    + [2.7.3. GESTIÓN DE GRUPOS](#273-gestión-de-grupos)
 - [3. PARTE BONUS](#3-parte-bonus)
-  * [PHP](#php)
-  * [LIGHTTPD](#lighttpd)
-    + [ACTIVACIÓN de FastCGI (**Fast** **C**ommon **G**atewway **I**nterface)](#activación-de-fastcgi-(**fast**-**c**ommon-**g**atewway-**i**nterface))
-  * [MariaDB](#mariadb)
-  * [WORDPRESS](#wordpress)
-  * [SERVICIO EXTRA: Fail2Ban](#servicio-extra:-fail2ban)
+  * [3.1. PHP](#31-php)
+  * [3.2. LIGHTTPD](#32-lighttpd)
+    + [3.2.1 ACTIVACIÓN de FastCGI (**Fast** **C**ommon **G**atewway **I**nterface)](#321-activación-de-fastcgi-(**fast**-**c**ommon-**g**atewway-**i**nterface))
+  * [3.3. MariaDB](#33-mariadb)
+  * [3.4. WORDPRESS](#34-wordpress)
+  * [3.5. SERVICIO EXTRA: Fail2Ban](#35-servicio-extra:-fail2ban)
 - [EXTRA: POSIBLES ERRORES](#extra:-posibles-errores)
     + [\*ERROR\* Failed to send host log message](#\*error\*-failed-to-send-host-log-message)
 
-
-## 1. CREACIÓN DE LA [MÁQUINA VIRTUAL](annex/2_Que_es_una_VM.md)
-En la parte superior de la ventana principal de VirtualBox, haz clic en **Nuevo** para comenzar.
+## 1. CREACIÓN DE LA MÁQUINA VIRTUAL
+Para crear una nueva [máquina virtual](annex/2_Que_es_una_VM.md) ve a la parte superior de la ventana principal de VirtualBox, haz clic en **Nuevo** para comenzar.
 
 ![Imagen de VirtualBox](img/1_StartWindow.png)
 
@@ -93,7 +92,7 @@ Fin, machina virtual Born2beroot creada.
 
 ![Imagen de VirtualBox](img/8_VMcreationEnd.png)
 
-## INSTALANDO DEBIAN EN LA VM
+### 1.1. INSTALANDO DEBIAN EN LA VM
 Antes de ejecutar la maquina virtual, al no tener este ningún sistema operativo, hay que asignarle el .iso de OS que te has descargado para poder boot-ear desde él.
 
 |![Imagen de VirtualBox](img/9_BootISO1.png)|![Imagen de VirtualBox](img/10_BootISO2.png)|![Imagen de VirtualBox](img/11_BootISO3.png)|
@@ -132,7 +131,7 @@ Una vez configurado el administrador, toca crear un usuario. El nombre, recomend
 |![Imagen de VirtualBox](img/19_InstalationCfg7.png)|![Imagen de VirtualBox](img/20_InstalationCfg8.png)|![Imagen de VirtualBox](img/21_InstalationCfg9.png)|
 |-|-|-|
 
-### PARTICIÓN MANUAL
+#### 1.1.1. PARTICIÓN MANUAL
 Ahora toca particionar el disco. Aunque el instalador de diferentes opciones, las particiones que se piden en la parte obligatoria y en el bonus obligan a usas el **modo manual**. [más información sobre las particiones, LVM y la encriptación](annex/3_Particiones_LVM_Encriptacion.md)
 
 ![Imagen de VirtualBox](img/22_InstalationCfg10.png)
@@ -189,7 +188,7 @@ Y para el punto de montaje **no hay que definir nada** y darle a **hecho**. Más
 |![Imagen de VirtualBox](img/37_InstalationCfg25.png)|![Imagen de VirtualBox](img/38_InstalationCfg26.png)|![Imagen de VirtualBox](img/39_InstalationCfg27.png)|
 |-|-|-|
 
-### ENCRIPTACIÓN DE DISCO
+#### 1.1.2. ENCRIPTACIÓN DE DISCO
 Tras crear la partición para el LVM toca encriptarla, para ello ve a encriptar volúmenes.
 
 ![Imagen de VirtualBox](img/40_InstalationCfg28.png)
@@ -215,8 +214,8 @@ Una vez que el instalador termine de cifrar los datos de la partición, tienes q
 
 ![Imagen de VirtualBox](img/47_InstalationCfg35.png)
 
-### CONFIGURANDO LVM
-#### Creación de grupo de volúmenes lógicos
+#### 1.1.3. CONFIGURANDO LVM
+##### 1.1.3.1. Creación de grupo de volúmenes lógicos
 Es hora de crear los volúmenes lógicos que pide el ejercicio dentro de la partición encriptada.
 
 |![Imagen de VirtualBox](img/48_InstalationCfg36.png)|![Imagen de VirtualBox](img/49_InstalationCfg37.png)|
@@ -234,7 +233,7 @@ Por último, **selecciona SOLO** la **partición** que has **encriptado** a el g
 
 ![Imagen de VirtualBox](img/52_InstalationCfg40.png)
 
-#### Creación de volumen lógico
+##### 1.1.3.2. Creación de volumen lógico
 Ahora que tienes el grupo de volúmenes creado y la partición lógica cifrada está asignada a él, hay que crear los volúmenes lógicos uno por uno. Como ejemplo haré la root, que debe estar presente tanto para las partes obligatorias como para las de bonificación. Para ello ve a **crear volumen lógico**.
 
 ![Imagen de VirtualBox](img/53_InstalationCfg41.png)
@@ -259,7 +258,7 @@ Y listo, ya se ha creado la primera partición. Ahora solo te queda repetir el p
 
 ![Imagen de VirtualBox](img/57_InstalationCfg45.png)
 
-#### Configurando las particiones
+##### 1.1.3.3. Configurando las particiones
 Una vez creados los volúmenes toca asignarles una “tarea” dentro del OS. Para que, en este caso Debian, pueda usarlos como corresponda. Para hacer esto se tienen que especificar el file system y punto de montaje de para volumen.
 
 Como ejemplo, volveré a utilizar la partición root.
@@ -288,7 +287,7 @@ Ahora solo te queda repetir nuevamente el proceso…
 
 …hasta tener todas las particiones que pide el ejercicio, cuando hayas acabado de particionar dale a finalizar partición y escribir cambios en el disco. Después clica en Sí.
 
-#### Instalando sistema base de Debian
+##### 1.1.3.4. Instalando sistema base de Debian
 En este último paso se va ha instalar el sistema base y para ello hay que definir algunos parámetros:
 - Al **escaneo** dale a **no**
 - Para el servidor de descarga de los paquetes de Debian tienes que elegir un **país** (normalmente cuando más cercano sea el país a tú ubicación mejor) y un **mirror**
@@ -316,7 +315,7 @@ Y se instalará en “**/dev/sda**”
 
 ![Imagen de VirtualBox](img/72_InstalationCfg60.png)
 
-### ACCEDIENDO A Born2beroot
+### 1.2. ACCEDIENDO A Born2beroot
 Ahora reinicia la VM. Al arrancar te pedirá la contraseña para descifrar la partición encriptada, y luego las credenciales del usuario que creaste al inicio del proceso de instalación.
 
 Para verificar que la instalación es correcta, puedes probar algunos comandos:
@@ -328,8 +327,10 @@ Para verificar que la instalación es correcta, puedes probar algunos comandos:
 ![Imagen de VirtualBox](img/73_DebianInstalled.png)
 
 ## 2. CONFIGURANDO UN DEBIAN COMO SERVIDOR
-### IMPLEMENTACIÓN DE [sudo](annex/5_Root_Superuser_Sudo.es.md)
-#### INSTALACIÓN de sudo
+### 2.1. IMPLEMENTACIÓN DE sudo
+#### 2.1.1. INSTALACIÓN de sudo
+*[¿Que es sudo?](annex/5_Root_Superuser_Sudo.es.md)*
+
 Para instalar un programa en el servidor, tienes que iniciar sesión como root.
 ```bash
 su root
@@ -384,7 +385,7 @@ whoami # Si lo haces sin el sudo te devolverá tu usuario normal
 sudo whoami # Y si lo hacer con sudo te tiene que devolver que lo ha ejecutado el usuario root
 ```
 
-#### CONFIGURACIÓN DE sudo
+#### 2.1.2. CONFIGURACIÓN DE sudo
 Por temas de seguridad, la práctica Born2beroot exige hacerle unas configuraciones extra a los ajustes de sudo que viene por defecto:
 
 - El grupo sudo tiene un máximo de 3 intentos para introducir la contraseña correcta
@@ -407,7 +408,7 @@ Defaults requiretty # Obliga a estar TTY abierto
 ```
 > Si no existe el directorio donde quieres guardar los logs, tendrás que crearlo con `mkdir`.
 
-### IMPLEMENTACIÓN DE AppArmor: Limitación de sudo
+### 2.2. IMPLEMENTACIÓN DE AppArmor: Limitación de sudo
 Desde Debian 10 [AppArmor](annex/6_Que_es_AppArmor.md) viene preinstalado en Debian, por lo que yo usaré este mismo (además de ser más fácil de utilizar). Para ver AppArmor está instalado y corriendo correctamente hay que ejecutar lo siguiente:
 ```bash
 sudo aa-status
@@ -420,8 +421,8 @@ apparmor module is loaded.
 ```
 En este caso si todo está bien deja la configuración por defecto.
 
-### IMPLEMENTACIÓN DE UFW (**U**ncompicated **F**ire**w**all)
-#### INTALACIÓN Y ACTIVACIÓN
+### 2.3. IMPLEMENTACIÓN DE UFW
+#### 2.3.1 INTALACIÓN Y ACTIVACIÓN
 Para instalar [UFW](annex/7_Que_es_UFW.md) haz:
 ```bash
 sudo apt install ufw
@@ -432,7 +433,7 @@ Si todo ha ido bien tiene que aparecerte el mensaje *Firewall is active and enab
 sudo ufw status verbose # NOTA: La opción "verbose" es opcional, solo añade más información a la respuesta
 ```
 
-#### GESTIÓN DE LAS REGLAS
+#### 2.3.2. GESTIÓN DE LAS REGLAS
 Aunque de momento no es necesario aplicar ninguna regla en concreto, voy a enseñarte los primeros pasos para que sepas como crear, eliminar y monitorizar las reglas.
 
 - Creación de reglas
@@ -458,8 +459,8 @@ sudo ufw delete 2
 > NOTA: Ten cuidado porque si intentas borrar más de una regla a la vez usando el id tienes que ordenarlos de mayor a menor, ya que si empiezas borrando los de menor valor los de mayor valor irán tomando esos valores.
 
 
-### IMPLEMENTACIÓN DE UN SERVIDOR SSH EN Born2beroot
-#### INSTALAR
+### 2.4. IMPLEMENTACIÓN DE UN SERVIDOR SSH EN Born2beroot
+#### 2.4.1. INSTALAR
 Otro requisito de la práctica es la posibilidad de conectarse a tú servidor de forma remota y hacerlo por el puerto 4242. Para ello te dicen que utilices el protocolo [SSH](annex/8_Que_es_SSH.md), para poder usarlo de forma sencilla existen diferentes programas, pero el más usado en Linux es **OpenSSH**, el cual se puede implementar de dos formas como cliente (sirve para conectarse a otro ordenador) y/o servidor (sirve para que otros ordenadores se conecten). A ti te interesa implementar un servidor con OpenSSH.
 ```bash
 sudo apt install openssh-server
@@ -469,7 +470,7 @@ Para ver el estado del servidor ssh:
 sudo systemctl status ssh
 ```
 
-#### CONFIGURAR EL SERVIDOR SSH
+#### 2.4.2. CONFIGURAR EL SERVIDOR SSH
  Como puedes ver, el servidor esta preconfigurado para que acepte las conexión procedentes del puerto 22, mira la línea `Server listening on :: port 22`. Para que el servidor solo acepte conexiones que vengan del puerto 4242 tienes que modificar la configuración por defecto del ssh. El archivo de configuración está en */etc/ssh/sshd_config*.
 ```bash
 sudo nano /etc/ssh/sshd_config
@@ -489,7 +490,7 @@ sudo ufw allow 4242
 sudo delete allow ssh # To delete port 22 rule
 ```
 
-#### REDIRECCIONAMIENTO DE PUERTOS CON VIRTUALBOX
+#### 2.4.3. REDIRECCIONAMIENTO DE PUERTOS CON VIRTUALBOX
 Para poder conectarte a la VM desde otro ordenador a través de SSH tienes que redireccionar el puerto del host (el PC donde tienes instalada la VM) al propio puerto de la máquina virtual. En el caso de que trabajes con VirtualBox ve a los ajustes de Born2beroot, una vez allí ve ha *network -> Adapter 1 -> Advanced -> Port Forwarding*
 
 |![Redireccionando el puerto parte 1](img/77_PortForwarding1.png)|![Redireccionando el puerto parte 2](img/78_PortForwarding2.png)|
@@ -500,7 +501,7 @@ Una vez hecho esto ya deverias de poder conectarte vía ssh, pero si quieres ase
 sudo systemctl restart ssh
 ```
 
-#### CONEXIÓN A UN SERVIDOR SSH
+#### 2.4.4. CONEXIÓN A UN SERVIDOR SSH
 Para conectarte desde otro ordenador te hace falta tener un cliente ssh instalado. Suponiendo que ya lo tengas, lo único que tienes que hacer es abrir una terminal y
 ```bash
 ssh daampuru@localhost -p 4242
@@ -524,7 +525,7 @@ Una vez dentro, es como estar en el propio servidor Born2beroot pero de forma re
 Para desconectarte de la conexión SSH solo tienes que ejecutar el comando `exit`
 
 
-### MONITORIZACIÓN DEL SERVIDOR
+### 2.5. MONITORIZACIÓN DEL SERVIDOR
 La siguiente etapa de la guía es hacer el script *monitoring.sh* el cual debe ejecutarse cada 10 minutos desde el arranque del equipo y mostrar la información deseada en todas las terminales activas. Información a mostrar:
 
 | Información                                                                           | Comando                                                                             |
@@ -536,11 +537,11 @@ La siguiente etapa de la guía es hacer el script *monitoring.sh* el cual debe e
 | La memoria disponible actualmente en tu servidor y su utilización como un porcentaje. | **Used:** df -h --total \| grep total \| awk '{print $3}'<br> **Total:** df -h --total \| grep total \| awk '{print $2}'<br> **Percentage:** df -k --total \| grep total \| awk '{print $5}'<br> |
 | El porcentaje actual de uso de tus núcleos (la CPU).                                   | top -bn1 \| grep '^%Cpu' \| cut -c 9- \| xargs \| awk '{printf("%.1f%%"), $2 + $4}' |
 | La fecha y hora del último reinicio.                                                  | who -b \| awk '{print($3 " " $4)}'                                                  |
-| Si LVM está activo o no.                                                              | if [ $(lsblk \| grep lvm \| wc -l) -eq 0 ]; then echo no; else echo yes; fi         |
+| Si LVM está activo o no.                                                              | lvm pvdisplay \| grep Allocatable \| awk '{print $3}'|
 | El número de conexiones activas.                                                      | grep TCP /proc/net/sockstat \| awk '{print $3}'                                     |
 | El número de usuarios del servidor.                                                   | who \| wc -l                                                                        |
 | La dirección IPv4 de tu servidor y su MAC (Media Access Control)                      | **IP:** hostname -I \| awk '{print $1}'<br> **MAC:** ip link show \| grep link/ether \| awk '{print $2} |
-| El número de comandos ejecutados con sudo                                             | grep COMMAND /var/log/sudo/sudo.log \| wc -l                                        |
+| El número de comandos ejecutados con sudo                                             | grep COMMAND /var/log/sudo/sudo.log \| wc -l / 2                                       |
 
 Algunos comandos solo los puede ejecutar el usuario root por lo que tienes 2 opciones:
 1. Te logueas como root y crear/modificas el fichero
@@ -548,7 +549,7 @@ Algunos comandos solo los puede ejecutar el usuario root por lo que tienes 2 opc
 
 Una vez creado el fichero tienes que darle derechos de ejecución `chmod +x monitoring.sh`
 
-#### ENVIAR UN MENSAJE A CADA TERMINAL
+#### 2.5.1. ENVIAR UN MENSAJE A CADA TERMINAL
 Para enviar un mensaje a cada terminal (broadcast) existe el comando `wall`, el cual te permite emitir un mensaje a todos los usuarios a la vez en todos los terminales. Además, puede recibir como texto a mostrar el contenido de un archivo.
 
 De forma predeterminada, el anuncio tiene como prefijo un banner, pero ese banner es opcional en este proyecto.
@@ -558,7 +559,7 @@ wall "message"    # Con banner
 wall -n "message" # Sin banner
 ```
 
-#### ENVIAR EL MENSAJE CADA 10 MINUTOS
+#### 2.5.2. ENVIAR EL MENSAJE CADA 10 MINUTOS
 Para este cometido existe el servicio `crontab` (**c**h**ron**o **tab**le) que te permite la ejecución de scripts o software de forma automática cuando ocurre un evento en concreto que tú le hayas asignado, como puede ser una fecha y hora determinada o en un intervalo de tiempo específico.
 
 Este es un programa que viene preinstalado con el propio Debian y para que se ejecute en segundo plano siempre que arranques el equipo usa el siguiente comando:
@@ -589,7 +590,7 @@ crontab -e */10 * * * * ./root/monitoring.sh | wall
 ```
 Aun así, este script se ejecutará cada 10 minutos de cada hora (00:10, 00:20, 00:30 ...) no cada 10 minutos desde que se **arranca el sistema**. Para conseguir esto tendrás un nuevo script que combine el comando `sleep` y que sepa a qué hora se ha iniciado en sistema.
 
-#### CALCULAR CUANDO SE HA INICIADO EL SISTEMA
+#### 2.5.3. CALCULAR CUANDO SE HA INICIADO EL SISTEMA
 Crea un nuevo script llamado *sleep.sh*. Este script, calculará la cantidad de segundos entre el tiempo de arranque preciso y el décimo minuto. Para hacer los cálculos puedes usar la calculadora basada en terminal `bc`, por lo que primero tienes que instalarla en el sistema
 ```bash
 sudo apt install bc
@@ -617,7 +618,7 @@ Por último, añade este archivo al comando de crontab, de este modo cron llamar
 */10 * * * * bash /root/sleep.sh && bash /root/monitoring.sh
 ```
 
-### IMPLEMENTACIÓN DE UN SISTEMA FUERTE DE CONTRASEÑAS
+### 2.6. IMPLEMENTACIÓN DE UN SISTEMA FUERTE DE CONTRASEÑAS
 > NOTA: Si tienes pensado hacer la parte bonus te recomiendo que pospongas este apartado hasta tenerla hecha, así no tendrás que andar cambiando la contraseñas ni andar preocupándote de sí van a expirar o no.
 
 Las características que te piden para configurar la política de contraseñas son:
@@ -702,17 +703,17 @@ sudo passwd <user/root>
 ```
 
 
-### GESTIÓN DEL HOSTNAME, USUARIOS Y GRUPOS
+### 2.7. GESTIÓN DEL HOSTNAME, USUARIOS Y GRUPOS
 La última cosa a tener en cuenta es que a la hora de la defensa se te pedirá que:
 - Cambies el hostname del sistema
 - Crees un nuevo usuario, le cambies el nombre ...
 - Y lo añadas a un grupo
 
-#### MODIFICAR EL HOSTNAME
+#### 2.7.1. MODIFICAR EL HOSTNAME
 Para modificar el hostname tienes 2 opciones:
 1. Usar el comando `sudo hostnamectl set-hostname <new_hotsname>`
 2. Editarlo directamente el archivo */etc/hostname*
-3. NOTA: Si te sale el error `sudo: unable to resolve host <nuevo nombre del host>: Name or service not known` también deberás añadirlo al archivo */etc/hots*
+3. NOTA: Si te sale el error `sudo: unable to resolve host <nuevo nombre del host>: Name or service not known` también deberás añadirlo al archivo */etc/hosts*
 
 Para comprobar que efectivamente el nombre ha cambiado puedes ejecutar:
 ```bash
@@ -720,7 +721,7 @@ hostnamectl status
 ```
 > Si ves que todavía no ha cambiado el nombre, prueba a reiniciar el equipo.
 
-#### GESTIÓN DE USUARIOS
+#### 2.7.2. GESTIÓN DE USUARIOS
 Comandos útiles para hacer la gestión de usuarios:
 
 | Comando                                                                            | Descripción                                                                |
@@ -733,7 +734,7 @@ Comandos útiles para hacer la gestión de usuarios:
 | users                                                                              | Show a list of all currently logged in users                               |
 | cat /etc/passwd \| cut -d ":" -f 1<br>*or*<br>cat /etc/passwd \| awk -F '{print $1}' | Displays a list of all users on the machine                              |
 
-#### GESTIÓN DE GRUPOS
+#### 2.7.3. GESTIÓN DE GRUPOS
 Comandos útiles para hacer la gestión de grupos:
 
 | Comando      | Descripción                             |
@@ -752,7 +753,7 @@ En la parte bonus aparte de crear las particiones extra que se pedían a la hora
 - Para programar el servidor para la parte del backend hay que usar **PHP**
 - En cuanto a la implementación de la base de datos se va ha usar **MariaDB**
 
-### PHP
+### 3.1. PHP
 En el momento en que estoy escribiendo esta guía, A la hora de instalar PHP si ejecutas `sudo apt list php` puedes ver como en Debian 11 la versión estable de PHP es la 7.4, aunque ya este la versión 8 disponible. En un principio con la versión 7.4 no tendrías que tener ningún problema. Además de PHP 7.4 también hacen falta los paquetes* php-common*, *php-cgi*, *php-cli* y *php-mysql* ya que son necesarios para WordPress.
 
 ```bash
@@ -761,7 +762,7 @@ sudo apt install php php-common php-cgi php-cli php-mysql
 php -v # Para comprobar que versión se ha instalado
 ```
 
-### LIGHTTPD
+### 3.2. LIGHTTPD
 Antes de empezar con la instalación de lighttp, si has instalado primero PHP es posible se te haya instalado apache2 como dependencia de php (para comprobar si está o no en el sistema puedes ejecutar `sudo apt list apache2` y si al final del paquete pone *[installed]* es que está instalado), por lo que para evitar posibles conflictos si está instalado ejecuta `sudo apt purge apache2` para eliminarlo del sistema.
 
 Para instalar lighttpd simplemente tienes que ejecutar:
@@ -796,7 +797,7 @@ Para testar que efectivamente el servidor web de Born2beroot está funcionando c
 
 ¡PERFECTOOO! Ya tienes tu servidor web corriendo correctamente en la VM.
 
-#### ACTIVACIÓN de FastCGI (**Fast** **C**ommon **G**atewway **I**nterface)
+#### 3.2.1 ACTIVACIÓN de FastCGI (**Fast** **C**ommon **G**atewway **I**nterface)
 Pero todavía queda hacer que se vean las páginas dinámicas que se crean con PHP. A la hora de instalar PHP se ha creado un directorio donde dejar las páginas web creadas con PHP */var/www/html/*, para crear una página simple que muestre la información de php ejecuta:
 
 ```bash
@@ -827,7 +828,7 @@ Ahora si intentas leer la página *info.php* en tú ordenador veras algo parecid
 
 ![Página PHP vía Lighttpd con FastCGI ](img/83_Lighttpd_and_PHP_working.png)
 
-### MariaDB
+### 3.3. MariaDB
 Para que el Wordpress almacene los datos de la web hay que usar MariaDB. Para instalarlo haz:
 
 ```bash
@@ -905,7 +906,7 @@ La salida debe ser parecida a:
 +--------------------+
 ```
 
-### WORDPRESS
+### 3.4. WORDPRESS
 Por último, toca instalar y configurar Wordpress
 
 ```bash
@@ -950,7 +951,7 @@ Como puedes ver poniendo *http://localhost:8080/wordpress/wp-admin/install.php* 
 
 ![Instalador de Wordpress](img/84_Wordpress_Setup.png)
 
-### SERVICIO EXTRA: Fail2Ban
+### 3.5. SERVICIO EXTRA: Fail2Ban
 Como servicio extra, uno de los más útiles a mi parecer para cualquier servidor (aún más si tienes un servidor SSH activado como es tú caso) es `Fail2ban`[^5], se trata de un programa para la prevención de intrusos en un sistema, que actúa penalizando o bloqueando las conexiones remotas que intentan accesos por fuerza bruta. Si encuentra múltiples intentos de inicio de sesión fallidos o ataques automáticos desde una dirección IP, puede bloquearla con el firewall, ya sea de manera temporal o permanente.
 
 Para la instalación:
@@ -1029,3 +1030,12 @@ En el arranque de la máquina, puedes notar el siguiente error: *[DRM :vmw_host_
 [^4]: [Aquí](https://blog.ostermiller.org/install-wordpress-apt-ubuntu-host-multiple-blog-domains/) tienes todo lo que instala y donde lo instala wordpress hacerlo mediante `apt`
 
 [^5]: [Aquí](https://www.youtube.com/watch?v=PAK7I1cKwzA) te dejo un video explicativo muy bueno del gran Pelado Nerd
+
+## Repositorios útiles de otros estudiantes
+- El repositorio de referencia que he utilizado para hacer esta guia es: https://github.com/mcombeau.
+  - Junto con su página web: https://www.codequoi.com/en/42-get_next_line-project/
+
+- https://github.com/mpeq/born2beroot
+
+---
+Made by daampuru | LinkedIn: [David Ampurua](www.linkedin.com/in/david-ampurua)

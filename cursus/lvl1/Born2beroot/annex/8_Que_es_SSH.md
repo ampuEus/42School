@@ -1,4 +1,6 @@
 # ¿Qué es SSH?
+***[English](8_What_is_SSH.md) version***
+
 SSH (**S**ecure **Sh**ell) es un servicio/protocolo usado para la conexión remota a un servidor por medio de un canal seguro en el que toda la información está cifrada. Aunque se puede usar para funcionalidades como "tunel" para pasar los datos de otro protocolo no seguro por SSH. Utiliza una la arquitectura cliente/servidor y lleva imcorporado la encriptación de la conexión.
 
 SSH es la evolución de otros protocolos más viejos e inseguros como telnet. El protocolo SSH proporciona los siguientes tipos de protección:

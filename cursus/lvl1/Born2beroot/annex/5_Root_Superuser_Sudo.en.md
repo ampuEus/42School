@@ -1,4 +1,6 @@
 # root, superusuario y sudo
+***Versión en [español](5_Root_Superuser_Sudo.es.md)***
+
 In computing, the **superuser** is a special user account used for system administration. It has all the rights in all modes and can do many things that a common user cannot (change the owner or permissions to files, install software, open ports...).
 
 By convention, on most Linux systems, the **root** user is the default superuser name. Although, regardless of the name, what really tells if a user is superuser or not is that it has the** user ID** (uid) equal to **0**.

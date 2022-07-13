@@ -1,4 +1,5 @@
 # Partitions, LVM and Encryption
+***Versión en [español](3_Particiones_LVM_Encriptacion.md)***
 ## Why Have Several Partitions?
 From the point of view of operation, it is indifferent to have all the data in a single partition or in several. What is achieved by segmenting the information is to protect yourself from corruption of the partition since, if you have one partition for each thing, although one stops working, you can still recover the data from the rest of the partitions and the damage is lower.
 Partitions to do the mandatory part:

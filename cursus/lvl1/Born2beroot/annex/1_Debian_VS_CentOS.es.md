@@ -1,4 +1,6 @@
 # ¿Qué SO instalar en la VM, Debian o CentOS?
+***[English](1_Debian_VS_CentOS.en.md) version***
+
 En Born2beroot, hay que elegir entre dos SO para la máquina virtual: CentOS o Debian. Ambas son distribuciones GNU/LINUX, creadas por la comunidad y de código libre. Además de estar enfocadas a ser estables y seguras.
 
 ## Sobre CentOS

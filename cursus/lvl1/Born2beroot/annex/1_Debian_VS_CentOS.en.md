@@ -1,4 +1,5 @@
 # Which OS install on the VM, Debian or CentOS?
+***Versión en [español](1_Debian_VS_CentOS.es.md)***
 
 In Born2beroot, you have to choose between two OS for the virtual machine: CentOS or Debian. Both are GNU/LINUX distributions, created by the community and open source. In addition to being focused on being stable and safe.
 
