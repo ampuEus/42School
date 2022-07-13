@@ -293,7 +293,7 @@ NOTA: Yo uso linux para el desarrollo y he visto que algunas funciones no pasan 
  - Información sobre librerias estáticas
     - https://medium.com/@meghamohan/all-about-static-libraries-in-c-cea57990c495
 
-## Repositorios utilies de otros estudiantes
+## Repositorios útiles de otros estudiantes
 - https://github.com/wwwwelton/libft
 
 - https://github.com/mcombeau/libft
