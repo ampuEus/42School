@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:53:37 by daampuru          #+#    #+#             */
-/*   Updated: 2022/06/02 18:47:14 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/06/04 21:37:04 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,17 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
+	printf("entra");
 	temp = ft_strjoin(mem, "");
-	if (mem)
-		free(mem);
+	/*if (mem)
+		free(mem);*/
 	rec = 1;
 	while (!findchr(temp, '\n') && rec)
 	{
 		rec = read(fd, bf, BUFFER_SIZE);
 		if (rec < 0)
 		{
+			free(mem);
 			free(temp);
 			return (0);
 		}
@@ -49,8 +51,6 @@ char	*get_next_line(int fd)
 	}
 	line = ft_substr(temp, 0, findchr(temp, '\n') + 1);
 	mem = ft_substr(temp, findchr(temp, '\n') + 1, ft_strlen(temp));
-	if (rec <= 0)
-		free(mem);
 	free(temp);
 	return (line);
 }

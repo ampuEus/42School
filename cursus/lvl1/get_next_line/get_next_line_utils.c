@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 20:27:06 by daampuru          #+#    #+#             */
-/*   Updated: 2022/06/02 18:32:50 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/06/04 21:36:22 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char			*output;
 	unsigned int	point;
 
-	output = malloc( \
+	printf("entra");
+	output = malloc(\
 			(ft_strlen(s1) + ft_strlen(s2) + 1) \
 			* sizeof(*output));
 	if (!output)
