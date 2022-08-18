@@ -16,17 +16,18 @@
 int	main(void)
 {
 	char	*line;
-	int		id;
-	int		i;
+	int	id;
+	int	i;
 
 	id = open("testFiles/41_no_nl", O_RDONLY);
+	line = "";
 	i = 0;
-	while (i < 5)
+	while (line != NULL && i <= 5)
 	{
 		line = get_next_line(id);
 		printf("Text: (%s)\n", line);
-		free(line);
 		i++;
 	}
+	close(id);
 	return (0);
 }
