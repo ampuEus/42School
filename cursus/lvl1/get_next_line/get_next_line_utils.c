@@ -29,17 +29,24 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char			*output;
 	unsigned int	point;
 
-	printf("entra");
+	if (!s1 && !s2)
+		return (0);
 	output = malloc(\
 			(ft_strlen(s1) + ft_strlen(s2) + 1) \
 			* sizeof(*output));
 	if (!output)
 		return (0);
 	point = 0;
-	while (*s1)
-		output[point++] = *s1++;
-	while (*s2)
-		output[point++] = *s2++;
+	while (s1 && *s1)
+	{
+		output[point++] = *s1;
+		s1++;
+	}
+	while (s2 && *s2)
+	{
+		output[point++] = *s2;
+		s2++;
+	}
 	output[point] = '\0';
 	return (output);
 }
@@ -50,12 +57,14 @@ char	*ft_strdup(const char *s1)
 	char	*output;
 	size_t	i;
 
+	if (!s1)
+		return (0);
 	len = ft_strlen(s1);
 	output = (char *)malloc((len + 1) * sizeof(*output));
 	if (output)
 	{
-		if (!(output || s1))
-			return (NULL);
+		/*if (!(output || s1))
+			return (NULL);*/
 		i = 0;
 		while (i < len + 1)
 		{

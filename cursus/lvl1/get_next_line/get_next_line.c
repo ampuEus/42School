@@ -12,45 +12,82 @@
 
 #include "get_next_line.h"
 
+int	gnl_read(const int fd, char **mem)
+{
+	ssize_t	rec;
+	char	bf[BUFFER_SIZE + 1];
+	char	*aux;
+
+	rec = 1;
+	while (rec > 0)
+	{
+		rec = read(fd, bf, BUFFER_SIZE);
+		if (rec <= 0)
+			return (-1);
+		bf[rec] = '\0';
+		// NOTA: es crear "freejoin"
+		aux = ft_strdup(*mem);
+		free(*mem);
+		*mem = NULL;
+		*mem = ft_strjoin(aux, bf);
+		free(aux);
+		if (findchr(bf, '\n'))
+			return (1);
+	}
+	return (0);
+}
+
+char	*split_new_line(char **mem)
+{
+	char	*line;
+	char	*aux;
+	int	line_len;
+	int	len;
+	int	i;
+
+	line_len = 0;
+	while ((*mem)[line_len] && (*mem)[line_len] != '\n')
+		line_len++;
+	if ((*mem)[line_len] == '\n')
+		line_len++;
+	line = malloc((line_len + 1) * sizeof(*line));
+	i = 0;
+	while (i < line_len)
+	{
+		line[i] = (*mem)[i];
+		i++;
+	}
+	line[i] = '\0';
+	len = ft_strlen(*mem);
+	aux = ft_strdup(*mem);
+	free(*mem);
+	*mem = NULL;
+	*mem = malloc ((len - line_len + 1) * sizeof(**mem));
+	if (!*mem)
+		return (NULL);
+	len = 0;
+	while (aux[line_len + len])
+	{
+		(*mem)[len] = aux[line_len + len];
+		len++;
+	}
+	(*mem)[len] = '\0';
+	free(aux);
+	return (line);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*mem;
-	char		*temp;
 	char		*line;
-	ssize_t		rec;
-	char		bf[BUFFER_SIZE + 1];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	printf("entra");
-	temp = ft_strjoin(mem, "");
-	/*if (mem)
-		free(mem);*/
-	rec = 1;
-	while (!findchr(temp, '\n') && rec)
-	{
-		rec = read(fd, bf, BUFFER_SIZE);
-		if (rec < 0)
-		{
-			free(mem);
-			free(temp);
-			return (0);
-		}
-		if (!rec)
-			break ;
-		bf[rec] = '\0';
-		if (!temp)
-			temp = ft_strdup(bf);
-		else
-			temp = ft_strjoin(temp, bf); //problema doble malloc, hace falta una auxiliar
-	}
-	if (!temp || !*temp)
-	{
-		free(temp);
-		return (0);
-	}
-	line = ft_substr(temp, 0, findchr(temp, '\n') + 1);
-	mem = ft_substr(temp, findchr(temp, '\n') + 1, ft_strlen(temp));
-	free(temp);
+	if (gnl_read(fd, &mem) != -1)
+		line = split_new_line(&mem);
+	else if (mem && *mem)
+		line = split_new_line(&mem);
+	else
+		line = NULL;
 	return (line);
 }
