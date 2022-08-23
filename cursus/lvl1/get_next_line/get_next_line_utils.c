@@ -63,8 +63,6 @@ char	*ft_strdup(const char *s1)
 	output = (char *)malloc((len + 1) * sizeof(*output));
 	if (output)
 	{
-		/*if (!(output || s1))
-			return (NULL);*/
 		i = 0;
 		while (i < len + 1)
 		{
