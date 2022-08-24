@@ -19,13 +19,13 @@ int	main(void)
 	int	id;
 	int	i;
 
-	id = open("testFiles/empty", O_RDONLY);
-	//id = open("testFiles/fichero", O_RDONLY);
+	//id = open("testFiles/empty", O_RDONLY);
+	id = open("testFiles/fichero", O_RDONLY);
 	line = "";
 	i = 0;
 	while (line != NULL && i <= 5)
 	{
-		line = get_next_line(1000);
+		line = get_next_line(id);
 		printf("Text: (%s)\n", line);
 		i++;
 		free(line);

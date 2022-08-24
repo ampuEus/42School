@@ -44,37 +44,18 @@ char	*split_new_line(char **mem)
 {
 	char	*line;
 	char	*aux;
-	int	line_len;
-	int	len;
-	int	i;
+	int		line_len;
 
 	line_len = 0;
 	while ((*mem)[line_len] && (*mem)[line_len] != '\n')
 		line_len++;
 	if ((*mem)[line_len] == '\n')
 		line_len++;
-	line = malloc((line_len + 1) * sizeof(*line));
-	i = 0;
-	while (i < line_len)
-	{
-		line[i] = (*mem)[i];
-		i++;
-	}
-	line[i] = '\0';
-	len = ft_strlen(*mem);
-	aux = ft_strdup(*mem);
+	line = ft_substr(*mem, 0, line_len);
+	aux = ft_strdup(*mem + line_len);
 	free(*mem);
 	*mem = NULL;
-	*mem = malloc ((len - line_len + 1) * sizeof(**mem));
-	if (!*mem)
-		return (NULL);
-	len = 0;
-	while (aux[line_len + len])
-	{
-		(*mem)[len] = aux[line_len + len];
-		len++;
-	}
-	(*mem)[len] = '\0';
+	*mem = ft_strdup(aux);
 	free(aux);
 	return (line);
 }
