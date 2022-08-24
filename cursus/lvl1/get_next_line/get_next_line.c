@@ -15,26 +15,29 @@
 int	gnl_read(const int fd, char **mem)
 {
 	ssize_t	rec;
-	char	bf[BUFFER_SIZE + 1];
+	char	*bf;
 	char	*aux;
 
+	bf = malloc ((BUFFER_SIZE + 1) * sizeof(*bf));
+	if (!bf)
+		return (-1);
 	rec = 1;
 	while (rec > 0)
 	{
 		rec = read(fd, bf, BUFFER_SIZE);
 		if (rec <= 0)
-			return (-1);
+			break ;
 		bf[rec] = '\0';
-		// NOTA: es crear "freejoin"
 		aux = ft_strdup(*mem);
 		free(*mem);
 		*mem = NULL;
 		*mem = ft_strjoin(aux, bf);
 		free(aux);
-		if (findchr(bf, '\n'))
-			return (1);
+		if (findchr(*mem, '\n'))
+			break ;
 	}
-	return (0);
+	free(bf);
+	return (rec);
 }
 
 char	*split_new_line(char **mem)
@@ -83,7 +86,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	if (gnl_read(fd, &mem) != -1)
+	if (gnl_read(fd, &mem) > 0)
 		line = split_new_line(&mem);
 	else if (mem && *mem)
 		line = split_new_line(&mem);
