@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:53:37 by daampuru          #+#    #+#             */
-/*   Updated: 2022/06/04 21:37:04 by david            ###   ########.fr       */
+/*   Updated: 2022/08/29 19:30:15 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,12 @@ char	*get_next_line(int fd)
 		return (0);
 	if (gnl_read(fd, &mem) > 0)
 		line = split_new_line(&mem);
-	else if (mem && *mem)
+	else if (mem && *mem && ft_strlen(mem) > 0)
 		line = split_new_line(&mem);
 	else
+	{
+		free(mem);
 		line = NULL;
+	}
 	return (line);
 }
