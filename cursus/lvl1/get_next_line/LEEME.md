@@ -136,7 +136,7 @@ El resultado de `read` son los caracteres que ha leído, utilizando *-1* como av
 
 En el caso del get next line, la *fd* es una de las variables que hay que pasarle a la función y *count* está definido por el valor de *BUFFER_SIZE* el cual hay que definir en el tiempo de compilación.
 
-### Que es un buffer + BUFFER_SIZE
+### Qué es un buffer + BUFFER_SIZE
 En el caso del software, un búfer es un área de datos compartida por procesos de programa que funcionan a diferentes velocidades. El búfer permite que cada proceso funcione sin que el otro lo detenga. Al igual que un caché, un búfer es un "lugar de espera de punto medio", pero existe no tanto para acelerar la velocidad de una actividad como para apoyar la coordinación de actividades separadas.
 
 Hay que tener en cuenta que un búfer sea efectivo, se debe considerar el tamaño del búfer y los algoritmos para mover datos dentro y fuera del búfer.
@@ -270,7 +270,7 @@ Como ya puedes intuir por el enunciado de la práctica, es probable es que en es
 >- `heap-use-after-free`: Usar una variable después de ser liberada sin tener memoria asignada
 >- `stack-buffer-overflow`, `heap-buffer-overflow`, o `global-buffer-overflow`: Cuando se ha reservado más memoria de la disponible
 
-Una forma de evitar en error **XXXXXXXXXXXXXXXXXXXX** es que cuando se quiere volver a usar una variable de memoria ya liberada, antes de volver a hacer un malloc para reservarle memoria hacer que apunte a `NULL`. Esto puede ser especialmente útil con variables globales o estáticas.
+Una forma de evitar el error **double-free** es que cuando se quiere volver a usar una variable de memoria ya liberada, antes de volver a hacer un malloc para reservarle memoria hacer que apunte a `NULL`. Esto puede ser especialmente útil con variables globales o estáticas.
 
 ```c
 void	foo(void)
