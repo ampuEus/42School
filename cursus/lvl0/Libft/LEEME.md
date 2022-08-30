@@ -1,5 +1,5 @@
 # Libft: Mi primera librería de C
-***Oficialmete terminado el 31/05/2022 / Nota 125 de 100 / [English](README.md) version***
+***Oficialmente terminado el 31/05/2022 / Nota 125 de 100 / [English](README.md) version***
 
 Este proyecto consiste en programar una librería en C. Aquí se han hecho muchas funciones básicas de propósito general que serán la base los programar hecho en la escuela 42.
 
