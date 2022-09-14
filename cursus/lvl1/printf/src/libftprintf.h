@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 06:48:36 by daampuru          #+#    #+#             */
-/*   Updated: 2022/09/14 13:27:34 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:30:49 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 typedef struct stTags
 {
 	char	err;
+	char	no_comb;
 	char	specifier;
 	char	flag_minus;
 	char	flag_plus;

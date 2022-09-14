@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 06:46:11 by daampuru          #+#    #+#             */
-/*   Updated: 2022/09/14 13:29:01 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:59:08 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ stTags	getPrecision(stTags tag, char *str)
 	while (tag.specifier != str[++i])
 	{
 		if (tag.precision_dot && !ft_isdigit(str[i]))
-			tag.err = 1;
+			tag.no_comb = 1;
 		if (tag.precision_dot && !tag.precision_size)
 			tag.precision_size = ft_atoi(str + i);
 		if (str[i] == '.')
@@ -59,7 +59,7 @@ stTags	getWidth(stTags tag, char *str)
 		if (ft_isdigit(str[i]) && !tag.width_number)
 			tag.width_number = ft_atoi(str + i);
 		if (!ft_isdigit(str[i]) && tag.width_number)
-			tag.err = 1;
+			tag.no_comb = 1;
 	}
 	return (tag);
 }
@@ -85,11 +85,10 @@ stTags	getFlags(stTags tag, char *str)
 	return (tag);
 }
 
-/* Modify input parameter depending to flags */
+/* Modify input parameter depending on flags */
 
 
 
-/* Inicialize tags structure */
 stTags	find_tags(stTags tag, char *str)
 {
 	unsigned int	tags_len;
@@ -105,6 +104,8 @@ stTags	find_tags(stTags tag, char *str)
 	return (tag);
 }
 
+
+/* Inicialize tags structure */
 stTags	start_tags()
 {
 	stTags	newTags;
@@ -124,6 +125,7 @@ stTags	start_tags()
 int main(void)
 {
 	stTags	tags;
+	char *ptr = 0;
 
 	tags = start_tags(tags);	
 	tags = find_tags(tags, "%#004444+skhkgjhs");
@@ -136,6 +138,28 @@ int main(void)
 	printf("precision: %d\n", tags.precision_dot);
 	printf("precision size: %d\n", tags.precision_size);
 	printf("width: %d\n", tags.width_number);
-	printf("error: %d\n", tags.err);
+	printf("no combination: %d\n", tags.no_comb);
+	printf("error: %d\n", tags.no_comb);
+
+
+	printf("c + '-': %-c\n", 'h');
+	printf("s + '-': %-s\n", "hola");
+	printf("p + '-': %-p\n", ptr);
+	printf("d + '-': %-d\n", 20);
+	printf("i + '-': %-i\n", 20);
+	printf("u + '-': %-u\n", 20);
+	printf("x + '-': %-x\n", 20);
+	printf("X + '-': %-X\n", 20);
+	//printf("%-%\n");
+
+	//printf("%+c\n", 'h');
+	//printf("%+s\n", "hola");
+	//printf("%+p\n", ptr);
+	printf("d + '+': %+d\n", 20);
+	printf("i + '+': %+i\n", 20);
+	//printf("%+u\n", 20);
+	//printf("%+x\n", 20);
+	//printf("%+X\n", 20);
+	//printf("%+%\n", 'h');
 	return (0);
 }
