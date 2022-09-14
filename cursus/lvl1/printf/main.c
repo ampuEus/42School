@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 06:46:11 by daampuru          #+#    #+#             */
-/*   Updated: 2022/09/07 01:51:14 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:29:01 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,7 @@
 #include "src/libftprintf.h"
 #include <stdio.h>
 
-/* Functions to detect which tags is */
-
-char	isSpecifier(char c)
-{
-	if (c == 'c' || c == 's' || c == 'p' \
-	|| c == 'd' || c == 'i' || c == 'u' \
-	|| c == 'x' || c == 'X' || c == '%')
-		return (1);
-	return (0);			
-}
-
-char	isPrecision(char c)
-{
-	if (c == '.')
-		return (1);
-	return (0);			
-}
-
-char	isWidth(char c)
-{
-	if (c >= '0' || c < '9')
-		return (1);
-	return (0);			
-}
-
-char	isFlag(char c)
-{
-	if (c == '-' || c == '+' || c == ' ' \
-	|| c == '#' || c == '0')
-		return (1);
-	return (0);			
-}
-
 /* Functions to get the tags of each family */
-
 unsigned int	getSpecifier(char *str)
 {
 	unsigned int	i;
@@ -56,104 +22,120 @@ unsigned int	getSpecifier(char *str)
 	i = 0;
 	while (str[i++])
 	{
-		if (isSpecifier(str[i])) {
+		if (ft_strchr(SPECIFIERS, str[i]))
 			break;	
-		} else if (isPrecision(str[i]) \
-				|| isWidth(str[i]) \
-				|| isFlag(str[i])) {
-			continue;
-		} else {
+		if (str[i] != '.' \
+		&& !ft_isdigit(str[i]) \
+		&& !ft_strchr(FLAGS, str[i]))
 			return (0);
-		}	
 	}
 	return (i);
 }
 
-unsigned int	getPrecision(stTags *tag, char *str, size_t len)
+stTags	getPrecision(stTags tag, char *str)
 {
 	unsigned int	i;
 	
 	i = 0;
-	while (str[i++])
+	while (tag.specifier != str[++i])
 	{
-		if (isSpecifier(str[i])) {
-			return (0);
-		} else if (isPrecision(str[i])) {
-			if (len - i > 1)
-			{
-				tag->width_number = ft_substr(str, i, 1);
-			}
-			break;
-		} else if (isWidth(str[i]) || isFlag(str[i])) {
-			continue;
-		} else {
-			return (0);
-		}	
+		if (tag.precision_dot && !ft_isdigit(str[i]))
+			tag.err = 1;
+		if (tag.precision_dot && !tag.precision_size)
+			tag.precision_size = ft_atoi(str + i);
+		if (str[i] == '.')
+			tag.precision_dot = 1;
 	}
-	return (i);
+	return (tag);
 }
 
-signed int	getWidth(char *str)
+stTags	getWidth(stTags tag, char *str)
 {
 	unsigned int	i;
 	
 	i = 0;
-	while (str[i++])
+	while (tag.specifier != str[++i] && str[i] != '.')
 	{
-		if (isSpecifier(str[i]) || isPrecision(str[i])) {
-			return (0);
-		} else if (isWidth(str[i])) {
-			break;
-		} else if (isFlag(str[i])) {
-			continue;
-		} else {
-			return (0);
-		}	
+		if (ft_isdigit(str[i]) && !tag.width_number)
+			tag.width_number = ft_atoi(str + i);
+		if (!ft_isdigit(str[i]) && tag.width_number)
+			tag.err = 1;
 	}
-	return (i);
+	return (tag);
 }
 
-
-char	*find_tags(stTags *tag, char *str)
+stTags	getFlags(stTags tag, char *str)
 {
 	unsigned int	i;
-	char		*tags;
 
-	// Encuentra el especificador
-	i = getSpecifier(str);
-	if (!i)
-		return (0);
-	else
-		tags = ft_substr(str, i, 1);
-	// Encuentra precision
-	i = getPrecision(tag, str, i);
-	if (!i)
-		return (0);
-	else
-	{
-		ft_strlcat(tags, (str + i - 1), 2);
-		printf("presicion ");
-		//tags = ft_strjoin(tags, str[i]);
+	i = 0;
+	while (tag.specifier != str[++i] && str[i] != '.')
+	{	
+		if (str[i] == '-')
+			tag.flag_minus = 1;
+		if (str[i] == '+')
+			tag.flag_plus = 1;
+		if (str[i] == ' ')
+			tag.flag_space = 1;
+		if (str[i] == '#')
+			tag.flag_hashtag = 1;
+		if (str[i] == '0')
+			tag.flag_zero = 1;
 	}
+	return (tag);
+}
 
-	// Encuentra ancho
-	// Encuentra flas
-	//while (str[i] && (str[i] == '-' || \))
-	tag->width_number = ft_substr("prueba", 2, 1);
-	return (tags);
-		
+/* Modify input parameter depending to flags */
+
+
+
+/* Inicialize tags structure */
+stTags	find_tags(stTags tag, char *str)
+{
+	unsigned int	tags_len;
+
+	tags_len = getSpecifier(str);
+	if (!tags_len)
+		return (tag);
+	else
+		tag.specifier = str[tags_len];
+	tag = getPrecision(tag, str);
+	tag = getWidth(tag, str);
+	tag = getFlags(tag, str);
+	return (tag);
+}
+
+stTags	start_tags()
+{
+	stTags	newTags;
+
+	newTags.specifier = 0;
+	newTags.flag_minus = 0;
+	newTags.flag_plus = 0;
+	newTags.flag_space = 0;
+	newTags.flag_hashtag = 0;
+	newTags.flag_zero = 0;
+	newTags.width_number = 0;
+	newTags.precision_dot = 0;
+	newTags.precision_size = 0;
+	return (newTags);
 }
 
 int main(void)
 {
-	stTags	*tags;
-	char	*tag;
+	stTags	tags;
 
-	tags = ft_calloc(1,sizeof(stTags));
-	tag = find_tags(tags, "%#00+0-020.sdfkjhs");
-	printf("%s\n", tag);
-	printf("%s\n", tags->width_number);
-	free(tag);
-	free(tags);
+	tags = start_tags(tags);	
+	tags = find_tags(tags, "%#004444+skhkgjhs");
+	printf("specifier: %c\n", tags.specifier);
+	printf("minus: %i\n", tags.flag_minus);
+	printf("plus: %i\n", tags.flag_plus);
+	printf("space: %i\n", tags.flag_space);
+	printf("hashtag: %i\n", tags.flag_hashtag);
+	printf("zero: %i\n", tags.flag_zero);
+	printf("precision: %d\n", tags.precision_dot);
+	printf("precision size: %d\n", tags.precision_size);
+	printf("width: %d\n", tags.width_number);
+	printf("error: %d\n", tags.err);
 	return (0);
 }
