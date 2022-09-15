@@ -339,7 +339,7 @@ su root
 > Nota que cuando te logues como root el símbolo de la consola de comandos pasa de '$' a '#' mientras te mantienes como usuario root.
 
 Una vez como root, antes de instalar nada es recomendable actualizar la lista de los programas que se pueden descargar del repositorio. Además de, como todavía no está el servidor en producción, es recomendable actualizar los programas que están ya instalados en el sistema.
-Todo esto se hace mediante la utilidad `[apt](annex/4_Gestion_de_paquetes_Debian.md)`:
+Todo esto se hace mediante la utilidad [apt](annex/4_Gestion_de_paquetes_Debian.md):
 ```bash
 apt update # Actualiza la lista de paquetes
 apt upgrade # Actualiza los paquetes instalados en el sistema
