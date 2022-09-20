@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
-static int	gnl_read(const int fd, char **mem)
+int	gnl_read(const int fd, char **mem)
 {
 	ssize_t	rec;
 	char	*bf;
@@ -40,7 +40,7 @@ static int	gnl_read(const int fd, char **mem)
 	return (rec);
 }
 
-static char	*split_new_line(char **mem)
+char	*split_new_line(char **mem)
 {
 	char	*line;
 	char	*aux;
@@ -62,18 +62,18 @@ static char	*split_new_line(char **mem)
 
 char	*get_next_line(int fd)
 {
-	static char	*mem;
+	static char	*mem[1024];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
 		return (0);
-	if (gnl_read(fd, &mem) > 0)
-		line = split_new_line(&mem);
-	else if (mem && *mem && gnl_strlen(mem) > 0)
-		line = split_new_line(&mem);
+	if (gnl_read(fd, &mem[fd]) > 0)
+		line = split_new_line(&mem[fd]);
+	else if (mem[fd] && *mem[fd] && gnl_strlen(mem[fd]) > 0)
+		line = split_new_line(&mem[fd]);
 	else
 	{
-		free(mem);
+		free(mem[fd]);
 		line = NULL;
 	}
 	return (line);
