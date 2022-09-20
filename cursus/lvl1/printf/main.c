@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 06:46:11 by daampuru          #+#    #+#             */
-/*   Updated: 2022/09/14 14:59:08 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/09/15 14:52:41 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,24 @@ stTags	getFlags(stTags tag, char *str)
 	return (tag);
 }
 
-/* Modify input parameter depending on flags */
-
-
+char	imposible_combination(stTags tag)
+{
+	if (((tag.specifier == 'c' || tag.specifier == 'p') \
+		&& (tag.flag_plus || tag.flag_space || tag.flag_hashtag \
+		|| tag.flag_zero || tag.precision_dot)) \
+	|| (tag.specifier == 's' && (tag.flag_plus || tag.flag_space \
+		|| tag.flag_hashtag || tag.flag_zero)) \
+	|| ((tag.specifier == 'd' || tag.specifier == 'i') && tag.flag_hashtag) \
+	|| (tag.specifier == 'u' \
+		&& (tag.flag_plus || tag.flag_space || tag.flag_hashtag))
+	|| ((tag.specifier == 'x' || tag.specifier == 'X') \
+		&& (tag.flag_plus || tag.flag_space)) \
+	|| (tag.specifier == '%' && (tag.flag_minus || tag.flag_plus \
+		|| tag.flag_space || tag.flag_hashtag|| tag.flag_zero \
+		|| tag.precision_dot || tag.width_number)))
+		return (1);
+	return (0);
+}
 
 stTags	find_tags(stTags tag, char *str)
 {
@@ -101,8 +116,12 @@ stTags	find_tags(stTags tag, char *str)
 	tag = getPrecision(tag, str);
 	tag = getWidth(tag, str);
 	tag = getFlags(tag, str);
+	if (!tag.no_comb)
+		tag.err = imposible_combination(tag); 
 	return (tag);
 }
+
+/* Modify input parameter depending on flags */
 
 
 /* Inicialize tags structure */
@@ -110,6 +129,8 @@ stTags	start_tags()
 {
 	stTags	newTags;
 
+	newTags.err = 0;
+	newTags.no_comb = 0;
 	newTags.specifier = 0;
 	newTags.flag_minus = 0;
 	newTags.flag_plus = 0;
@@ -122,13 +143,13 @@ stTags	start_tags()
 	return (newTags);
 }
 
-int main(void)
+int ft_printf(const char *format, ...)
 {
-	stTags	tags;
-	char *ptr = 0;
+	stTags tags;
 
-	tags = start_tags(tags);	
-	tags = find_tags(tags, "%#004444+skhkgjhs");
+	tags = start_tags(tags);
+	tags = find_tags(tags, str);	
+	
 	printf("specifier: %c\n", tags.specifier);
 	printf("minus: %i\n", tags.flag_minus);
 	printf("plus: %i\n", tags.flag_plus);
@@ -139,9 +160,20 @@ int main(void)
 	printf("precision size: %d\n", tags.precision_size);
 	printf("width: %d\n", tags.width_number);
 	printf("no combination: %d\n", tags.no_comb);
-	printf("error: %d\n", tags.no_comb);
+	printf("error: %d\n", tags.err);
+	printf("\n");
+	return (0);
+}
 
+int main(void)
+{
+	stTags	tags;
+	char *ptr = 0;
+	char str[100] = "%4.csdlkfsfn\n";
 
+	printf(str, "hola");
+
+	/* Testing which tag can go with which specifier */
 	printf("c + '-': %-c\n", 'h');
 	printf("s + '-': %-s\n", "hola");
 	printf("p + '-': %-p\n", ptr);
@@ -161,5 +193,56 @@ int main(void)
 	//printf("%+x\n", 20);
 	//printf("%+X\n", 20);
 	//printf("%+%\n", 'h');
+	
+	//printf("c + ' ' : % c\n", 'h');
+	//printf("s + ' ': % s\n", "hola");
+	//printf("p + ' ': % p\n", ptr);
+	printf("d + ' ': % d\n", 20);
+	printf("i + ' ': % i\n", 20);
+	//printf("u + ' ': % u\n", 20);
+	//printf("x + ' ': % x\n", 20);
+	//printf("X + ' ': % X\n", 20);
+	//printf("% % \n");
+
+	//printf("c + '#': %#c\n", 'h');
+	//printf("s + '#': %#s\n", "hola");
+	//printf("p + '#': %#p\n", ptr);
+	//printf("d + '#': %#d\n", 20);
+	//printf("i + '#': %#i\n", 20);
+	//printf("u + '#': %#u\n", 20);
+	printf("x + '#': %#x\n", 20);
+	printf("X + '#': %#X\n", 20);
+	//printf("%#% \n");
+
+	//printf("c + '0': %0c\n", 'h');
+	//printf("s + '0': %0s\n", "hola");
+	//printf("p + '0': %0p\n", ptr);
+	printf("d + '0': %0d\n", 20);
+	printf("i + '0': %0i\n", 20);
+	printf("u + '0': %0u\n", 20);
+	printf("x + '0': %0x\n", 20);
+	printf("X + '0': %0X\n", 20);
+	//printf("%0% \n");
+
+	//printf("c + '.': %.c\n", 'h');
+	printf("s + '.': %.s\n", "hola");
+	//printf("p + '.': %.p\n", ptr);
+	printf("d + '.': %.d\n", 20);
+	printf("i + '.': %.i\n", 20);
+	printf("u + '.': %.u\n", 20);
+	printf("x + '.': %.x\n", 20);
+	printf("X + '.': %.X\n", 20);
+	//printf("%.% \n");
+
+	//printf("c + '.3': %.3c\n", 'h');
+	printf("s + '.3': %.3s\n", "hola");
+	//printf("p + '.3': %.3p\n", ptr);
+	printf("d + '.3': %.3d\n", 20);
+	printf("i + '.3': %.3i\n", 20);
+	printf("u + '.3': %.3u\n", 20);
+	printf("x + '.3': %.3x\n", 20);
+	printf("X + '.3': %.3X\n", 20);
+	//printf("%.3% \n");
+	printf("\n");
 	return (0);
 }

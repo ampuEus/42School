@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 06:48:36 by daampuru          #+#    #+#             */
-/*   Updated: 2022/09/14 14:30:49 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/09/15 13:53:49 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ typedef struct stTags
 	int	width_number;
 	char	precision_dot;
 	int	precision_size;
-	int	tag_size;
-	int	print_size;
-	char	*parameter;
 }	stTags;
 
 # define SPECIFIERS	"cspdiuxX%"
