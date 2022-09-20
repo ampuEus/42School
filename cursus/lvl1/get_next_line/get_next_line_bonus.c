@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:53:37 by daampuru          #+#    #+#             */
-/*   Updated: 2022/08/29 19:30:15 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/09/20 22:12:39 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*get_next_line(int fd)
 	static char	*mem[1024];
 	char		*line;
 
-	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd == 2 || fd >= 1024 || BUFFER_SIZE <= 0)
 		return (0);
 	if (gnl_read(fd, &mem[fd]) > 0)
 		line = split_new_line(&mem[fd]);
@@ -74,6 +74,7 @@ char	*get_next_line(int fd)
 	else
 	{
 		free(mem[fd]);
+		mem[fd] = NULL;
 		line = NULL;
 	}
 	return (line);
