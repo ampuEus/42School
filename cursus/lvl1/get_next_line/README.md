@@ -158,7 +158,8 @@ NOTE: Depending on the size of the buffer when using `read` it is likely that yo
 
 ## How I have organized the goals of this exercise
 ### [main](src/main.c) which opens and closes a test file to pass to the get_next_line
-***TODO***
+The get_next_line function does not have to open or close any files. It just has to read from a file descriptor that it receives as a parameter.
+To open and close a file you have to use a script like the one shown above.
 
 ### Function to read from a file descriptor
 Inside [get_next_line.c](src/get_next_line.c) is the `gnl_read` function which has a read loop that stops when `read` returns 0, i.e. the end of the file has been reached and there is nothing left more to read. And inside the loop it does the following:
@@ -196,7 +197,11 @@ From the [`get_next_line`](src/get_next_line.c) function:
   - The value of the line is returned
 
 ### (Bonus) Read from more than one *fd*
-***TODO***
+Considering that one part of the bonus is **using a single static variable**, which is quite easy to do, since to save the value for the lifetime of the program of the extra characters read after a line break, you just to use a single variable.
+
+Instead, the second part of the bonus asks that the get_next_line function be **instantiated many times, to read from multiple file descriptors** without mixing them. To do this, you just have to modify the base gnl and transform the static variable into an array of strings, one for each fd. See [get_next_line_bonus](get_next_line_bonus.c).
+
+>NOTE: Depending on the operating system, there is a limit for the number of files that can be opened simultaneously, ideally use that value to define the size of the array is the best option. Although for this practice setting a limit of 1024 fd open simultaneously should be more than enough to pass the tests and the moulinette.
 
 ## Typical troubleshooting
 ### The definition of the buffer and its size: **Stack Overflow**

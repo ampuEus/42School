@@ -218,6 +218,7 @@ https://www.tutorialspoint.com/c_standard_library/c_function_printf.htm#
 ## Como he organizado las metas de este ejercicio
 ### Hacer una primera iteración del *Makefile*
 ### Hacer una funcion básica que devuelva los caracteres del string y que sea capaz de devolver el caracter '%'
+### Detectar las etiquetas que hay después de un '%' y su correcta gramática
 
 
 
