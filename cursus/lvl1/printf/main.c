@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 06:46:11 by daampuru          #+#    #+#             */
-/*   Updated: 2022/09/15 14:52:41 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/09/22 12:18:16 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 
 /* Functions to get the tags of each family */
-unsigned int	getSpecifier(char *str)
+unsigned int	getSpecifier(const char *str)
 {
 	unsigned int	i;
 
@@ -32,7 +32,7 @@ unsigned int	getSpecifier(char *str)
 	return (i);
 }
 
-stTags	getPrecision(stTags tag, char *str)
+stTags	getPrecision(stTags tag, const char *str)
 {
 	unsigned int	i;
 	
@@ -49,7 +49,7 @@ stTags	getPrecision(stTags tag, char *str)
 	return (tag);
 }
 
-stTags	getWidth(stTags tag, char *str)
+stTags	getWidth(stTags tag, const char *str)
 {
 	unsigned int	i;
 	
@@ -64,7 +64,7 @@ stTags	getWidth(stTags tag, char *str)
 	return (tag);
 }
 
-stTags	getFlags(stTags tag, char *str)
+stTags	getFlags(stTags tag, const char *str)
 {
 	unsigned int	i;
 
@@ -104,7 +104,7 @@ char	imposible_combination(stTags tag)
 	return (0);
 }
 
-stTags	find_tags(stTags tag, char *str)
+stTags	find_tags(stTags tag, const char *str)
 {
 	unsigned int	tags_len;
 
@@ -148,7 +148,7 @@ int ft_printf(const char *format, ...)
 	stTags tags;
 
 	tags = start_tags(tags);
-	tags = find_tags(tags, str);	
+	tags = find_tags(tags, format);	
 	
 	printf("specifier: %c\n", tags.specifier);
 	printf("minus: %i\n", tags.flag_minus);
@@ -167,11 +167,10 @@ int ft_printf(const char *format, ...)
 
 int main(void)
 {
-	stTags	tags;
 	char *ptr = 0;
 	char str[100] = "%4.csdlkfsfn\n";
 
-	printf(str, "hola");
+	ft_printf(str, "hola");
 
 	/* Testing which tag can go with which specifier */
 	printf("c + '-': %-c\n", 'h');
