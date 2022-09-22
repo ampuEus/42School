@@ -3,9 +3,6 @@
 
 El objetivo de este proyecto es programar una función que devuelva una línea leída de un file descriptor sin perder la pista de la siguiente línea y con un tamaño de búfer aleatorio.
 
-## Índice
-***TODO***
-
 ## Requisitos del ejercicio
 - La forma de leer el contenido de un archivo debe ser extrayendo una línea en cada ejecución del programa con sucesivas llamadas a este.
 - Debe devolver el contenido de la línea leída seguido del carácter de salto de línea ('\n'), a menos que se esté al final del archivo y no termine con salto de línea
@@ -158,7 +155,8 @@ NOTA: Dependiendo del tamaño del buffer a la hora de utilizar `read` es probabl
 
 ## Como he organizado las metas de este ejercicio
 ### [main](src/main.c) que abre y cierra un archivo de prueba para pasar al get_next_line
-***TODO***
+La función get_next_line no tienen que abrir o cerrar ningún archivo. Solo tiene que leer de un descriptor de archivo que recibe como parámetro.
+Para abrir y cerrar un archivo se tiene que usar un script como el mostrado anteriormente.
 
 ### Función para leer de un descriptor de archivo
 Dentro de [get_next_line.c](src/get_next_line.c) está la función `gnl_read` la cual tiene un bucle de lectura que se detiene cuando `read` devuelve 0, esto es se ha llegado al final del archivo y no queda nada más para leer. Y dentro del bucle hace lo siguiente:
@@ -196,7 +194,11 @@ Desde la función [`get_next_line`](src/get_next_line.c) se:
  - Se devuelve el valor de la línea
 
 ### (Bonus) Leer de más de un *fd*
-***TODO***
+Teniendo en cuenta que una parte del bonus es **usar una única variable estática**, cosa bastante fácil de hacer, ya que para guardar el valor durante la vida útil del programa de los caracteres sobrantes leídos después de un salto de línea, solo es necesario usar una variable.
+
+En cambio, la segunda parte del bonus pide que se **instancie muchas veces la función get_next_line, para leer desde múltiples descriptores** de archivos sin mezclarlos. Para ello, solo hay que modificar el gnl base y transformar la variable estática en una matriz de cadenas, una para cada fd. Ver [get_next_line_bonus](get_next_line_bonus.c).
+
+>NOTA: Dependiendo del sistema operativo, existe un límite en la cantidad de archivos que se pueden abrir simultáneamente, lo ideal es usar ese valor para definir el tamaño de la matriz. Aunque para esta práctica con poner un límite de 1024 fd abiertos simultáneamente debería ser más que suficiente para pasar los tests y la moulinette.
 
 ## Solución de problemas típicos
 ### La definición del búfer y su tamaño: **Stack Overflow**
