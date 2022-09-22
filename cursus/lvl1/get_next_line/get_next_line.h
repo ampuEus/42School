@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:53:01 by daampuru          #+#    #+#             */
-/*   Updated: 2022/05/30 18:20:23 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/09/22 18:42:35 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
-# include <stddef.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 64

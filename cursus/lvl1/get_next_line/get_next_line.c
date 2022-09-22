@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:53:37 by daampuru          #+#    #+#             */
-/*   Updated: 2022/08/29 19:30:15 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/09/22 18:26:26 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ char	*get_next_line(int fd)
 	else
 	{
 		free(mem);
+		mem = NULL;
 		line = NULL;
 	}
 	return (line);
