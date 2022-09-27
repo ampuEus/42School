@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 06:46:11 by daampuru          #+#    #+#             */
-/*   Updated: 2022/09/22 12:18:16 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/09/27 18:51:46 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ stTags	find_tags(stTags tag, const char *str)
 	return (tag);
 }
 
-/* Modify input parameter depending on flags */
+/* Print input parameter depending on flags */
 
 
 /* Inicialize tags structure */
@@ -145,11 +145,15 @@ stTags	start_tags()
 
 int ft_printf(const char *format, ...)
 {
-	stTags tags;
+	stTags	tags;
+	int		count
 
-	tags = start_tags(tags);
-	tags = find_tags(tags, format);	
-	
+	tags = start_tags();
+	tags = find_tags(tags, format);
+	count = ft_print_value();
+
+
+
 	printf("specifier: %c\n", tags.specifier);
 	printf("minus: %i\n", tags.flag_minus);
 	printf("plus: %i\n", tags.flag_plus);

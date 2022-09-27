@@ -205,24 +205,69 @@ A string
 ### Funciones variádicas
 Son aquellas funciones que pueden recibir un numero indefinido de argumentos.
 
-La sintaxis usa como ultimo parámetro una variable con el prefijo ... // La función variádica consta de al menos una variable fija y luego una elipsis (…) como último parámetro
-The standard stdarg.h header file is used. The older varargs.h header has been deprecated in favor of stdarg.h.
-https://en.wikipedia.org/wiki/Variadic_function#In_C
-https://es.acervolima.com/funciones-variadicas-en-c/
+La función variádica consta de al menos una variable fija, utilizada para especificar los argumentos, y luego mediante una elipsis ("...") se hace referencia al resto de parámetros:
+```c
+int funcion_variadrica(int <variable_fija>, ...);
+```
+>NOTA: La *<variable_fija>* no tiene porque ser siempre de tipo *int*
 
+Después en el cuerpo de la función, es necesario usar una serie de macros para acceder a los argumentos que se le hayan pasado a la función:
+  - `va_list(<var>)`: Sirve para la definición de la variable donde almacenar los algumetos de la función variádrica
+  - `va_start(va_list <var>, argN)`: Permite el acceso a los argumentos de la función variádica
+  - `va_arg(va_list <var>, tipo)`: Accede al siguiente argumento de la función variada
+  - `va_copy (va_list dest, va_list src)`: Hace una copia de los argumentos de la función variádica
+  - `va_end(va_list \<var\>)`: Finaliza del acceso a los argumentos
 
-https://hardfloat.es/blog/2021/11/05/funciones-variadicas.html
+```c
+#include <stdio.h>
+#include <stdarg.h> // Añadir la librería para la gestión de las variádricas
 
-https://www.tutorialspoint.com/c_standard_library/c_function_printf.htm#
+void prueba_multi(char *format, ...)
+{
+	va_list args; // Inicializar los argumentos de la función variádrica
 
-## Como he organizado las metas de este ejercicio
+	va_start(args, format); // Activar el acceso a los argumentos de la función
+
+	// Ir recorriendo los argumentos
+	printf("%s", va_arg(args, char *));
+	printf("%c", va_arg(args, int)); // NOTA: Mejor usar "int" en vez de "char"
+	printf("%s", va_arg(args, char *));
+	printf("%i", va_arg(args, int));
+	printf("%s", va_arg(args, char *));
+
+	va_end(args); // Finalizar el acceso a los argumentos
+}
+
+int main (void)
+{
+	prueba_multi("<printf_formats>", "Hello ", 't', "his is ", 1, " variadric function");
+	return (0);
+}
+```
+
+Salida:
+```
+Hello this is 1 variadric function
+```
+
+### Estructuras
+
+## Como organizar las metas de este ejercicio
 ### Hacer una primera iteración del *Makefile*
 ### Hacer una funcion básica que devuelva los caracteres del string y que sea capaz de devolver el caracter '%'
 ### Detectar las etiquetas que hay después de un '%' y su correcta gramática
 
 
+## Referencias
+  - https://www.tutorialspoint.com/c_standard_library/c_function_printf.htm#
+  - https://hardfloat.es/blog/2021/11/05/funciones-variadicas.html
+  - https://es.acervolima.com/funciones-variadicas-en-c/
+  - https://en.wikipedia.org/wiki/Variadic_function#In_C
 
-
+## Repositorios útiles de otros estudiantes
+  - https://github.com/madebypixel02/ft_printf
+  - https://github.com/mcombeau/ft_printf
+  - https://github.com/benatcastro/ft_printf
 
 ---
 Hecho por daampuru | LinkedIn: [David Ampurua](www.linkedin.com/in/david-ampurua)
