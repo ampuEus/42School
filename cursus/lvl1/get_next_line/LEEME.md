@@ -1,5 +1,5 @@
 # Get Next Line (gnl) : Leer una línea de un fd es tedioso
-***Oficialmente terminado el xx/08/2022 / Nota xxx de 100 / [English](README.md) version***
+***Oficialmente terminado el 22/09/2022 / Nota 125 de 100 / [English](README.md) version***
 
 El objetivo de este proyecto es programar una función que devuelva una línea leída de un file descriptor sin perder la pista de la siguiente línea y con un tamaño de búfer aleatorio.
 
@@ -154,12 +154,12 @@ NOTA: Dependiendo del tamaño del buffer a la hora de utilizar `read` es probabl
 
 
 ## Como he organizado las metas de este ejercicio
-### [main](src/main.c) que abre y cierra un archivo de prueba para pasar al get_next_line
+### [main](main.c) que abre y cierra un archivo de prueba para pasar al get_next_line
 La función get_next_line no tienen que abrir o cerrar ningún archivo. Solo tiene que leer de un descriptor de archivo que recibe como parámetro.
 Para abrir y cerrar un archivo se tiene que usar un script como el mostrado anteriormente.
 
 ### Función para leer de un descriptor de archivo
-Dentro de [get_next_line.c](src/get_next_line.c) está la función `gnl_read` la cual tiene un bucle de lectura que se detiene cuando `read` devuelve 0, esto es se ha llegado al final del archivo y no queda nada más para leer. Y dentro del bucle hace lo siguiente:
+Dentro de [get_next_line.c](get_next_line.c) está la función `gnl_read` la cual tiene un bucle de lectura que se detiene cuando `read` devuelve 0, esto es se ha llegado al final del archivo y no queda nada más para leer. Y dentro del bucle hace lo siguiente:
 
   1. Leer del descriptor de archivo
   2. Si la lectura devuelve -1, significa que ha habido un error, y sale del bucle
@@ -167,7 +167,7 @@ Dentro de [get_next_line.c](src/get_next_line.c) está la función `gnl_read` la
   5. Verifica que hay un salto de línea, para saber si ya se ha leído una línea entera, y si es así detiene el bucle.
 
 ### Sacar una línea de la variable estática y guardar los caracteres extra leídos
-Dentro de [get_next_line.c](src/get_next_line.c) está la función `split_new_line` la cual solo la llamada si se sabe con certeza que hay un salto de línea en la variable estática o que no queda nada para leer en el archivo. Y lo que se hace en esta función es sacar los caracteres hasta el salto de línea (para obtener la línea) que hay que devolver en la función `get_next_line`:
+Dentro de [get_next_line.c](get_next_line.c) está la función `split_new_line` la cual solo la llamada si se sabe con certeza que hay un salto de línea en la variable estática o que no queda nada para leer en el archivo. Y lo que se hace en esta función es sacar los caracteres hasta el salto de línea (para obtener la línea) que hay que devolver en la función `get_next_line`:
 
   1. Se cuentan el número de caracteres hasta el salto de línea inclusive, si es que existe
   2. Hace un `malloc` de una cadena del tamaño contado (+ 1 para el \0 final)
@@ -182,7 +182,7 @@ Si se ha llegado al final del archivo se devuelve la línea directamente. Si no,
   5. Devuelve la línea
 
 ### Juntar todo en la función get_next_line
-Desde la función [`get_next_line`](src/get_next_line.c) se:
+Desde la función [`get_next_line`](get_next_line.c) se:
 
 - Declara la variable estática
 - Se verifica que el fd y el BUFFER_SIZE son correctos
@@ -250,7 +250,7 @@ free(buffer);</pre></td>
 </table>
 
 #### ¿Y si no se define el BUFFER_SIZE al compilar?
-Una forma de proteger el programa si a la hora de la compilación no se define el valor del BUFFER_SIZE, puede ser introducir en el [header](src/get_next_line.h) el siguiente código para definir un valor por defecto:
+Una forma de proteger el programa si a la hora de la compilación no se define el valor del BUFFER_SIZE, puede ser introducir en el [header](get_next_line.h) el siguiente código para definir un valor por defecto:
 
 ```c
 # ifndef BUFFER_SIZE        // Si el BUFFER_SIZE no está definido

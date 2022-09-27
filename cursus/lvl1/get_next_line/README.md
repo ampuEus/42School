@@ -1,5 +1,5 @@
 # Get Next Line (gnl) : Reading a line from a fd is way too tedious
-***Officially finished at 2022-08-xx / Grade: xxx of 100 / Versión en [español](LEEME.md)***
+***Officially finished at 2022-09-22 / Grade: 125 of 100 / Versión en [español](LEEME.md)***
 
 The goal of this project is to write a function that returns a line read from a file descriptor without losing track of the next line and with a random buffer size.
 
@@ -157,12 +157,12 @@ NOTE: Depending on the size of the buffer when using `read` it is likely that yo
 
 
 ## How I have organized the goals of this exercise
-### [main](src/main.c) which opens and closes a test file to pass to the get_next_line
+### [main](main.c) which opens and closes a test file to pass to the get_next_line
 The get_next_line function does not have to open or close any files. It just has to read from a file descriptor that it receives as a parameter.
 To open and close a file you have to use a script like the one shown above.
 
 ### Function to read from a file descriptor
-Inside [get_next_line.c](src/get_next_line.c) is the `gnl_read` function which has a read loop that stops when `read` returns 0, i.e. the end of the file has been reached and there is nothing left more to read. And inside the loop it does the following:
+Inside [get_next_line.c](get_next_line.c) is the `gnl_read` function which has a read loop that stops when `read` returns 0, i.e. the end of the file has been reached and there is nothing left more to read. And inside the loop it does the following:
 
    1. Read from file descriptor
    2. If the read returns -1, it means there was an error, and exit the loop
@@ -170,7 +170,7 @@ Inside [get_next_line.c](src/get_next_line.c) is the `gnl_read` function which h
    5. Checks for a line break, to see if an entire line has already been read, and if so stops the loop.
 
 ### Get a line out of the static variable and save the extra characters read
-Inside [get_next_line.c](src/get_next_line.c) is the function `split_new_line` which is only called if it is known that there is a newline in the static variable or that there is nothing left to read from the file. And what is done in this function is to take the characters until the line break (to get the line) that must be returned in the `get_next_line` function:
+Inside [get_next_line.c](get_next_line.c) is the function `split_new_line` which is only called if it is known that there is a newline in the static variable or that there is nothing left to read from the file. And what is done in this function is to take the characters until the line break (to get the line) that must be returned in the `get_next_line` function:
 
   1. Count the number of characters including the line break, if it exist
   2. Mallocs a string of the counted size (+ 1 for the final \0)
@@ -185,7 +185,7 @@ If the end of the file has been reached, the line is returned directly. If not, 
   5. Return the line
 
 ### Put everything together in the get_next_line function
-From the [`get_next_line`](src/get_next_line.c) function:
+From the [`get_next_line`](get_next_line.c) function:
 
 - Declare the static variable
 - It is verified that the fd and the BUFFER_SIZE are correct
@@ -253,7 +253,7 @@ free(buffer);</pre></td>
 </table>
 
 #### What if the BUFFER_SIZE is not defined when compiling?
-One way to protect the program if the BUFFER_SIZE value is not defined at compile time, can be to enter the following code in the [header](src/get_next_line.h) to define a default value:
+One way to protect the program if the BUFFER_SIZE value is not defined at compile time, can be to enter the following code in the [header](get_next_line.h) to define a default value:
 
 ```c
 # ifndef BUFFER_SIZE		// If BUFFER_SIZE is not defined
