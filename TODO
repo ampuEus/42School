@@ -1,0 +1,14 @@
+libft
+	Make a new rule ("extended") on makefile to compile functions from extra file
+	Add doc about:
+		"ar" command
+		why make a dinamic lib
+		when use static functions
+		what is size_t
+	change to static function when is needed
+
+gnl
+	put the last if with and "or" not "else if"
+	make static functions when it is necesary
+	add to libft
+
