@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 19:04:01 by daampuru          #+#    #+#             */
-/*   Updated: 2022/09/04 12:19:33 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/10/02 21:58:42 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,14 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
-/* ---------- Extras ---------- */
+/* ---------- Extended ---------- */
 /* <stdio.h> */
 int	ft_putchar(int c);
 int	ft_puts(const char *s);
 
 /* Non-standard C Library */
-int	ft_putnbr_base(int nbr, const char *base);
-int	ft_putulnbr_base(unsigned long int nbr, const char *base);
+unsigned int	ft_putnbr_base(int nbr, const char *base);
+unsigned int	ft_putulnbr_base(unsigned long int nbr, const char *base);
+unsigned int	ft_putnchar_fd (const char c, int fd, int n);
+size_t	ft_nbrlen(int long nbr, int base);
 #endif
