@@ -6,7 +6,7 @@
 #    By: david <david@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/18 11:52:35 by daampuru          #+#    #+#              #
-#    Updated: 2022/05/31 18:00:08 by daampuru         ###   ########.fr        #
+#    Updated: 2022/09/30 23:26:30 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,12 +29,20 @@ BONUS_SRC := ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstclear_bonus.c 
 	ft_lstmap_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c
 BONUS_OBJ = $(BONUS_SRC:.c=.o)
 
+EXTENDED_SRC := ft_putchar.c ft_puts.c \
+	ft_putnbr_base.c ft_putulnbr_base.c ft_putnchar_fd.c ft_nbrlen.c
+EXTENDED_OBJ := $(EXTENDED_SRC:.c=.o)
+
 INCLUDES = libft.h
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror  #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 
+# ---------- static pattern rules ----------
 %.o: %.c
+	$(CC) -c $(CFLAGS) $^
+
+%.o : extended/%.c
 	$(CC) -c $(CFLAGS) $^
 
 # ---------- subject ----------
@@ -53,6 +61,9 @@ re: fclean $(NAME)
 
 bonus: $(BONUS_OBJ) $(MANDATORY_OBJ) $(INCLUDES)
 	ar rcs $(NAME) $(BONUS_OBJ) $(MANDATORY_OBJ)
+
+extended: $(EXTENDED_OBJ) bonus
+	ar rcs $(NAME) $(EXTENDED_OBJ)
 
 # ---------- Other ----------
 norminette:
