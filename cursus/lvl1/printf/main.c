@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 06:46:11 by daampuru          #+#    #+#             */
-/*   Updated: 2022/10/02 23:14:25 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:46:03 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ unsigned int	getSpecifier(const char *str)
 	while (str[i++])
 	{
 		if (ft_strchr(SPECIFIERS, str[i]))
-			break;	
+			break;
 		if (str[i] != '.' \
 		&& !ft_isdigit(str[i]) \
 		&& !ft_strchr(FLAGS, str[i]))
@@ -35,7 +35,7 @@ unsigned int	getSpecifier(const char *str)
 stTags	getPrecision(stTags tag, const char *str)
 {
 	unsigned int	i;
-	
+
 	i = 0;
 	while (tag.specifier != str[++i])
 	{
@@ -52,7 +52,7 @@ stTags	getPrecision(stTags tag, const char *str)
 stTags	getWidth(stTags tag, const char *str)
 {
 	unsigned int	i;
-	
+
 	i = 0;
 	while (tag.specifier != str[++i] && str[i] != '.')
 	{
@@ -70,7 +70,7 @@ stTags	getFlags(stTags tag, const char *str)
 
 	i = 0;
 	while (tag.specifier != str[++i] && str[i] != '.')
-	{	
+	{
 		if (str[i] == '-')
 			tag.flag_minus = 1;
 		if (str[i] == '+')
@@ -119,7 +119,7 @@ stTags	find_tags(stTags tag, const char *str)
 	tag = getWidth(tag, str);
 	tag = getFlags(tag, str);
 	if (!tag.no_comb)
-		tag.err = imposible_combination(tag); 
+		tag.err = imposible_combination(tag);
 	return (tag);
 }
 
@@ -226,6 +226,22 @@ size_t	ft_print_hex(stTags tag, va_list args)
 	return (count);
 }
 
+size_t	ft_print_p(stTags tag, va_list args)
+{
+	size_t	count;
+	size_t	ptr;
+	int len_tot;
+
+	len_tot=100;
+	count = 0;
+	ptr = va_arg(args, size_t);
+	count += ft_putulnbr_base(ptr, NUMBERS_hex);
+	if (tag.flag_minus && len_tot > 0)
+		count += ft_putnchar_fd(' ', 1, len_tot);
+
+	return(count);
+}
+
 size_t	ft_print_type(stTags tag, va_list args)
 {
 	size_t count;
@@ -242,6 +258,8 @@ size_t	ft_print_type(stTags tag, va_list args)
 	else if (tag.specifier == 'x' \
 			|| tag.specifier == 'X')
 		count = ft_print_hex(tag, args);
+	else if (tag.specifier == 'p')
+		count = ft_print_p(tag, args);
 	return (count);
 }
 
@@ -288,13 +306,13 @@ int ft_printf(const char *format, ...)
 
 int main(void)
 {
-	//char *ptr = 0;
-	char str[100] = "(%06.3x)\n";
+	char *ptr = 0;
+	char str[100] = "(%6p)\n";
 
-	ft_printf(str, 15, 10);
+	ft_printf(str, ptr);
 
 /*
-	// Testing which tag can go with which specifier 
+	// Testing which tag can go with which specifier
 	printf("c + '-': %-c\n", 'h');
 	printf("s + '-': %-s\n", "hola");
 	printf("p + '-': %-p\n", ptr);
@@ -314,7 +332,7 @@ int main(void)
 	//printf("%+x\n", 20);
 	//printf("%+X\n", 20);
 	//printf("%+%\n", 'h');
-	
+
 	//printf("c + ' ' : % c\n", 'h');
 	//printf("s + ' ': % s\n", "hola");
 	//printf("p + ' ': % p\n", ptr);
@@ -364,8 +382,8 @@ int main(void)
 	printf("x + '.3': %.3x\n", 20);
 	printf("X + '.3': %.3X\n", 20);
 	//printf("%.3% \n");
-*/	
-	printf("Total: %i", printf("(%06.3x)\n", 15));
+*/
+	printf("Total: %i", printf("(%6p)\n", ptr));
 	printf("\n");
 	return (0);
 }
