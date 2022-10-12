@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/30 13:24:17 by daampuru          #+#    #+#              #
-#    Updated: 2022/10/05 21:50:52 by daampuru         ###   ########.fr        #
+#    Updated: 2022/10/05 22:41:33 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ include_libft:
 	cp $(LIBFTA) $(NAME)
 
 debug_bonus:
-	$(CC) $(CFLAGS) -g $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIBFT) $(LIBFTA) -o debug_bonus
+	$(CC) $(CFLAGS) -g $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIBFT) $(LIBFTA) mainV2.c -o debug_bonus.out
 	./debug_bonus
 
 .PHONY: clean fclean

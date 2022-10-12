@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 19:48:57 by daampuru          #+#    #+#             */
-/*   Updated: 2022/10/05 22:16:37 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/10/05 22:31:17 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ size_t ft_print_s(stTags tag, va_list args)
 
 	str = va_arg(args, char *);
 	if (!str)
-	{
 		str = ft_strdup("(null)");
-	}
 	str_len = (int)ft_strlen(str);
 	len_tot = tag.width_number - str_len;
 	if (tag.precision_dot && tag.precision_size < str_len)
@@ -52,7 +50,7 @@ size_t ft_print_s(stTags tag, va_list args)
 	if (!tag.flag_minus && len_tot > 0)
 		count = ft_putnchar_fd(' ', 1, len_tot);
 	count += ft_puts(str);
-	if (ft_strncmp(str, "(null)", str_len))
+	if (ft_strncmp(str, "(null)", 7) == 0)
 		free(str);
 	if (tag.flag_minus && len_tot > 0)
 		count += ft_putnchar_fd(' ', 1, len_tot);
