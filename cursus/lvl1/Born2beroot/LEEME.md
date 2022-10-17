@@ -821,7 +821,7 @@ En la comunicación entre la aplicación externa y el servidor web es donde entr
 
 ```bash
 sudo lighty-enable-mod fastcgi # Habilita el modo CGI
-sudo ligthty-enable-mod fastcgi-php # Habilita la comunicación CGI con PHP
+sudo lighty-enable-mod fastcgi-php # Habilita la comunicación CGI con PHP
 sudo service lighttpd force-reload # Reinicia el servicio para efectuar los cambios
 ```
 
