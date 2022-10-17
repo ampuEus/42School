@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_putnchar_fd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/05 06:48:36 by daampuru          #+#    #+#             */
-/*   Updated: 2022/09/15 13:53:49 by daampuru         ###   ########.fr       */
+/*   Created: 2022/09/29 19:55:54 by daampuru          #+#    #+#             */
+/*   Updated: 2022/09/29 20:23:02 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "../libft.h"
 
-typedef struct stTags
+unsigned int	ft_putnchar_fd(const char c, int fd, int n)
 {
-	char	err;
-	char	no_comb;
-	char	specifier;
-	char	flag_minus;
-	char	flag_plus;
-	char	flag_space;
-	char	flag_hashtag;
-	char	flag_zero;
-	int	width_number;
-	char	precision_dot;
-	int	precision_size;
-}	stTags;
+	unsigned int	count;
 
-# define SPECIFIERS	"cspdiuxX%"
-# define FLAGS		"+- #0"
-
-int printf(const char *format, ...);
-
-#endif
+	count = 0;
+	while (n-- > 0)
+		count += (unsigned int)write(fd, &c, 1);
+	return (count);
+}
