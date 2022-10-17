@@ -817,7 +817,7 @@ In the communication between the external application and the web server is wher
 
 ```bash
 sudo lighty-enable-mod fastcgi # Enable CGI mode
-sudo light-enable-mod fastcgi-php # Enable CGI communication with PHP
+sudo lighty-enable-mod fastcgi-php # Enable CGI communication with PHP
 sudo service lighttpd force-reload # Restart the service to make the changes
 ```
 
