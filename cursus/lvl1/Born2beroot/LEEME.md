@@ -883,7 +883,7 @@ Para crear la base de datos de WordPress tienes que:
 ```SQL
 MariaDB [(none)]> CREATE DATABASE wordpress; --Crea la base de datos llamada "wordpress_db"
 MariaDB [(none)]> CREATE USER 'admin'@'localhost' IDENTIFIED BY 'check42_MVP'; --Crea un nuevo usuario con contraseña
-MariaDB [(none)]> GRANT ALL ON wordpress_db.* TO 'admin'@'localhost' IDENTIFIED BY 'check42_MVP' WITH GRANT OPTION; --Da privilegios de super usuario a "admin" en el contexto de esa base de datos
+MariaDB [(none)]> GRANT ALL ON wordpress.* TO 'admin'@'localhost' IDENTIFIED BY 'check42_MVP' WITH GRANT OPTION; --Da privilegios de super usuario a "admin" en el contexto de esa base de datos
 MariaDB [(none)]> FLUSH PRIVILEGES;
 MariaDB [(none)]> EXIT;
 ```
