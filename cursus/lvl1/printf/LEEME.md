@@ -214,7 +214,7 @@ int funcion_variadrica(int <variable_fija>, ...);
 Después en el cuerpo de la función, es necesario usar una serie de macros para acceder a los argumentos que se le hayan pasado a la función:
   - `va_list(<var>)`: Sirve para la definición de la variable donde almacenar los argumetos de la función variádrica
   - `va_start(va_list <var>, argN)`: Permite el acceso a los argumentos de la función variádica
-  - `va_arg(va_list <var>, tipo)`: Accede al siguiente argumento de la función variada
+  - `va_arg(va_list <var>, tipo)`: Accede al siguiente argumento de la función variádica
   - `va_copy (va_list dest, va_list src)`: Hace una copia de los argumentos de la función variádica
   - `va_end(va_list \<var\>)`: Finaliza del acceso a los argumentos
 
