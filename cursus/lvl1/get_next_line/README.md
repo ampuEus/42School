@@ -277,6 +277,8 @@ As you can already guess from the statement of the practice, it is likely that i
 One way to avoid the **double-free** error is that when you want to reuse an already freed memory variable, before mallocing it again to allocate memory, point it to `NULL`. This can be especially useful with global or static variables.
 
 ```c
+#define SIZE 0
+
 void	foo(void)
 {
 	static char	*mem;
