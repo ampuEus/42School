@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 04:25:31 by daampuru          #+#    #+#             */
-/*   Updated: 2022/10/05 21:37:46 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/11/02 17:39:56 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ static size_t	ft_print_type(stTags tag, va_list args)
 		count = ft_print_c(tag, args);
 	else if (tag.specifier == 's')
 		count = ft_print_s(tag, args);
-	else if (tag.specifier == 'u' \
-			|| tag.specifier == 'd' \
+	else if (tag.specifier == 'd' \
 			|| tag.specifier == 'i')
 		count = ft_print_nbr(tag, args);
+	else if (tag.specifier == 'u')
+		count = ft_print_ulnbr(tag, args);
 	else if (tag.specifier == 'x' \
 			|| tag.specifier == 'X')
 		count = ft_print_hex(tag, args);

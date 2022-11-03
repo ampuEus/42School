@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 06:48:36 by daampuru          #+#    #+#             */
-/*   Updated: 2022/10/04 20:16:00 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/11/02 17:37:02 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int ft_printf(const char *format, ...);
 size_t	ft_print_c(stTags tag, va_list args);
 size_t ft_print_s(stTags tag, va_list args);
 size_t	ft_print_nbr(stTags tag, va_list args);
+size_t	ft_print_ulnbr(stTags tag, va_list args);
 size_t	ft_print_hex(stTags tag, va_list args);
 size_t	ft_print_p(stTags tag, va_list args);
 

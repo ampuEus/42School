@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/30 13:24:17 by daampuru          #+#    #+#              #
-#    Updated: 2022/10/05 22:41:33 by daampuru         ###   ########.fr        #
+#    Updated: 2022/11/03 21:50:00 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ all:	$(NAME)
 bonus:	all
 
 clean:
-	rm -rf *.o
+	rm -rf $(OBJ_PATH)/*.o
 
 fclean:	clean
 	rm -rf $(NAME)
@@ -55,8 +55,12 @@ $(NAME): include_libft $(OBJ)
 include_libft:
 	cp $(LIBFTA) $(NAME)
 
-debug_bonus:
-	$(CC) $(CFLAGS) -g $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIBFT) $(LIBFTA) mainV2.c -o debug_bonus.out
-	./debug_bonus
+debug_bonus: 
+	$(CC) $(CFLAGS) -g $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIBFT) $(LIBFTA) mainV2.c
+	lldb ./a.out
+
+fsanitize: 
+	$(CC) $(CFLAGS) -fsanitize=address -g $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIBFT) $(LIBFTA) mainV2.c
+	./a.out
 
 .PHONY: clean fclean
