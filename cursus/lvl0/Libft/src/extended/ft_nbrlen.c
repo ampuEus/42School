@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 23:02:30 by daampuru          #+#    #+#             */
-/*   Updated: 2022/10/02 23:04:13 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/11/02 22:39:43 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ size_t	ft_nbrlen(int long nbr, int base)
 {
 	size_t	count;
 
-	if (!nbr)
-		return (0);
 	if (!base)
 		base = 10;
-	if (nbr >= 0)
+	if (nbr > 0)
 		count = 0;
 	else
 	{
@@ -34,3 +32,11 @@ size_t	ft_nbrlen(int long nbr, int base)
 	}
 	return (count);
 }
+/*
+#include <stdio.h>
+int main (void)
+{
+	printf("%i", (int)ft_nbrlen(-1, 10));
+	return (0);
+}
+*/
