@@ -11,4 +11,5 @@ gnl
 	put the last if with and "or" not "else if"
 	make static functions when it is necesary
 	add to libft
+	find "\n" earlier on the cycle -> for better performance
 
