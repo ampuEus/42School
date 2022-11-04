@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 19:04:01 by daampuru          #+#    #+#             */
-/*   Updated: 2022/10/02 21:58:42 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:29:56 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,5 @@ int	ft_puts(const char *s);
 unsigned int	ft_putnbr_base(int nbr, const char *base);
 unsigned int	ft_putulnbr_base(unsigned long int nbr, const char *base);
 unsigned int	ft_putnchar_fd (const char c, int fd, int n);
-size_t	ft_nbrlen(int long nbr, int base);
+size_t	ft_nbrlen(long long int nbr, int base);
 #endif
