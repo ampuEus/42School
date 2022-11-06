@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 19:04:01 by daampuru          #+#    #+#             */
-/*   Updated: 2022/11/04 11:29:56 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/11/06 20:12:49 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int	ft_putchar(int c);
 int	ft_puts(const char *s);
 
+/* <stdlib.h> */
+int ft_abs(int nbr);
+
 /* Non-standard C Library */
 unsigned int	ft_putnbr_base(int nbr, const char *base);
 unsigned int	ft_putulnbr_base(unsigned long int nbr, const char *base);
 unsigned int	ft_putnchar_fd (const char c, int fd, int n);
-size_t	ft_nbrlen(long long int nbr, int base);
+size_t	ft_nbrlen(long int nbr, int base);
+size_t	ft_unbrlen(size_t nbr, int base);
 #endif

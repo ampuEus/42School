@@ -5,10 +5,10 @@
 int main (void)
 {
 
-	char str[100] = "%42%48.42d42";
+	char str[100] = "%d";
 
 
-	printf("-> My total:   %i\n", (ft_printf(str, -1779846744)));
-	printf("-> Real total: %i", (printf(str, -1779846744)));
+	printf("-> My total:   %i\n", (ft_printf(str, -1)));
+	printf("-> Real total: %i", (printf(str, -1)));
 	return (0);
 }

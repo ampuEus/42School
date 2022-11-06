@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/30 13:24:17 by daampuru          #+#    #+#              #
-#    Updated: 2022/11/03 21:50:00 by daampuru         ###   ########.fr        #
+#    Updated: 2022/11/04 17:04:04 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ include_libft:
 	cp $(LIBFTA) $(NAME)
 
 debug_bonus: 
-	$(CC) $(CFLAGS) -g $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIBFT) $(LIBFTA) mainV2.c
+	$(CC) $(CFLAGS) -g3 $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIBFT) $(LIBFTA) mainV2.c
 	lldb ./a.out
 
 fsanitize: 

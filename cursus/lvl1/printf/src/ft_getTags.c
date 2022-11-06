@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 19:37:30 by daampuru          #+#    #+#             */
-/*   Updated: 2022/10/04 20:14:24 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/11/04 14:21:20 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ stTags	getFlags(stTags tag, const char *str)
 			tag.flag_space = 1;
 		if (str[i] == '#')
 			tag.flag_hashtag = 1;
-		if (str[i] == '0' && !ft_isdigit(str[i - 1]))
+		if (str[i] == '0' && !ft_isdigit(str[i - 1]) && !tag.precision_dot)
 			tag.flag_zero = 1;
-		if (tag.flag_plus && tag.flag_space)
-			tag.no_comb = 1;
+		//if (tag.flag_plus && tag.flag_space)
+		//	tag.no_comb = 1;
 	}
 	return (tag);
 }
