@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: david <david@student.42.fr>                +#+  +:+       +#+         #
+#    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/18 11:52:35 by daampuru          #+#    #+#              #
-#    Updated: 2022/09/30 23:26:30 by daampuru         ###   ########.fr        #
+#    Updated: 2022/11/06 20:34:12 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ BONUS_SRC := ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstclear_bonus.c 
 BONUS_OBJ = $(BONUS_SRC:.c=.o)
 
 EXTENDED_SRC := ft_putchar.c ft_puts.c \
-	ft_putnbr_base.c ft_putulnbr_base.c ft_putnchar_fd.c ft_nbrlen.c
+	ft_abs.c \
+	ft_putnbr_base.c ft_putulnbr_base.c ft_putnchar_fd.c ft_nbrlen.c ft_unbrlen.c
 EXTENDED_OBJ := $(EXTENDED_SRC:.c=.o)
 
 INCLUDES = libft.h
@@ -46,7 +47,7 @@ CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 	$(CC) -c $(CFLAGS) $^
 
 # ---------- subject ----------
-all: $(NAME)
+all: $(NAME) bonus extended
 
 $(NAME): $(MANDATORY_OBJ) $(INCLUDES)
 	ar rcs $(NAME) $(MANDATORY_OBJ)
@@ -62,7 +63,7 @@ re: fclean $(NAME)
 bonus: $(BONUS_OBJ) $(MANDATORY_OBJ) $(INCLUDES)
 	ar rcs $(NAME) $(BONUS_OBJ) $(MANDATORY_OBJ)
 
-extended: $(EXTENDED_OBJ) bonus
+extended: $(EXTENDED_OBJ)
 	ar rcs $(NAME) $(EXTENDED_OBJ)
 
 # ---------- Other ----------

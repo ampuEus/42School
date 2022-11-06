@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 07:15:07 by daampuru          #+#    #+#             */
-/*   Updated: 2022/09/30 23:28:15 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/11/06 20:19:11 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,15 @@ unsigned int	ft_putnbr_base(int nbr, const char *base)
 	base_len = ft_strlen(base);
 	if (nbr < 0)
 	{
-		nbr = -nbr;
 		ft_putchar('-');
 		count++;
 	}
-	if ((size_t)nbr < base_len)
-	{
+	if ((size_t)nbr >= 0 && (size_t)nbr < base_len)
 		ft_putchar(base[nbr % base_len]);
-		return (++count);
+	else
+	{
+		count += ft_putnbr_base(ft_abs(nbr / base_len), base);
+		ft_putchar(base[ft_abs(nbr % base_len)]);
 	}
-	count += ft_putnbr_base(nbr / base_len, base);
-	ft_putchar(base[nbr % base_len]);
 	return (++count);
 }
