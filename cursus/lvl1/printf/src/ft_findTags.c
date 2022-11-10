@@ -6,13 +6,13 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 19:40:07 by daampuru          #+#    #+#             */
-/*   Updated: 2022/11/04 15:08:31 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/11/07 20:12:23 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	imposible_combination(stTags tag)
+static char	imposible_combination(t_Tags tag)
 {
 	if ((tag.specifier == 'c' \
 		&& (tag.flag_plus || tag.flag_space || tag.flag_hashtag \
@@ -21,7 +21,7 @@ static char	imposible_combination(stTags tag)
 		|| tag.flag_hashtag || tag.flag_zero)) \
 	|| ((tag.specifier == 'd' || tag.specifier == 'i') && tag.flag_hashtag) \
 	|| (tag.specifier == 'u' \
-		&& (tag.flag_plus || tag.flag_space || tag.flag_hashtag))
+		&& (tag.flag_plus || tag.flag_space || tag.flag_hashtag)) \
 	|| ((tag.specifier == 'x' || tag.specifier == 'X') \
 		&& (tag.flag_plus || tag.flag_space)) \
 	|| (tag.specifier == 'p' \
@@ -34,18 +34,18 @@ static char	imposible_combination(stTags tag)
 	return (0);
 }
 
-stTags	find_tags(stTags tag, const char *str)
+t_Tags	find_tags(t_Tags tag, const char *str)
 {
 	unsigned int	tags_len;
 
-	tags_len = getSpecifier(str);
+	tags_len = get_specifier(str);
 	if (!tags_len)
 		return (tag);
 	tag.len = tags_len;
 	tag.specifier = str[tags_len];
-	tag = getPrecision(tag, str);
-	tag = getWidth(tag, str);
-	tag = getFlags(tag, str);
+	tag = get_precision(tag, str);
+	tag = get_width(tag, str);
+	tag = get_flags(tag, str);
 	if (!tag.no_comb)
 		tag.err = imposible_combination(tag);
 	return (tag);

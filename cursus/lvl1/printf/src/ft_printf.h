@@ -6,53 +6,57 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 06:48:36 by daampuru          #+#    #+#             */
-/*   Updated: 2022/11/02 17:37:02 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/11/07 20:11:41 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-# include <stdarg.h>
-# include <stddef.h>
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+/* ---------- External libraries ---------- */
+# include <stdarg.h>
+# include <stddef.h>
+
+/* ---------- String format structure ---------- */
 typedef struct stTags
 {
 	char	err;
 	char	no_comb;
 	char	specifier;
-	int	len;
+	int		len;
 	char	flag_minus;
 	char	flag_plus;
 	char	flag_space;
 	char	flag_hashtag;
 	char	flag_zero;
-	int	width_number;
+	int		width_number;
 	char	precision_dot;
-	int	precision_size;
-}	stTags;
+	int		precision_size;
+}	t_Tags;
 
+/* ---------- Constants ---------- */
 # define SPECIFIERS	"cspdiuxX%"
 # define FLAGS		"+- #0"
 
-# define NUMBERS_10		"0123456789"
-# define NUMBERS_hex	"0123456789abcdef"
-# define NUMBERS_HEX	"0123456789ABCDEF"
+# define NUMBERS_10			"0123456789"
+# define NUMBERS_16_LOWER	"0123456789abcdef"
+# define NUMBERS_16_UPPER	"0123456789ABCDEF"
 
-int ft_printf(const char *format, ...);
+/* ---------- Functions ---------- */
+int				ft_printf(const char *format, ...);
 
-size_t	ft_print_c(stTags tag, va_list args);
-size_t ft_print_s(stTags tag, va_list args);
-size_t	ft_print_nbr(stTags tag, va_list args);
-size_t	ft_print_ulnbr(stTags tag, va_list args);
-size_t	ft_print_hex(stTags tag, va_list args);
-size_t	ft_print_p(stTags tag, va_list args);
+size_t			ft_print_c(t_Tags tag, va_list args);
+size_t			ft_print_s(t_Tags tag, va_list args);
+size_t			ft_print_nbr(t_Tags tag, va_list args);
+size_t			ft_print_ulnbr(t_Tags tag, va_list args);
+size_t			ft_print_hex(t_Tags tag, va_list args);
+size_t			ft_print_p(t_Tags tag, va_list args);
 
-stTags	find_tags(stTags tag, const char *str);
+t_Tags			find_tags(t_Tags tag, const char *str);
 
-unsigned int	getSpecifier(const char *str);
-stTags	getPrecision(stTags tag, const char *str);
-stTags	getWidth(stTags tag, const char *str);
-stTags	getFlags(stTags tag, const char *str);
+unsigned int	get_specifier(const char *str);
+t_Tags			get_precision(t_Tags tag, const char *str);
+t_Tags			get_width(t_Tags tag, const char *str);
+t_Tags			get_flags(t_Tags tag, const char *str);
 
 #endif

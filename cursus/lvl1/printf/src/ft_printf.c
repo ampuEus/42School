@@ -6,17 +6,16 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 04:25:31 by daampuru          #+#    #+#             */
-/*   Updated: 2022/11/02 17:39:56 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/11/07 20:15:14 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/libft.h"
 #include "ft_printf.h"
-#include <stdio.h>
 
-static size_t	ft_print_type(stTags tag, va_list args)
+static size_t	ft_print_type(t_Tags tag, va_list args)
 {
-	size_t count;
+	size_t	count;
 
 	count = 0;
 	if (tag.specifier == 'c' || tag.specifier == '%')
@@ -36,11 +35,11 @@ static size_t	ft_print_type(stTags tag, va_list args)
 	return (count);
 }
 
-int ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
-	struct stTags	tags;
+	t_Tags	tags;
 	int		count;
-	va_list args;
+	va_list	args;
 
 	va_start(args, format);
 	count = 0;
@@ -48,31 +47,16 @@ int ft_printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-		ft_memset(&tags, '\0', sizeof(struct stTags));
-		tags = find_tags(tags, format);
-		if (!tags.err && !tags.no_comb)
-			count += ft_print_type(tags, args);
-		format += tags.len;
-/*		printf("\n");
-		printf("specifier: %c\n", tags.specifier);
-		printf("len: %i\n", tags.len);
-		printf("minus: %i\n", tags.flag_minus);
-		printf("plus: %i\n", tags.flag_plus);
-		printf("space: %i\n", tags.flag_space);
-		printf("hashtag: %i\n", tags.flag_hashtag);
-		printf("zero: %i\n", tags.flag_zero);
-		printf("precision: %d\n", tags.precision_dot);
-		printf("precision size: %d\n", tags.precision_size);
-		printf("width: %d\n", tags.width_number);
-		printf("no combination: %d\n", tags.no_comb);
-		printf("error: %d\n", tags.err);
-		printf("\n");*/
+			ft_memset(&tags, '\0', sizeof(tags));
+			tags = find_tags(tags, format);
+			if (!tags.err && !tags.no_comb)
+				count += ft_print_type(tags, args);
+			format += tags.len;
 		}
 		else
 			count += ft_putchar(*format);
 		format++;
 	}
 	va_end(args);
-	//printf("Total: %i\n", count);
 	return (count);
 }

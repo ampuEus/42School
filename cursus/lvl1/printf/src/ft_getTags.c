@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 19:37:30 by daampuru          #+#    #+#             */
-/*   Updated: 2022/11/04 14:21:20 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/11/07 20:10:58 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../lib/libft.h"
 
 /* Functions to get the tags of each family */
-unsigned int	getSpecifier(const char *str)
+unsigned int	get_specifier(const char *str)
 {
 	unsigned int	i;
 
@@ -22,7 +22,7 @@ unsigned int	getSpecifier(const char *str)
 	while (str[i++])
 	{
 		if (ft_strchr(SPECIFIERS, str[i]))
-			break;
+			break ;
 		if (str[i] != '.' \
 		&& !ft_isdigit(str[i]) \
 		&& !ft_strchr(FLAGS, str[i]))
@@ -31,7 +31,7 @@ unsigned int	getSpecifier(const char *str)
 	return (i);
 }
 
-stTags	getPrecision(stTags tag, const char *str)
+t_Tags	get_precision(t_Tags tag, const char *str)
 {
 	unsigned int	i;
 
@@ -48,7 +48,7 @@ stTags	getPrecision(stTags tag, const char *str)
 	return (tag);
 }
 
-stTags	getWidth(stTags tag, const char *str)
+t_Tags	get_width(t_Tags tag, const char *str)
 {
 	unsigned int	i;
 
@@ -63,7 +63,7 @@ stTags	getWidth(stTags tag, const char *str)
 	return (tag);
 }
 
-stTags	getFlags(stTags tag, const char *str)
+t_Tags	get_flags(t_Tags tag, const char *str)
 {
 	unsigned int	i;
 
@@ -80,8 +80,6 @@ stTags	getFlags(stTags tag, const char *str)
 			tag.flag_hashtag = 1;
 		if (str[i] == '0' && !ft_isdigit(str[i - 1]) && !tag.precision_dot)
 			tag.flag_zero = 1;
-		//if (tag.flag_plus && tag.flag_space)
-		//	tag.no_comb = 1;
 	}
 	return (tag);
 }
