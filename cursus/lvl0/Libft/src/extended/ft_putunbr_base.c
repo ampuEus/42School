@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putulnbr_base.c                                 :+:      :+:    :+:   */
+/*   ft_putunbr_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 07:15:07 by daampuru          #+#    #+#             */
-/*   Updated: 2022/11/07 21:25:46 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/11/07 21:21:41 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	check_base(const char *base)
 	return (1);
 }
 
-unsigned int	ft_putulnbr_base(size_t nbr, const char *base)
+unsigned int	ft_putunbr_base(unsigned int nbr, const char *base)
 {
 	unsigned int count;
 	size_t base_len;
@@ -44,7 +44,7 @@ unsigned int	ft_putulnbr_base(size_t nbr, const char *base)
 		ft_putchar(base[nbr % base_len]);
 		return (++count);
 	}
-	count += ft_putulnbr_base(nbr / base_len, base);
+	count += ft_putunbr_base(nbr / base_len, base);
 	ft_putchar(base[nbr % base_len]);
 	return (++count);
 }
