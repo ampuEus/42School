@@ -275,6 +275,8 @@ Como ya puedes intuir por el enunciado de la práctica, es probable es que en es
 Una forma de evitar el error **double-free** es que cuando se quiere volver a usar una variable de memoria ya liberada, antes de volver a hacer un malloc para reservarle memoria hacer que apunte a `NULL`. Esto puede ser especialmente útil con variables globales o estáticas.
 
 ```c
+#define SIZE 0
+
 void	foo(void)
 {
 	static char	*mem;
