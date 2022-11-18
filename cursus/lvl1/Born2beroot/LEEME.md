@@ -11,7 +11,7 @@ Esta práctica es una introducción a la administración de sistemas. En esta pr
 - **Monitorización**. Sabiendo como extraer información sobre la maquina (RAM disponible, número de conexiones activas, comandos ejecutados mediante sudo...)
 
 
-## Software utiliado[^1]
+## Software utilizado[^1]
 - VM: [VirtualBox](https://www.virtualbox.org/) 6.1
 - OS: [Debian bullseye](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/) 11.3.0 ([Debian vs CentOS](annex/1_Debian_VS_CentOS.es.md))
 
@@ -423,7 +423,7 @@ apparmor module is loaded.
 En este caso si todo está bien deja la configuración por defecto.
 
 ### 2.3. IMPLEMENTACIÓN DE UFW
-#### 2.3.1 INTALACIÓN Y ACTIVACIÓN
+#### 2.3.1 INSTALACIÓN Y ACTIVACIÓN
 Para instalar [UFW](annex/7_Que_es_UFW.md) haz:
 ```bash
 sudo apt install ufw
@@ -538,7 +538,7 @@ La siguiente etapa de la guía es hacer el script *monitoring.sh* el cual debe e
 | La memoria disponible actualmente en tu servidor y su utilización como un porcentaje. | **Used:** df -h --total \| grep total \| awk '{print $3}'<br> **Total:** df -h --total \| grep total \| awk '{print $2}'<br> **Percentage:** df -k --total \| grep total \| awk '{print $5}'<br> |
 | El porcentaje actual de uso de tus núcleos (la CPU).                                   | top -bn1 \| grep '^%Cpu' \| cut -c 9- \| xargs \| awk '{printf("%.1f%%"), $2 + $4}' |
 | La fecha y hora del último reinicio.                                                  | who -b \| awk '{print($3 " " $4)}'                                                  |
-| Si LVM está activo o no.                                                              | lvm pvdisplay \| grep Allocatable \| awk '{print $3}'|
+| Si LVM está activo o no.                                                              | $(if [ $(lsblk | grep lvm | wc -l) -eq 0 ]; then echo no; else echo yes; fi)|
 | El número de conexiones activas.                                                      | grep TCP /proc/net/sockstat \| awk '{print $3}'                                     |
 | El número de usuarios del servidor.                                                   | who \| wc -l                                                                        |
 | La dirección IPv4 de tu servidor y su MAC (Media Access Control)                      | **IP:** hostname -I \| awk '{print $1}'<br> **MAC:** ip link show \| grep link/ether \| awk '{print $2} |
@@ -883,7 +883,7 @@ Para crear la base de datos de WordPress tienes que:
 ```SQL
 MariaDB [(none)]> CREATE DATABASE wordpress; --Crea la base de datos llamada "wordpress_db"
 MariaDB [(none)]> CREATE USER 'admin'@'localhost' IDENTIFIED BY 'check42_MVP'; --Crea un nuevo usuario con contraseña
-MariaDB [(none)]> GRANT ALL ON wordpress_db.* TO 'admin'@'localhost' IDENTIFIED BY 'check42_MVP' WITH GRANT OPTION; --Da privilegios de super usuario a "admin" en el contexto de esa base de datos
+MariaDB [(none)]> GRANT ALL ON wordpress.* TO 'admin'@'localhost' IDENTIFIED BY 'check42_MVP' WITH GRANT OPTION; --Da privilegios de super usuario a "admin" en el contexto de esa base de datos
 MariaDB [(none)]> FLUSH PRIVILEGES;
 MariaDB [(none)]> EXIT;
 ```
@@ -918,7 +918,7 @@ Una vez instalado te vas ha basar en el script de ejemplo que tiene el propio wo
 
 ```bash
 sudo cp -r /usr/share/wordpress/ /var/www/html/
-sudo mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
+sudo mv /usr/share/wordpress/wp-config-sample.php /var/www/html/wp-config.php
 sudo nano /var/www/html/wp-config.php
 ```
 
