@@ -44,6 +44,8 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
 
 all:	$(NAME)
 
+re: fclean all
+
 bonus:	$(NAME)
 
 clean:
@@ -62,7 +64,7 @@ include_libft:
 	cp $(LIBFTA) $(NAME)
 
 debug_bonus:
-	$(CC) $(CFLAGS) -g3 $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIBFT) $(LIBFTA) main.c
+	$(CC) -g3 $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIBFT) $(LIBFTA) main.c
 	lldb ./a.out
 
 fsanitize:

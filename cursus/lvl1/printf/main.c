@@ -15,9 +15,9 @@
 
 int	main(void)
 {
-	char	str[100] = "%s";
+	//char	str[100] = "%";
 
-	printf("-> My total:   %i\n", (ft_printf(str, NULL)));
-	printf("-> Real total: %i", (printf(str, NULL)));
+	printf("-> My total:   %i\n", (ft_printf("%")));
+	printf("-> Real total: %i", (printf("%")));
 	return (0);
 }

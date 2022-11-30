@@ -21,6 +21,8 @@ unsigned int	get_specifier(const char *str)
 	i = 0;
 	while (str[i++])
 	{
+		if (!str[i])
+			return (0);
 		if (ft_strchr(SPECIFIERS, str[i]))
 			break ;
 		if (str[i] != '.' \
