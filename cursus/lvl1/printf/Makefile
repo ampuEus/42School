@@ -36,14 +36,15 @@ LIB_PATH	= ./lib
 LIBFT		= $(LIB_PATH)/libft.h
 LIBFTA		= $(LIB_PATH)/libft.a
 
+
 ########## RULES ##########
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
 	$(CC) $(CFLAGS) -c $^ -o $@
-#$(LIBFT) $(INCLUDE)
+
 all:	$(NAME)
 
-bonus:	all
+bonus:	$(NAME)
 
 clean:
 	rm -rf $(OBJ_PATH)/*.o
@@ -54,15 +55,19 @@ fclean:	clean
 $(NAME): include_libft $(OBJ)
 	$(AR) $(ARFLAGS) $(NAME) $(OBJ)
 
+$(OBJ_PATH):
+	mkdir $@
+
 include_libft:
 	cp $(LIBFTA) $(NAME)
 
 debug_bonus:
-	$(CC) $(CFLAGS) -g3 $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIBFT) $(LIBFTA) mainV2.c
+	$(CC) $(CFLAGS) -g3 $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIBFT) $(LIBFTA) main.c
 	lldb ./a.out
 
 fsanitize:
-	$(CC) $(CFLAGS) -fsanitize=address -g $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIBFT) $(LIBFTA) mainV2.c
+	$(CC) $(CFLAGS) -fsanitize=address -g $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIBFT) $(LIBFTA) main.c
 	./a.out
+
 
 .PHONY: clean fclean
