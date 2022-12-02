@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static char	imposible_combination(t_Tags tag)
+/*static char	imposible_combination(t_Tags tag)
 {
 	if ((tag.specifier == 'c' \
 		&& (tag.flag_plus || tag.flag_space || tag.flag_hashtag \
@@ -32,7 +32,7 @@ static char	imposible_combination(t_Tags tag)
 		|| tag.precision_dot)))
 		return (1);
 	return (0);
-}
+}*/
 
 t_Tags	find_tags(t_Tags tag, const char *str)
 {
@@ -46,7 +46,5 @@ t_Tags	find_tags(t_Tags tag, const char *str)
 	tag = get_precision(tag, str);
 	tag = get_width(tag, str);
 	tag = get_flags(tag, str);
-	if (!tag.no_comb)
-		tag.err = imposible_combination(tag);
 	return (tag);
 }
