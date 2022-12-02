@@ -52,7 +52,7 @@ static int	ft_put0x(char is_hashtag, char specifier)
 	return (count);
 }
 
-size_t	ft_print_hex(t_Tags tag, va_list args)
+size_t	ft_print_hex(t_Tags *tag, va_list args)
 {
 	size_t			count;
 	unsigned int	nbr;
@@ -62,23 +62,23 @@ size_t	ft_print_hex(t_Tags tag, va_list args)
 
 	nbr = va_arg(args, unsigned int);
 	nbr_len = (int)ft_nbrlen(nbr, 16);
-	is_hashtag = (tag.flag_hashtag && nbr != 0);
-	len_tot = ft_len_tot(is_hashtag, nbr, nbr_len, &tag);
+	is_hashtag = (tag->flag_hashtag && nbr != 0);
+	len_tot = ft_len_tot(is_hashtag, nbr, nbr_len, tag);
 	count = 0;
-	if (!tag.flag_minus && !tag.flag_zero && len_tot > 0)
+	if (!tag->flag_minus && !tag->flag_zero && len_tot > 0)
 		count = ft_putnchar_fd(' ', 1, len_tot);
-	count += ft_put0x(is_hashtag, tag.specifier);
-	if (tag.precision_dot && tag.precision_size > nbr_len)
-		count += ft_putnchar_fd('0', 1, tag.precision_size - nbr_len);
-	if (tag.flag_zero && tag.width_number > nbr_len)
+	count += ft_put0x(is_hashtag, tag->specifier);
+	if (tag->precision_dot && tag->precision_size > nbr_len)
+		count += ft_putnchar_fd('0', 1, tag->precision_size - nbr_len);
+	if (tag->flag_zero && tag->width_number > nbr_len)
 		count += ft_putnchar_fd('0', 1, len_tot);
-	count += ft_puthex(nbr, &tag);
-	if (tag.flag_minus && len_tot > 0)
+	count += ft_puthex(nbr, tag);
+	if (tag->flag_minus && len_tot > 0)
 		count += ft_putnchar_fd(' ', 1, len_tot);
 	return (count);
 }
 
-size_t	ft_print_p(t_Tags tag, va_list args)
+size_t	ft_print_p(t_Tags *tag, va_list args)
 {
 	size_t	count;
 	size_t	ptr;
@@ -87,13 +87,13 @@ size_t	ft_print_p(t_Tags tag, va_list args)
 
 	ptr = va_arg(args, size_t);
 	ptr_len = (int)ft_unbrlen(ptr, 16) + 2;
-	len_tot = tag.width_number - ptr_len;
+	len_tot = tag->width_number - ptr_len;
 	count = 0;
-	if (!tag.flag_minus && !tag.flag_zero && len_tot > 0)
+	if (!tag->flag_minus && !tag->flag_zero && len_tot > 0)
 		count = ft_putnchar_fd(' ', 1, len_tot);
 	count += ft_puts("0x");
 	count += ft_putulnbr_base(ptr, NUMBERS_16_LOWER);
-	if (tag.flag_minus && len_tot > 0)
+	if (tag->flag_minus && len_tot > 0)
 		count += ft_putnchar_fd(' ', 1, len_tot);
 	return (count);
 }

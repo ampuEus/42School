@@ -45,18 +45,18 @@ typedef struct stTags
 /* ---------- Functions ---------- */
 int				ft_printf(const char *format, ...);
 
-size_t			ft_print_c(t_Tags tag, va_list args);
-size_t			ft_print_s(t_Tags tag, va_list args);
-size_t			ft_print_nbr(t_Tags tag, va_list args);
-size_t			ft_print_ulnbr(t_Tags tag, va_list args);
-size_t			ft_print_hex(t_Tags tag, va_list args);
-size_t			ft_print_p(t_Tags tag, va_list args);
+size_t			ft_print_c(t_Tags *tag, va_list args);
+size_t			ft_print_s(t_Tags *tag, va_list args);
+size_t			ft_print_nbr(t_Tags *tag, va_list args);
+size_t			ft_print_ulnbr(t_Tags *tag, va_list args);
+size_t			ft_print_hex(t_Tags *tag, va_list args);
+size_t			ft_print_p(t_Tags *tag, va_list args);
 
-t_Tags			find_tags(t_Tags tag, const char *str);
+int				find_tags(t_Tags *tag, const char *str);
 
 unsigned int	get_specifier(const char *str);
-t_Tags			get_precision(t_Tags tag, const char *str);
-t_Tags			get_width(t_Tags tag, const char *str);
-t_Tags			get_flags(t_Tags tag, const char *str);
+int				get_precision(t_Tags *tag, const char *str);
+int				get_width(t_Tags *tag, const char *str);
+int				get_flags(t_Tags *tag, const char *str);
 
 #endif

@@ -34,17 +34,17 @@
 	return (0);
 }*/
 
-t_Tags	find_tags(t_Tags tag, const char *str)
+int	find_tags(t_Tags *tag, const char *str)
 {
 	unsigned int	tags_len;
 
 	tags_len = get_specifier(str);
 	if (!tags_len)
-		return (tag);
-	tag.len = tags_len;
-	tag.specifier = str[tags_len];
-	tag = get_precision(tag, str);
-	tag = get_width(tag, str);
-	tag = get_flags(tag, str);
-	return (tag);
+		return (1);
+	tag->len = tags_len;
+	tag->specifier = str[tags_len];
+	get_precision(tag, str);
+	get_width(tag, str);
+	get_flags(tag, str);
+	return (0);
 }

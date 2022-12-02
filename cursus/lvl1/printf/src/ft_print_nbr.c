@@ -54,7 +54,7 @@ static int	ft_len_tot(char is_neg, int nbr, int nbr_len, t_Tags *tag)
 	return (len_tot);
 }
 
-size_t	ft_print_nbr(t_Tags tag, va_list args)
+size_t	ft_print_nbr(t_Tags *tag, va_list args)
 {
 	size_t	count;
 	int		nbr;
@@ -65,24 +65,24 @@ size_t	ft_print_nbr(t_Tags tag, va_list args)
 	nbr = va_arg(args, int);
 	nbr_len = (int)ft_nbrlen(nbr, 10);
 	is_neg = nbr < 0;
-	len_tot = ft_len_tot(is_neg, nbr, nbr_len, &tag);
+	len_tot = ft_len_tot(is_neg, nbr, nbr_len, tag);
 	count = 0;
-	if (!tag.flag_minus && !tag.flag_zero && len_tot > 0)
+	if (!tag->flag_minus && !tag->flag_zero && len_tot > 0)
 		count = ft_putnchar_fd(' ', 1, len_tot);
-	count += ft_write_symbol(is_neg, nbr, &tag);
-	if (tag.precision_dot && tag.precision_size > (nbr_len - is_neg))
-		count += ft_putnchar_fd('0', 1, tag.precision_size - nbr_len + is_neg);
-	if (tag.flag_zero && tag.width_number > nbr_len)
+	count += ft_write_symbol(is_neg, nbr, tag);
+	if (tag->precision_dot && tag->precision_size > (nbr_len - is_neg))
+		count += ft_putnchar_fd('0', 1, tag->precision_size - nbr_len + is_neg);
+	if (tag->flag_zero && tag->width_number > nbr_len)
 		count += ft_putnchar_fd('0', 1, len_tot);
-	if (!tag.precision_dot || nbr != 0 \
-			|| (tag.precision_dot && tag.precision_size != 0))
+	if (!tag->precision_dot || nbr != 0 \
+			|| (tag->precision_dot && tag->precision_size != 0))
 		count += ft_printnbr_base(nbr, NUMBERS_10);
-	if (tag.flag_minus && len_tot > 0)
+	if (tag->flag_minus && len_tot > 0)
 		count += ft_putnchar_fd(' ', 1, len_tot);
 	return (count);
 }
 
-size_t	ft_print_ulnbr(t_Tags tag, va_list args)
+size_t	ft_print_ulnbr(t_Tags *tag, va_list args)
 {
 	size_t			count;
 	unsigned int	nbr;
@@ -91,18 +91,18 @@ size_t	ft_print_ulnbr(t_Tags tag, va_list args)
 
 	nbr = va_arg(args, unsigned int);
 	nbr_len = (int)ft_unbrlen(nbr, 10);
-	len_tot = ft_len_tot(nbr < 0, nbr, nbr_len, &tag);
+	len_tot = ft_len_tot(nbr < 0, nbr, nbr_len, tag);
 	count = 0;
-	if (!tag.flag_minus && !tag.flag_zero && len_tot > 0)
+	if (!tag->flag_minus && !tag->flag_zero && len_tot > 0)
 		count = ft_putnchar_fd(' ', 1, len_tot);
-	if (tag.precision_dot && tag.precision_size > nbr_len)
-		count += ft_putnchar_fd('0', 1, tag.precision_size - nbr_len);
-	if (tag.flag_zero && tag.width_number > nbr_len)
+	if (tag->precision_dot && tag->precision_size > nbr_len)
+		count += ft_putnchar_fd('0', 1, tag->precision_size - nbr_len);
+	if (tag->flag_zero && tag->width_number > nbr_len)
 		count += ft_putnchar_fd('0', 1, len_tot);
-	if (!tag.precision_dot || nbr != 0 \
-	|| (tag.precision_dot && tag.precision_size != 0))
+	if (!tag->precision_dot || nbr != 0 \
+	|| (tag->precision_dot && tag->precision_size != 0))
 		count += ft_putunbr_base(nbr, NUMBERS_10);
-	if (tag.flag_minus && len_tot > 0)
+	if (tag->flag_minus && len_tot > 0)
 		count += ft_putnchar_fd(' ', 1, len_tot);
 	return (count);
 }

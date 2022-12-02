@@ -13,24 +13,24 @@
 #include "../lib/libft.h"
 #include "ft_printf.h"
 
-static size_t	ft_print_type(t_Tags tag, va_list args)
+static size_t	ft_print_type(t_Tags *tag, va_list args)
 {
 	size_t	count;
 
 	count = 0;
-	if (tag.specifier == 'c' || tag.specifier == '%')
+	if (tag->specifier == 'c' || tag->specifier == '%')
 		count = ft_print_c(tag, args);
-	else if (tag.specifier == 's')
+	else if (tag->specifier == 's')
 		count = ft_print_s(tag, args);
-	else if (tag.specifier == 'd' \
-			|| tag.specifier == 'i')
+	else if (tag->specifier == 'd' \
+			|| tag->specifier == 'i')
 		count = ft_print_nbr(tag, args);
-	else if (tag.specifier == 'u')
+	else if (tag->specifier == 'u')
 		count = ft_print_ulnbr(tag, args);
-	else if (tag.specifier == 'x' \
-			|| tag.specifier == 'X')
+	else if (tag->specifier == 'x' \
+			|| tag->specifier == 'X')
 		count = ft_print_hex(tag, args);
-	else if (tag.specifier == 'p')
+	else if (tag->specifier == 'p')
 		count = ft_print_p(tag, args);
 	return (count);
 }
@@ -48,9 +48,9 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			ft_memset(&tags, '\0', sizeof(tags));
-			tags = find_tags(tags, format);
+			find_tags(&tags, format);
 			if (!tags.err && !tags.no_comb)
-				count += ft_print_type(tags, args);
+				count += ft_print_type(&tags, args);
 			format += tags.len;
 		}
 		else
