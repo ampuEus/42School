@@ -49,7 +49,7 @@ int	ft_printf(const char *format, ...)
 		{
 			ft_memset(&tags, '\0', sizeof(tags));
 			find_tags(&tags, format);
-			if (!tags.err && !tags.no_comb)
+			if (!tags.no_comb)
 				count += ft_print_type(&tags, args);
 			format += tags.len;
 		}
