@@ -9,7 +9,7 @@ Libft es un proyecto con el propósito de recrear algunas [funciones estándar d
 ## Guia rápida
 ```bash
 # Clona el repositorio y accede a la carpeta
-git clone https://github.com/ampuEus/42School/tree/main/cursus/lvl0/Libft && cd Libft/
+git clone https://github.com/ampuEus/42School.git && cd 42School/cursus/lvl0/Libft/
 
 # Ejecuta Make para compilar la libreria
 make
@@ -32,7 +32,7 @@ make fclean
 ## Pasar los testers
 Para pasar los testers que he implementado, primero hay que descargar los submoludos de los testers con `git clone --recursive` y después hay que ejecutar `make <tester name>`. Por ejemplo:
 ```bash
-git clone --recursive https://github.com/ampuEus/42School/tree/main/cursus/lvl0/Libft && cd Libft/
+git clone --recursive https://github.com/ampuEus/42School.git && cd 42School/cursus/lvl0/Libft/
 make libftTester
 make fclean
 

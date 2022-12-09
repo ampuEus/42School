@@ -9,7 +9,7 @@ Libft is a project for the recreation of some [C standards library](https://www.
 ## Quick start
 ```bash
 # Clone the project and access the folder
-git clone https://github.com/ampuEus/42School/tree/main/cursus/lvl0/Libft && cd Libft/
+git clone https://github.com/ampuEus/42School.git && cd 42School/cursus/lvl0/Libft/
 
 # Run Make so you can build the library
 make
@@ -32,7 +32,7 @@ make fclean
 ## Pass testers
 To pass tests first you have to download testers submodules with `git clone --recursive` command and then execute `make <tester name>`. For example:
 ```bash
-git clone --recursive https://github.com/ampuEus/42School/tree/main/cursus/lvl0/Libft && cd Libft/
+git clone --recursive https://github.com/ampuEus/42School.git && cd 42School/cursus/lvl0/Libft/
 make libftTester
 make fclean
 
