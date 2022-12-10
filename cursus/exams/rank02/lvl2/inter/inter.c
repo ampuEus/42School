@@ -1,5 +1,15 @@
 #include <unistd.h>
 
+char	is_same_char(char *s1, unsigned int limit)
+{
+	char	c = s1[limit];
+
+	while (limit--)
+		if (s1[limit] == c)
+			return (1);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	unsigned int	i, k;
@@ -21,7 +31,7 @@ int	main(int argc, char **argv)
 		{
 			if (s1[i] == s2[k])
 			{
-				if (s1[i - 1] != s1[i])
+				if (!is_same_char(s1, i))
 					write(1, &s1[i], 1);
 				break;
 			}
