@@ -1,21 +1,29 @@
-# printf : Porque putnbr() y putstr() no son suficientes
-***Oficialmente terminado el xx/09/2022 / Nota xxx de 100 / [English](README.md) version***
+# ft_printf : Porque putnbr() y putstr() no son suficientes
+***Oficialmente terminado el 06/12/2022 / Nota 125 de 100 / [English](README.md) version***
 
 El objetivo de este proyecto es reprogramar la función `printf()`. Para así aprender, principalmente, a utilizar un número variable de argumentos.
 
-## Indice
-***TODO***
+## Índice
+- Requisitos del ejercicio
+- Descripción, Declaración y Valor de salida
+- Parametros y formato
+- Conceptos básicos a interiorizar en esta práctica
+  * Funciones variádicas
+  * Estructuras
+    + ¿Que es una estructura?
+- Referencias
+- Repositorios útiles de otros estudiantes
 
 ## Requisitos del ejercicio
 - No implementar la gestión del buffer del `printf()` original
-- Hay que usar el comando `ar` para crear la librería. El uso de `libtool` esta prohibido
-- `libftprintf.a` deberá ser creado en la raiz de tu repositorio
+- Hay que usar el comando `ar` para crear la librería. El uso de `libtool` está prohibido
+- `libftprintf.a` deberá ser creado en la raíz de tu repositorio
 - Especificadores a implementar: %c, %s, %p, %d, %i, %u, %x, %X, %%
 - (Bonus) Opciones a implementar: -, 0, ., ancho mínimo
 - (Bonus) Flags a implementar: #, +, (espacio)
 
 ## Descripción, Declaración y Valor de salida
-`printf()` Es una función variádicas que envía la salida formateada a *stdout*. Mientras que su propotipo es:
+`printf()` Es una función variádicas que envía la salida formateada a *stdout*. Su propotipo es:
 ```c
 int printf(const char *format, ...)
 ```
@@ -197,7 +205,7 @@ La función variádica consta de al menos una variable fija, utilizada para espe
 ```c
 int funcion_variadrica(int <variable_fija>, ...);
 ```
->NOTA: La *<variable_fija>* no tiene porque ser siempre de tipo *int*
+>NOTA: La *<variable_fija>* no tiene por qué ser siempre de tipo *int*
 
 Después en el cuerpo de la función, es necesario usar una serie de macros para acceder a los argumentos que se le hayan pasado a la función:
   - `va_list(<var>)`: Sirve para la definición de la variable donde almacenar los argumetos de la función variádica
@@ -238,7 +246,7 @@ Hello this is 1 variadic function
 ```
 
 ### Estructuras
-Sí se quiere hacer el bonus, en mi opinión es imprescindible usar una estructura qur vaya guardando el formato con el que se quiere *print*ear los datos.
+Sí se quiere hacer el bonus, en mi opinión es imprescindible usar una estructura que vaya guardando el formato con el que se quiere *print*ear los datos.
 #### ¿Que es una estructura?
 Una *struct* es una *key word* para crear un tipo de datos definido por el usuario en C/C++. Una estructura crea un tipo de datos que se puede utilizar para agrupar elementos de tipos posiblemente diferentes en un solo tipo.
 
@@ -265,9 +273,9 @@ typedef struct stTags
 ```c
 t_Tags	tags;
 ```
-> NOTA: Normalmente es necesariio inicializar la estructura, para ello se puede usar la funcióon `memset`
+> NOTA: Normalmente es necesario inicializar la estructura, para ello se puede usar la funcióon `memset`
 
-Para haceder a la estructura se utiliza el punto ('.'), a no ser que se trate de un puntero a la estructura, en cuyo caso se utiliza "->", por ejemplo:
+Para acceder a los valores de la estructura se utiliza el punto ('.'), a no ser que se trate de un puntero a la estructura, en cuyo caso se utiliza "->", por ejemplo:
 ```c
 void ft_example(t_Tags *tag)
 {
@@ -287,7 +295,7 @@ int	main(int argv, char **argc)
 }
 ```
 
-> **Consejo para la mejora del rendimiento**: Para mejorar el rendimiento de un programa cuando se esta trabajando con estruturas, es utilizar punteros cuando hay que pasar la información de la estructura a una función (`void ft_example(t_Tags *tag)`). Ya que si se genera una nueva variabe (`void ft_example(t_Tags tag)`) hay que duplicar toda la información de la estructura por cada llamada a la función.
+> **Consejo para la mejora del rendimiento**: Para mejorar el rendimiento de un programa cuando se está trabajando con estructuras, es utilizar punteros cuando hay que pasar la información de la estructura a una función (`void ft_example(t_Tags *tag)`). Ya que si se genera una nueva variable (`void ft_example(t_Tags tag)`) hay que duplicar toda la información de la estructura por cada llamada a la función.
 
 ## Referencias
   - https://www.tutorialspoint.com/c_standard_library/c_function_printf.htm#
