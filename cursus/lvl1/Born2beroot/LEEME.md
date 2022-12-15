@@ -745,7 +745,7 @@ Comandos útiles para hacer la gestión de grupos:
 | gpasswd -d   | Removes a user from a group             |
 | groupdel     | Deletes a group                         |
 | id -g        | Shows a user's main group ID            |
-| getent group | Displays a list of all users in a group |
+| getent group | Displays a list of all groups           |
 
 
 ## 3. PARTE BONUS
