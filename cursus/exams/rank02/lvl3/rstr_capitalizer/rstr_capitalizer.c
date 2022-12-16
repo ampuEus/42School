@@ -41,9 +41,11 @@ int	main(int argc, char **argv)
 		write(1, &argv[input][c], 1);
 		c++;
 		if (!argv[input][c])
+		{
+			write(1, "\n", 1);
+			c = 0;
 			input++;
+		}
 	}
-	write(1, "\n", 1);
-
 	return (0);
 }
