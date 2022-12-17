@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# TRICK FOR DE EXAM:
-# To test your decimal to hexadecimal convertior use "bc" calculator
-# echo ‘obase=16;127’ | bc  ==>  7F
-
 gcc -Wall -Wextra -Werror str_capitalizer.c
 
 COLOR_OK='\033[1;32m'
