@@ -2,21 +2,6 @@
 #include <stdio.h>
 #include "flood_fill.h"
 
-void	tester(unsigned int nbr, char *s1, char *s2)
-{
-	char	*real_str = strpbrk(s1, s2);
-	char	*ft_str = ft_strpbrk(s1, s2);
-
-	if (real_str != ft_str)
-	{
-		printf("\033[1;31mTest %i: KO\n\033[0m", nbr);
-		printf("   Real value: (%s)\n", real_str);
-		printf("   Your value: (%s)\n", ft_str);
-	}
-	else
-		printf("\033[1;32mTest %i: OK\n\033[0m", nbr);
-}
-
 char** make_area(char** zone, t_point size)
 {
 	char** new;
@@ -35,11 +20,12 @@ char** make_area(char** zone, t_point size)
 
 int main(void)
 {
+	//TEST 1
 	t_point size = {8, 5};
 	char *zone[] = {
 		"11111111",
 		"10001001",
-		"10010001",
+		"10010101",
 		"10110001",
 		"11100001",
 	};
@@ -49,15 +35,37 @@ int main(void)
 		printf("%s\n", area[i]);
 	printf("\n");
 
-	t_point begin = {7, 4};
+	t_point begin = {16, 0};
 	flood_fill(area, size, begin);
 	for (int i = 0; i < size.y; ++i)
 		printf("%s\n", area[i]);
+	printf("\n");
 
+	// TEST 2
+	t_point begin1 = {0, 0};
+	flood_fill(area, size, begin1);
+	for (int i = 0; i < size.y; ++i)
+		printf("%s\n", area[i]);
+	printf("\n");
 
+	// TEST 3
+	char**  area2 = make_area(zone, size);
 
+	t_point begin2 = {1, 1};
+	flood_fill(area2, size, begin2);
+	for (int i = 0; i < size.y; ++i)
+		printf("%s\n", area2[i]);
+	printf("\n");
 
-	tester(1, "Kaixo", "K");
+	// TEST 4
+	char**  area3 = make_area(zone, size);
+
+	t_point begin3 = {5, 1};
+	flood_fill(area3, size, begin3);
+	for (int i = 0; i < size.y; ++i)
+		printf("%s\n", area3[i]);
+	printf("\n");
+
 
 	return (0);
 }
