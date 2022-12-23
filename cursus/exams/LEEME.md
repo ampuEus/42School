@@ -1,7 +1,7 @@
 # 42 Exams guide
-***Gracias a @pasqualerossi***
+***Gracias a @pasqualerossi / [English](README.md) version***
 ## Table of content
-[Exam Rank 02](rank02/README.md) - 4 Piscine Questions
+[Exam Rank 02](rank02/README.md) - 4 Preguntas de la piscina
 
 ## Exam details
 ### Norminette
