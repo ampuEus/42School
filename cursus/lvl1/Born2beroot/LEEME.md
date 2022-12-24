@@ -17,6 +17,9 @@ Esta práctica es una introducción a la administración de sistemas. En esta pr
 
 
 ## Índice:
+- [Born2beroot](#born2beroot)
+  - [Software utilizado\[^1\]](#software-utilizado1)
+  - [Índice:](#índice)
   - [1. CREACIÓN DE LA MÁQUINA VIRTUAL](#1-creación-de-la-máquina-virtual)
     - [1.1. INSTALANDO DEBIAN EN LA VM](#11-instalando-debian-en-la-vm)
       - [1.1.1. PARTICIÓN MANUAL](#111-partición-manual)
@@ -33,7 +36,7 @@ Esta práctica es una introducción a la administración de sistemas. En esta pr
       - [2.1.2. CONFIGURACIÓN DE sudo](#212-configuración-de-sudo)
     - [2.2. IMPLEMENTACIÓN DE AppArmor: Limitación de sudo](#22-implementación-de-apparmor-limitación-de-sudo)
     - [2.3. IMPLEMENTACIÓN DE UFW](#23-implementación-de-ufw)
-      - [2.3.1 INTALACIÓN Y ACTIVACIÓN](#231-intalación-y-activación)
+      - [2.3.1 INSTALACIÓN Y ACTIVACIÓN](#231-instalación-y-activación)
       - [2.3.2. GESTIÓN DE LAS REGLAS](#232-gestión-de-las-reglas)
     - [2.4. IMPLEMENTACIÓN DE UN SERVIDOR SSH EN Born2beroot](#24-implementación-de-un-servidor-ssh-en-born2beroot)
       - [2.4.1. INSTALAR](#241-instalar)
@@ -1039,4 +1042,4 @@ En el arranque de la máquina, puedes notar el siguiente error: *[DRM :vmw_host_
 - https://github.com/mpeq/born2beroot
 
 ---
-Hecho por daampuru | LinkedIn: [David Ampurua](www.linkedin.com/in/david-ampurua)
+Hecho por daampuru | LinkedIn: [David Ampurua](https://www.linkedin.com/in/david-ampurua)

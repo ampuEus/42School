@@ -302,4 +302,4 @@ NOTE: I use linux for development and I have seen that some functions do not pas
 As this the base library for all the course in 42 School it will be updating regularly. See "[src/extra](src/extra)" file.
 
 ---
-Made by daampuru | LinkedIn: [David Ampurua](www.linkedin.com/in/david-ampurua)
+Made by daampuru | LinkedIn: [David Ampurua](https://www.linkedin.com/in/david-ampurua)

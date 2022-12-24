@@ -303,4 +303,4 @@ NOTA: Yo uso linux para el desarrollo y he visto que algunas funciones no pasan 
 Como esta librería es la base de todos los programas que se quieren hacer en 42, la librería se estará ampliando cada vez que sea necesario. Ver la carpeta“[src/extra](src/extra)”.
 
 ---
-Hecho por daampuru | LinkedIn: [David Ampurua](www.linkedin.com/in/david-ampurua)
+Hecho por daampuru | LinkedIn: [David Ampurua](https://www.linkedin.com/in/david-ampurua)

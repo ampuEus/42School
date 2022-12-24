@@ -16,7 +16,7 @@ This practice is an introduction to systems administration. In this internship y
 
 ## Table of content
 - [Born2beroot](#born2beroot)
-  - [Software used[^1]](#software-used1)
+  - [Software used\[^1\]](#software-used1)
   - [Table of content](#table-of-content)
   - [1. CREATE THE VIRTUAL MACHINE](#1-create-the-virtual-machine)
     - [1.1. INSTALLING DEBIAN ON VM](#11-installing-debian-on-vm)
@@ -1036,4 +1036,4 @@ At machine boot, you may notice the following error: *[DRM :vmw_host_log [VMWGFX
 - https://github.com/mpeq/born2beroot
 
 ---
-Made by daampuru | LinkedIn: [David Ampurua](www.linkedin.com/in/david-ampurua)
+Made by daampuru | LinkedIn: [David Ampurua](https://www.linkedin.com/in/david-ampurua)

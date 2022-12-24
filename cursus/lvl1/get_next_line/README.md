@@ -301,4 +301,4 @@ void	foo(void)
 ```
 
 ---
-Made by daampuru | LinkedIn: [David Ampurua](www.linkedin.com/in/david-ampurua)
+Made by daampuru | LinkedIn: [David Ampurua](https://www.linkedin.com/in/david-ampurua)

@@ -299,4 +299,4 @@ void	foo(void)
 ```
 
 ---
-Hecho por daampuru | LinkedIn: [David Ampurua](www.linkedin.com/in/david-ampurua)
+Hecho por daampuru | LinkedIn: [David Ampurua](https://www.linkedin.com/in/david-ampurua)
