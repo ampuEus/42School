@@ -10,10 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "push_swap.h"
 
-int	main(int arc, char *argv)
+int	main(int argc, char **argv)
 {
-	
+	int	*arr_nbr;
+
+	arr_nbr = input(argc - 1, (argv + 1));
+	if (!arr_nbr)
+		return (1);
+	printf("no = %s\n", *argv);
 	return (0);
 }

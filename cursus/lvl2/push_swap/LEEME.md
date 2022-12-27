@@ -28,3 +28,10 @@ El **objetivo** es ordenar los números en orden ascendeste (implementando un al
 | rrr                    | rra y rrb a la vez.                                                                                                  |
 
 ## Conceptos básicos a interiorizar en esta práctica
+
+
+## Paso que yo he seguido para hacer el ejercicio
+  1. Hacer una correcta gestion de los valores de entrada.
+     - Detectar si la sintasis de los valores de entrada es la correcta
+     - Pasar los números de cadena de caracteres a `int` + Detectar valores erroneos
+     - Detectar si hay números repetidos

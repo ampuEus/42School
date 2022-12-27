@@ -12,6 +12,8 @@
 
 #ifndef PUSH_SWAP_H
 
+# include <stdio.h>
+
 /* ---------- Structure of values ---------- */
 typedef struct s_nbr
 {
@@ -20,5 +22,6 @@ typedef struct s_nbr
 }					t_nbr;
 
 /* ---------- Functions ---------- */
-char	input(char	*str);
-#endif:
+int	*input(int is_multiple, char	**str);
+
+#endif
