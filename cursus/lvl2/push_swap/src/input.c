@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daampuru <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/26 22:30:34 by daampuru          #+#    #+#             */
-/*   Updated: 2022/12/26 23:22:16 by daampuru         ###   ########.fr       */
+/*   Created: 2022/12/29 20:45:52 by daampuru          #+#    #+#             */
+/*   Updated: 2022/12/29 22:08:13 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,39 @@ Thing to check:
 	- When is ',' wrong or ignore decimal¿?
 */
 
+#include "../lib/libft.h"
 #include <stdlib.h>
-# include <stdio.h>
 
-int	*input(char arg_len, char	**str)
+static char onlynbr(const char arg_len, const char **str)
+{
+	int	word;
+	int	c;
+
+	word = 0;
+	while (word < arg_len)
+	{
+		c = 0;
+		while (str[word][c])
+		{
+			if (!ft_isalnum(str[word][c]) && str[word][c] != ' ')
+			{
+				write(2, "At least one of the given arguments has a character \
+that is not numeric.\n", 75);
+				return (0);
+			}
+			c++;
+		}
+		word++;
+	}
+	return (1);
+}
+
+int	*input(const char arg_len, const char **str)
 {
 	int	*arr_nbr;
+
+	if (!onlynbr(arg_len, str))
+		return (NULL);
 
 	if (arg_len)
 	{
@@ -37,6 +64,7 @@ int	*input(char arg_len, char	**str)
 	{
 		//split
 		//atoi
+		arr_nbr = malloc(arg_len * sizeof(*arr_nbr));
 	}
 	arr_nbr[0] = 10;
 	return (arr_nbr);

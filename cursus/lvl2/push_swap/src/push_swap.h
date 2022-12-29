@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daampuru <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 22:10:40 by daampuru          #+#    #+#             */
-/*   Updated: 2022/12/26 23:22:37 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/12/29 20:46:00 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ typedef struct s_nbr
 }					t_nbr;
 
 /* ---------- Functions ---------- */
-int	*input(int is_multiple, char	**str);
+int	*input(int is_multiple, char **str);
 
 #endif
