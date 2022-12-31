@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 22:34:07 by daampuru          #+#    #+#             */
-/*   Updated: 2022/12/29 22:08:20 by daampuru         ###   ########.fr       */
+/*   Updated: 2022/12/31 16:56:05 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int	main(int argc, char **argv)
 	arr_nbr = input(argc - 1, (argv + 1));
 	if (!arr_nbr)
 		return (1);
-	printf("no = %s\n", *argv);
+	printf("no = %i\n", arr_nbr[0]);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/29 20:45:38 by daampuru          #+#    #+#              #
-#    Updated: 2022/12/29 21:59:33 by daampuru         ###   ########.fr        #
+#    Updated: 2022/12/31 16:49:24 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,6 @@ all:	$(NAME)
 
 re: fclean all
 
-bonus:	$(NAME)
-
 clean:
 	rm -rf $(OBJ_PATH)
 
@@ -66,7 +64,7 @@ no_flag: | $(BIN_PATH)
 
 debug: | $(BIN_PATH)
 	$(CC) -g3 $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIB_H) $(LIB_A)
-	mv -v a.out* $(BIN_PATH)
+#mv -v a.out* $(BIN_PATH)
 
 fsanitize:
 	$(CC) -fsanitize=address -g3 $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIB_H) $(LIB_A)
