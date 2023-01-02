@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:45:52 by daampuru          #+#    #+#             */
-/*   Updated: 2022/12/31 16:57:25 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/01/02 23:19:20 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	is_onlynbr(const char arg_len, const char **str)
 		c = 0;
 		while (str[word][c])
 		{
-			if (!ft_isalnum(str[word][c]) && str[word][c] != ' ' \
+			if (!ft_isdigit(str[word][c]) && str[word][c] != ' ' \
 			&& str[word][c] != '+' && str[word][c] != '-')
 			{
 				write(2, "At least one of the given arguments has a character \
@@ -48,28 +48,45 @@ that is not numeric.\n", 75);
 	return (1);
 }
 
-
-int	*input(const char arg_len, const char **str)
+static int	*str2int(const char arg_len, const char **str, int **arr_nbr)
 {
 	unsigned int	nbr_len;
-	int				*arr_nbr;
 	char			**arr_str;
 
-	if (!is_onlynbr(arg_len, str))
-		return (NULL);
+	nbr_len = 0;
 	if (arg_len > 1)
 	{
-		//check_multi_input
-		arr_nbr = malloc(arg_len * sizeof(*arr_nbr));
-		arr_nbr[0] = 10;
+		while (str[nbr_len])
+		{
+			*arr_nbr[nbr_len] = ft_atoi(str[nbr_len]);
+			nbr_len++;
+		}
 	}
 	else
 	{
 		arr_str = ft_split(*str, ' ');
-		nbr_len = 0;
 		while (arr_str[nbr_len])
-			arr_nbr[nbr_len] = ft_atoi(arr_str[nbr_len]);
+		{
+			*arr_nbr[nbr_len] = ft_atoi(arr_str[nbr_len]);
+			free(arr_str[nbr_len]);
+			nbr_len++;
+		}
+		free(arr_str);
 	}
+	return (*arr_nbr);
+}
+
+int	*input(const char arg_len, const char **str)
+{
+	int	*arr_nbr;
+
+	if (!is_onlynbr(arg_len, str))
+		return (NULL);
+	arr_nbr = malloc(arg_len * sizeof(*arr_nbr));
+	if (!arr_nbr)
+		return (NULL);
+	arr_nbr = str2int(arg_len, str, &arr_nbr);
+	// check INT_MAX and INT_MIN numbers
 	// check duplicated numbers
 	return (arr_nbr);
 }
