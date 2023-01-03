@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 22:10:40 by daampuru          #+#    #+#             */
-/*   Updated: 2022/12/29 20:46:00 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/01/03 20:49:58 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,18 @@
 # include <stdio.h>
 
 /* ---------- Structure of values ---------- */
-typedef struct s_nbr
+typedef struct s_stack
 {
 	int				data;
-	struct s_nbr	*next;
-}					t_nbr;
+	struct s_stack	*next;
+}					t_stack;
 
 /* ---------- Functions ---------- */
-int	*input(int is_multiple, char **str);
+t_stack	*stacknew(int nbr);
+t_stack	*stacklast(t_stack *lst);
+void	stackadd(t_stack **lst, t_stack *new);
+void	stackiter(t_stack *lst, void (*f)(void *));
+
+t_stack	*input(const char arg_len, const char **str);
 
 #endif

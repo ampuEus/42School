@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/29 20:45:38 by daampuru          #+#    #+#              #
-#    Updated: 2022/12/31 16:49:24 by daampuru         ###   ########.fr        #
+#    Updated: 2023/01/03 20:47:38 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ ARFLAGS		= rsc
 
 SRC_PATH	= ./src
 SRC			= main.c \
-				input.c
+				input.c \
+				stack.c
 
 INCLUDE		= ./src/push_swap.h
 

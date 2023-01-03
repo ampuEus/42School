@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:45:52 by daampuru          #+#    #+#             */
-/*   Updated: 2023/01/02 23:19:20 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/01/03 20:48:18 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ Thing to check:
 	- INT_MIN <= (Number value) <= INT_MAX
 */
 
+#include "push_swap.h"
 #include "../lib/libft.h"
-#include <stdlib.h>
 
 static char	is_onlynbr(const char arg_len, const char **str)
 {
@@ -48,45 +48,42 @@ that is not numeric.\n", 75);
 	return (1);
 }
 
-static int	*str2int(const char arg_len, const char **str, int **arr_nbr)
+static t_stack	*str2int(const char arg_len, const char **str)
 {
-	unsigned int	nbr_len;
+	unsigned int	len;
 	char			**arr_str;
+	t_stack			*lst;
 
-	nbr_len = 0;
+	len = 0;
 	if (arg_len > 1)
 	{
-		while (str[nbr_len])
-		{
-			*arr_nbr[nbr_len] = ft_atoi(str[nbr_len]);
-			nbr_len++;
-		}
+		lst = stacknew(ft_atoi(str[len++]));
+		while (str[len])
+			stackadd(&lst, stacknew(ft_atoi(str[len++])));
 	}
 	else
 	{
 		arr_str = ft_split(*str, ' ');
-		while (arr_str[nbr_len])
+		lst = stacknew(ft_atoi(arr_str[len++]));
+		while (arr_str[len])
 		{
-			*arr_nbr[nbr_len] = ft_atoi(arr_str[nbr_len]);
-			free(arr_str[nbr_len]);
-			nbr_len++;
+			stackadd(&lst, stacknew(ft_atoi(arr_str[len])));
+			free(arr_str[len]);
+			len++;
 		}
 		free(arr_str);
 	}
-	return (*arr_nbr);
+	return (lst);
 }
 
-int	*input(const char arg_len, const char **str)
+t_stack	*input(const char arg_len, const char **str)
 {
-	int	*arr_nbr;
+	t_stack	*stack;
 
 	if (!is_onlynbr(arg_len, str))
 		return (NULL);
-	arr_nbr = malloc(arg_len * sizeof(*arr_nbr));
-	if (!arr_nbr)
-		return (NULL);
-	arr_nbr = str2int(arg_len, str, &arr_nbr);
+	stack = str2int(arg_len, str);
 	// check INT_MAX and INT_MIN numbers
 	// check duplicated numbers
-	return (arr_nbr);
+	return (stack);
 }
