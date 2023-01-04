@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/29 20:45:38 by daampuru          #+#    #+#              #
-#    Updated: 2023/01/03 20:47:38 by daampuru         ###   ########.fr        #
+#    Updated: 2023/01/04 22:48:15 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ clean:
 
 fclean:	clean
 	rm -rf $(BIN_PATH)
+	rm -rf *.dSYM
 
 $(NAME): $(OBJ) | $(BIN_PATH)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
@@ -70,5 +71,8 @@ debug: | $(BIN_PATH)
 fsanitize:
 	$(CC) -fsanitize=address -g3 $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIB_H) $(LIB_A)
 
+leaks: | $(BIN_PATH)
+	$(CC) -D LEAKS=1 -g3 $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIB_H) $(LIB_A)
+	mv -v *.out $(BIN_PATH)
 
-.PHONY: clean fclean
+.PHONY: clean fclean leaks

@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:45:52 by daampuru          #+#    #+#             */
-/*   Updated: 2023/01/03 20:48:18 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/01/04 23:06:42 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ Thing to check:
 
 static char	is_onlynbr(const char arg_len, const char **str)
 {
-	int	word;
-	int	c;
+	unsigned int	word;
+	unsigned int	c;
 
 	word = 0;
 	while (word < arg_len)

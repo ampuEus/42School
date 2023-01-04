@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 20:32:53 by daampuru          #+#    #+#             */
-/*   Updated: 2023/01/03 20:52:23 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/01/04 22:39:14 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,3 +48,19 @@ void	stackadd(t_stack **lst, t_stack *new)
 	}
 	*lst = new;
 }
+
+void	stackfree(t_stack **lst)
+{
+	t_stack	*tmp;
+
+	if (!lst)
+		return ;
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		free(*lst);
+		*lst = tmp;
+	}
+	*lst = NULL;
+}
+
