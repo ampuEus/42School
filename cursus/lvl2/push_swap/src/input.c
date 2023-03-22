@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:45:52 by daampuru          #+#    #+#             */
-/*   Updated: 2023/01/04 23:06:42 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/03/22 21:00:29 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ Posible input types:
 Thing to check:
 	- Only number, '+', '-' and ' ' chars allowed
 	- INT_MIN <= (Number value) <= INT_MAX
+	- No duplicated numbers allowed
 */
 
 #include "push_swap.h"
 #include "../lib/libft.h"
 
-static char	is_onlynbr(const char arg_len, const char **str)
+static char	is_onlynbr(const int arg_len, const char **str)
 {
-	unsigned int	word;
+	int	word;
 	unsigned int	c;
 
 	word = 0;
@@ -36,12 +37,40 @@ static char	is_onlynbr(const char arg_len, const char **str)
 		{
 			if (!ft_isdigit(str[word][c]) && str[word][c] != ' ' \
 			&& str[word][c] != '+' && str[word][c] != '-')
-			{
-				write(2, "At least one of the given arguments has a character \
-that is not numeric.\n", 75);
 				return (0);
-			}
 			c++;
+		}
+		word++;
+	}
+	return (1);
+}
+
+static char	in_int_range(const int arg_len, const char **str)
+{
+	int	word;
+	int word_len;
+	unsigned int	c;
+	char	neg;
+
+	word = 0;
+	while (word < arg_len)
+	{
+		word_len = ft_strlen(str[word]);
+		if (word_len >= 10)
+		{
+			c = 0;
+			while (str[word][c] && str[word][c] == '+' || str[word][c] == '-')
+				c++;
+			neg = str[word][c] == '-';
+			if (word_len - c > 10)
+				return (0);
+			if (word_len == 10)
+				if (str[word][c] > 2)
+					return (0);
+				while (c + 1)
+					c++;
+				if (neg && str[word][c] > 8 || !neg && str[word][c] > 7)
+					return (0);
 		}
 		word++;
 	}
@@ -76,14 +105,38 @@ static t_stack	*str2int(const char arg_len, const char **str)
 	return (lst);
 }
 
-t_stack	*input(const char arg_len, const char **str)
+static char	is_samenbr(t_stack *stack)
+{
+	t_stack *next_stack;
+
+	while (stack)
+	{
+		next_stack = stack->next;
+		while (next_stack)
+		{
+			if (next_stack->data == stack->data)
+				return(1);
+			next_stack = next_stack->next;
+		}
+		stack = stack->next;
+	}
+	return (0);
+}
+
+
+t_stack	*input(const int arg_len, const char **str)
 {
 	t_stack	*stack;
 
 	if (!is_onlynbr(arg_len, str))
-		return (NULL);
+		return (write(2, "At least one of the given arguments has a character \
+that is not numeric.\n", 74), NULL);
+	if (!in_int_range(arg_len, str))
+		return (write(2, "At least one of the given arguments is not an \
+\"int\" datatype.\n", 63), NULL);
 	stack = str2int(arg_len, str);
-	// check INT_MAX and INT_MIN numbers
-	// check duplicated numbers
+	if (is_samenbr(stack))
+		return (write(2, "At least one of the given arguments has a duplicated \
+number.\n", 62), NULL);
 	return (stack);
 }
