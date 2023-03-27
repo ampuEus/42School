@@ -15,8 +15,9 @@ Posible input types:
 	1 - Only one argument (in quotation marks) with all int numbers
 	2 - Multiple int numbers
 
-Thing to check:
-	- Only number, '+', '-' and ' ' chars allowed
+Things to check:
+	- Only numbers, '+', '-' and spaces are allowed
+	- Only one sign ('+' or '-') is allowed before the number
 	- INT_MIN <= (Number value) <= INT_MAX
 	- No duplicated numbers allowed
 */
@@ -33,13 +34,14 @@ static char	is_onlynbr(const int arg_len, const char **str)
 	while (word < arg_len)
 	{
 		c = 0;
-		while (str[word][c])
-		{
-			if (!ft_isdigit(str[word][c]) && str[word][c] != ' ' \
-			&& str[word][c] != '+' && str[word][c] != '-')
-				return (0);
+		while (str[word][c] \
+		&& (str[word][c] == ' ' || str[word][c] == '+' || str[word][c] == '-'))
 			c++;
-		}
+		if (!ft_isdigit(str[word][c]))
+			return (0);
+		while (str[word][c])
+			if (!ft_isdigit(str[word][c++]))
+				return (0);
 		word++;
 	}
 	return (1);
@@ -50,6 +52,7 @@ static char	in_int_range(const int arg_len, const char **str)
 	int	word;
 	int word_len;
 	unsigned int	c;
+	unsigned int	i;
 	char	neg;
 
 	word = 0;
@@ -59,18 +62,19 @@ static char	in_int_range(const int arg_len, const char **str)
 		if (word_len >= 10)
 		{
 			c = 0;
-			while (str[word][c] && str[word][c] == '+' || str[word][c] == '-')
-				c++;
-			neg = str[word][c] == '-';
+			neg = str[word][c++] == '-';
 			if (word_len - c > 10)
 				return (0);
-			if (word_len == 10)
-				if (str[word][c] > 2)
+			if (word_len - c == 10)
+			{
+				i = 0;
+				while (i < 9)
+					if (str[word][c++] > INT_MAX[i++])
+						return (0);
+				printf("i= %i, neg= %c\n", i, neg);
+				if ((neg && str[word][c] > '8') || (!neg && str[word][c] > INT_MAX[i]))
 					return (0);
-				while (c + 1)
-					c++;
-				if (neg && str[word][c] > 8 || !neg && str[word][c] > 7)
-					return (0);
+			}
 		}
 		word++;
 	}

@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 
 	if (argc <= 1)
 		return (write(2, "No input passed.\n", 17), 1);
-	stack_a = input(argc - 1, (const char **)(argv + 1));
+	stack_a = input(--argc, (const char **)(++argv));
 	if (!stack_a)
 		return (1);
 	printf("1 = %i\n", stack_a->data);
