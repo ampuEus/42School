@@ -89,14 +89,14 @@ Divide y vencerás tiene un paso recursivo, en el que se resuelven los subproble
 ### Binary Search Trees
 Los árboles de búsqueda binarios son estructuras de datos simples. Como dice el nombre, funciona con la idea de dos valores. Inicialmente, tenemos un nodo raíz que almacena algún valor, digamos X. En el siguiente nivel, tenemos dos ramas. La rama izquierda conduce a los nodos que representan todos los valores menores que x, mientras que la rama derecha conduce a los nodos que representan todos los valores mayores que x. La división del árbol en varias ramas sigue ocurriendo según la condición binaria y obtenemos un árbol binario. Los datos organizados utilizando esta estructura de datos permiten operaciones de búsqueda eficientes.
 
-![Visualización de un árbol binario](/annex/img/Binary_tree.png)
+![Visualización de un árbol binario](./annex/img/Binary_tree.png)
 
 ### Binary Heap
 El Heap es un árbol binario completo, la raíz de cualquier árbol es mayor o igual (o menor o igual) que todos sus hijos (propiedad del heap).
 
 La distinción fundamental con el árbol de búsqueda binaria es que el heap permite números duplicados y que sus datos no se ordenan.
 
-![Visualización de un heap binario](/annex/img/Binary_heap.png)
+![Visualización de un heap binario](./annex/img/Binary_heap.png)
 
 ### Listas link-adas *vs* Array de enteros
 Teniendo en cuenta las cualidades que tienen las listas pudiendo aumentarse y reducirse en el tiempo de ejecución debido a su **organización dinámica** realizada al asignar y no asignar memoria. Esto hace que **no** sea **necesario preasignar memoria** a la hora de definirla. A diferencia de un array que sí se necesita saber sus dimensiones desde el inicio.
