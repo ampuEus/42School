@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 22:34:07 by daampuru          #+#    #+#             */
-/*   Updated: 2023/03/29 17:10:58 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:01:30 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ int	main(int argc, char **argv)
 	if (!stack_a)
 		return (write(2, "Something formating the input went wrong.\n", 42), 1);
 
-	//ss(&stack_a, &stack_b);
-	push(&stack_a, &stack_b);
+	rrr(&stack_a, &stack_b);
+	rrr(&stack_a, &stack_b);
+	rrr(&stack_a, &stack_b);
+
 	while(stack_a)
 	{
 		printf("stack_a = %i\n", stack_a->data);
