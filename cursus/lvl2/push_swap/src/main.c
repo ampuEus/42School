@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 22:34:07 by daampuru          #+#    #+#             */
-/*   Updated: 2023/01/04 22:52:35 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:06:25 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,14 @@ int	main(int argc, char **argv)
 	stack_a = input(argc - 1, (const char **)(argv + 1));
 	if (!stack_a)
 		return (1);
-	printf("1 = %i\n", stack_a->data);
-	stack_b = stack_a->next;
-	printf("2 = %i\n", stack_b->data);
+	while(stack_a)
+		printf("stack = %i\n", stack_a->data);
+	printf("swap\n");
+	swap(&stack_a);
+	while(stack_a)
+		printf("stack = %i\n", stack_a->data);
 	stackfree(&stack_a);
+	stack_b = stack_a->next;
 	#ifdef LEAKS
 		system("leaks a.out");
 	#endif

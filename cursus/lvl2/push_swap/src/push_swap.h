@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 22:10:40 by daampuru          #+#    #+#             */
-/*   Updated: 2023/03/22 20:45:47 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:04:38 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ t_stack	*stacklast(t_stack *lst);
 void	stackadd(t_stack **lst, t_stack *new);
 void	stackiter(t_stack *lst, void (*f)(void *));
 void	stackfree(t_stack **lst);
+
+void swap(t_stack **stack);
 
 t_stack	*input(const int arg_len, const char **str);
 
