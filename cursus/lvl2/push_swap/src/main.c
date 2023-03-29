@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 22:34:07 by daampuru          #+#    #+#             */
-/*   Updated: 2023/03/29 16:06:25 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:10:58 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,25 @@ int	main(int argc, char **argv)
 
 	if (argc <= 1)
 		return (write(2, "No input passed.\n", 17), 1);
-	stack_a = input(--argc, (const char **)(++argv));
+	stack_a = input(argc - 1, (const char **)(argv + 1));
+	stack_b = input(argc - 1, (const char **)(argv + 1));
 	if (!stack_a)
-		return (1);
+		return (write(2, "Something formating the input went wrong.\n", 42), 1);
+
+	//ss(&stack_a, &stack_b);
+	push(&stack_a, &stack_b);
 	while(stack_a)
-		printf("stack = %i\n", stack_a->data);
-	printf("swap\n");
-	swap(&stack_a);
-	while(stack_a)
-		printf("stack = %i\n", stack_a->data);
+	{
+		printf("stack_a = %i\n", stack_a->data);
+		stack_a = stack_a->next;
+	}
+	printf("----- push -----\n");
+	while(stack_b)
+	{
+		printf("stack_b = %i\n", stack_b->data);
+		stack_b = stack_b->next;
+	}
 	stackfree(&stack_a);
-	stack_b = stack_a->next;
 	#ifdef LEAKS
 		system("leaks a.out");
 	#endif

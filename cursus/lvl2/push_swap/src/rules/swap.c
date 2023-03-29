@@ -6,19 +6,27 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:47:11 by daampuru          #+#    #+#             */
-/*   Updated: 2023/03/29 16:02:02 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:52:17 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 /* Swap the first 2 elements at the top of stack */
-void swap(t_stack **stack)
+void	swap(t_stack **stack)
 {
-	t_stack *frist;
+	t_stack *first;
 
-	frist = stack;
+	first = *stack;
 	*stack = (*stack)->next;
-	frist->next = (*stack)->next;
-	(*stack)->next = frist;
+	first->next = (*stack)->next;
+	(*stack)->next = first;
+}
+
+/* Swap the first 2 elements at the top of
+stack a and stack b at the same time */
+void	ss(t_stack **stack_a, t_stack **stack_b)
+{
+	swap(stack_a);
+	swap(stack_b);
 }
