@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 22:10:40 by daampuru          #+#    #+#             */
-/*   Updated: 2023/03/29 17:19:21 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:00:25 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ void	stackfree(t_stack **lst);
 char	swap(t_stack **stack);
 char	ss(t_stack **stack_a, t_stack **stack_b);
 char	push(t_stack **src, t_stack **dst);
+char	rotate(t_stack **stack);
+char	rr(t_stack **stack_a, t_stack **stack_b);
+char	rrotate(t_stack **stack);
+char	rrr(t_stack **stack_a, t_stack **stack_b);
 
 t_stack	*input(const int arg_len, const char **str);
 

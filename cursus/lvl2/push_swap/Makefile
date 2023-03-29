@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/29 20:45:38 by daampuru          #+#    #+#              #
-#    Updated: 2023/03/29 17:10:08 by daampuru         ###   ########.fr        #
+#    Updated: 2023/03/29 17:31:58 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRC			= main.c \
 				input.c \
 				stack.c \
 				rules/swap.c \
-				rules/push.c
+				rules/push.c \
+				rules/rotate.c
 
 INCLUDE		= ./src/push_swap.h
 
