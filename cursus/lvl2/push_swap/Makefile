@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 ########## VARIABLES ##########
-NAME		= push_swap
+NAME		= $(BIN_PATH)/push_swap
 BIN_PATH	= ./bin
 
 CC			= gcc
@@ -36,7 +36,6 @@ LIB_A		= $(LIB_PATH)/libft.a
 
 
 ########## RULES ##########
-
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
 	$(CC) $(CFLAGS) -c $^ -o $@
 
@@ -46,13 +45,13 @@ re: fclean all
 
 clean:
 	rm -rf $(OBJ_PATH)
+	rm -rf *.dSYM
 
 fclean:	clean
 	rm -rf $(BIN_PATH)
-	rm -rf *.dSYM
 
 $(NAME): $(OBJ) | $(BIN_PATH)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIB_A)
 
 $(OBJ_PATH):
 	mkdir -p $@
@@ -61,18 +60,19 @@ $(BIN_PATH):
 	mkdir -p $@
 
 no_flag: | $(BIN_PATH)
-	$(CC) $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIB_H) $(LIB_A)
+	$(CC) $(addprefix $(SRC_PATH)/, $(SRC)) $(LIB_A)
 	mv a.out $(BIN_PATH)
 
 debug: | $(BIN_PATH)
-	$(CC) -g3 $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIB_H) $(LIB_A)
+	$(CC) -g3 $(addprefix $(SRC_PATH)/, $(SRC)) $(LIB_A)
 #mv -v a.out* $(BIN_PATH)
 
 fsanitize:
-	$(CC) -fsanitize=address -g3 $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIB_H) $(LIB_A)
+	$(CC) -fsanitize=address -g3 $(addprefix $(SRC_PATH)/, $(SRC)) $(LIB_A)
+	mv -v a.out* $(BIN_PATH)
 
 leaks: | $(BIN_PATH)
-	$(CC) -D LEAKS=1 -g3 $(addprefix $(SRC_PATH)/, $(SRC)) $(INCLUDE) $(LIB_H) $(LIB_A)
+	$(CC) -D LEAKS=1 -g3 $(addprefix $(SRC_PATH)/, $(SRC)) $(LIB_A)
 	mv -v *.out $(BIN_PATH)
 
 .PHONY: clean fclean leaks
