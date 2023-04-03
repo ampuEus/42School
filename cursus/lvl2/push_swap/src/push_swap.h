@@ -33,7 +33,7 @@ void	stackadd(t_stack **lst, t_stack *new);
 void	stackiter(t_stack *lst, void (*f)(void *));
 void	stackfree(t_stack **lst);
 
-/* movements */
+/* movements / rules */
 char	swap(t_stack **stack);
 char	ss(t_stack **stack_a, t_stack **stack_b);
 char	push(t_stack **src, t_stack **dst);
@@ -41,6 +41,9 @@ char	rotate(t_stack **stack);
 char	rr(t_stack **stack_a, t_stack **stack_b);
 char	rrotate(t_stack **stack);
 char	rrr(t_stack **stack_a, t_stack **stack_b);
+
+/* sort algorithms */
+char simple_sort(t_stack **stack_a, t_stack **stack_b);
 
 t_stack	*input(const int arg_len, const char **str);
 
