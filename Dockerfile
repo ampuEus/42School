@@ -1,8 +1,9 @@
 # FROM alpine:latest
 # RUN apk add --no-cache build-base
 FROM debian:latest
-RUN apt-get update \
-	&& apt-get install -y build-essential gdb \
+RUN apt update \
+	&& apt upgrade \
+	&& apt install -y build-essential gdb \
 	&& rm -rf /var/lib/apt/lists/*
 RUN mkdir /42
 VOLUME /42
