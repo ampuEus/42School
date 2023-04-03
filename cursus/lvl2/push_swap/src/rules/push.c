@@ -12,16 +12,21 @@
 
 #include "../push_swap.h"
 
-/* Take the first element at the top of b and put it at the top of a */
+/* Take the first element at the top of one stack
+and put it at the top of the other */
 char	push(t_stack **src, t_stack **dst)
 {
 	t_stack *second_src;
 
-	if (!(*src)->next || !*dst)
+	if (!(*src) || !dst)
 		return (1);
-	second_src = (*src)->next;
+	if ((*src)->next)
+		second_src = (*src)->next;
+	else
+		second_src = NULL;
 	(*src)->next = *dst;
 	*dst = *src;
 	*src = second_src;
+
 	return (0);
 }
