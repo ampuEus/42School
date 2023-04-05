@@ -13,3 +13,26 @@ gnl
 	add to libft
 	find "\n" earlier on the cycle -> for better performance
 
+push_swap
+	visualizer
+		instalation
+			For error:
+				CMake Error at /usr/share/cmake-3.18/Modules/FindPackageHandleStandardArgs.cmake:165 (message):
+				Could NOT find OpenGL (missing: OPENGL_opengl_LIBRARY OPENGL_glx_LIBRARY
+				OPENGL_INCLUDE_DIR)
+			Install "libgl1-mesa-dev"
+
+			For error:
+				CMake Error at build/_deps/sfml-src/cmake/Macros.cmake:296 (message):
+				  Missing item in X11_X11_LIB;X11_Xrandr_LIB
+			Install related development packages "libx11-dev libxrandr-dev"
+
+			For error:
+				CMake Error at build/_deps/sfml-src/cmake/Modules/FindUDev.cmake:49 (MESSAGE):
+				  Could not find UDev library
+			Install "libudev-dev"
+
+			For error:
+				CMake Error at build/_deps/sfml-src/cmake/Macros.cmake:296 (message):
+				  Missing item in FREETYPE_LIBRARY
+			Install "libfreetype-dev"

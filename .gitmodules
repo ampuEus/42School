@@ -7,3 +7,6 @@
 [submodule "francinette"]
 	path = cursus/lvl0/Libft/tests/francinette
 	url = https://github.com/xicodomingues/francinette
+[submodule "cursus/lvl2/push_swap/visualizer"]
+	path = cursus/lvl2/push_swap/visualizer
+	url = https://github.com/o-reo/push_swap_visualizer
