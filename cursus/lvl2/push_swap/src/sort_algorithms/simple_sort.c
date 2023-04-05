@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 unsigned int	is_smaller(t_stack *stack)
 {

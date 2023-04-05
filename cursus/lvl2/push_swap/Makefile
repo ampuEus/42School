@@ -27,12 +27,13 @@ SRC			= main.c \
 				rules/swap.c \
 				rules/push.c \
 				rules/rotate.c \
-				simple_sort.c
+				sort_algorithms/simple_sort.c
 
 INCLUDE		= ./src/push_swap.h
 
 OBJ_PATH	= ./obj
-RULES_PATH	= $(OBJ_PATH)/rules
+OTHER_PATHS	= $(OBJ_PATH)/rules \
+			$(OBJ_PATH)/sort_algorithms
 OBJ			= $(addprefix $(OBJ_PATH)/, $(SRC:.c=.o))
 
 LIB_PATH	= ./lib
@@ -41,7 +42,7 @@ LIB_A		= $(LIB_PATH)/libft.a
 
 
 ########## RULES ##########
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH) $(RULES_PATH)
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH) $(OTHER_PATHS)
 	$(CC) $(CFLAGS) -c $^ -o $@
 
 all:	$(NAME)
@@ -78,7 +79,7 @@ leaks: | $(BIN_PATH)
 $(OBJ_PATH):
 	mkdir -p $@
 
-$(RULES_PATH):
+$(OTHER_PATHS):
 	mkdir -p $@
 
 $(BIN_PATH):
