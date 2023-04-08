@@ -24,14 +24,14 @@ static char	rrotate(t_stack **stack)
 
 char	rra(t_stack **stack)
 {
-	if (rrotate(stack))
+	if (!rrotate(stack))
 		return(ft_puts("rra\n"), 0);
 	return(1);
 }
 
 char	rrb(t_stack **stack)
 {
-	if (rrotate(stack))
+	if (!rrotate(stack))
 		return(ft_puts("rrb\n"), 0);
 	return(1);
 }

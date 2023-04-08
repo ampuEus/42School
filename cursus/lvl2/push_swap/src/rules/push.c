@@ -34,14 +34,14 @@ static char	push(t_stack **src, t_stack **dst)
 
 char	pa(t_stack **stack_a, t_stack **stack_b)
 {
-	if (push(stack_b, stack_a))
+	if (!push(stack_b, stack_a))
 		return(ft_puts("pa\n"), 0);
 	return(1);
 }
 
 char	pb(t_stack **stack_a, t_stack **stack_b)
 {
-	if (push(stack_a, stack_b))
+	if (!push(stack_a, stack_b))
 		return(ft_puts("pb\n"), 0);
 	return(1);
 }

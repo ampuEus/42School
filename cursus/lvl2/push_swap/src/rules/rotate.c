@@ -31,14 +31,14 @@ static char	rotate(t_stack **stack)
 
 char	ra(t_stack **stack)
 {
-	if (rotate(stack))
+	if (!rotate(stack))
 		return(ft_puts("ra\n"), 0);
 	return(1);
 }
 
 char	rb(t_stack **stack)
 {
-	if (rotate(stack))
+	if (!rotate(stack))
 		return(ft_puts("rb\n"), 0);
 	return(1);
 }

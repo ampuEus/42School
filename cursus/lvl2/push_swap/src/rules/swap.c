@@ -29,14 +29,14 @@ static char	swap(t_stack **stack)
 
 char	sa(t_stack **stack)
 {
-	if (swap(stack))
+	if (!swap(stack))
 		return(ft_puts("sa\n"), 0);
 	return(1);
 }
 
 char	sb(t_stack **stack)
 {
-	if (swap(stack))
+	if (!swap(stack))
 		return(ft_puts("sb\n"), 0);
 	return(1);
 }
