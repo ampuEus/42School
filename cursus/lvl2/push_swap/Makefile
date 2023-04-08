@@ -27,6 +27,7 @@ SRC			= main.c \
 				rules/swap.c \
 				rules/push.c \
 				rules/rotate.c \
+				rules/rrotate.c \
 				sort_algorithms/simple_sort.c
 
 INCLUDE		= ./src/push_swap.h

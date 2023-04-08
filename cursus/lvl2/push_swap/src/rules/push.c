@@ -11,10 +11,11 @@
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+#include "../../lib/libft.h"
 
 /* Take the first element at the top of one stack
 and put it at the top of the other */
-char	push(t_stack **src, t_stack **dst)
+static char	push(t_stack **src, t_stack **dst)
 {
 	t_stack *second_src;
 
@@ -29,4 +30,18 @@ char	push(t_stack **src, t_stack **dst)
 	*src = second_src;
 
 	return (0);
+}
+
+char	pa(t_stack **stack_a, t_stack **stack_b)
+{
+	if (push(stack_b, stack_a))
+		return(ft_puts("pa\n"), 0);
+	return(1);
+}
+
+char	pb(t_stack **stack_a, t_stack **stack_b)
+{
+	if (push(stack_a, stack_b))
+		return(ft_puts("pb\n"), 0);
+	return(1);
 }

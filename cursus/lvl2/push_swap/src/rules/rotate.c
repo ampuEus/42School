@@ -11,10 +11,11 @@
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+#include "../../lib/libft.h"
 
 /* Shift up all elements of stack a by 1
 and the first element becomes the last one */
-char	rotate(t_stack **stack)
+static char	rotate(t_stack **stack)
 {
 	t_stack *second;
 
@@ -28,6 +29,20 @@ char	rotate(t_stack **stack)
 	return (0);
 }
 
+char	ra(t_stack **stack)
+{
+	if (rotate(stack))
+		return(ft_puts("ra\n"), 0);
+	return(1);
+}
+
+char	rb(t_stack **stack)
+{
+	if (rotate(stack))
+		return(ft_puts("rb\n"), 0);
+	return(1);
+}
+
 /* Shift up all elements of stack a by 1 and the first element
 becomes the last one of stack a and stack b at the same time */
 char	rr(t_stack **stack_a, t_stack **stack_b)
@@ -36,36 +51,6 @@ char	rr(t_stack **stack_a, t_stack **stack_b)
 		return (1);
 	rotate(stack_a);
 	rotate(stack_b);
-	return (0);
-}
-
-/* Shift up all elements of stack a by 1
-and the first element becomes the last one */
-char	rrotate(t_stack **stack)
-{
-	t_stack *first;
-	t_stack *prelast;
-
-	if (!(*stack))
-		return (1);
-	first = *stack;
-	while((*stack)->next)
-	{
-		prelast = *stack;
-		*stack = (*stack)->next;
-	}
-	stacklast(*stack)->next = first;
-	prelast->next = NULL;
-	return (0);
-}
-
-/* Shift up all elements of stack a by 1 and the first element
-becomes the last one of stack a and stack b at the same time */
-char	rrr(t_stack **stack_a, t_stack **stack_b)
-{
-	if (!(*stack_a) || !(*stack_b))
-		return (1);
-	rrotate(stack_a);
-	rrotate(stack_b);
+	ft_puts("rr\n");
 	return (0);
 }

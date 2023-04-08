@@ -30,12 +30,12 @@ char simple_sort(t_stack **stack_a, t_stack **stack_b)
 	{
 		smaller = is_smaller(*stack_a);
 		if (!smaller)
-			push(stack_a, stack_b);
+			pb(stack_a, stack_b);
 		else
 			while(smaller--)
-				rotate(stack_a);
+				ra(stack_a);
 	}
 	while (*stack_b)
-		push(stack_b, stack_a);
+		pa(stack_a, stack_b);
 	return (0);
 }

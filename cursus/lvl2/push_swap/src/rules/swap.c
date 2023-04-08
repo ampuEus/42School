@@ -11,9 +11,10 @@
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+#include "../../lib/libft.h"
 
 /* Swap the first 2 elements at the top of stack */
-char	swap(t_stack **stack)
+static char	swap(t_stack **stack)
 {
 	t_stack *first;
 
@@ -26,6 +27,20 @@ char	swap(t_stack **stack)
 	return (0);
 }
 
+char	sa(t_stack **stack)
+{
+	if (swap(stack))
+		return(ft_puts("sa\n"), 0);
+	return(1);
+}
+
+char	sb(t_stack **stack)
+{
+	if (swap(stack))
+		return(ft_puts("sb\n"), 0);
+	return(1);
+}
+
 /* Swap the first 2 elements at the top of
 stack a and stack b at the same time */
 char	ss(t_stack **stack_a, t_stack **stack_b)
@@ -34,5 +49,6 @@ char	ss(t_stack **stack_a, t_stack **stack_b)
 		return (1);
 	swap(stack_a);
 	swap(stack_b);
+	ft_puts("ss\n");
 	return (0);
 }
