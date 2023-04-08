@@ -12,8 +12,22 @@
 
 #include "push_swap.h"
 #include "../lib/libft.h"
-#include <unistd.h>
 #include <stdlib.h>
+
+char	is_sorted(t_stack *stack)
+{
+	int	pre_nbr;
+
+	pre_nbr = stack->data;
+	while(stack)
+	{
+		if (pre_nbr > stack->data)
+			return(0);
+		pre_nbr = stack->data;
+		stack = stack->next;
+	}
+	return(1);
+}
 
 int	main(int argc, char **argv)
 {
@@ -27,7 +41,9 @@ int	main(int argc, char **argv)
 		return (write(2, "Something formating the input went wrong.\n", 42), 1);
 	ft_memset(&stack_b, '\0', sizeof(stack_b));
 
-	simple_sort(&stack_a, &stack_b);
+	// simple_sort(&stack_a, &stack_b);
+	// is_sorted(stack_a);
+	nbr3_sort(&stack_a);
 
 	while(stack_a)
 	{
