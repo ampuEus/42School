@@ -65,6 +65,36 @@ static char	cost2place(t_stack *stack_a, t_stack *stack_b)
 	return(0);
 }
 
+static char	costcalc(t_stack *stack)
+{
+	if (!stack)
+		return(1);
+	while(stack)
+	{
+		if ((cost2top < 0 && cost2place < 0) \
+		|| (cost2top > 0 && cost2place > 0))
+			stack->totalcost = ft_max(ft_abs(cost2top), ft_abs(cost2place));
+		else
+			stack->totalcost = ft_abs(cost2top) + ft_abs(cost2place);
+	}
+	return(0);
+}
+
+
+static char	move(t_stack *stack_a, t_stack *stack_b)
+{
+	if (!stack_a || !stack_b)
+		return(1);
+
+//1- calcular el coste total, teniendo en cuenta los movimientos dobles
+//2- elegir el costo más pequeño
+//3- hacerlos movimientos
+
+
+
+	return(0);
+}
+
 
 
 
