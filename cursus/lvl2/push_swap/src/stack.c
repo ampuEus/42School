@@ -34,6 +34,19 @@ t_stack	*stacklast(t_stack *lst)
 	return (lst);
 }
 
+unsigned int	stacklen(t_stack *lst)
+{
+	unsigned int	len;
+
+	len = 0;
+	while (lst)
+	{
+		len++;
+		lst = lst->next;
+	}
+	return(len);
+}
+
 void	stackadd(t_stack **lst, t_stack *new)
 {
 	t_stack	*tmp;

@@ -29,7 +29,8 @@ SRC			= main.c \
 				rules/rotate.c \
 				rules/rrotate.c \
 				sort_algorithms/simple_sort.c \
-				sort_algorithms/nbr3_sort.c
+				sort_algorithms/nbr3_sort.c \
+				sort_algorithms/insertion_sort.c
 
 INCLUDE		= ./src/push_swap.h
 
@@ -57,6 +58,7 @@ clean:
 
 fclean:	clean
 	rm -rf $(BIN_PATH)
+	rm -rf *.out
 
 $(NAME): $(OBJ) | $(BIN_PATH)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIB_A)
@@ -67,7 +69,7 @@ no_flag: | $(BIN_PATH)
 
 debug: | $(BIN_PATH)
 	$(CC) -g3 $(addprefix $(SRC_PATH)/, $(SRC)) $(LIB_A)
-#mv -v a.out* $(BIN_PATH)
+	mv -v a.out* $(BIN_PATH)
 
 fsanitize:
 	$(CC) -fsanitize=address -g3 $(addprefix $(SRC_PATH)/, $(SRC)) $(LIB_A)

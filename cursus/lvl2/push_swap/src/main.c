@@ -42,8 +42,9 @@ int	main(int argc, char **argv)
 	ft_memset(&stack_b, '\0', sizeof(stack_b));
 
 	// simple_sort(&stack_a, &stack_b);
-	// is_sorted(stack_a);
-	nbr3_sort(&stack_a);
+	stack_b = input(argc - 1, (const char **)(argv + 1));
+	insertion_sort(&stack_a, &stack_b);
+
 
 	while(stack_a)
 	{

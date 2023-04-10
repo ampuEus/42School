@@ -20,6 +20,8 @@ typedef struct s_stack
 {
 	int				data;
 	struct s_stack	*next;
+	int				cost2top;
+	int				cost2place;
 }					t_stack;
 
 /* ---------- Constants ---------- */
@@ -30,6 +32,7 @@ typedef struct s_stack
 /* stack */
 t_stack	*stacknew(int nbr);
 t_stack	*stacklast(t_stack *lst);
+unsigned int	stacklen(t_stack *lst);
 void	stackadd(t_stack **lst, t_stack *new);
 void	stackiter(t_stack *lst, void (*f)(void *));
 void	stackfree(t_stack **lst);
@@ -50,6 +53,7 @@ char	rrr(t_stack **stack_a, t_stack **stack_b);
 /* sort algorithms */
 char	simple_sort(t_stack **stack_a, t_stack **stack_b);
 char	nbr3_sort(t_stack **stack);
+char	insertion_sort(t_stack **stack_a, t_stack **stack_b);
 
 t_stack	*input(const int arg_len, const char **str);
 char	is_sorted(t_stack *stack);
