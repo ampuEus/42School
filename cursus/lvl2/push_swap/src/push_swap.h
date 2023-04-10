@@ -22,6 +22,7 @@ typedef struct s_stack
 	struct s_stack	*next;
 	int				cost2top;
 	int				cost2place;
+	int				totalcost
 }					t_stack;
 
 /* ---------- Constants ---------- */
