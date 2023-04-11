@@ -1,7 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cost.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/11 20:11:47 by daampuru          #+#    #+#             */
+/*   Updated: 2023/04/11 20:26:49 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include "push_swap.h"
 #include "../lib/libft.h"
 
-/* Cost to move a number. From the middle of the stack up is
+/* Cost to move a number to top of the stack.
+NOTE: From the middle of the stack up is
 positive and from the middle down negative to know if you
 have to use "rotate" or "reverse rotate" */
 static char	cost2top(t_stack *stack)
@@ -25,14 +39,18 @@ static char	cost2top(t_stack *stack)
 }
 
 /* Cost to place the number on its position in the stack.
-From the middle of the stack up is positive and
+There are 3 cases when you add new value on other stack:
+	1- The value is the smallest
+	2- The value is the bigest
+	3- The value is between other numbers in the ohter stack
+NOTE: From the middle of the stack up is positive and
 from the middle down negative to know if you have to use
 "rotate" or "reverse rotate" */
 static char	cost2place(t_stack *stack_a, t_stack *stack_b)
 {
 	int				cost;
 	t_stack			*frist_b;
-	t_stack			*next_b;
+	t_stack			*pre_b;
 	unsigned int	len_b;
 
 	if (!stack_a || !stack_b)
@@ -43,26 +61,25 @@ static char	cost2place(t_stack *stack_a, t_stack *stack_b)
 	{
 		cost = 0;
 		stack_b = frist_b;
-		while (stack_b)
+		pre_b = stacklast(stack_b);
+		while (stack_b && stack_b->next)
 		{
-			next_b = stack_b->next;
-			if (!next_b)
+			printf("pre = %i\n", pre_b->data);
+			printf("ENTRA = %i\n", stack_a->data);
+			// if (cost >= (int)(len_b) / 2)
+			// 	cost -= len_b;
+			if (stack_b->data > pre_b->data && stack_a->data < pre_b->data)
 			{
-				cost = 0;
 				break;
 			}
-			if (stack_a->data > stack_b->data)// && stack_b->data > next_b->data)
-			{
-				if (stack_b->data < next_b->data && stack_b->data < stacklast(stack_b)->data)
-					cost++;
-				else
-					break;
-			}
-			if (cost >= (int)(len_b) / 2)
-				cost -= len_b;
 			cost++;
-			if (stack_b->data < next_b->data)//&& stack_b->data < stacklast(stack_b)->data)
+			if (stack_b->data < stack_a->data && stack_a->data < pre_b->data)
+			{
+			printf("PASA = %i\n", stack_a->data);
 				break;
+			}
+			printf("SIGUE = %i\n", stack_a->data);
+			pre_b = stack_b;
 			stack_b = stack_b->next;
 		}
 		stack_a->cost2place = cost;
