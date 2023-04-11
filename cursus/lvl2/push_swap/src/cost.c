@@ -38,51 +38,49 @@ static char	cost2top(t_stack *stack)
 	return (0);
 }
 
-/* Cost to place the number on its position in the stack.
-There are 3 cases when you add new value on other stack:
+/* There are 3 cases when you add new value on other stack:
 	1- The value is the smallest
 	2- The value is the bigest
-	3- The value is between other numbers in the ohter stack
+	3- The value is between other numbers in the ohter stack */
+static int	nbrplace(t_stack *stack, int nbr)
+{
+	int		pos;
+	t_stack	*pre;
+	int		max;
+	int		min;
+
+	pos = 0;
+	pre = stacklast(stack);
+	max = stackupper(stack, nbr);
+	min = stacklower(stack, nbr);
+	while (stack)
+	{
+		printf("Numero = %i, max = %i, min = %i, actual = %i, pre = %i\n", \
+		nbr, max, min, stack->data, pre->data);
+		if (nbr == min && stack->data == max)
+			break;
+		printf("PASA1\n");
+		pos++;
+		if ((nbr == max && stack->data == min) \
+		|| pre->data < nbr && nbr < stack->data)
+			break;
+		pre = stack;
+		stack = stack->next;
+	}
+	return (pos);
+}
+
+/* Cost to place the number on its position in the stack.
 NOTE: From the middle of the stack up is positive and
 from the middle down negative to know if you have to use
 "rotate" or "reverse rotate" */
 static char	cost2place(t_stack *stack_a, t_stack *stack_b)
 {
-	int				cost;
-	t_stack			*frist_b;
-	t_stack			*pre_b;
-	unsigned int	len_b;
-
 	if (!stack_a || !stack_b)
-		return(1);
-	len_b = stacklen(stack_b);
-	frist_b = stack_b;
+		return (1);
 	while (stack_a)
 	{
-		cost = 0;
-		stack_b = frist_b;
-		pre_b = stacklast(stack_b);
-		while (stack_b && stack_b->next)
-		{
-			printf("pre = %i\n", pre_b->data);
-			printf("ENTRA = %i\n", stack_a->data);
-			// if (cost >= (int)(len_b) / 2)
-			// 	cost -= len_b;
-			if (stack_b->data > pre_b->data && stack_a->data < pre_b->data)
-			{
-				break;
-			}
-			cost++;
-			if (stack_b->data < stack_a->data && stack_a->data < pre_b->data)
-			{
-			printf("PASA = %i\n", stack_a->data);
-				break;
-			}
-			printf("SIGUE = %i\n", stack_a->data);
-			pre_b = stack_b;
-			stack_b = stack_b->next;
-		}
-		stack_a->cost2place = cost;
+		stack_a->cost2place = nbrplace(stack_b, stack_a->data);
 		stack_a = stack_a->next;
 	}
 	return (0);

@@ -37,6 +37,8 @@ unsigned int	stacklen(t_stack *lst);
 void			stackadd(t_stack **lst, t_stack *new);
 void			stackiter(t_stack *lst, void (*f)(void *));
 void			stackfree(t_stack **lst);
+int				stackupper(t_stack *stack, int nbr);
+int				stacklower(t_stack *stack, int nbr);
 
 /* movements / rules */
 char			sa(t_stack **stack);
