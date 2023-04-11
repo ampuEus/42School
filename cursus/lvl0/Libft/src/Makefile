@@ -31,7 +31,8 @@ BONUS_OBJ = $(BONUS_SRC:.c=.o)
 
 EXTENDED_SRC := ft_putchar.c ft_puts.c \
 	ft_abs.c \
-	ft_putnbr_base.c ft_putunbr_base.c ft_putulnbr_base.c ft_putnchar_fd.c ft_nbrlen.c ft_unbrlen.c
+	ft_putnbr_base.c ft_putunbr_base.c ft_putulnbr_base.c ft_putnchar_fd.c ft_nbrlen.c ft_unbrlen.c \
+	ft_max.c
 EXTENDED_OBJ := $(EXTENDED_SRC:.c=.o)
 
 INCLUDES = libft.h
