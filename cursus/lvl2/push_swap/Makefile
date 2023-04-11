@@ -61,6 +61,12 @@ fclean:	clean
 	rm -rf $(BIN_PATH)
 	rm -rf *.out
 
+libft:
+	$(MAKE) -C ../../lvl0/Libft/src fclean
+	$(MAKE) -C ../../lvl0/Libft/src all
+	cp ../../lvl0/Libft/src/libft.a $(LIB_A)
+	cp ../../lvl0/Libft/src/libft.h $(LIB_H)
+
 $(NAME): $(OBJ) | $(BIN_PATH)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIB_A)
 
