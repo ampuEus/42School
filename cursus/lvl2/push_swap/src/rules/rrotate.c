@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rrotate.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/11 18:39:07 by daampuru          #+#    #+#             */
+/*   Updated: 2023/04/11 18:39:23 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../push_swap.h"
 #include "../../lib/libft.h"
@@ -6,13 +17,13 @@
 and the first element becomes the last one */
 static char	rrotate(t_stack **stack)
 {
-	t_stack *first;
-	t_stack *prelast;
+	t_stack	*first;
+	t_stack	*prelast;
 
 	if (!(*stack))
 		return (1);
 	first = *stack;
-	while((*stack)->next)
+	while ((*stack)->next)
 	{
 		prelast = *stack;
 		*stack = (*stack)->next;
@@ -25,15 +36,15 @@ static char	rrotate(t_stack **stack)
 char	rra(t_stack **stack)
 {
 	if (!rrotate(stack))
-		return(ft_puts("rra\n"), 0);
-	return(1);
+		return (ft_puts("rra\n"), 0);
+	return (1);
 }
 
 char	rrb(t_stack **stack)
 {
 	if (!rrotate(stack))
-		return(ft_puts("rrb\n"), 0);
-	return(1);
+		return (ft_puts("rrb\n"), 0);
+	return (1);
 }
 
 /* Shift up all elements of stack a by 1 and the first element

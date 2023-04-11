@@ -6,14 +6,14 @@ positive and from the middle down negative to know if you
 have to use "rotate" or "reverse rotate" */
 static char	cost2top(t_stack *stack)
 {
-	int		cost;
+	int				cost;
 	unsigned int	stack_len;
 
 	if (!stack)
-		return(1);
+		return (1);
 	cost = 0;
 	stack_len = stacklen(stack);
-	while(stack)
+	while (stack)
 	{
 		stack->cost2top = cost;
 		if (cost >= (int)(stack_len) / 2)
@@ -21,7 +21,7 @@ static char	cost2top(t_stack *stack)
 		cost++;
 		stack = stack->next;
 	}
-	return(0);
+	return (0);
 }
 
 /* Cost to place the number on its position in the stack.
@@ -30,20 +30,20 @@ from the middle down negative to know if you have to use
 "rotate" or "reverse rotate" */
 static char	cost2place(t_stack *stack_a, t_stack *stack_b)
 {
-	int		cost;
-	t_stack	*frist_b;
-	t_stack	*next_b;
+	int				cost;
+	t_stack			*frist_b;
+	t_stack			*next_b;
 	unsigned int	len_b;
 
 	if (!stack_a || !stack_b)
 		return(1);
 	len_b = stacklen(stack_b);
 	frist_b = stack_b;
-	while(stack_a)
+	while (stack_a)
 	{
 		cost = 0;
 		stack_b = frist_b;
-		while(stack_b)
+		while (stack_b)
 		{
 			next_b = stack_b->next;
 			if (!next_b)
@@ -68,7 +68,7 @@ static char	cost2place(t_stack *stack_a, t_stack *stack_b)
 		stack_a->cost2place = cost;
 		stack_a = stack_a->next;
 	}
-	return(0);
+	return (0);
 }
 
 /* TODO descripcion*/
@@ -78,8 +78,8 @@ static char	costotal(t_stack *stack)
 	int	cost2place;
 
 	if (!stack)
-		return(1);
-	while(stack)
+		return (1);
+	while (stack)
 	{
 		cost2top = stack->cost2top;
 		cost2place = stack->cost2place;
@@ -103,16 +103,16 @@ char	cost(t_stack *stack_a, t_stack *stack_b)
 	costotal(stack_a);
 
 	printf("value	cost2top	cost2place	totalcost\n");
-	while(stack_a)
+	while (stack_a)
 	{
 		printf("%i	%i		%i		%i\n", \
 		stack_a->data, stack_a->cost2top, stack_a->cost2place, stack_a->totalcost);
 		stack_a = stack_a->next;
 	}
-	while(stack_b)
+	while (stack_b)
 	{
 		printf("stack_b = %i\n", stack_b->data);
 		stack_b = stack_b->next;
 	}
-	return(0);
+	return (0);
 }

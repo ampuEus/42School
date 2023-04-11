@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 20:32:53 by daampuru          #+#    #+#             */
-/*   Updated: 2023/01/04 22:39:14 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:40:46 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ unsigned int	stacklen(t_stack *lst)
 		len++;
 		lst = lst->next;
 	}
-	return(len);
+	return (len);
 }
 
 void	stackadd(t_stack **lst, t_stack *new)
@@ -76,4 +76,3 @@ void	stackfree(t_stack **lst)
 	}
 	*lst = NULL;
 }
-

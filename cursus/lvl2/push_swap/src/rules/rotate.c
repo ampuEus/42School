@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 17:23:45 by daampuru          #+#    #+#             */
-/*   Updated: 2023/03/29 18:01:00 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:39:59 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@
 and the first element becomes the last one */
 static char	rotate(t_stack **stack)
 {
-	t_stack *second;
+	t_stack	*second;
 
 	if (!(*stack))
 		return (1);
-
 	second = (*stack)->next;
 	stacklast(*stack)->next = *stack;
 	(*stack)->next = NULL;
@@ -32,15 +31,15 @@ static char	rotate(t_stack **stack)
 char	ra(t_stack **stack)
 {
 	if (!rotate(stack))
-		return(ft_puts("ra\n"), 0);
-	return(1);
+		return (ft_puts("ra\n"), 0);
+	return (1);
 }
 
 char	rb(t_stack **stack)
 {
 	if (!rotate(stack))
-		return(ft_puts("rb\n"), 0);
-	return(1);
+		return (ft_puts("rb\n"), 0);
+	return (1);
 }
 
 /* Shift up all elements of stack a by 1 and the first element

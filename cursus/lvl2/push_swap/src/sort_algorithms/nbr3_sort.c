@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   nbr3_sort.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/11 18:38:12 by daampuru          #+#    #+#             */
+/*   Updated: 2023/04/11 18:38:26 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 /* Sort algorithm for the cesa when a stack had only 3 numbers.
@@ -14,7 +26,7 @@ char	nbr3_sort(t_stack **stack)
 	t_stack	*second;
 	t_stack	*third;
 
-	while(!is_sorted(*stack))
+	while (!is_sorted(*stack))
 	{
 		first = (*stack);
 		second = (*stack)->next;

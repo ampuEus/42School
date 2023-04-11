@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:45:52 by daampuru          #+#    #+#             */
-/*   Updated: 2023/03/22 21:00:29 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:44:54 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ Things to check:
 
 static char	is_onlynbr(const int arg_len, const char **str)
 {
-	int	word;
+	int				word;
 	unsigned int	c;
 
 	word = 0;
@@ -49,11 +49,11 @@ static char	is_onlynbr(const int arg_len, const char **str)
 
 static char	in_int_range(const int arg_len, const char **str)
 {
-	int	word;
-	int word_len;
+	int				word;
+	int				word_len;
 	unsigned int	c;
 	unsigned int	i;
-	char	neg;
+	char			neg;
 
 	word = 0;
 	while (word < arg_len)
@@ -111,7 +111,7 @@ static t_stack	*str2int(const char arg_len, const char **str)
 
 static char	is_samenbr(t_stack *stack)
 {
-	t_stack *next_stack;
+	t_stack	*next_stack;
 
 	while (stack)
 	{
@@ -119,14 +119,13 @@ static char	is_samenbr(t_stack *stack)
 		while (next_stack)
 		{
 			if (next_stack->data == stack->data)
-				return(1);
+				return (1);
 			next_stack = next_stack->next;
 		}
 		stack = stack->next;
 	}
 	return (0);
 }
-
 
 t_stack	*input(const int arg_len, const char **str)
 {

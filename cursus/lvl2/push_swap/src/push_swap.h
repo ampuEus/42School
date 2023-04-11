@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 22:10:40 by daampuru          #+#    #+#             */
-/*   Updated: 2023/03/29 18:00:25 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:41:56 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,33 +31,33 @@ typedef struct s_stack
 
 /* ---------- Functions ---------- */
 /* stack */
-t_stack	*stacknew(int nbr);
-t_stack	*stacklast(t_stack *lst);
+t_stack			*stacknew(int nbr);
+t_stack			*stacklast(t_stack *lst);
 unsigned int	stacklen(t_stack *lst);
-void	stackadd(t_stack **lst, t_stack *new);
-void	stackiter(t_stack *lst, void (*f)(void *));
-void	stackfree(t_stack **lst);
+void			stackadd(t_stack **lst, t_stack *new);
+void			stackiter(t_stack *lst, void (*f)(void *));
+void			stackfree(t_stack **lst);
 
 /* movements / rules */
-char	sa(t_stack **stack);
-char	sb(t_stack **stack);
-char	ss(t_stack **stack_a, t_stack **stack_b);
-char	pa(t_stack **stack_b, t_stack **stack_a);
-char	pb(t_stack **stack_a, t_stack **stack_b);
-char	ra(t_stack **stack);
-char	rb(t_stack **stack);
-char	rr(t_stack **stack_a, t_stack **stack_b);
-char	rra(t_stack **stack);
-char	rrb(t_stack **stack);
-char	rrr(t_stack **stack_a, t_stack **stack_b);
+char			sa(t_stack **stack);
+char			sb(t_stack **stack);
+char			ss(t_stack **stack_a, t_stack **stack_b);
+char			pa(t_stack **stack_b, t_stack **stack_a);
+char			pb(t_stack **stack_a, t_stack **stack_b);
+char			ra(t_stack **stack);
+char			rb(t_stack **stack);
+char			rr(t_stack **stack_a, t_stack **stack_b);
+char			rra(t_stack **stack);
+char			rrb(t_stack **stack);
+char			rrr(t_stack **stack_a, t_stack **stack_b);
 
 /* sort algorithms */
-char	simple_sort(t_stack **stack_a, t_stack **stack_b);
-char	nbr3_sort(t_stack **stack);
-char	insertion_sort(t_stack **stack_a, t_stack **stack_b);
+char			simple_sort(t_stack **stack_a, t_stack **stack_b);
+char			nbr3_sort(t_stack **stack);
+char			insertion_sort(t_stack **stack_a, t_stack **stack_b);
 
-t_stack	*input(const int arg_len, const char **str);
-char	is_sorted(t_stack *stack);
-char	cost(t_stack *stack_a, t_stack *stack_b);
+t_stack			*input(const int arg_len, const char **str);
+char			is_sorted(t_stack *stack);
+char			cost(t_stack *stack_a, t_stack *stack_b);
 
 #endif

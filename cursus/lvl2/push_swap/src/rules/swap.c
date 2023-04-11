@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:47:11 by daampuru          #+#    #+#             */
-/*   Updated: 2023/03/29 17:23:14 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:38:58 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /* Swap the first 2 elements at the top of stack */
 static char	swap(t_stack **stack)
 {
-	t_stack *first;
+	t_stack	*first;
 
 	if (!(*stack))
 		return (1);
@@ -30,15 +30,15 @@ static char	swap(t_stack **stack)
 char	sa(t_stack **stack)
 {
 	if (!swap(stack))
-		return(ft_puts("sa\n"), 0);
-	return(1);
+		return (ft_puts("sa\n"), 0);
+	return (1);
 }
 
 char	sb(t_stack **stack)
 {
 	if (!swap(stack))
-		return(ft_puts("sb\n"), 0);
-	return(1);
+		return (ft_puts("sb\n"), 0);
+	return (1);
 }
 
 /* Swap the first 2 elements at the top of
