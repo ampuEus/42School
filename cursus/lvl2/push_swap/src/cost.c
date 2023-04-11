@@ -55,14 +55,11 @@ static int	nbrplace(t_stack *stack, int nbr)
 	min = stacklower(stack, nbr);
 	while (stack)
 	{
-		printf("Numero = %i, max = %i, min = %i, actual = %i, pre = %i\n", \
-		nbr, max, min, stack->data, pre->data);
-		if (nbr == min && stack->data == max)
+		if ((nbr == min && stack->data == max) \
+		|| (pre->data > nbr && nbr > stack->data))
 			break;
-		printf("PASA1\n");
 		pos++;
-		if ((nbr == max && stack->data == min) \
-		|| pre->data < nbr && nbr < stack->data)
+		if (nbr == max && stack->data == min)
 			break;
 		pre = stack;
 		stack = stack->next;
