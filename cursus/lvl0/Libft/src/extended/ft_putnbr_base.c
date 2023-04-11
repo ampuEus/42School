@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 07:15:07 by daampuru          #+#    #+#             */
-/*   Updated: 2022/11/06 20:19:11 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:33:13 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	check_base(const char *base)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	if (!base || !*base)
@@ -32,8 +32,8 @@ static char	check_base(const char *base)
 
 unsigned int	ft_putnbr_base(int nbr, const char *base)
 {
-	unsigned int count;
-	size_t base_len;
+	unsigned int	count;
+	size_t			base_len;
 
 	if (!check_base(base))
 		return (-1);

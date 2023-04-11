@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 14:37:42 by daampuru          #+#    #+#             */
-/*   Updated: 2022/09/03 14:51:27 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:33:22 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_puts(const char *s)
 {
-	unsigned int count;
+	unsigned int	count;
 
 	count = 0;
 	while (s[count])
