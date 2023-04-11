@@ -22,7 +22,7 @@ typedef struct s_stack
 	struct s_stack	*next;
 	int				cost2top;
 	int				cost2place;
-	int				totalcost
+	int				totalcost;
 }					t_stack;
 
 /* ---------- Constants ---------- */
@@ -58,5 +58,6 @@ char	insertion_sort(t_stack **stack_a, t_stack **stack_b);
 
 t_stack	*input(const int arg_len, const char **str);
 char	is_sorted(t_stack *stack);
+char	cost(t_stack *stack_a, t_stack *stack_b);
 
 #endif

@@ -24,6 +24,7 @@ SRC_PATH	= ./src
 SRC			= main.c \
 				input.c \
 				stack.c \
+				cost.c \
 				rules/swap.c \
 				rules/push.c \
 				rules/rotate.c \

@@ -18,6 +18,8 @@ char	is_sorted(t_stack *stack)
 {
 	int	pre_nbr;
 
+	if (!stack)
+		return(0);
 	pre_nbr = stack->data;
 	while(stack)
 	{
@@ -42,10 +44,12 @@ int	main(int argc, char **argv)
 	ft_memset(&stack_b, '\0', sizeof(stack_b));
 
 	// simple_sort(&stack_a, &stack_b);
-	stack_b = input(argc - 1, (const char **)(argv + 1));
+	//stack_b = input(argc - 1, (const char **)(argv + 1));
 	insertion_sort(&stack_a, &stack_b);
 
-
+	printf("----- debug -----\n");
+	printf("is_sorted = %i\n", is_sorted(stack_a));
+	printf("----- ----- -----\n");
 	while(stack_a)
 	{
 		printf("stack_a = %i\n", stack_a->data);

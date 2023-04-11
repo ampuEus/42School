@@ -1,103 +1,50 @@
 #include "../push_swap.h"
 
-/* Cost to move a number. From the middle of the stack up is
-positive and from the middle down negative to know if you
-have to use "rotate" or "reverse rotate" */
-static char	cost2top(t_stack *stack)
+static char	move(t_stack **stack_a, t_stack **stack_b, t_stack *value)
 {
-	int		cost;
-	unsigned int	stack_len;
-
-	if (!stack)
-		return(1);
-	cost = 0;
-	stack_len = stacklen(stack);
-	while(stack)
-	{
-		stack->cost2top = cost;
-		if (cost >= (int)(stack_len) / 2)
-			cost -= stack_len;
-		cost++;
-		stack = stack->next;
-	}
-	return(0);
-}
-
-/* Cost to place the number on its position in the stack.
-From the middle of the stack up is positive and
-from the middle down negative to know if you have to use
-"rotate" or "reverse rotate" */
-static char	cost2place(t_stack *stack_a, t_stack *stack_b)
-{
-	int		cost;
-	t_stack	*frist_b;
-	t_stack	*next_b;
-	unsigned int	len_b;
-
 	if (!stack_a || !stack_b)
 		return(1);
-	len_b = stacklen(stack_b);
-	frist_b = stack_b;
-	while(stack_a)
+	while(value->cost2top || value->cost2place)
 	{
-		cost = 0;
-		stack_b = frist_b;
-		while(stack_b)
+		if (value->cost2top < 0 && value->cost2place < 0)
 		{
-			next_b = stack_b->next;
-			if (stack_a->data > stack_b->data)
-				break;
-			if (!next_b)
-			{
-				cost = 0;
-				break;
-			}
-			if (cost >= (int)(len_b) / 2)
-				cost -= len_b;
-			cost++;
-			if (stack_b->data < next_b->data)
-				break;
-			stack_b = stack_b->next;
+			rrr(stack_a, stack_b);
+			value->cost2top++;
+			value->cost2place++;
 		}
-		stack_a->cost2place = cost;
-		stack_a = stack_a->next;
-	}
-	return(0);
-}
-
-static char	costcalc(t_stack *stack)
-{
-	if (!stack)
-		return(1);
-	while(stack)
-	{
-		if ((cost2top < 0 && cost2place < 0) \
-		|| (cost2top > 0 && cost2place > 0))
-			stack->totalcost = ft_max(ft_abs(cost2top), ft_abs(cost2place));
+		else if (value->cost2top > 0 && value->cost2place > 0)
+		{
+			rr(stack_a, stack_b);
+			value->cost2top--;
+			value->cost2place--;
+		}
 		else
-			stack->totalcost = ft_abs(cost2top) + ft_abs(cost2place);
+		{
+			if (value->cost2top < 0)
+			{
+				rra(stack_a);
+				value->cost2top++;
+			}
+			else if (value->cost2top > 0)
+			{
+				ra(stack_a);
+				value->cost2top--;
+			}
+			if (value->cost2place < 0)
+			{
+				rrb(stack_b);
+				value->cost2place++;
+			}
+			else if (value->cost2place > 0)
+			{
+				rb(stack_b);
+				value->cost2place--;
+			}
+		}
 	}
+	pb(stack_a, stack_b);
 	return(0);
 }
-
-
-static char	move(t_stack *stack_a, t_stack *stack_b)
-{
-	if (!stack_a || !stack_b)
-		return(1);
-
-//1- calcular el coste total, teniendo en cuenta los movimientos dobles
-//2- elegir el costo más pequeño
-//3- hacerlos movimientos
-
-
-
-	return(0);
-}
-
-
-
-
 
 /* Values from the unsorted part (stack A) are picked
 and placed in descending order at the correct position in the sorted part (stack B).
@@ -107,18 +54,29 @@ And the total cost of each value is divided into:
 	2- The cost to put it is its place in the B stacks. */
 char	insertion_sort(t_stack **stack_a, t_stack **stack_b)
 {
-	cost2top(*stack_a);
-	cost2top(*stack_b);
-	(*stack_a)->data = 0;
-	(*stack_b)->next->next->next->data = 10;
-	cost2place(*stack_a, *stack_b);
+	t_stack	*stack_costmin;
 
-	while(*stack_a)
+
+	if (stacklen(*stack_a) == 1 || is_sorted(*stack_a))
+		return (0);
+	if (stacklen(*stack_a) == 2 && !is_sorted(*stack_a))
 	{
-		printf("stack_a = %i\n", (*stack_a)->cost2place);
-		*stack_a = (*stack_a)->next;
+		sa(stack_a);
+		return(0);
 	}
+	while (*stack_a)
+	{
+	//1- calcular el coste total, teniendo en cuenta los movimientos dobles
+		cost(*stack_a, *stack_b);
+	//2- elegir el costo más pequeño
+		stack_costmin = (*stack_a);
+		printf("value = %i\n", stack_costmin->data);
+	//3- hacer los movimientos
+		move(stack_a, stack_b, *stack_a);
+	}
+	// if (stacklen(*stack_a) == 3)
+	// 	nbr3_sort(stack_a);
+	while (*stack_b)
+		pa(stack_a, stack_b);
 	return (0);
 }
-
-
