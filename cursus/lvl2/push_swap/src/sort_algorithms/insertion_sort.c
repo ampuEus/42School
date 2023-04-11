@@ -1,5 +1,19 @@
 #include "../push_swap.h"
 
+static t_stack	*mincost(t_stack *stack)
+{
+	t_stack *mincost;
+
+	mincost = stack;
+	while (stack)
+	{
+		if (mincost->totalcost > stack->totalcost)
+			mincost = stack;
+		stack = stack->next;
+	}
+	return (mincost);
+}
+
 static char	move(t_stack **stack_a, t_stack **stack_b, t_stack *value)
 {
 	if (!stack_a || !stack_b)
@@ -69,7 +83,7 @@ char	insertion_sort(t_stack **stack_a, t_stack **stack_b)
 	//1- calcular el coste total, teniendo en cuenta los movimientos dobles
 		cost(*stack_a, *stack_b);
 	//2- elegir el costo más pequeño
-		stack_costmin = (*stack_a);
+		stack_costmin = mincost(*stack_a);
 		printf("value = %i\n", stack_costmin->data);
 	//3- hacer los movimientos
 		move(stack_a, stack_b, *stack_a);
