@@ -139,3 +139,7 @@ Si es una matriz asignada dinámicamente (`int* matriz = malloc(sizeof(int)*10);
   - https://sbme-tutorials.github.io/2018/data-structures/data-structures.html
   - https://www.educba.com/linked-list-advantages/
 
+  - https://pinetools.com/es/generador-numeros-aleatorios
+  - https://www.calculatorsoup.com/calculators/statistics/random-number-generator.php
+
+  - https://stackoverflow.com/questions/1444406/how-to-delete-duplicate-lines-in-a-file-without-sorting-it-in-unix
