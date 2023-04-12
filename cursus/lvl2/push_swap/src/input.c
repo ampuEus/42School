@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:45:52 by daampuru          #+#    #+#             */
-/*   Updated: 2023/04/11 18:44:54 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/04/12 21:16:16 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,29 @@ Things to check:
 #include "push_swap.h"
 #include "../lib/libft.h"
 
-static char	is_onlynbr(const int arg_len, const char **str)
+static char	is_onlynbr(char **str)
 {
 	int				word;
 	unsigned int	c;
 
 	word = 0;
-	while (word < arg_len)
+	while (str[word])
 	{
 		c = 0;
 		while (str[word][c] \
 		&& (str[word][c] == ' ' || str[word][c] == '+' || str[word][c] == '-'))
 			c++;
-		if (!ft_isdigit(str[word][c]))
+		if (!ft_isdigit(str[word][c++]))
 			return (0);
-		while (str[word][c])
-			if (!ft_isdigit(str[word][c++]))
-				return (0);
+		// while (str[word][c])
+		// 	if (!ft_isdigit(str[word][c++]))
+		// 		return (0);
 		word++;
 	}
 	return (1);
 }
 
-static char	in_int_range(const int arg_len, const char **str)
+static char	in_int_range(char **str)
 {
 	int				word;
 	int				word_len;
@@ -56,7 +56,7 @@ static char	in_int_range(const int arg_len, const char **str)
 	char			neg;
 
 	word = 0;
-	while (word < arg_len)
+	while (str[word])
 	{
 		word_len = ft_strlen(str[word]);
 		if (word_len >= 10)
@@ -129,11 +129,15 @@ static char	is_samenbr(t_stack *stack)
 t_stack	*input(const int arg_len, const char **str)
 {
 	t_stack	*stack;
+	char	**arr_str;
 
-	if (!is_onlynbr(arg_len, str))
+	arr_str = ft_split(*str, ' ');
+	if (!arr_str)
+		return (write(2, "Something goes wrong spliting the input.\n", 39), NULL);
+	if (!is_onlynbr(arr_str))
 		return (write(2, "At least one of the given arguments has a character \
 that is not numeric.\n", 74), NULL);
-	if (!in_int_range(arg_len, str))
+	if (!in_int_range(arr_str))
 		return (write(2, "At least one of the given arguments is not an \
 \"int\" datatype.\n", 63), NULL);
 	stack = str2int(arg_len, str);
