@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "push_swap.h"
 #include "../lib/libft.h"
 
@@ -73,11 +72,18 @@ from the middle down negative to know if you have to use
 "rotate" or "reverse rotate" */
 static char	cost2place(t_stack *stack_a, t_stack *stack_b)
 {
+	int				cost;
+	unsigned int	stack_len;
+
 	if (!stack_a || !stack_b)
 		return (1);
+	stack_len = stacklen(stack_b);
 	while (stack_a)
 	{
-		stack_a->cost2place = nbrplace(stack_b, stack_a->data);
+		cost = nbrplace(stack_b, stack_a->data);
+		if (cost >= (int)(stack_len) / 2)
+			cost -= stack_len;
+		stack_a->cost2place = cost;
 		stack_a = stack_a->next;
 	}
 	return (0);
@@ -113,7 +119,7 @@ char	cost(t_stack *stack_a, t_stack *stack_b)
 	cost2top(stack_a);
 	cost2place(stack_a, stack_b);
 	costotal(stack_a);
-
+/*
 	printf("value	cost2top	cost2place	totalcost\n");
 	while (stack_a)
 	{
@@ -126,5 +132,6 @@ char	cost(t_stack *stack_a, t_stack *stack_b)
 		printf("stack_b = %i\n", stack_b->data);
 		stack_b = stack_b->next;
 	}
+*/
 	return (0);
 }

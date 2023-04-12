@@ -54,6 +54,7 @@ char			rrb(t_stack **stack);
 char			rrr(t_stack **stack_a, t_stack **stack_b);
 
 /* sort algorithms */
+char			sort(t_stack **stack_a, t_stack **stack_b);
 char			simple_sort(t_stack **stack_a, t_stack **stack_b);
 char			nbr3_sort(t_stack **stack);
 char			insertion_sort(t_stack **stack_a, t_stack **stack_b);

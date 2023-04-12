@@ -30,6 +30,7 @@ SRC			= main.c \
 				rules/push.c \
 				rules/rotate.c \
 				rules/rrotate.c \
+				sort_algorithms/sort.c \
 				sort_algorithms/simple_sort.c \
 				sort_algorithms/nbr3_sort.c \
 				sort_algorithms/insertion_sort.c
@@ -67,6 +68,10 @@ libft:
 	$(MAKE) -C ../../lvl0/Libft/src all
 	cp ../../lvl0/Libft/src/libft.a $(LIB_A)
 	cp ../../lvl0/Libft/src/libft.h $(LIB_H)
+
+
+test1000: $(NAME)
+	./bin/push_swap '$(shell shuf -i 1-5000 -n 1000)'
 
 $(NAME): $(OBJ) | $(BIN_PATH)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIB_A)

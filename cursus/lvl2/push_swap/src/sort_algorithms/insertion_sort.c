@@ -70,26 +70,15 @@ char	insertion_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*stack_costmin;
 
-
-	if (stacklen(*stack_a) == 1 || is_sorted(*stack_a))
-		return (0);
-	if (stacklen(*stack_a) == 2 && !is_sorted(*stack_a))
-	{
-		sa(stack_a);
-		return(0);
-	}
 	while (*stack_a)
 	{
-	//1- calcular el coste total, teniendo en cuenta los movimientos dobles
 		cost(*stack_a, *stack_b);
-	//2- elegir el costo más pequeño
 		stack_costmin = mincost(*stack_a);
-		printf("value = %i\n", stack_costmin->data);
-	//3- hacer los movimientos
-		move(stack_a, stack_b, *stack_a);
+		move(stack_a, stack_b, stack_costmin);
 	}
-	// if (stacklen(*stack_a) == 3)
-	// 	nbr3_sort(stack_a);
+
+	//Encontrar el valor más pequeño de B y ponerlo abajo del todo
+
 	while (*stack_b)
 		pa(stack_a, stack_b);
 	return (0);

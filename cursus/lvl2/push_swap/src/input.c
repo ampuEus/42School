@@ -71,7 +71,6 @@ static char	in_int_range(const int arg_len, const char **str)
 				while (i < 9)
 					if (str[word][c++] > INT_MAX[i++])
 						return (0);
-				printf("i= %i, neg= %c\n", i, neg);
 				if ((neg && str[word][c] > '8') || (!neg && str[word][c] > INT_MAX[i]))
 					return (0);
 			}
