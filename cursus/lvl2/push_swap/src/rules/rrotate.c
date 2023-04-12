@@ -23,12 +23,13 @@ static char	rrotate(t_stack **stack)
 	if (!(*stack))
 		return (1);
 	first = *stack;
+	prelast = *stack;
 	while ((*stack)->next)
 	{
 		prelast = *stack;
 		*stack = (*stack)->next;
 	}
-	stacklast(*stack)->next = first;
+	(*stack)->next = first;
 	prelast->next = NULL;
 	return (0);
 }
