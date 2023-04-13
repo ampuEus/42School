@@ -13,6 +13,7 @@
 ########## VARIABLES ##########
 NAME		= $(BIN_PATH)/push_swap
 BIN_PATH	= ./bin
+UNAME		= $(shell uname)
 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
@@ -70,17 +71,19 @@ libft:
 	cp ../../lvl0/Libft/src/libft.h $(LIB_H)
 
 
-test_jot: $(NAME)
-ifeq ($(uname_S), Linux)
-	./bin/push_swap '$(shell shuf -i 1-5000 -n 1000)'
-#./bin/push_swap $(ARG) | ./checkers/checker_linux $(ARG)
+test_random: $(NAME)
+	@echo Checker:
+ifeq ($(UNAME), Linux)
+	$(eval ARG=$(shell shuf -i 1-5000 -n 500 | tr '\n' ' '))
+	@./bin/push_swap "$(ARG)" | ./checkers/checker_linux $(ARG)
+	@./bin/push_swap $(ARG) | ./checkers/checker_linux $(ARG)
 else
 	$(eval ARG=$(shell jot -r 100 -1000 1000 | awk '!seen[$$0]++' | tr '\n' ' '))
-	@echo "Checker: "
 	@./bin/push_swap "$(ARG)" | ./checkers/checker_Mac $(ARG)
+	@./bin/push_swap $(ARG) | ./checkers/checker_Mac $(ARG)
 endif
-	@echo "Instructions: "
-	@./bin/push_swap $(ARG) | wc -l | awk '{$$1=$$1;print}'
+	@echo Instructions:
+	@./bin/push_swap "$(ARG)" | wc -l | awk '{$$1=$$1;print}'
 
 $(NAME): $(OBJ) | $(BIN_PATH)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIB_A)
