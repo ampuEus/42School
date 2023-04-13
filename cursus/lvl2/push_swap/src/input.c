@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:45:52 by daampuru          #+#    #+#             */
-/*   Updated: 2023/04/12 21:16:16 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/04/13 19:10:55 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,12 @@ static char	in_int_range(char **str)
 			{
 				i = 0;
 				while (i < 9)
+				{
+					if (str[word][c] < INT_MAX[i])
+						return (1);
 					if (str[word][c++] > INT_MAX[i++])
 						return (0);
+				}
 				if ((neg && str[word][c] > INT_MIN[++i]) || (!neg && str[word][c] > INT_MAX[i]))
 					return (0);
 			}
