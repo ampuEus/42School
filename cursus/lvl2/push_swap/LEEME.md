@@ -139,6 +139,8 @@ Si es una matriz asignada dinámicamente (`int* matriz = malloc(sizeof(int)*10);
   - https://sbme-tutorials.github.io/2018/data-structures/data-structures.html
   - https://www.educba.com/linked-list-advantages/
 
+  - https://github.com/LeoFu9487/push_swap_tester
+
   - https://pinetools.com/es/generador-numeros-aleatorios
   - https://www.calculatorsoup.com/calculators/statistics/random-number-generator.php
 
