@@ -70,7 +70,6 @@ static char	move(t_stack **stack_a, t_stack **stack_b, t_stack *value)
 			}
 		}
 	}
-	pb(stack_a, stack_b);
 	return(0);
 }
 
@@ -90,11 +89,12 @@ char	insertion_sort(t_stack **stack_a, t_stack **stack_b)
 		cost(*stack_a, *stack_b);
 		costmin = mincost(*stack_a);
 		move(stack_a, stack_b, costmin);
+		pb(stack_a, stack_b);
 	}
 	while (*stack_b)
 		pa(stack_a, stack_b);
+	cost2top(*stack_a);
+	valuemin = minvalue(*stack_a);
+	move(stack_a, stack_b, valuemin);
 	return (0);
-	//no ordena bien A
-	cost(*stack_a, *stack_b);
-	move(stack_a, stack_b, minvalue(valuemin));
 }

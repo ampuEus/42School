@@ -61,6 +61,7 @@ char			insertion_sort(t_stack **stack_a, t_stack **stack_b);
 
 t_stack			*input(const int arg_len, const char **str);
 char			is_sorted(t_stack *stack);
+char			cost2top(t_stack *stack);
 char			cost(t_stack *stack_a, t_stack *stack_b);
 
 #endif

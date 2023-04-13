@@ -17,7 +17,7 @@
 NOTE: From the middle of the stack up is
 positive and from the middle down negative to know if you
 have to use "rotate" or "reverse rotate" */
-static char	cost2top(t_stack *stack)
+char	cost2top(t_stack *stack)
 {
 	int				cost;
 	unsigned int	stack_len;
@@ -119,19 +119,5 @@ char	cost(t_stack *stack_a, t_stack *stack_b)
 	cost2top(stack_a);
 	cost2place(stack_a, stack_b);
 	costotal(stack_a);
-/*
-	printf("value	cost2top	cost2place	totalcost\n");
-	while (stack_a)
-	{
-		printf("%i	%i		%i		%i\n", \
-		stack_a->data, stack_a->cost2top, stack_a->cost2place, stack_a->totalcost);
-		stack_a = stack_a->next;
-	}
-	while (stack_b)
-	{
-		printf("stack_b = %i\n", stack_b->data);
-		stack_b = stack_b->next;
-	}
-*/
 	return (0);
 }

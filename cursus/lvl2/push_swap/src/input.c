@@ -34,14 +34,14 @@ static char	is_onlynbr(char **str)
 	while (str[word])
 	{
 		c = 0;
-		while (str[word][c] \
+		if (str[word][c] \
 		&& (str[word][c] == ' ' || str[word][c] == '+' || str[word][c] == '-'))
 			c++;
 		if (!ft_isdigit(str[word][c++]))
 			return (0);
-		// while (str[word][c])
-		// 	if (!ft_isdigit(str[word][c++]))
-		// 		return (0);
+		while (str[word][c])
+			if (!ft_isdigit(str[word][c++]))
+				return (0);
 		word++;
 	}
 	return (1);
@@ -62,7 +62,12 @@ static char	in_int_range(char **str)
 		if (word_len >= 10)
 		{
 			c = 0;
-			neg = str[word][c++] == '-';
+			neg = 0;
+			if (str[word][c] == '-')
+			{
+				neg = 1;
+				c++;
+			}
 			if (word_len - c > 10)
 				return (0);
 			if (word_len - c == 10)
@@ -71,7 +76,7 @@ static char	in_int_range(char **str)
 				while (i < 9)
 					if (str[word][c++] > INT_MAX[i++])
 						return (0);
-				if ((neg && str[word][c] > '8') || (!neg && str[word][c] > INT_MAX[i]))
+				if ((neg && str[word][c] > INT_MIN[++i]) || (!neg && str[word][c] > INT_MAX[i]))
 					return (0);
 			}
 		}
@@ -80,32 +85,16 @@ static char	in_int_range(char **str)
 	return (1);
 }
 
-static t_stack	*str2int(const char arg_len, const char **str)
+static t_stack	*str2int(t_stack *stack, char **str)
 {
-	unsigned int	len;
-	char			**arr_str;
-	t_stack			*lst;
+	unsigned int	word;
 
-	len = 0;
-	if (arg_len > 1)
-	{
-		lst = stacknew(ft_atoi(str[len++]));
-		while (str[len])
-			stackadd(&lst, stacknew(ft_atoi(str[len++])));
-	}
-	else
-	{
-		arr_str = ft_split(*str, ' ');
-		lst = stacknew(ft_atoi(arr_str[len++]));
-		while (arr_str[len])
-		{
-			stackadd(&lst, stacknew(ft_atoi(arr_str[len])));
-			free(arr_str[len]);
-			len++;
-		}
-		free(arr_str);
-	}
-	return (lst);
+	word = 0;
+	if (!stack)
+		stack = stacknew(ft_atoi(str[word++]));
+	while (str[word])
+		stackadd(&stack, stacknew(ft_atoi(str[word++])));
+	return (stack);
 }
 
 static char	is_samenbr(t_stack *stack)
@@ -126,23 +115,28 @@ static char	is_samenbr(t_stack *stack)
 	return (0);
 }
 
-t_stack	*input(const int arg_len, const char **str)
+t_stack	*input(int arg_len, const char **str)
 {
 	t_stack	*stack;
 	char	**arr_str;
+	int		word;
 
-	arr_str = ft_split(*str, ' ');
-	if (!arr_str)
-		return (write(2, "Something goes wrong spliting the input.\n", 39), NULL);
-	if (!is_onlynbr(arr_str))
-		return (write(2, "At least one of the given arguments has a character \
-that is not numeric.\n", 74), NULL);
-	if (!in_int_range(arr_str))
-		return (write(2, "At least one of the given arguments is not an \
-\"int\" datatype.\n", 63), NULL);
-	stack = str2int(arg_len, str);
+	stack = NULL;
+	word = 0;
+	while (arg_len)
+	{
+		arr_str = ft_split(str[word++], ' ');
+		if (!arr_str)
+			return (NULL);
+		if (!is_onlynbr(arr_str))
+			return (NULL);
+		if (!in_int_range(arr_str))
+			return (NULL);
+		stack = str2int(stack, arr_str);
+		free(arr_str);
+		arg_len--;
+	}
 	if (is_samenbr(stack))
-		return (write(2, "At least one of the given arguments has a duplicated \
-number.\n", 62), NULL);
+		return (NULL);
 	return (stack);
 }
