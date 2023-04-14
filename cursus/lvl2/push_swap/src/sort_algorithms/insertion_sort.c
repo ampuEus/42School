@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   insertion_sort.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/14 16:22:27 by daampuru          #+#    #+#             */
+/*   Updated: 2023/04/14 16:22:27 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 static t_stack	*mincost(t_stack *stack)
 {
-	t_stack *min;
+	t_stack	*min;
 
 	min = stack;
 	while (stack)
@@ -16,7 +28,7 @@ static t_stack	*mincost(t_stack *stack)
 
 static t_stack	*minvalue(t_stack *stack)
 {
-	t_stack *min;
+	t_stack	*min;
 
 	min = stack;
 	while (stack)
@@ -31,8 +43,8 @@ static t_stack	*minvalue(t_stack *stack)
 static char	move(t_stack **stack_a, t_stack **stack_b, t_stack *value)
 {
 	if (!stack_a || !stack_b)
-		return(1);
-	while(value->cost2top || value->cost2place)
+		return (1);
+	while (value->cost2top || value->cost2place)
 	{
 		if (value->cost2top < 0 && value->cost2place < 0)
 		{
@@ -70,11 +82,11 @@ static char	move(t_stack **stack_a, t_stack **stack_b, t_stack *value)
 			}
 		}
 	}
-	return(0);
+	return (0);
 }
 
-/* Values from the unsorted part (stack A) are picked
-and placed in descending order at the correct position in the sorted part (stack B).
+/* Values from the unsorted part (stack A) are picked and placed in
+descending order at the correct position in the sorted part (stack B).
 The number that is passed in each iteration is the one that has the least cost.
 And the total cost of each value is divided into:
 	1- The cost of moving it to the top of stack A.

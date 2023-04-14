@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_limit.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/14 16:17:49 by daampuru          #+#    #+#             */
+/*   Updated: 2023/04/14 16:17:49 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
 int	stackupper(t_stack *stack, int nbr)
 {
-	int max;
+	int	max;
 
 	max = nbr;
 	while (stack)
@@ -17,7 +28,7 @@ int	stackupper(t_stack *stack, int nbr)
 
 int	stacklower(t_stack *stack, int nbr)
 {
-	int min;
+	int	min;
 
 	min = nbr;
 	while (stack)

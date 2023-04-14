@@ -19,16 +19,16 @@ char	is_sorted(t_stack *stack)
 	int	pre_nbr;
 
 	if (!stack)
-		return(0);
+		return (0);
 	pre_nbr = stack->data;
-	while(stack)
+	while (stack)
 	{
 		if (pre_nbr > stack->data)
-			return(0);
+			return (0);
 		pre_nbr = stack->data;
 		stack = stack->next;
 	}
-	return(1);
+	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -45,8 +45,5 @@ int	main(int argc, char **argv)
 	sort(&stack_a, &stack_b);
 	stackfree(&stack_a);
 	stackfree(&stack_b);
-	#ifdef LEAKS
-		system("leaks a.out");
-	#endif
 	return (0);
 }

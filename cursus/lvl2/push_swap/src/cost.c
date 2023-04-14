@@ -56,10 +56,10 @@ static int	nbrplace(t_stack *stack, int nbr)
 	{
 		if ((nbr == min && stack->data == max) \
 		|| (pre->data > nbr && nbr > stack->data))
-			break;
+			break ;
 		pos++;
 		if (nbr == max && stack->data == min)
-			break;
+			break ;
 		pre = stack;
 		stack = stack->next;
 	}
@@ -108,14 +108,14 @@ static char	costotal(t_stack *stack)
 			stack->totalcost = ft_abs(cost2top) + ft_abs(cost2place);
 		stack = stack->next;
 	}
-	return(0);
+	return (0);
 }
 
 /* TODO quitar las cosas de pruebas + descripcion de lo que hace*/
 char	cost(t_stack *stack_a, t_stack *stack_b)
 {
 	if (!stack_a || !stack_b)
-		return(1);
+		return (1);
 	cost2top(stack_a);
 	cost2place(stack_a, stack_b);
 	costotal(stack_a);

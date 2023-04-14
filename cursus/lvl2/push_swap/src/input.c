@@ -76,7 +76,8 @@ static char	in_int_range(char **str)
 				while (i < 9)
 					if (str[word][c++] > INT_MAX[i++])
 						return (0);
-				if ((neg && str[word][c] > INT_MIN[++i]) || (!neg && str[word][c] > INT_MAX[i]))
+				if ((neg && str[word][c] > INT_MIN[++i]) \
+				|| (!neg && str[word][c] > INT_MAX[i]))
 					return (0);
 			}
 		}
