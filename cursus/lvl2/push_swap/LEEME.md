@@ -166,5 +166,3 @@ PD: Aquí te dejo una [web](https://pinetools.com/es/generador-numeros-aleatorio
   - https://www.freecodecamp.org/news/big-o-notation-explained-with-examples/
   - https://sbme-tutorials.github.io/2018/data-structures/data-structures.html
   - https://www.educba.com/linked-list-advantages/
-
-  - https://www.calculatorsoup.com/calculators/statistics/random-number-generator.php
