@@ -40,6 +40,30 @@ static t_stack	*minvalue(t_stack *stack)
 	return (min);
 }
 
+static void	simple_moves(t_stack **stack_a, t_stack **stack_b, t_stack *value)
+{
+	if (value->cost2top < 0)
+	{
+		rra(stack_a);
+		value->cost2top++;
+	}
+	else if (value->cost2top > 0)
+	{
+		ra(stack_a);
+		value->cost2top--;
+	}
+	if (value->cost2place < 0)
+	{
+		rrb(stack_b);
+		value->cost2place++;
+	}
+	else if (value->cost2place > 0)
+	{
+		rb(stack_b);
+		value->cost2place--;
+	}
+}
+
 static char	move(t_stack **stack_a, t_stack **stack_b, t_stack *value)
 {
 	if (!stack_a || !stack_b)
@@ -59,28 +83,7 @@ static char	move(t_stack **stack_a, t_stack **stack_b, t_stack *value)
 			value->cost2place--;
 		}
 		else
-		{
-			if (value->cost2top < 0)
-			{
-				rra(stack_a);
-				value->cost2top++;
-			}
-			else if (value->cost2top > 0)
-			{
-				ra(stack_a);
-				value->cost2top--;
-			}
-			if (value->cost2place < 0)
-			{
-				rrb(stack_b);
-				value->cost2place++;
-			}
-			else if (value->cost2place > 0)
-			{
-				rb(stack_b);
-				value->cost2place--;
-			}
-		}
+			simple_moves(stack_a, stack_b, value);
 	}
 	return (0);
 }

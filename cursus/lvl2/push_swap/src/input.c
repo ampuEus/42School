@@ -51,8 +51,6 @@ static char	in_int_range(char **str)
 {
 	int				word;
 	int				word_len;
-	unsigned int	c;
-	unsigned int	i;
 	char			neg;
 
 	word = 0;
@@ -61,26 +59,15 @@ static char	in_int_range(char **str)
 		word_len = ft_strlen(str[word]);
 		if (word_len >= 10)
 		{
-			c = 0;
-			neg = 0;
-			if (str[word][c] == '-')
-			{
-				neg = 1;
-				c++;
-			}
-			if (word_len - c > 10)
+			neg = str[word][0] == '-';
+			if (word_len - neg > 10)
 				return (0);
-			if (word_len - c == 10)
+			if (word_len - neg == 10)
 			{
-				i = 0;
-				while (i < 9)
-				{
-					if (str[word][c] < INT_MAX[i])
-						return (1);
-					if (str[word][c++] > INT_MAX[i++])
-						return (0);
-				if ((neg && str[word][c] > INT_MIN[++i]) \
-				|| (!neg && str[word][c] > INT_MAX[i]))
+				if (ft_strncmp(str[word] + neg, INT_MAX, 9) > 0)
+					return (0);
+				if ((neg && str[word][11] > INT_MIN[11]) \
+				|| (!neg && str[word][10] > INT_MAX[10]))
 					return (0);
 			}
 		}
