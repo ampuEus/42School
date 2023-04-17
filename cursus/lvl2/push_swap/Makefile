@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/29 20:45:38 by daampuru          #+#    #+#              #
-#    Updated: 2023/04/12 21:06:52 by daampuru         ###   ########.fr        #
+#    Updated: 2023/04/16 13:15:57 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,19 +27,21 @@ SRC			= main.c \
 				stack.c \
 				stack_limit.c \
 				cost.c \
-				rules/swap.c \
-				rules/push.c \
-				rules/rotate.c \
-				rules/rrotate.c \
+				movements/swap.c \
+				movements/push.c \
+				movements/rotate.c \
+				movements/rrotate.c \
+				movements/move.c \
 				sort_algorithms/sort.c \
 				sort_algorithms/simple_sort.c \
 				sort_algorithms/nbr3_sort.c \
+				sort_algorithms/nbr5_sort.c \
 				sort_algorithms/insertion_sort.c
 
 INCLUDE		= ./src/push_swap.h
 
 OBJ_PATH	= ./obj
-OTHER_PATHS	= $(OBJ_PATH)/rules \
+OTHER_PATHS	= $(OBJ_PATH)/movements \
 			$(OBJ_PATH)/sort_algorithms
 OBJ			= $(addprefix $(OBJ_PATH)/, $(SRC:.c=.o))
 

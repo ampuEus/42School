@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 20:11:47 by daampuru          #+#    #+#             */
-/*   Updated: 2023/04/11 20:26:49 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/04/16 13:05:12 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int	nbrplace(t_stack *stack, int nbr)
 NOTE: From the middle of the stack up is positive and
 from the middle down negative to know if you have to use
 "rotate" or "reverse rotate" */
-static char	cost2place(t_stack *stack_a, t_stack *stack_b)
+char	cost2place(t_stack *stack_a, t_stack *stack_b)
 {
 	int				cost;
 	unsigned int	stack_len;
