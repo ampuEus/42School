@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:22:27 by daampuru          #+#    #+#             */
-/*   Updated: 2023/04/16 13:12:17 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:55:27 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,6 @@ static t_stack	*mincost(t_stack *stack)
 	while (stack)
 	{
 		if (min->totalcost > stack->totalcost)
-			min = stack;
-		stack = stack->next;
-	}
-	return (min);
-}
-
-static t_stack	*minvalue(t_stack *stack)
-{
-	t_stack	*min;
-
-	min = stack;
-	while (stack)
-	{
-		if (min->data > stack->data)
 			min = stack;
 		stack = stack->next;
 	}
