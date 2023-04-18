@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:45:52 by daampuru          #+#    #+#             */
-/*   Updated: 2023/04/13 19:10:55 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/04/18 19:06:29 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ static char	in_int_range(char **str)
 			{
 				if (ft_strncmp(str[word] + neg, INT_MAX, 9) > 0)
 					return (0);
-				if ((neg && str[word][11] > INT_MIN[11]) \
-				|| (!neg && str[word][10] > INT_MAX[10]))
+				if ((neg && str[word][10] > INT_MIN[10]) \
+				|| (!neg && str[word][9] > INT_MAX[9]))
 					return (0);
 			}
 		}
