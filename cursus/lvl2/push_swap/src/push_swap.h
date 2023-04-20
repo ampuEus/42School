@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 22:10:40 by daampuru          #+#    #+#             */
-/*   Updated: 2023/04/11 18:41:56 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:02:34 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void			stackiter(t_stack *lst, void (*f)(void *));
 void			stackfree(t_stack **lst);
 int				stackupper(t_stack *stack, int nbr);
 int				stacklower(t_stack *stack, int nbr);
+t_stack			*minvalue(t_stack *stack);
 
 /* movements / rules */
 char			sa(t_stack **stack);
@@ -53,10 +54,13 @@ char			rra(t_stack **stack);
 char			rrb(t_stack **stack);
 char			rrr(t_stack **stack_a, t_stack **stack_b);
 
+char			move(t_stack **stack_a, t_stack **stack_b, t_stack *value);
+
 /* sort algorithms */
 char			sort(t_stack **stack_a, t_stack **stack_b);
 char			simple_sort(t_stack **stack_a, t_stack **stack_b);
 char			nbr3_sort(t_stack **stack);
+char			nbr5_sort(t_stack **stack_a, t_stack **stack_b);
 char			insertion_sort(t_stack **stack_a, t_stack **stack_b);
 
 t_stack			*input(const int arg_len, const char **str);

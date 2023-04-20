@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:17:49 by daampuru          #+#    #+#             */
-/*   Updated: 2023/04/14 16:17:49 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:55:50 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,20 @@ int	stacklower(t_stack *stack, int nbr)
 	{
 		if (min > stack->data)
 			min = stack->data;
+		stack = stack->next;
+	}
+	return (min);
+}
+
+t_stack	*minvalue(t_stack *stack)
+{
+	t_stack	*min;
+
+	min = stack;
+	while (stack)
+	{
+		if (min->data > stack->data)
+			min = stack;
 		stack = stack->next;
 	}
 	return (min);

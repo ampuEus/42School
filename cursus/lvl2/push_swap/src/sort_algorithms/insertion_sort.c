@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:22:27 by daampuru          #+#    #+#             */
-/*   Updated: 2023/04/14 16:22:27 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:55:27 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,65 +24,6 @@ static t_stack	*mincost(t_stack *stack)
 		stack = stack->next;
 	}
 	return (min);
-}
-
-static t_stack	*minvalue(t_stack *stack)
-{
-	t_stack	*min;
-
-	min = stack;
-	while (stack)
-	{
-		if (min->data > stack->data)
-			min = stack;
-		stack = stack->next;
-	}
-	return (min);
-}
-
-static char	move(t_stack **stack_a, t_stack **stack_b, t_stack *value)
-{
-	if (!stack_a || !stack_b)
-		return (1);
-	while (value->cost2top || value->cost2place)
-	{
-		if (value->cost2top < 0 && value->cost2place < 0)
-		{
-			rrr(stack_a, stack_b);
-			value->cost2top++;
-			value->cost2place++;
-		}
-		else if (value->cost2top > 0 && value->cost2place > 0)
-		{
-			rr(stack_a, stack_b);
-			value->cost2top--;
-			value->cost2place--;
-		}
-		else
-		{
-			if (value->cost2top < 0)
-			{
-				rra(stack_a);
-				value->cost2top++;
-			}
-			else if (value->cost2top > 0)
-			{
-				ra(stack_a);
-				value->cost2top--;
-			}
-			if (value->cost2place < 0)
-			{
-				rrb(stack_b);
-				value->cost2place++;
-			}
-			else if (value->cost2place > 0)
-			{
-				rb(stack_b);
-				value->cost2place--;
-			}
-		}
-	}
-	return (0);
 }
 
 /* Values from the unsorted part (stack A) are picked and placed in
