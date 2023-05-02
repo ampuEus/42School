@@ -11,50 +11,63 @@
 # **************************************************************************** #
 
 ########## VARIABLES ##########
-NAME		= $(BIN_PATH)/push_swap
-BIN_PATH	= ./bin
-UNAME		= $(shell uname)
+BIN_PATH	:= ./bin
+NAME		:= $(BIN_PATH)/push_swap
+BONUS		:= $(BIN_PATH)/checker
+INCLUDE		:= ./src/push_swap.h
+UNAME		:= $(shell uname)
 
-CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror
+CC			:= gcc
+CFLAGS		:= -Wall -Wextra -Werror
 
-AR			= ar
-ARFLAGS		= rsc
+AR			:= ar
+ARFLAGS		:= rsc
 
-SRC_PATH	= ./src
-SRC			= main.c \
-				input.c \
-				stack.c \
+SRC_PATH	:= src
+SORT_PATH	:= sort_algorithms
+SRC			:= main.c \
 				stack_limit.c \
 				cost.c \
-				movements/swap.c \
-				movements/push.c \
-				movements/rotate.c \
-				movements/rrotate.c \
-				movements/move.c \
-				sort_algorithms/sort.c \
-				sort_algorithms/simple_sort.c \
-				sort_algorithms/nbr3_sort.c \
-				sort_algorithms/nbr5_sort.c \
-				sort_algorithms/insertion_sort.c
+				$(SORT_PATH)/sort.c \
+				$(SORT_PATH)/simple_sort.c \
+				$(SORT_PATH)/nbr3_sort.c \
+				$(SORT_PATH)/nbr5_sort.c \
+				$(SORT_PATH)/insertion_sort.c
+SRC			:= $(addprefix $(SRC_PATH)/, $(SRC))
 
-INCLUDE		= ./src/push_swap.h
+MOVE_PATH	:= movements
+SRC_BOTH	:=	input.c \
+				stack.c \
+				$(SORT_PATH)/is_sorted.c \
+				$(MOVE_PATH)/swap.c \
+				$(MOVE_PATH)/push.c \
+				$(MOVE_PATH)/rotate.c \
+				$(MOVE_PATH)/rrotate.c \
+				$(MOVE_PATH)/move.c
+SRC_BOTH	:= $(addprefix $(SRC_PATH)/, $(SRC_BOTH))
 
-OBJ_PATH	= ./obj
-OTHER_PATHS	= $(OBJ_PATH)/movements \
-			$(OBJ_PATH)/sort_algorithms
-OBJ			= $(addprefix $(OBJ_PATH)/, $(SRC:.c=.o))
+SRC_BONUS_PATH	:= src_bonus
+SRC_BONUS		:= src_bonus/main.c
 
-LIB_PATH	= ./lib
-LIB_H		= $(LIB_PATH)/libft.h
-LIB_A		= $(LIB_PATH)/libft.a
+OBJ_PATH	:= ./obj
+OBJ_OTHER_PATHS	:= $(OBJ_PATH)/$(SRC_BONUS_PATH) \
+				$(OBJ_PATH)/$(SRC_PATH) \
+				$(OBJ_PATH)/$(SRC_PATH)/$(MOVE_PATH) \
+				$(OBJ_PATH)/$(SRC_PATH)/$(SORT_PATH)
+OBJ			:= $(addprefix $(OBJ_PATH)/, $(SRC:.c=.o))
+OBJ_BOTH	:= $(addprefix $(OBJ_PATH)/, $(SRC_BOTH:.c=.o))
+OBJ_BONUS	:= $(addprefix $(OBJ_PATH)/, $(SRC_BONUS:.c=.o))
+
+LIB_PATH	:= ./lib
+LIB_H		:= $(LIB_PATH)/libft.h
+LIB_A		:= $(LIB_PATH)/libft.a
 
 
 ########## RULES ##########
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH) $(OTHER_PATHS)
+$(OBJ_PATH)/%.o: %.c | $(OBJ_PATH) $(OBJ_OTHER_PATHS)
 	$(CC) $(CFLAGS) -c $^ -o $@
 
-all:	$(NAME)
+all: push_swap bonus
 
 re: fclean all
 
@@ -73,6 +86,45 @@ libft:
 	cp ../../lvl0/Libft/src/libft.h $(LIB_H)
 
 
+# Binaries
+push_swap: $(NAME)
+
+$(NAME) : $(OBJ) $(OBJ_BOTH) | $(BIN_PATH)
+	$(CC) $(CFLAGS) $(OBJ) $(OBJ_BOTH) -o $@ $(LIB_A)
+
+bonus: $(BONUS)
+
+$(BONUS): $(OBJ_BONUS) $(OBJ_BOTH) | $(BIN_PATH)
+	$(CC) $(CFLAGS) $(OBJ_BONUS) $(OBJ_BOTH) -o $@ $(LIB_A)
+
+
+# Debug
+no_flag: | $(BIN_PATH)
+	$(CC) $(SRC) $(SRC_BOTH) $(LIB_A)
+	mv a.out $(BIN_PATH)
+
+debug: | $(BIN_PATH)
+	$(CC) -g3 $(SRC) $(SRC_BOTH) $(LIB_A)
+	mv -v a.out* $(BIN_PATH)
+
+debug_bonus: | $(BIN_PATH)
+	$(CC) -g3 $(SRC_BONUS) $(SRC_BOTH) $(LIB_A)
+	mv -v a.out* $(BIN_PATH)
+
+fsanitize:
+	$(CC) -fsanitize=address -g3 $(SRC) $(SRC_BOTH) $(LIB_A)
+	mv -v a.out* $(BIN_PATH)
+
+fsanitize_bonus:
+	$(CC) -fsanitize=address -g3 $(SRC_BONUS) $(SRC_BOTH) $(LIB_A)
+	mv -v a.out* $(BIN_PATH)
+
+leaks: | $(BIN_PATH)
+	$(CC) -D LEAKS=1 -g3 $(SRC) $(SRC_BOTH) $(LIB_A)
+	mv -v *.out $(BIN_PATH)
+
+
+# Tests
 test_random: $(NAME)
 	@echo Checker:
 ifeq ($(UNAME), Linux)
@@ -87,30 +139,24 @@ endif
 	@echo Instructions:
 	@./bin/push_swap "$(ARG)" | wc -l | awk '{$$1=$$1;print}'
 
-$(NAME): $(OBJ) | $(BIN_PATH)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIB_A)
+test_bonus: all
+	@echo Checker:
+ifeq ($(UNAME), Linux)
+	$(eval ARG=$(shell shuf -i 1-5000 -n 500 | tr '\n' ' '))
+	@./bin/push_swap "$(ARG)" | ./bin/checker $(ARG)
+else
+	$(eval ARG=$(shell jot -r 100 -1000 1000 | awk '!seen[$$0]++' | tr '\n' ' '))
+	@./bin/push_swap "$(ARG)" | ./bin/checker $(ARG)
+endif
+	@echo Instructions:
+	@./bin/push_swap "$(ARG)" | wc -l | awk '{$$1=$$1;print}'
 
-no_flag: | $(BIN_PATH)
-	$(CC) $(addprefix $(SRC_PATH)/, $(SRC)) $(LIB_A)
-	mv a.out $(BIN_PATH)
-
-debug: | $(BIN_PATH)
-	$(CC) -g3 $(addprefix $(SRC_PATH)/, $(SRC)) $(LIB_A)
-	mv -v a.out* $(BIN_PATH)
-
-fsanitize:
-	$(CC) -fsanitize=address -g3 $(addprefix $(SRC_PATH)/, $(SRC)) $(LIB_A)
-	mv -v a.out* $(BIN_PATH)
-
-leaks: | $(BIN_PATH)
-	$(CC) -D LEAKS=1 -g3 $(addprefix $(SRC_PATH)/, $(SRC)) $(LIB_A)
-	mv -v *.out $(BIN_PATH)
 
 # Create dirs
 $(OBJ_PATH):
 	mkdir -p $@
 
-$(OTHER_PATHS):
+$(OBJ_OTHER_PATHS):
 	mkdir -p $@
 
 $(BIN_PATH):

@@ -12,7 +12,6 @@
 
 #ifndef PUSH_SWAP_H
 
-# include <stdio.h>
 # include <unistd.h>
 
 /* ---------- Structure of values ---------- */
@@ -58,13 +57,13 @@ char			move(t_stack **stack_a, t_stack **stack_b, t_stack *value);
 
 /* sort algorithms */
 char			sort(t_stack **stack_a, t_stack **stack_b);
+char			is_sorted(t_stack *stack);
 char			simple_sort(t_stack **stack_a, t_stack **stack_b);
 char			nbr3_sort(t_stack **stack);
 char			nbr5_sort(t_stack **stack_a, t_stack **stack_b);
 char			insertion_sort(t_stack **stack_a, t_stack **stack_b);
 
 t_stack			*input(const int arg_len, const char **str);
-char			is_sorted(t_stack *stack);
 char			cost2top(t_stack *stack);
 char			cost(t_stack *stack_a, t_stack *stack_b);
 
