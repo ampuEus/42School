@@ -91,7 +91,7 @@ size_t	ft_print_ulnbr(t_Tags *tag, va_list args)
 
 	nbr = va_arg(args, unsigned int);
 	nbr_len = (int)ft_unbrlen(nbr, 10);
-	len_tot = ft_len_tot(nbr < 0, nbr, nbr_len, tag);
+	len_tot = ft_len_tot(0, nbr, nbr_len, tag);
 	count = 0;
 	if (!tag->flag_minus && !tag->flag_zero && len_tot > 0)
 		count = ft_putnchar_fd(' ', 1, len_tot);
