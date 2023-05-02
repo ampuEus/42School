@@ -48,12 +48,6 @@ static char	make_move(char *move, t_stack **stack_a, t_stack **stack_b)
 	return (0);
 }
 
-/* Codido del checker:
-1- Leer del stdinput con el gnl -> Si la instruccion no existe saca "Error\n"
-2- Hacer el movimiento leido en el stack correspondiente
-	2.1- ¿Cuando se que no se van a dar más movimientos?¿Un salto de línea vacio?
-3- Una vez leidos las ordenes mira si no hay nada en el stack_b y el stack_a esta ordenado
-*/
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;

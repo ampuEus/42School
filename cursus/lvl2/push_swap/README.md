@@ -8,8 +8,23 @@ In this project you will learn to sort data on a stack, with a limited set of in
 
 
 ## Table of Contents
-***TODO***
-
+- [Push\_swap : Because Swap\_push isn’t as natural](#push_swap--because-swap_push-isnt-as-natural)
+  - [Table of Contents](#table-of-contents)
+  - [Exercise statement](#exercise-statement)
+  - [Basic concepts to be internalized in this practice](#basic-concepts-to-be-internalized-in-this-practice)
+    - [Sorting algorithms](#sorting-algorithms)
+      - [Stability](#stability)
+      - [Naturalness](#naturalness)
+    - [Big-O notation](#big-o-notation)
+      - [Bachmann–Landau notation](#bachmannlandau-notation)
+      - [The most common growth rates (from fastest to slowest)](#the-most-common-growth-rates-from-fastest-to-slowest)
+    - [Linked Lists *vs* Integer Arrays](#linked-lists-vs-integer-arrays)
+      - [The problem with length of integer array](#the-problem-with-length-of-integer-array)
+    - [Implemented algorithm: INSERTION SORT](#implemented-algorithm-insertion-sort)
+      - [Performance](#performance)
+  - [Steps I followed to do the exercise](#steps-i-followed-to-do-the-exercise)
+  - [Bonus: Make your own *checker*](#bonus-make-your-own-checker)
+  - [References](#references)
 
 
 ## Exercise statement
@@ -137,11 +152,6 @@ In order for this to be done in the most efficient way possible, in each new ite
 > - Sometimes **best case execution time** is also analyzed.
 
 
-
-## Bonus: Make your own *checker*
-
-
-
 ## Steps I followed to do the exercise
    1. Make a correct management of input values.
       - Detect if the syntax of input values is correct
@@ -158,6 +168,13 @@ In order for this to be done in the most efficient way possible, in each new ite
 
 PS: Here is a [web](https://www.calculatorsoup.com/calculators/statistics/random-number-generator.php) for the generation of random numbers.
 
+
+## Bonus: Make your own *checker*
+I have faced this section in 2 stages:
+   1. I had to modify my makefile to be able to compile the `push_swap` binary on the one hand and the `checker` binary on the other
+   2. Based on the `main` function of the `push_swap` I have changed the logic of `sort` for the checks that the statement requests following this flow:
+
+![Flow for checking push_swap orders](annex/img/CheckerFlow.en.png)
 
 
 ## References

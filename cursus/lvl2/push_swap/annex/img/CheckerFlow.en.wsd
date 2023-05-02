@@ -1,0 +1,27 @@
+@startuml
+start
+
+repeat
+
+:Read the order of
+""stdin"" until ""\n""
+(get next line);
+
+if (Does the movement read exist?) then (no)
+	:Write "Error" on ""stderr"";
+	stop
+endif
+->yes;
+
+:Apply order to stacks;
+
+repeat while (Has the last command been read from the buffer?\n(*There is only one ""\\n"")) is (yes)
+->no;
+
+if (Is ""stack_a"" sorted\n+ There is nothing in ""stack_b"") then (yes)
+	:Write "OK";
+else (no)
+	:Write "KO";
+endif
+stop
+@enduml

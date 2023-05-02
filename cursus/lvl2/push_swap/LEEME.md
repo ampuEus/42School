@@ -9,8 +9,23 @@ En este proyecto se aprenderá a ordenar datos en un stack, con un conjunto limi
 
 
 ## Índice
-***TODO***
-
+- [Push\_swap : Porque Swap\_push no suena tan natural](#push_swap--porque-swap_push-no-suena-tan-natural)
+  - [Índice](#índice)
+  - [Enunciado del ejercicio](#enunciado-del-ejercicio)
+  - [Conceptos básicos a interiorizar en esta práctica](#conceptos-básicos-a-interiorizar-en-esta-práctica)
+    - [Algoritmos de ordenación](#algoritmos-de-ordenación)
+      - [Estabilidad](#estabilidad)
+      - [Naturalidad](#naturalidad)
+    - [Notación Big-O](#notación-big-o)
+      - [Notación Bachmann–Landau](#notación-bachmannlandau)
+      - [Las tasas de crecimiento más comunes (de más rápida a más lenta)](#las-tasas-de-crecimiento-más-comunes-de-más-rápida-a-más-lenta)
+    - [Listas link-adas *vs* Array de enteros](#listas-link-adas-vs-array-de-enteros)
+      - [Problema con la largura del array de enteros](#problema-con-la-largura-del-array-de-enteros)
+    - [Algoritmo implementado: INSERTION SORT](#algoritmo-implementado-insertion-sort)
+      - [Performance](#performance)
+  - [Pasos que yo he seguido para hacer el ejercicio](#pasos-que-yo-he-seguido-para-hacer-el-ejercicio)
+  - [Bonus: Hacer tu propio *checker*](#bonus-hacer-tu-propio-checker)
+  - [Referencias](#referencias)
 
 
 ## Enunciado del ejercicio
@@ -20,19 +35,19 @@ Al **principio**, en el stack *a* estarán los números enteros y el stack *b* v
 
 El **objetivo** es ordenar los números en orden ascendente (implementando un algoritmo de ordenación) en el stack *a*. Pero, para ello, solo se podrán usar las siguientes instrucciones:
 
-| Instrucción            | Descripción                                                                                                          |
-|------------------------|----------------------------------------------------------------------------------------------------------------------|
-| `sa` (swap a)            | Intercambia los dos primeros elementos encima del stack a.<br>No hace nada si hay uno o menos elementos.             |
-| `sb` (swap b)            | Intercambia los dos primeros elementos encima del stack a.<br>No hace nada si hay uno o menos elementos.             |
-| `ss`                     | `sa` y `sb` a la vez.                                                                                                    |
-| `pa` (push a)            | Toma el primer elemento del stack b y lo pone encima del stack a.<br>No hace nada si b está vacío.                   |
-| `pb` (push b)            | Toma el primer elemento del stack a y lo pone encima del stack b.<br>No hace nada si b está vacío.                   |
-| `ra` (rotate a)          | Desplaza hacia arriba todos los elementos del stack a una posición.<br>El primer elemento se convierte en el último. |
-| `rb` (rotate b)          | Desplaza hacia arriba todos los elementos del stack a una posición.<br>El primer elemento se convierte en el último. |
-| `rr`                     | `ra` y `rb` a la vez.                                                                                                    |
+| Instrucción            | Descripción                                                                                                        |
+|------------------------|--------------------------------------------------------------------------------------------------------------------|
+| `sa` (swap a)          | Intercambia los dos primeros elementos encima del stack a.<br>No hace nada si hay uno o menos elementos.           |
+| `sb` (swap b)          | Intercambia los dos primeros elementos encima del stack a.<br>No hace nada si hay uno o menos elementos.           |
+| `ss`                   | `sa` y `sb` a la vez.                                                                                              |
+| `pa` (push a)          | Toma el primer elemento del stack b y lo pone encima del stack a.<br>No hace nada si b está vacío.                 |
+| `pb` (push b)          | Toma el primer elemento del stack a y lo pone encima del stack b.<br>No hace nada si b está vacío.                 |
+| `ra` (rotate a)        | Desplaza hacia arriba todos los elementos del stack a una posición.<br>El primer elemento se convierte en el último.   |
+| `rb` (rotate b)        | Desplaza hacia arriba todos los elementos del stack a una posición.<br>El primer elemento se convierte en el último.   |
+| `rr`                   | `ra` y `rb` a la vez.                                                                                                  |
 | `rra` (reverse rotate a) | Desplaza hacia abajo todos los elementos del stack a una posición.<br>El último elemento se convierte en el primero. |
 | `rrb` (reverse rotate b) | Desplaza hacia abajo todos los elementos del stack a una posición.<br>El último elemento se convierte en el primero. |
-| `rrr`                    | `rra` y `rrb` a la vez.                                                                                                  |
+| `rrr`                  | `rra` y `rrb` a la vez.                                                                                                |
 
 La forma de evaluar el algoritmo de ordenación dependerá de los movimientos totales que ejecute para diferentes cantidades de números:
   - Para 3 valores de entrada: No se permiten más de 3 movimientos.
@@ -137,10 +152,6 @@ Para que esto se haga de la forma más eficiente posible, en cada nueva iteraci�
 >  - A veces también se analiza **el mejor tiempo de ejecución del caso**.
 
 
-## Bonus: Hacer tu propio *checker*
-
-
-
 ## Pasos que yo he seguido para hacer el ejercicio
   1. Hacer una correcta gestión de los valores de entrada.
      - Detectar si la sintaxis de los valores de entrada es la correcta
@@ -157,6 +168,13 @@ Para que esto se haga de la forma más eficiente posible, en cada nueva iteraci�
 
 PD: Aquí te dejo una [web](https://pinetools.com/es/generador-numeros-aleatorios) para la generación de números aleatorios.
 
+
+## Bonus: Hacer tu propio *checker*
+Este apartado yo lo he afrontado en 2 etapas:
+  1. He tenido que modificar mi makefile para poder compilar por un lado el binario del `push_swap` y por otro el del `checker`
+  2. Basandome en la función `main` del `push_swap` he cambiado la logica de `sort` por el checkeo que pide el enunciado siguiendo este flujo:
+
+![Flujo para el checkeo de las ordenes del push_swap](annex/img/CheckerFlow.es.png)
 
 
 ## Referencias

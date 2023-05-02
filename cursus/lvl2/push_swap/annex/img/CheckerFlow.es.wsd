@@ -1,0 +1,27 @@
+@startuml
+start
+
+repeat
+
+:Leer la orden del
+""stdin"" hasta ""\n""
+(get next line);
+
+if (¿Existe el movimiento leido?) then (no)
+	:Escribir "Error" en ""stderr"";
+	stop
+endif
+->yes;
+
+:Aplicar la orden a los stacks;
+
+repeat while (¿Se ha leido la última orden del buffer?\n(*Solo hay un ""\\n"")) is (yes)
+->no;
+
+if (Esta el ""stack_a"" ordenado\n+ No hay nada en el ""stack_b"") then (yes)
+	:Escribir "OK";
+else (no)
+	:Escribir "KO";
+endif
+stop
+@enduml
