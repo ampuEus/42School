@@ -184,3 +184,6 @@ Este apartado yo lo he afrontado en 2 etapas:
   - https://www.freecodecamp.org/news/big-o-notation-explained-with-examples/
   - https://sbme-tutorials.github.io/2018/data-structures/data-structures.html
   - https://www.educba.com/linked-list-advantages/
+
+---
+Hecho por daampuru | LinkedIn: [David Ampurua](https://www.linkedin.com/in/david-ampurua)

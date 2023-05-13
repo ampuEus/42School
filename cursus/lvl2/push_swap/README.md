@@ -36,17 +36,17 @@ The **objective** is to sort the numbers in ascending order (by implementing a s
 
 | Instrucción            | Descripción                                                                                         |
 |------------------------|-----------------------------------------------------------------------------------------------------|
-| `sa` (swap a)            | Swap the first 2 elements at the top of stack a.<br>Do nothing if there is only one or no elements. |
-| `sb` (swap b)            | Swap the first 2 elements at the top of stack a.<br>Do nothing if there is only one or no elements. |
-| `ss`                     | `sa` and `sb` at the same time.                                                                         |
-| `pa` (push a)            | Take the first element at the top of b and put it at the top of a.<br>Do nothing if b is empty.     |
-| `pb` (push b)            | Take the first element at the top of a and put it at the top of b.<br>Do nothing if a is empty.     |
-| `ra` (rotate a)          | Shift up all elements of stack a by 1.<br>The first element becomes the last one.                   |
-| `rb` (rotate b)          | Shift up all elements of stack b by 1.<br>The first element becomes the last one.                   |
-| `rr`                     | `ra` and `rb` at the same time.                                                                         |
-| `rra` (reverse rotate a) | Shift down all elements of stack a by 1.<br>The last element becomes the first one.                 |
-| `rrb` (reverse rotate b) | Shift down all elements of stack b by 1.<br>The last element becomes the first one.                 |
-| `rrr`                    | `rra` and `rrb` at the same time.                                                                       |
+| `sa` (swap a)          | Swap the first 2 elements at the top of stack a.<br>Do nothing if there is only one or no elements. |
+| `sb` (swap b)          | Swap the first 2 elements at the top of stack a.<br>Do nothing if there is only one or no elements. |
+| `ss`                   | `sa` and `sb` at the same time.                                                                   |
+| `pa` (push a)          | Take the first element at the top of b and put it at the top of a.<br>Do nothing if b is empty.   |
+| `pb` (push b)          | Take the first element at the top of a and put it at the top of b.<br>Do nothing if a is empty.   |
+| `ra` (rotate a)        | Shift up all elements of stack a by 1.<br>The first element becomes the last one.                 |
+| `rb` (rotate b)        | Shift up all elements of stack b by 1.<br>The first element becomes the last one.                 |
+| `rr`                   | `ra` and `rb` at the same time.                                                                   |
+| `rra` (reverse rotate a) | Shift down all elements of stack a by 1.<br>The last element becomes the first one.             |
+| `rrb` (reverse rotate b) | Shift down all elements of stack b by 1.<br>The last element becomes the first one.             |
+| `rrr`                  | `rra` and `rrb` at the same time.                                                                 |
 
 The way the sorting algorithm is evaluated will depend on the total movements it executes for different numbers:
   - For 3 input values: No more than 3 moves are allowed.
@@ -184,3 +184,6 @@ I have faced this section in 2 stages:
   - https://www.freecodecamp.org/news/big-o-notation-explained-with-examples/
   - https://sbme-tutorials.github.io/2018/data-structures/data-structures.html
   - https://www.educba.com/linked-list-advantages/
+
+---
+Made by daampuru | LinkedIn: [David Ampurua](https://www.linkedin.com/in/david-ampurua)

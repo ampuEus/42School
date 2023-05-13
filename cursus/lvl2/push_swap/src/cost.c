@@ -89,7 +89,6 @@ char	cost2place(t_stack *stack_a, t_stack *stack_b)
 	return (0);
 }
 
-/* TODO descripcion*/
 static char	costotal(t_stack *stack)
 {
 	int	cost2top;
@@ -111,7 +110,6 @@ static char	costotal(t_stack *stack)
 	return (0);
 }
 
-/* TODO quitar las cosas de pruebas + descripcion de lo que hace*/
 char	cost(t_stack *stack_a, t_stack *stack_b)
 {
 	if (!stack_a || !stack_b)
