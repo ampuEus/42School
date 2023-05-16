@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 20:11:47 by daampuru          #+#    #+#             */
-/*   Updated: 2023/04/16 13:05:12 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/05/14 20:07:03 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,6 @@ static char	costotal(t_stack *stack)
 
 char	cost(t_stack *stack_a, t_stack *stack_b)
 {
-	if (!stack_a || !stack_b)
-		return (1);
 	cost2top(stack_a);
 	cost2place(stack_a, stack_b);
 	costotal(stack_a);

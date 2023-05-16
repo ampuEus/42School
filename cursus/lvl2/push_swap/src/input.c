@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:45:52 by daampuru          #+#    #+#             */
-/*   Updated: 2023/04/18 19:06:29 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/05/16 22:30:25 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static char	is_onlynbr(char **str)
 	unsigned int	c;
 
 	word = 0;
+	if (!str[word])
+		return (0);
 	while (str[word])
 	{
 		c = 0;
@@ -119,12 +121,13 @@ t_stack	*input(int arg_len, const char **str)
 		arr_str = ft_split(str[word++], ' ');
 		if (!arr_str)
 			return (NULL);
-		if (!is_onlynbr(arr_str))
+		if (!is_onlynbr(arr_str) || !in_int_range(arr_str))
+		{
+			ft_doublefree(arr_str);
 			return (NULL);
-		if (!in_int_range(arr_str))
-			return (NULL);
+		}
 		stack = str2int(stack, arr_str);
-		free(arr_str);
+		ft_doublefree(arr_str);
 		arg_len--;
 	}
 	if (is_samenbr(stack))
