@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg882"
+   sodipodi:docname="pipe_fork-exec.svg"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview884"
+     pagecolor="#ffffff"
+     bordercolor="#111111"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.5297696"
+     inkscape:cx="-24.538969"
+     inkscape:cy="471.90326"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs879">
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect108282"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect107878"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect107233"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect107229"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect107225"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect107221"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect106194"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect71460"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect27029"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect26832"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect26828"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect26758"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect26688"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect26491"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect26421"
+       is_visible="true"
+       lpeversion="1" />
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path25657" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker25924"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path25922" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path25654" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect107878-3"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect107878-4"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect107878-0"
+       is_visible="true"
+       lpeversion="1" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-8"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path25657-0" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect108282-7"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect107878-4-4"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect107878-3-1"
+       is_visible="true"
+       lpeversion="1" />
+  </defs>
+  <g
+     inkscape:label="Capa 1"
+     id="layer1">
+    <g
+       id="g1062-0"
+       inkscape:label="ParentProcess"
+       transform="matrix(1.2170878,0,0,1.2170878,27.820898,-41.911738)"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+         id="rect846-1"
+         width="53.678955"
+         height="26.486324"
+         x="35.141628"
+         y="43.9673"
+         inkscape:label="rect" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="40.969677"
+         y="52.089775"
+         id="text1828-86"
+         inkscape:label="Name"><tspan
+           sodipodi:role="line"
+           id="tspan1826-7"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+           x="40.969677"
+           y="52.089775">Parent process</tspan></text>
+      <g
+         id="g45614"
+         transform="translate(-0.40700483)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:4.05796px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+           x="43.556938"
+           y="62.026123"
+           id="text1828-4-5"
+           inkscape:label="fd"><tspan
+             sodipodi:role="line"
+             id="tspan848-4"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.05796px;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.264583"
+             x="43.556938"
+             y="67.317787"><tspan
+               sodipodi:role="line"
+               id="tspan839-6"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.05796px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-decoration:line-through;text-decoration-line:line-through;stroke-width:0.264583"
+               x="43.556938"
+               y="67.317787"> fd[0] </tspan></tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:4.05796px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+           x="70.851852"
+           y="62.026119"
+           id="text1828-4-5-2"
+           inkscape:label="fd"><tspan
+             sodipodi:role="line"
+             id="tspan848-4-7"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.05796px;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.264583"
+             x="70.851852"
+             y="67.317787"><tspan
+               sodipodi:role="line"
+               id="tspan839-6-9"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.05796px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-decoration:line-through;text-decoration-line:line-through;stroke-width:0.264583"
+               x="70.851852"
+               y="67.317787"> fd[1] </tspan></tspan></text>
+      </g>
+    </g>
+    <g
+       id="g30526-0"
+       inkscape:label="Pipe"
+       transform="matrix(1.2170878,0,0,1.2170878,-27.639756,-13.691217)"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101">
+      <rect
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.323906;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+         id="rect20867-8"
+         width="46.989948"
+         height="13.293459"
+         x="84.048279"
+         y="72.102028"
+         inkscape:label="Pipe_tube" />
+      <ellipse
+         style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.366721;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+         id="path20913-5"
+         cx="83.761963"
+         cy="78.75782"
+         rx="4.6832266"
+         ry="6.6219373"
+         inkscape:label="Pipe_tube_in" />
+      <ellipse
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.367;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+         id="path20913-2-9"
+         cx="131.33676"
+         cy="78.757401"
+         rx="4.6832266"
+         ry="6.6219373"
+         inkscape:label="Pipe_tube_out" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="103.53417"
+         y="80.93454"
+         id="text1828-8-5"
+         inkscape:label="Pipe_name"><tspan
+           sodipodi:role="line"
+           id="tspan1826-0-8"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+           x="103.53417"
+           y="80.93454">Pipe</tspan></text>
+    </g>
+    <g
+       id="g1069-4"
+       inkscape:label="Child2"
+       transform="matrix(1.2170878,0,0,1.2170878,5.2361911,12.526238)"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+         id="rect846-5-8"
+         width="53.678955"
+         height="26.486324"
+         x="132.83191"
+         y="43.9673"
+         inkscape:label="rect" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="165.04451"
+         y="49.832855"
+         id="text1828-40-0"
+         inkscape:label="Name"><tspan
+           sodipodi:role="line"
+           id="tspan1826-3-4"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+           x="165.04451"
+           y="49.832855">Child 2</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:4.05796px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="135.19061"
+         y="62.162128"
+         id="text1828-4-5-9-9"
+         inkscape:label="fd1"><tspan
+           sodipodi:role="line"
+           id="tspan848-4-8-5"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.05796px;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.264583"
+           x="135.19061"
+           y="67.453766"><tspan
+             sodipodi:role="line"
+             id="tspan839-6-2-0"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.05796px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-decoration:line-through;text-decoration-line:line-through;stroke-width:0.264583"
+             x="135.19061"
+             y="67.453766"> fd[1] </tspan></tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:4.05796px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="135.19061"
+         y="49.430321"
+         id="text11030-9"
+         inkscape:label="fd0"> fd[0] --&gt; stdin<tspan
+   sodipodi:role="line"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.05796px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-decoration:line-through;text-decoration-line:line-through;stroke-width:0.264583"
+   x="135.19061"
+   y="49.430321"
+   id="tspan12471-3" /></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:5.21737px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="151.46185"
+         y="58.034805"
+         id="text11030-9-0-5"
+         inkscape:label="cmd"> <tspan
+   style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic'"
+   id="tspan78072">grep</tspan> a<tspan
+   sodipodi:role="line"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.21737px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-decoration:line-through;text-decoration-line:line-through;stroke-width:0.264583"
+   x="151.46185"
+   y="58.034805"
+   id="tspan12471-3-7-2" /></text>
+    </g>
+    <g
+       id="g1069-4-6"
+       inkscape:label="Child1"
+       transform="matrix(1.2170878,0,0,1.2170878,-187.38974,12.526238)"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+         id="rect846-5-8-7"
+         width="53.678955"
+         height="26.486324"
+         x="132.83191"
+         y="43.9673"
+         inkscape:label="rect" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="134.06316"
+         y="50.038029"
+         id="text1828-40-0-6"
+         inkscape:label="Name"><tspan
+           sodipodi:role="line"
+           id="tspan1826-3-4-0"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+           x="134.06316"
+           y="50.038029">Child 1</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:4.05796px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.322021"
+         x="155.45724"
+         y="67.453766"
+         id="text11030-9-0-9-9"
+         inkscape:label="fd1"> stdout &lt;-- fd[1] <tspan
+   sodipodi:role="line"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.05796px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-decoration:line-through;text-decoration-line:line-through;stroke-width:0.322021"
+   x="155.45724"
+   y="67.453766"
+   id="tspan12471-3-7-6-5" /></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:4.05796px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="174.21422"
+         y="44.138664"
+         id="text1828-4-5-9-3"
+         inkscape:label="fd0"><tspan
+           sodipodi:role="line"
+           id="tspan848-4-8-4"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.05796px;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.264583"
+           x="174.21422"
+           y="49.430321"><tspan
+             sodipodi:role="line"
+             id="tspan839-6-2-6"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.05796px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-decoration:line-through;text-decoration-line:line-through;stroke-width:0.264583"
+             x="174.21422"
+             y="49.430321"> fd[0] </tspan></tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:5.15233px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.322021"
+         x="157.04507"
+         y="59.166977"
+         id="text11030-9-0-9-9-2"
+         inkscape:label="cmd"> <tspan
+   style="font-size:4.63766px"
+   id="tspan70228"><tspan
+     style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.21737px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic'"
+     id="tspan70856">ls</tspan></tspan><tspan
+   sodipodi:role="line"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.63766px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-decoration:line-through;text-decoration-line:line-through;stroke-width:0.322021"
+   x="157.04507"
+   y="65.629509"
+   id="tspan12471-3-7-6-5-1" /></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.15233px;line-height:1.25;font-family:sans-serif;fill:#1689ff;fill-opacity:1;stroke:none;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+       x="46.727699"
+       y="67.540962"
+       id="text36150-4-9"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101"
+       inkscape:label="Step3.2_close"><tspan
+         sodipodi:role="line"
+         id="tspan36148-3-8"
+         style="font-size:5.15233px;fill:#1689ff;fill-opacity:1;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+         x="46.727699"
+         y="67.540962">4. close()</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.15233px;line-height:1.25;font-family:sans-serif;fill:#1689ff;fill-opacity:1;stroke:none;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+       x="-15.970996"
+       y="83.588737"
+       id="text36150-4-9-2"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101"
+       inkscape:label="Step3.2_close"><tspan
+         sodipodi:role="line"
+         id="tspan36148-3-8-5"
+         style="font-size:5.15233px;fill:#1689ff;fill-opacity:1;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+         x="-15.970996"
+         y="83.588737">5. exec()</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.15233px;line-height:1.25;font-family:sans-serif;fill:#1689ff;fill-opacity:1;stroke:none;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+       x="198.9212"
+       y="89.082481"
+       id="text36150-4-9-2-8"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101"
+       inkscape:label="Step3.2_close"><tspan
+         sodipodi:role="line"
+         id="tspan36148-3-8-5-3"
+         style="font-size:5.15233px;fill:#1689ff;fill-opacity:1;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+         x="198.9212"
+         y="89.082481">5. exec()</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.15233px;line-height:1.25;font-family:sans-serif;fill:#1689ff;fill-opacity:1;stroke:none;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+       x="142.58229"
+       y="97.777931"
+       id="text36150-4-9-0"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101"
+       inkscape:label="Step3.1_close"><tspan
+         sodipodi:role="line"
+         id="tspan36148-3-8-4"
+         style="font-size:5.15233px;fill:#1689ff;fill-opacity:1;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+         x="142.58229"
+         y="97.777931">4. close()</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.15233px;line-height:1.25;font-family:sans-serif;fill:#1689ff;fill-opacity:1;stroke:none;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+       x="92.904945"
+       y="50.245369"
+       id="text36150-4-9-0-2"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101"
+       inkscape:label="Step3.1_close"><tspan
+         sodipodi:role="line"
+         id="tspan36148-3-8-4-5"
+         style="font-size:5.15233px;fill:#1689ff;fill-opacity:1;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+         x="92.904945"
+         y="50.245369">6. close()</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.15233px;line-height:1.25;font-family:sans-serif;fill:#1689ff;fill-opacity:1;stroke:none;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+       x="94.015266"
+       y="56.987694"
+       id="text36150-4-9-0-2-0"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101"
+       inkscape:label="Step3.1_close"><tspan
+         sodipodi:role="line"
+         id="tspan36148-3-8-4-5-1"
+         style="font-size:5.15233px;fill:#1689ff;fill-opacity:1;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+         x="94.015266"
+         y="56.987694">7. wait()</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.15233px;line-height:1.25;font-family:sans-serif;fill:#1689ff;fill-opacity:1;stroke:none;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+       x="3.7989235"
+       y="103.94709"
+       id="text36150-4-9-0-7"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101"
+       inkscape:label="Step3.1_close"><tspan
+         sodipodi:role="line"
+         id="tspan36148-3-8-4-0"
+         style="font-size:5.15233px;fill:#1689ff;fill-opacity:1;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+         x="3.7989235"
+         y="103.94709">3. dup2(fd[1], stdout)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.15233px;line-height:1.25;font-family:sans-serif;fill:#1689ff;fill-opacity:1;stroke:none;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+       x="155.0892"
+       y="62.841927"
+       id="text36150-4-9-0-7-9"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101"
+       inkscape:label="Step3.1_close"><tspan
+         sodipodi:role="line"
+         id="tspan36148-3-8-4-0-0"
+         style="font-size:5.15233px;fill:#1689ff;fill-opacity:1;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+         x="155.0892"
+         y="62.841927">3. dup2(fd[0], stdin)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.15233px;line-height:1.25;font-family:sans-serif;fill:#1689ff;fill-opacity:1;stroke:none;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+       x="-23.565971"
+       y="63.585304"
+       id="text36150-4"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101"
+       inkscape:label="Step2_fork"><tspan
+         sodipodi:role="line"
+         id="tspan36148-3"
+         style="font-size:5.15233px;fill:#1689ff;fill-opacity:1;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+         x="-23.565971"
+         y="63.585304">2. fork()</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.15233px;line-height:1.25;font-family:sans-serif;fill:#1689ff;fill-opacity:1;stroke:none;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+       x="211.76086"
+       y="62.803459"
+       id="text36150-4-5"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101"
+       inkscape:label="Step2_fork"><tspan
+         sodipodi:role="line"
+         id="tspan36148-3-82"
+         style="font-size:5.15233px;fill:#1689ff;fill-opacity:1;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+         x="211.76086"
+         y="62.803459">2. fork()</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.15233px;line-height:1.25;font-family:sans-serif;fill:#1689ff;fill-opacity:1;stroke:none;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+       x="92.247528"
+       y="95.473915"
+       id="text36150"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101"
+       inkscape:label="Step1_pipe"><tspan
+         sodipodi:role="line"
+         id="tspan36148"
+         style="font-size:5.15233px;fill:#1689ff;fill-opacity:1;stroke-width:0.322;stroke-miterlimit:4;stroke-dasharray:none"
+         x="92.247528"
+         y="95.473915">1. pipe(fd)</tspan></text>
+    <path
+       style="fill:none;stroke:#a2a2a2;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker25924)"
+       d="m 41.952199,71.168908 h 15.232644 v 7.74118 h 14.233782"
+       id="path107219"
+       inkscape:path-effect="#path-effect107221"
+       inkscape:original-d="m 41.952199,71.168908 c 5.077811,2.7e-4 15.232644,0 15.232644,0 0,0 0,7.74118 0,7.74118 0,0 14.233782,0 14.233782,0"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101" />
+    <path
+       style="fill:none;stroke:#a2a2a2;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 42.451631,93.143868 h 14.703475 v -7.43199 h 14.263519"
+       id="path107223"
+       inkscape:path-effect="#path-effect107225"
+       inkscape:original-d="m 42.451631,93.143868 c 5.077812,2.7e-4 14.703475,0 14.703475,0 v -7.43199 h 14.263519"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101" />
+    <path
+       style="fill:none;stroke:#a2a2a2;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 164.93115,92.834688 h -12.08738 v -6.81362 h -13.00311"
+       id="path107227"
+       inkscape:path-effect="#path-effect107229"
+       inkscape:original-d="m 164.93115,92.834688 c -4.9108,2.6e-4 -12.08738,0 -12.08738,0 v -6.81362 h -13.00311"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101" />
+    <path
+       style="fill:none;stroke:#a2a2a2;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 139.53147,77.691248 h 12.67602 v -6.46287 h 12.69392"
+       id="path107231"
+       inkscape:path-effect="#path-effect107233"
+       inkscape:original-d="m 139.53147,77.691248 c 4.57838,2.7e-4 12.67602,0 12.67602,0 v -6.46287 h 12.69392"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 54.354678,72.134628 5.743456,5.74346 m -5.930742,0.12486 5.868314,-5.86832"
+       id="path107876"
+       inkscape:path-effect="#path-effect107878"
+       inkscape:original-d="m 54.354678,72.134628 c 1.91475,1.91475 5.743456,5.74346 5.743456,5.74346 m -5.930742,0.12486 c 1.95637,-1.95584 5.868314,-5.86832 5.868314,-5.86832"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 150.01731,86.459448 5.74346,5.74346 m -5.93075,0.12486 5.86832,-5.86832"
+       id="path107876-9"
+       inkscape:path-effect="#path-effect107878-0"
+       inkscape:original-d="m 150.01731,86.459448 c 1.91475,1.91475 5.74346,5.74346 5.74346,5.74346 m -5.93075,0.12486 c 1.95637,-1.95584 5.86832,-5.86832 5.86832,-5.86832"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101" />
+    <path
+       style="fill:none;stroke:#a2a2a2;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="M 86.365904,71.668338 V 45.947648"
+       id="path108280"
+       inkscape:path-effect="#path-effect108282"
+       inkscape:original-d="m 86.365904,71.668338 c 2.64e-4,-8.5733 0,-25.72069 0,-25.72069"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101" />
+    <path
+       style="fill:none;stroke:#a2a2a2;stroke-width:0.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker25924)"
+       d="M 119.86342,72.300148 V 46.579458"
+       id="path108280-4"
+       inkscape:path-effect="#path-effect108282-7"
+       inkscape:original-d="m 119.86342,72.300148 c 2.7e-4,-8.5733 0,-25.72069 0,-25.72069"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 117.02289,55.436838 5.74345,5.74346 m -5.93074,0.12486 5.86831,-5.86832"
+       id="path107876-2"
+       inkscape:path-effect="#path-effect107878-4-4"
+       inkscape:original-d="m 117.02289,55.436838 c 1.91475,1.91475 5.74345,5.74346 5.74345,5.74346 m -5.93074,0.12486 c 1.95637,-1.95584 5.86831,-5.86832 5.86831,-5.86832"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 83.337349,55.552348 6.144444,5.5173 m -6.344806,0.12 6.278017,-5.63725"
+       id="path107876-3"
+       inkscape:path-effect="#path-effect107878-3-1"
+       inkscape:original-d="m 83.337349,55.552348 c 2.048431,1.83932 6.144444,5.5173 6.144444,5.5173 m -6.344806,0.12 c 2.092957,-1.87883 6.278017,-5.63725 6.278017,-5.63725"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\pipe_fork-exec.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101" />
+  </g>
+</svg>
