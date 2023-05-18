@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 19:04:01 by daampuru          #+#    #+#             */
-/*   Updated: 2022/11/07 21:26:26 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/05/14 00:10:16 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ unsigned int	ft_putnchar_fd(const char c, int fd, int n);
 size_t			ft_nbrlen(long int nbr, int base);
 size_t			ft_unbrlen(size_t nbr, int base);
 int				ft_max(int nbr1, int nbr2);
+char			ft_doublefree(char **table);
 
 /* ---------- 42projects ---------- */
 char			*get_next_line(int fd);

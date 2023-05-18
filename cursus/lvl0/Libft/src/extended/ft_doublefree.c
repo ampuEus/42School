@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nbr5_sort.c                                        :+:      :+:    :+:   */
+/*   ft_doublefree.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/16 12:49:42 by daampuru          #+#    #+#             */
-/*   Updated: 2023/05/14 20:32:01 by daampuru         ###   ########.fr       */
+/*   Created: 2023/05/14 00:04:06 by daampuru          #+#    #+#             */
+/*   Updated: 2023/05/14 00:13:08 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+# include "../libft.h"
 
-char	nbr5_sort(t_stack **stack_a, t_stack **stack_b)
+char	ft_doublefree(char **table)
 {
-	t_stack			*min;
-	unsigned int	i;
+	unsigned int	line;
 
-	i = 0;
-	while (i++ < 2)
-	{
-		cost(*stack_a, *stack_b);
-		min = minvalue(*stack_a);
-		move(stack_a, stack_b, min);
-		pb(stack_a, stack_b);
-	}
-	nbr3_sort(stack_a);
-	pa(stack_a, stack_b);
-	pa(stack_a, stack_b);
-	cost2top(*stack_a);
-	min = minvalue(*stack_a);
-	move(stack_a, stack_b, min);
+	line = 0;
+	while(table[line])
+		free(table[line++]);
+	free(table);
 	return (0);
 }
