@@ -60,7 +60,7 @@ La forma de evaluar el algoritmo de ordenación dependerá de los movimientos to
     - 1 puntos. 1300 < movimientos <= 1500
   - Para 500 valores de entrada: Se puntuará de 1 hasta 5 dependiendo de los movimientos ejecutados.
     - 5 puntos. Movimientos realizados <= 5500
-    - 4 puntos. 5501 < movimientos <= 7000
+    - 4 puntos. 5500 < movimientos <= 7000
     - 3 puntos. 7000 < movimientos <= 8500
     - 2 puntos. 8500 < movimientos <= 10000
     - 1 puntos. 10000 < movimientos <= 11500

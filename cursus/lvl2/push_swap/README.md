@@ -59,7 +59,7 @@ The way the sorting algorithm is evaluated will depend on the total movements it
     - 1 point. 1300 < movements <= 1500
   - For 500 input values: Scored from 1 to 5 depending on the number of moves executed.
     - 5 points. Performed movements <= 5500
-    - 4 points. 5501 < movements <= 7000
+    - 4 points. 5500 < movements <= 7000
     - 3 points. 7000 < movements <= 8500
     - 2 points. 8500 < movements <= 10000
     - 1 point. 10000 < movements <= 11500
