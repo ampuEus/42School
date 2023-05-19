@@ -20,7 +20,8 @@ CFLAGS		:= -Wall -Wextra -Werror
 
 SRC_PATH	:= ./src
 SRC			:= main.c \
-				input_check.c
+				input_check.c \
+				pipex.c
 
 OBJ_PATH	:= ./obj
 OBJ			:= $(addprefix $(OBJ_PATH)/, $(SRC:.c=.o))

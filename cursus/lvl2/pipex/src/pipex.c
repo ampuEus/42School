@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/18 16:18:30 by daampuru          #+#    #+#             */
-/*   Updated: 2023/05/18 16:18:30 by daampuru         ###   ########.fr       */
+/*   Created: 2023/05/18 23:38:55 by daampuru          #+#    #+#             */
+/*   Updated: 2023/05/18 23:38:55 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "pipex.h"
 
-#ifndef PIPEX_H
+static int	pipescount(int argc)
+{
+	return (argc - 4);
+}
 
-#include "libft.h"
-#include <stdio.h>
-#include <unistd.h>
-# include <sys/types.h>
+static char	redirect(char *cmd, int fdin)
+{
 
-/* ---------- Constants ---------- */
-# define STDOUT 0
-# define STDIN 1
-# define STDERR 2
+}
 
-/* ---------- Functions ---------- */
-char	input_check(int argc, char *argv[]);
-void	pipex(int argc, char *argv[]);
-#endif
+void	pipex(int argc, char *argv[])
+{
+	int	pipes;
+	int	fd[2];
+
+	pipes = pipescount(argc);
+	while (!pipes)
+		pipe(fd);
+}

@@ -3,28 +3,13 @@
 // #include <unistd.h>
 // #include <sys/wait.h>
 
-static int	pipescount(int argc, int **fd)
-{
-	int	len;
-
-	len = argc - 4;
-	fd = ft_calloc(sizeof(*fd), len + 1);
-	if (!fd)
-		return (-1);
-	return (len);
-}
-
 int main (int argc, char *argv[]) {
-	int	pipes;
-	int	*fd[2];
+
 
 	if (input_check(argc, argv) < 0)
 		return (1);
 
-	pipes = pipescount(argc, fd);
-	while (!pipes)
-		pipe(fd);
-	ft_doublefree(fd);
+	pipex(argc, argv);
 
 	// /* make forks(depens on countCmd()) */
 	// // Child stdin
