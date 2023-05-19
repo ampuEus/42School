@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_check.c                                      :+:      :+:    :+:   */
+/*   checking.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/18 16:27:27 by daampuru          #+#    #+#             */
-/*   Updated: 2023/05/18 16:27:27 by daampuru         ###   ########.fr       */
+/*   Created: 2023/05/19 22:46:13 by daampuru          #+#    #+#             */
+/*   Updated: 2023/05/20 00:10:08 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <fcntl.h>
-#include <errno.h>
 
 static char	exist(char *pathname)
 {
-	char	*strerr;
 	if (!pathname)
 	{
 		write(STDERR, "ERROR the specified path could not be reached or does not exist\n", 64);
@@ -24,7 +21,7 @@ static char	exist(char *pathname)
 	}
 	if (access(pathname, F_OK) != 0)
 	{
-		perror("ERROR No such file or directory");
+		perror("ERROR");
 		return (0);
 	}
 	return (1);
@@ -66,21 +63,26 @@ static char	cmdexec(char *pathname)
 	return (1);
 }
 
-char	input_check(int argc, char *argv[])
+char	check_files(int argc, char *argv[])
 {
-	int	index;
-
-	if (argc <= 5)
-	{
-		write(STDERR, "ERROR: Not enough arguments\n", 28);
-		return (-1);
-	}
-	index = 1;
-	if (!filein(argv[index]))
+	if (!filein(argv[1]))
 	{
 		write(STDERR, "ERROR in input file\n", 20);
 		return (-1);
 	}
+	if (!fileout(argv[argc - 1]))
+	{
+		write(STDERR, "ERROR in output file\n", 21);
+		return (-1);
+	}
+	return (0);
+}
+
+char	check_cmds(int argc, char *argv[], char **path)
+{
+	int	index;
+
+	index = 1;
 	while(++index < argc)
 	{
 		if (!cmdexec(argv[index]))
@@ -88,11 +90,6 @@ char	input_check(int argc, char *argv[])
 			write(STDERR, "ERROR: in one of the commands\n", 30);
 			return (-1);
 		}
-	}
-	if (!fileout(argv[argc - 1]))
-	{
-		write(STDERR, "ERROR in output file\n", 21);
-		return (-1);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:26:14 by daampuru          #+#    #+#              #
-#    Updated: 2023/05/18 15:26:14 by daampuru         ###   ########.fr        #
+#    Updated: 2023/05/20 00:09:27 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,10 @@ CC			:= gcc
 CFLAGS		:= -Wall -Wextra -Werror
 
 SRC_PATH	:= ./src
+SRC_INPUT_PATH := input
 SRC			:= main.c \
-				input_check.c \
+				$(SRC_INPUT_PATH)/input.c \
+				$(SRC_INPUT_PATH)/checking.c \
 				pipex.c
 
 OBJ_PATH	:= ./obj
@@ -67,7 +69,7 @@ $(NAME) : $(OBJ) | $(BIN_PATH)
 no_flag: CFLAGS :=
 no_flag: $(NAME)
 
-debug: CFLAGS := -g3
+debug: CFLAGS := -g3 -g
 debug: $(NAME)
 
 fsanitize: CFLAGS := -g3 -fsanitize=address
@@ -77,9 +79,15 @@ leaks: CFLAGS := -D LEAKS=1 -g3
 leaks: $(NAME)
 
 
+# tests
+run: $(NAME)
+	./bin/pipex ./tests/file_in.txt "ls -a" "wvc -l" ./tests/file_out.txt
+
+
 # Create dirs
 $(OBJ_PATH):
 	mkdir -p $@
+	mkdir -p $@/$(SRC_INPUT_PATH)
 
 $(BIN_PATH):
 	mkdir -p $@

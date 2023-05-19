@@ -26,7 +26,11 @@ Donde,
   - `file1` y `file2` son nombres de ficheros
   - `cmd1` y `cmd2` son comandos de shell con sus parámetros
 
-La gestion de errores debe ser como el comando equivalente de shell.
+> La gestion de errores debe ser como el comando equivalente de shell.
+
+Ejemplo de comando de entrada:
+
+`< infile ls -l | wc -l > outfile` ---> `./pipex infile "ls -l" "wc -l" outfile`
 
 ### Bonus
   - Gesniona multiples pipes:
@@ -108,7 +112,7 @@ Ejemplo del uso de una pipe en bash:
 ```shell
 sort | grep ai
 ```
-![Pilenile de los comandos sort y grep](annex/img/pipeline.png)
+![Pileline de los comandos sort y grep](annex/img/pipeline.png)
 
 El programa `sort` lee por su *stdin* (0) una serie de palabras que ordena y escribe en el su file descriptor (3) de salida proporcionado por la `pipe()`. Esta a su vez transmite esa información a el file descriptor de lectura (4) de lectura de `grep`, el cual trata los datos para despues escribirlos en su *stdout* (1).
 

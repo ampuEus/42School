@@ -3,13 +3,16 @@
 // #include <unistd.h>
 // #include <sys/wait.h>
 
-int main (int argc, char *argv[]) {
+int main (int argc, char *argv[], char **env)
+{
+	char **path;
 
-
-	if (input_check(argc, argv) < 0)
+	path = input(argc, argv, env);
+	if (!path)
 		return (1);
+	ft_doublefree(path);
 
-	pipex(argc, argv);
+	//pipex(argc, argv, env);
 
 	// /* make forks(depens on countCmd()) */
 	// // Child stdin
