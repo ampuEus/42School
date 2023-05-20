@@ -3,9 +3,7 @@
 
 In this project you will learn to sort data on a stack, with a limited set of instructions, using the lowest possible number of actions. To be successful, you will have to manipulate various types of algorithms and choose the most appropriate solution (out of many) for an optimized data sorting.
 
-***TODO: Add gif from the visualizer with sorting algorithm***
-
-
+![Example of running the sort algorithm](annex/img/execution_example.gif)
 
 ## Table of Contents
 - [Push\_swap : Because Swap\_push isn’t as natural](#push_swap--because-swap_push-isnt-as-natural)

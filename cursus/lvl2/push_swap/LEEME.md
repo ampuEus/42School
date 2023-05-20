@@ -3,10 +3,7 @@
 
 En este proyecto se aprenderá a ordenar datos en un stack, con un conjunto limitado de instrucciones, y utilizando el menor número de instrucciones posibles. Para tener éxito, se deberá trastear con algunos de los diversos algoritmos y elegir, entre todos, el más apropiado para un ordenamiento óptimo.
 
-
-***TODO: Añadir gif del visualizer con el algoritmo de ordenación***
-
-
+![Ejemplo de la ejecución del algoritmo de ordenación](annex/img/execution_example.gif)
 
 ## Índice
 - [Push\_swap : Porque Swap\_push no suena tan natural](#push_swap--porque-swap_push-no-suena-tan-natural)
