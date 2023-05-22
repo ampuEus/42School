@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:26:14 by daampuru          #+#    #+#              #
-#    Updated: 2023/05/20 00:09:27 by daampuru         ###   ########.fr        #
+#    Updated: 2023/05/23 00:02:41 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC_INPUT_PATH := input
 SRC			:= main.c \
 				$(SRC_INPUT_PATH)/input.c \
 				$(SRC_INPUT_PATH)/checking.c \
+				$(SRC_INPUT_PATH)/path_parsing.c \
 				pipex.c
 
 OBJ_PATH	:= ./obj
@@ -81,7 +82,7 @@ leaks: $(NAME)
 
 # tests
 run: $(NAME)
-	./bin/pipex ./tests/file_in.txt "ls -a" "wvc -l" ./tests/file_out.txt
+	./bin/pipex ./tests/file_in.txt "ls -a" "wc -l" ./tests/file_out.txt
 
 
 # Create dirs

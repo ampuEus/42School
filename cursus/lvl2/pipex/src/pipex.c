@@ -6,12 +6,13 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 23:38:55 by daampuru          #+#    #+#             */
-/*   Updated: 2023/05/19 22:26:36 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/05/20 22:33:28 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include <fcntl.h>
+#include <sys/wait.h>
 
 static int	pipescount(int argc)
 {
@@ -36,14 +37,12 @@ static char	redirect(char *cmd, int fdin, char **env)
 		perror("ERROR fork failed");
 		return (1);
 	}
-	// Inside Parent Process
 	else if (pid > 0)
 	{
 		close(fd[1]);
 		dup2(fd[0], STDIN);
 		wait(NULL);
 	}
-	// Inside Child Process
 	else
 	{
 		close(fd[0]);
