@@ -15,7 +15,7 @@
 
 /* Shift up all elements of stack a by 1
 and the first element becomes the last one */
-static char	rotate(t_stack **stack)
+char	rotate(t_stack **stack)
 {
 	t_stack	*second;
 

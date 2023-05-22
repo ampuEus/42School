@@ -15,7 +15,7 @@
 
 /* Take the first element at the top of one stack
 and put it at the top of the other */
-static char	push(t_stack **src, t_stack **dst)
+char	push(t_stack **src, t_stack **dst)
 {
 	t_stack	*second_src;
 

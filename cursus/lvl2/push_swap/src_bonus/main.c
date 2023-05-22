@@ -6,14 +6,14 @@ static char	is_correct(char *move)
 {
 	if (!move)
 		return (0);
-	if (ft_strncmp(move, "sa\n", 4) \
-	&& ft_strncmp(move, "sb\n", 4) \
-	&& ft_strncmp(move, "ss\n", 4) \
-	&& ft_strncmp(move, "pa\n", 4) \
-	&& ft_strncmp(move, "pb\n", 4) \
-	&& ft_strncmp(move, "ra\n", 4) \
-	&& ft_strncmp(move, "rb\n", 4) \
-	&& ft_strncmp(move, "rr\n", 4) \
+	if (ft_strncmp(move, "sa\n", 3) \
+	&& ft_strncmp(move, "sb\n", 3) \
+	&& ft_strncmp(move, "ss\n", 3) \
+	&& ft_strncmp(move, "pa\n", 3) \
+	&& ft_strncmp(move, "pb\n", 3) \
+	&& ft_strncmp(move, "ra\n", 3) \
+	&& ft_strncmp(move, "rb\n", 3) \
+	&& ft_strncmp(move, "rr\n", 3) \
 	&& ft_strncmp(move, "rra\n", 4) \
 	&& ft_strncmp(move, "rrb\n", 4) \
 	&& ft_strncmp(move, "rrr\n", 4))
@@ -24,27 +24,36 @@ static char	is_correct(char *move)
 static char	make_move(char *move, t_stack **stack_a, t_stack **stack_b)
 {
 	if (!ft_strncmp(move, "sa\n", 4))
-		sa(stack_a);
+		swap(stack_a);
 	else if (!ft_strncmp(move, "sb\n", 4))
-		sb(stack_b);
+		swap(stack_b);
 	else if (!ft_strncmp(move, "ss\n", 4))
-		ss(stack_a, stack_b);
+	{
+		swap(stack_a);
+		swap(stack_b);
+	}
 	else if (!ft_strncmp(move, "pa\n", 4))
-		pa(stack_a, stack_b);
+		push(stack_b, stack_a);
 	else if (!ft_strncmp(move, "pb\n", 4))
-		pb(stack_a, stack_b);
+		push(stack_a, stack_b);
 	else if (!ft_strncmp(move, "ra\n", 4))
-		ra(stack_a);
+		rotate(stack_a);
 	else if (!ft_strncmp(move, "rb\n", 4))
-		rb(stack_b);
+		rotate(stack_b);
 	else if (!ft_strncmp(move, "rr\n", 4))
-		rr(stack_a, stack_b);
+	{
+		rotate(stack_a);
+		rotate(stack_b);
+	}
 	else if (!ft_strncmp(move, "rra\n", 4))
-		rra(stack_a);
+		rrotate(stack_a);
 	else if (!ft_strncmp(move, "rrb\n", 4))
-		rrb(stack_b);
+		rrotate(stack_b);
 	else if (!ft_strncmp(move, "rrr\n", 4))
-		rrr(stack_a, stack_b);
+	{
+		rrotate(stack_a);
+		rrotate(stack_b);
+	}
 	return (0);
 }
 

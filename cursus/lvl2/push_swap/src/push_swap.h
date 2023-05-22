@@ -41,6 +41,11 @@ int				stacklower(t_stack *stack, int nbr);
 t_stack			*minvalue(t_stack *stack);
 
 /* movements / rules */
+char			push(t_stack **src, t_stack **dst);
+char			rotate(t_stack **stack);
+char			rrotate(t_stack **stack);
+char			swap(t_stack **stack);
+
 char			sa(t_stack **stack);
 char			sb(t_stack **stack);
 char			ss(t_stack **stack_a, t_stack **stack_b);

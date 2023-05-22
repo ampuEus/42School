@@ -14,7 +14,7 @@
 #include "../../lib/libft.h"
 
 /* Swap the first 2 elements at the top of stack */
-static char	swap(t_stack **stack)
+char	swap(t_stack **stack)
 {
 	t_stack	*first;
 
