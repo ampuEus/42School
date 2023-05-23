@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 23:38:55 by daampuru          #+#    #+#             */
-/*   Updated: 2023/05/20 22:33:28 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/05/24 00:37:40 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,29 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 
-static int	pipescount(int argc)
+// static unsigned int	pipescount(char **cmds)
+// {
+// 	unsigned int	len;
+
+// 	len = 0;
+// 	while (cmds[len])
+// 		len++;
+// 	return (len);
+// }
+
+static void	cmdexec(char *cmd, char **env)
 {
-	return (argc - 4);
+	char	**cmd_split;
+
+	cmd_split = ft_split(cmd, ' ');
+	execve(cmd_split[0], cmd_split, env);
+	ft_doublefree(cmd_split);
+	perror("ERROR can`t exec the command");
 }
 
 /* TODO
 Padre redirecciona y espera hijo ejecuta comando*/
-static char	redirect(char *cmd, int fdin, char **env)
+static char	redirect(char *cmd, char **env)
 {
 	pid_t	pid;
 	int		fd[2];
@@ -39,38 +54,34 @@ static char	redirect(char *cmd, int fdin, char **env)
 	}
 	else if (pid > 0)
 	{
-		close(fd[1]);
-		dup2(fd[0], STDIN);
+		close(fd[STDOUT]);
+		dup2(fd[STDIN], STDIN);
 		wait(NULL);
+		close(fd[STDIN]);
 	}
 	else
 	{
-		close(fd[0]);
-		dup2(fd[1], STDOUT);
-		if (fdin == STDIN)
-			exit(1);
-		printf("cmd = %s", cmd);
-		printf("env[0] = %s", env[0]);
-
-		// else
-		// {
-		// 	execve(cmd[1], cmd, env);
-		// 	perror("ERROR can`t exec the command");
-		// }
+		close(fd[STDIN]);
+		dup2(fd[STDOUT], STDOUT);
+		close(fd[STDOUT]);
+		cmdexec(cmd, env);
 	}
 	return (0);
 }
 
-void	pipex(int argc, char *argv[], char **env)
+void	pipex(char *filein, char *fileout, char **cmds, char **env)
 {
-	int		pipes;
 	int		fd[2];
+	unsigned int index;
 
-	fd[0] = open(argv[1], O_RDONLY);
-	fd[1] = open(argv[argc - 1], O_WRONLY);
-	dup2(fd[0], STDIN);
-	dup2(fd[1], STDOUT);
-	pipes = pipescount(argc);
-	while (pipes--)
-		redirect(argv[pipes], fd[0], env);
+	fd[STDIN] = open(filein, O_RDONLY);
+	fd[STDOUT] = open(fileout, O_WRONLY);
+	dup2(fd[STDIN], STDIN);
+	dup2(fd[STDOUT], STDOUT);
+	close(fd[STDIN]);
+	close(fd[STDOUT]);
+	index = 0;
+	while (cmds[index + 1])
+		redirect(cmds[index++], env);
+	cmdexec(cmds[index], env);
 }

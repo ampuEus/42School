@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 22:46:13 by daampuru          #+#    #+#             */
-/*   Updated: 2023/05/23 22:07:55 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/05/24 00:13:43 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	**check_cmds(int argc, char *argv[], char **path)
 
 	cmd = (char **)ft_calloc(argc - 1, sizeof(*cmd));
 	index = 1;
-	while(++index < (argc - 2))
+	while(++index <= (argc - 2))
 	{
 		route = 0;
 		while(path[route])
