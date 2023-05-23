@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 22:46:13 by daampuru          #+#    #+#             */
-/*   Updated: 2023/05/23 00:51:23 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/05/23 22:07:55 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	check_files(int argc, char *argv[])
 	return (0);
 }
 
-static char	cmdexec(char *pathname)
+static char	is_cmd(char *pathname)
 {
 	if (!pathname || access(pathname, X_OK) != 0)
 		return (0);
@@ -80,18 +80,26 @@ char	**check_cmds(int argc, char *argv[], char **path)
 
 	cmd = (char **)ft_calloc(argc - 1, sizeof(*cmd));
 	index = 1;
-	while(++index < argc)
+	while(++index < (argc - 2))
 	{
 		route = 0;
 		while(path[route])
 		{
-			cmd_split = ft_split(argv[index], ' ');
-			current_cmd = ft_strjoin(path[route], cmd_split[0]);
-			ft_doublefree(cmd_split);
-			if (cmdexec(current_cmd))
+			current_cmd = ft_strjoin(path[route], argv[index]);
+			cmd_split = ft_split(current_cmd, ' ');
+			if (is_cmd(cmd_split[0]))
+			{
+				cmd[index - 2] = ft_strdup(current_cmd);
+				free(current_cmd);
+				ft_doublefree(cmd_split);
 				break;
-			route++;
-			free(current_cmd);
+			}
+			else
+			{
+				free(current_cmd);
+				ft_doublefree(cmd_split);
+				route++;
+			}
 		}
 		if (!path[route])
 		{
@@ -99,8 +107,6 @@ char	**check_cmds(int argc, char *argv[], char **path)
 			write(STDERR, "ERROR: in one of the commands\n", 30);
 			return (NULL);
 		}
-		cmd[index - 2] = current_cmd;
-		free(current_cmd);
 	}
 	return (cmd);
 }
