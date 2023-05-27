@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:45:52 by daampuru          #+#    #+#             */
-/*   Updated: 2023/05/16 22:30:25 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/05/27 20:48:36 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,17 +120,17 @@ t_stack	*input(int arg_len, const char **str)
 	{
 		arr_str = ft_split(str[word++], ' ');
 		if (!arr_str)
-			return (NULL);
+		return (stackfree(&stack), NULL);
 		if (!is_onlynbr(arr_str) || !in_int_range(arr_str))
 		{
 			ft_doublefree(arr_str);
-			return (NULL);
+			return (stackfree(&stack), NULL);
 		}
 		stack = str2int(stack, arr_str);
 		ft_doublefree(arr_str);
 		arg_len--;
 	}
 	if (is_samenbr(stack))
-		return (NULL);
+		return (stackfree(&stack), NULL);
 	return (stack);
 }

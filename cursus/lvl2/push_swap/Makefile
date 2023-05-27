@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/29 20:45:38 by daampuru          #+#    #+#              #
-#    Updated: 2023/04/16 13:15:57 by daampuru         ###   ########.fr        #
+#    Updated: 2023/05/27 20:44:11 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,29 +99,26 @@ $(BONUS): $(OBJ_BONUS) $(OBJ_BOTH) | $(BIN_PATH)
 
 
 # Debug
-no_flag: | $(BIN_PATH)
-	$(CC) $(SRC) $(SRC_BOTH) $(LIB_A)
-	mv a.out $(BIN_PATH)
 
-debug: | $(BIN_PATH)
-	$(CC) -g3 $(SRC) $(SRC_BOTH) $(LIB_A)
-	mv -v a.out* $(BIN_PATH)
+no_flag: $(CFLAGS) := -g3 -g
+no_flag: push_swap
+
+debug: $(CFLAGS) := -g3 -g
+debug: push_swap | $(BIN_PATH)
 
 debug_bonus: | $(BIN_PATH)
 	$(CC) -g3 $(SRC_BONUS) $(SRC_BOTH) $(LIB_A)
 	mv -v a.out* $(BIN_PATH)
 
-fsanitize:
-	$(CC) -fsanitize=address -g3 $(SRC) $(SRC_BOTH) $(LIB_A)
-	mv -v a.out* $(BIN_PATH)
+fsanitize: $(CFLAGS) := -fsanitize=address -g3
+fsanitize: push_swap
 
 fsanitize_bonus:
 	$(CC) -fsanitize=address -g3 $(SRC_BONUS) $(SRC_BOTH) $(LIB_A)
 	mv -v a.out* $(BIN_PATH)
 
-leaks: | $(BIN_PATH)
-	$(CC) -D LEAKS=1 -g3 $(SRC) $(SRC_BOTH) $(LIB_A)
-	mv -v *.out $(BIN_PATH)
+leaks: $(CFLAGS) := -D LEAKS=1 -g3
+leaks: push_swap
 
 
 # Tests
