@@ -539,5 +539,8 @@ Modos:
   - https://stackoverflow.com/questions/2423628/whats-the-difference-between-a-file-descriptor-and-a-file-pointer
   - https://www.geeksforgeeks.org/access-command-in-linux-with-examples/
 
+
+https://stackoverflow.com/questions/597311/why-does-the-child-process-here-not-print-anything
+
 ---
 Hecho por daampuru | LinkedIn: [David Ampurua](https://www.linkedin.com/in/david-ampurua)

@@ -47,9 +47,17 @@ static char	check_fileout(char *pathname)
 	return (1);
 }
 
-char	check_files(int argc, char *argv[])
+char	check_files(int argc, char *argv[], char isHereDoc)
 {
-	if (!check_filein(argv[1]))
+	if (isHereDoc)
+	{
+		if (argc < 6)
+		{
+			write(STDERR, "ERROR: Not enough arguments for here_doc\n", 41);
+			return (-1);
+		}
+	}
+		else if (!check_filein(argv[1]))
 	{
 		write(STDERR, "ERROR in input file\n", 20);
 		return (-1);
@@ -78,9 +86,9 @@ char	**check_cmds(int argc, char *argv[], char **path)
 	char			**cmd_split;
 	char			**cmd;
 
-	cmd = (char **)ft_calloc(argc - 1, sizeof(*cmd));
-	index = 1;
-	while(++index <= (argc - 2))
+	cmd = (char **)ft_calloc(argc + 1, sizeof(*cmd));
+	index = 0;
+	while(index < (argc - 1))
 	{
 		route = 0;
 		while(path[route])
@@ -89,7 +97,7 @@ char	**check_cmds(int argc, char *argv[], char **path)
 			cmd_split = ft_split(current_cmd, ' ');
 			if (is_cmd(cmd_split[0]))
 			{
-				cmd[index - 2] = ft_strdup(current_cmd);
+				cmd[index] = ft_strdup(current_cmd);
 				free(current_cmd);
 				ft_doublefree(cmd_split);
 				break;
@@ -107,6 +115,7 @@ char	**check_cmds(int argc, char *argv[], char **path)
 			write(STDERR, "ERROR: in one of the commands\n", 30);
 			return (NULL);
 		}
+		index++;
 	}
 	return (cmd);
 }

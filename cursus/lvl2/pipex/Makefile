@@ -12,7 +12,8 @@
 
 ########## VARIABLES ##########
 BIN_PATH	:= ./bin
-NAME		:= $(BIN_PATH)/pipex
+#NAME		:= $(BIN_PATH)/pipex
+NAME		:= pipex
 INCLUDE		:= ./include
 
 CC			:= gcc
@@ -20,11 +21,15 @@ CFLAGS		:= -Wall -Wextra -Werror
 
 SRC_PATH	:= ./src
 SRC_INPUT_PATH := input
+SRC_UTILS_PATH := utils
 SRC			:= main.c \
 				$(SRC_INPUT_PATH)/input.c \
 				$(SRC_INPUT_PATH)/checking.c \
 				$(SRC_INPUT_PATH)/path_parsing.c \
-				pipex.c
+				$(SRC_UTILS_PATH)/cmdexec.c \
+				$(SRC_UTILS_PATH)/redirect.c \
+				pipex.c \
+				here_doc.c
 
 OBJ_PATH	:= ./obj
 OBJ			:= $(addprefix $(OBJ_PATH)/, $(SRC:.c=.o))
@@ -83,12 +88,15 @@ leaks: $(NAME)
 # tests
 run: $(NAME)
 	./bin/pipex ./tests/file_in.txt "ls -a" "wc -l" ./tests/file_out.txt
+run_bonus: $(NAME)
+	./bin/pipex here_doc fin "cat" "cat" ./tests/file_out.txt
 
 
 # Create dirs
 $(OBJ_PATH):
 	mkdir -p $@
 	mkdir -p $@/$(SRC_INPUT_PATH)
+	mkdir -p $@/$(SRC_UTILS_PATH)
 
 $(BIN_PATH):
 	mkdir -p $@
