@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:26:14 by daampuru          #+#    #+#              #
-#    Updated: 2023/05/23 00:02:41 by daampuru         ###   ########.fr        #
+#    Updated: 2023/05/28 00:25:33 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,16 @@ CFLAGS		:= -Wall -Wextra -Werror
 
 SRC_PATH	:= ./src
 SRC_INPUT_PATH := input
-SRC_UTILS_PATH := utils
+SRC_CMD_PATH := cmd
+SRC_FILES_PATH := files
 SRC			:= main.c \
 				$(SRC_INPUT_PATH)/input.c \
 				$(SRC_INPUT_PATH)/checking.c \
 				$(SRC_INPUT_PATH)/path_parsing.c \
-				$(SRC_UTILS_PATH)/cmdexec.c \
-				$(SRC_UTILS_PATH)/redirect.c \
+				$(SRC_CMD_PATH)/cmdexec.c \
+				$(SRC_CMD_PATH)/redirect.c \
+				$(SRC_FILES_PATH)/filein.c \
+				$(SRC_FILES_PATH)/fileout.c \
 				pipex.c \
 				here_doc.c
 
@@ -96,7 +99,8 @@ run_bonus: $(NAME)
 $(OBJ_PATH):
 	mkdir -p $@
 	mkdir -p $@/$(SRC_INPUT_PATH)
-	mkdir -p $@/$(SRC_UTILS_PATH)
+	mkdir -p $@/$(SRC_CMD_PATH)
+	mkdir -p $@/$(SRC_FILES_PATH)
 
 $(BIN_PATH):
 	mkdir -p $@

@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   fileout.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/18 23:38:55 by daampuru          #+#    #+#             */
-/*   Updated: 2023/05/27 21:24:28 by daampuru         ###   ########.fr       */
+/*   Created: 2023/05/27 19:22:47 by daampuru          #+#    #+#             */
+/*   Updated: 2023/05/27 19:26:27 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include <fcntl.h>
 
-char	pipex(char *filein, char *fileout, char **cmds, char **env)
+int	open_fileout(char *pathname)
 {
-	unsigned int index;
+	int	fdout;
 
-	if (open_filein(filein) < 0 || open_fileout(fileout) < 0)
-		return (1);
-	index = 0;
-	while (cmds[index + 1])
-		redirect(cmds[index++], env);
-	cmdexec(cmds[index], env);
-	return (1);
+	fdout = open(pathname, O_WRONLY);
+	if (fdout < 0)
+		perror("ERROR opening input file");
+	if (dup2(fdout, STDOUT) < 0)
+		perror("ERROR refering (dup2) input file's fie descriptor to stdin");
+	if (close(fdout) < 0)
+		perror("ERROR closing input file");
+	return (fdout);
 }

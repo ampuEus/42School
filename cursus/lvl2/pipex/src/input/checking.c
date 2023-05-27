@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 22:46:13 by daampuru          #+#    #+#             */
-/*   Updated: 2023/05/24 00:13:43 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/05/27 23:16:46 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,6 @@ static char	check_filein(char *pathname)
 	return (1);
 }
 
-static char	check_fileout(char *pathname)
-{
-	if (!exist(pathname))
-		return (0);
-	if (access(pathname, W_OK) != 0)
-	{
-		perror("ERROR file write permission");
-		return (0);
-	}
-	return (1);
-}
-
 char	check_files(int argc, char *argv[], char isHereDoc)
 {
 	if (isHereDoc)
@@ -60,11 +48,6 @@ char	check_files(int argc, char *argv[], char isHereDoc)
 		else if (!check_filein(argv[1]))
 	{
 		write(STDERR, "ERROR in input file\n", 20);
-		return (-1);
-	}
-	if (!check_fileout(argv[argc - 1]))
-	{
-		write(STDERR, "ERROR in output file\n", 21);
 		return (-1);
 	}
 	return (0);
