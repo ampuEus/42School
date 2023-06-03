@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:26:14 by daampuru          #+#    #+#              #
-#    Updated: 2023/06/03 18:02:26 by daampuru         ###   ########.fr        #
+#    Updated: 2023/06/03 18:09:51 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ MLX_LINK	:= -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 
 ########## IMPLICIT RULES ##########
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
-	$(CC) $(CFLAGS) -I $(INCLUDE) -I $(LIB_PATH) -c $^ -o $@
+	$(CC) $(CFLAGS) -I $(INCLUDE) -I $(LIB_PATH) -I $(MLX_PATH) -c $^ -o $@
 
 
 ########## EXPLICIT RULES ##########

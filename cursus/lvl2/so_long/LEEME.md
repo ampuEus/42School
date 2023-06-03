@@ -55,3 +55,13 @@ Basicamente relacionados con la estructura del mapa
 gnl
 ### 3. Mover al personaje
 ### 4. Animar a los enemigos
+
+
+
+## Referencias
+  - https://harm-smits.github.io/42docs/libs/minilibx.html
+
+
+---
+Hecho por daampuru | LinkedIn: [David Ampurua](https://www.linkedin.com/in/david-ampurua)
+

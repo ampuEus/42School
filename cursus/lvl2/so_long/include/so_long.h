@@ -6,13 +6,14 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 17:43:48 by daampuru          #+#    #+#             */
-/*   Updated: 2023/06/03 17:44:47 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/06/03 18:09:02 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 
 #include "libft.h"
+#include <mlx.h>
 
 /* ---------- Constants ---------- */
 
