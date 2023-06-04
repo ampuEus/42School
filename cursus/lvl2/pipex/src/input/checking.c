@@ -6,27 +6,15 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 22:46:13 by daampuru          #+#    #+#             */
-/*   Updated: 2023/05/27 23:16:46 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/05/28 19:55:05 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include "libft.h"
 
-static char	exist(char *pathname)
-{
-	if (!pathname)
-	{
-		write(STDERR, "ERROR the specified path could not be reached or does not exist\n", 64);
-		return (0);
-	}
-	return (1);
-}
-
 static char	check_filein(char *pathname)
 {
-	if (!exist(pathname))
-		return (0);
 	if (access(pathname, R_OK) != 0)
 	{
 		perror("ERROR file read permission");
