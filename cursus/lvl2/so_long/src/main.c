@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 17:45:07 by daampuru          #+#    #+#             */
-/*   Updated: 2023/06/04 16:51:42 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/06/04 17:02:35 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	main (int argc, char *argv[])
 	gui.mlx = mlx_init();
 	gui.win = mlx_new_window(gui.mlx, 1920, 1080, "so_long");
 	mlx_key_hook(gui.win, key_hook, &gui);
+	mlx_hook(gui.win, 17, 1L<<0, close_gui, &gui);
 	mlx_loop(gui.mlx);
 	return (0);
 }
