@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 17:45:07 by daampuru          #+#    #+#             */
-/*   Updated: 2023/06/04 18:07:16 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/06/04 19:36:24 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	render_img(t_gui *gui, int x, int y)
 	img = mlx_xpm_file_to_image(gui->mlx, TEST, &img_width, &img_height);
 	if (!img)
 	{
-		ft_putstr_fd("ERROR: Corrupt .xpm file\n", 2);
+		ft_putstr_fd("ERROR: See .xpm file\n", 2);
 		close_gui(gui);
 	}
 	mlx_put_image_to_window(gui->mlx, gui->win, img, x, y);
@@ -48,13 +48,13 @@ char move(int keycode, t_gui *gui)
 	if (!y)
 		y = 0;
 	if (keycode == KEY_LEFT)
-		x -= 10;
+		x -= 80;
 	else if (keycode == KEY_RIGHT)
-		x += 10;
+		x += 80;
 	else if (keycode == KEY_DOWN)
-		y += 10;
+		y += 80;
 	else if (keycode == KEY_UP)
-		y -= 10;
+		y -= 80;
 	render_img(gui, x, y);
 	return (1);
 }

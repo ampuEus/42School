@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 17:43:48 by daampuru          #+#    #+#             */
-/*   Updated: 2023/06/04 17:41:12 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/06/04 19:36:46 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct	s_gui {
 # define KEY_UP 126
 
 // Assets relative paths
-# define TEST "./assets/test.xpm"
+# define TEST "./assets_80x80/Twelve_test.xpm"
 
 
 /* ---------- Functions ---------- */
