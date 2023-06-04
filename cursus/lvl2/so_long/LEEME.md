@@ -48,6 +48,13 @@ Se consiguen puntos extra si:
 
 [X-Window system](https://www.x.org/wiki/)
 
+### Funciones utilies para el proyecto
+mlx_init
+mlx_new_window
+mlx_key_hook
+mlx_hook
+mlx_loop
+
 ## Pasos que yo he seguido para hacer el programa
 ### 1. Gestión de errores
 Basicamente relacionados con la estructura del mapa

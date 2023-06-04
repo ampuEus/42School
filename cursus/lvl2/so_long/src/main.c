@@ -6,41 +6,42 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 17:45:07 by daampuru          #+#    #+#             */
-/*   Updated: 2023/06/03 18:47:45 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/06/04 16:51:42 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}			t_data;
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+/* This function need and "exit ()" intead of a "return ()", because if not
+when it return to the loop will make a segmentation fault" */
+char	close_gui(t_gui	*gui)
 {
-	char	*dst;
+	mlx_destroy_window(gui->mlx, gui->win);
+	free(gui->mlx);
+	exit (0);
+}
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+/* Some keycodes:
+	ESC = 53
+	LEFT = 123
+	RIGHT = 124
+	DOWN = 125
+	UP = 126 */
+int	key_hook(int keycode, t_gui *gui)
+{
+	ft_printf("key = %i\n", keycode);
+	if (keycode == 53)
+		close_gui(gui);
+	return (keycode);
 }
 
 int	main (int argc, char *argv[])
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
+	t_gui	gui;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img.img = mlx_new_image(mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-								&img.endian);
-	my_mlx_pixel_put(&img, 100, 100, 0x00FF0000);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+	gui.mlx = mlx_init();
+	gui.win = mlx_new_window(gui.mlx, 1920, 1080, "so_long");
+	mlx_key_hook(gui.win, key_hook, &gui);
+	mlx_loop(gui.mlx);
 	return (0);
 }
