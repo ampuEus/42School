@@ -19,8 +19,20 @@ CC			:= gcc
 CFLAGS		:= -Wall -Wextra -Werror
 
 SRC_PATH	:= ./src
-SRC_INPUT_PATH := input
-SRC			:= main.c
+SRC_MAP_PATH := map
+SRC_GUI_PATH := gui
+SRC			:= main.c \
+				$(SRC_MAP_PATH)/map_utils.c \
+				$(SRC_MAP_PATH)/is_closed_walls.c \
+				$(SRC_MAP_PATH)/valid_chars.c \
+				$(SRC_MAP_PATH)/valid_path.c \
+				$(SRC_MAP_PATH)/is_valid_map.c \
+				$(SRC_MAP_PATH)/get_map.c \
+				$(SRC_GUI_PATH)/render_img.c \
+				$(SRC_GUI_PATH)/render_map.c \
+				$(SRC_GUI_PATH)/key_hook.c \
+				$(SRC_GUI_PATH)/end_gui.c \
+				$(SRC_GUI_PATH)/start_gui.c
 
 OBJ_PATH	:= ./obj
 OBJ			:= $(addprefix $(OBJ_PATH)/, $(SRC:.c=.o))
@@ -92,7 +104,8 @@ run: $(NAME)
 # Create dirs
 $(OBJ_PATH):
 	mkdir -p $@
-	mkdir -p $@/$(SRC_INPUT_PATH)
+	mkdir -p $@/$(SRC_MAP_PATH)
+	mkdir -p $@/$(SRC_GUI_PATH)
 
 $(BIN_PATH):
 	mkdir -p $@
