@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:12:44 by daampuru          #+#    #+#             */
-/*   Updated: 2023/05/27 18:34:39 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/06/07 21:36:37 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static char	is_correct(char *move)
 {
 	if (!move)
-		return (0);
+		return (1);
 	if (ft_strncmp(move, "sa\n", 3) \
 	&& ft_strncmp(move, "sb\n", 3) \
 	&& ft_strncmp(move, "ss\n", 3) \
@@ -80,16 +80,16 @@ static char	read_line(t_stack	*stack_a, t_stack	*stack_b)
 	char	*line;
 	char	correct;
 
-	line = get_next_line(0);
+	line = ft_strdup("<init>");
 	correct = 0;
 	while (line)
 	{
-		correct = is_correct(line);
-		if (!correct)
-			break ;
-		make_move(line, &stack_a, &stack_b);
 		free(line);
 		line = get_next_line(0);
+		correct = is_correct(line);
+		if (!correct || !line)
+			break ;
+		make_move(line, &stack_a, &stack_b);
 	}
 	free(line);
 	return (correct);
