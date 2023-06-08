@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:43:38 by daampuru          #+#    #+#             */
-/*   Updated: 2023/05/24 15:43:38 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/06/08 18:22:07 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ishere_doc(char *argv[])
 	return (delimeter);
 }
 
-void here_doc(char *delimeter, char *fileout, char **cmds, char **env)
+char	here_doc(char *delimeter, char *fileout, char **cmds, char **env)
 {
 	int				fdtmp;
 	int				fd[2];
@@ -32,19 +32,21 @@ void here_doc(char *delimeter, char *fileout, char **cmds, char **env)
 	char			*line;
 
 	fdtmp = open(FILE_TMP_PATH, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if (fdtmp < 0)
+		return (perror("ERROR with temp file"), 1);
 	while(1)
 	{
+		ft_putstr_fd("pipe heredoc> ", STDOUT);
 		line = get_next_line(STDIN);
 		if (!ft_strncmp(delimeter, line, ft_max(ft_strlen(delimeter), ft_strlen(line) - 1)))
 			break;
 		write(fdtmp, line, ft_strlen(line));
-		printf("line = %s", line);
 		free(line);
 	}
 	free(line);
 	close(fdtmp);
-	fd[STDIN] = open(FILE_TMP_PATH, O_RDONLY);
-	fd[STDOUT] = open(fileout, O_WRONLY);
+	if (open_filein(FILE_TMP_PATH) < 0 || open_fileout(fileout, 1) < 0)
+		return (1);
 	dup2(fd[STDIN], STDIN);
 	dup2(fd[STDOUT], STDOUT);
 	close(fd[STDIN]);
@@ -54,4 +56,5 @@ void here_doc(char *delimeter, char *fileout, char **cmds, char **env)
 		redirect(cmds[index++], env);
 	unlink(FILE_TMP_PATH);
 	cmdexec(cmds[index], env);
+	return (0);
 }
