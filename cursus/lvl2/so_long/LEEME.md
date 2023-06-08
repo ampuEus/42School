@@ -67,7 +67,11 @@ gnl
 
 ## Referencias
   - https://harm-smits.github.io/42docs/libs/minilibx.html
+  - https://gontjarow.github.io/MiniLibX/mlx.html
 
+## Anexo: Herramientas para editar imagenes
+  - https://ezgif.com/
+  - https://convertio.co/png-xpm/
 
 
 https://anyconv.com/png-to-xpm-converter/
