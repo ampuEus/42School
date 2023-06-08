@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 22:46:13 by daampuru          #+#    #+#             */
-/*   Updated: 2023/05/28 19:55:05 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/06/08 17:42:12 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,7 @@ char	**check_cmds(int argc, char *argv[], char **path)
 			}
 		}
 		if (!path[route])
-		{
-			ft_doublefree(cmd);
-			write(STDERR, "ERROR: in one of the commands\n", 30);
-			return (NULL);
-		}
+			cmd[index] = ft_strdup(current_cmd);
 		index++;
 	}
 	return (cmd);
