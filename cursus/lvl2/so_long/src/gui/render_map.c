@@ -36,4 +36,5 @@ char	render_map(t_gui *gui)
 		y += ASSETS_SIZE;
 		line++;
 	}
+	return (0);
 }

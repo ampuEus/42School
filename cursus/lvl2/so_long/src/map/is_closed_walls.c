@@ -21,7 +21,6 @@ char	is_closed_walls(char **map)
 {
 	unsigned int	line;
 	int				line_len;
-	unsigned int	c;
 
 	line = 0;
 	line_len = ft_strlen(map[line]) - 1;

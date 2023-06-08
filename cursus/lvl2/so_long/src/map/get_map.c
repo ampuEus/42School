@@ -12,16 +12,16 @@ static unsigned int	is_rectangular (int fd_map)
 	tot_lines = 0;
 	line = get_next_line(fd_map);
 	line_len = ft_strlen(line);
-	while (!line)
+	while (line)
 	{
-		free(line);
-		line = NULL;
-		line = get_next_line(fd_map);
-		if (line_len != ft_strlen(line))
+		if (line_len != (int)ft_strlen(line))
 		{
 			tot_lines = 0;
 			break;
 		}
+		free(line);
+		line = NULL;
+		line = get_next_line(fd_map);
 		tot_lines++;
 	}
 	free(line);
@@ -61,8 +61,10 @@ char	**get_map(char *filepath)
 
 	fd = open (filepath, O_RDONLY);
 	lines = is_rectangular(fd);
+	close(fd);
 	if (!lines)
 		return (ft_putstr_fd("ERROR: The map must be rectangular\n", 2), NULL);
+	fd = open (filepath, O_RDONLY);
 	map = parse_map(lines, fd);
 	if (!map)
 		return (ft_putstr_fd("ERROR: Can't parse the map\n", 2), NULL);
