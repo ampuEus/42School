@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-size_t	cnt_words(char const *str, char delimiter)
+static size_t	cnt_words(char const *str, char delimiter)
 {
 	size_t	words;
 	char	is_delimiter;
@@ -36,7 +36,7 @@ size_t	cnt_words(char const *str, char delimiter)
 	return (words);
 }
 
-char	**save_words( \
+static char	**save_words( \
 			char **save_place, char const *str, size_t words, char delimiter)
 {
 	size_t	aux_words;

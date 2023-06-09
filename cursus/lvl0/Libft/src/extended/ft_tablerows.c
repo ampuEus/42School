@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int ft_tablerows(char **table)
+unsigned int	ft_tablerows(char **table)
 {
 	unsigned int	rows;
 

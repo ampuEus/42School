@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-unsigned int	numlen(long num)
+static unsigned int	numlen(long num)
 {
 	unsigned int	len;
 
@@ -32,7 +32,7 @@ unsigned int	numlen(long num)
 	return (len);
 }
 
-char	*num2str(char *buffer, long num, unsigned int len)
+static char	*num2str(char *buffer, long num, unsigned int len)
 {
 	if (num == 0)
 	{

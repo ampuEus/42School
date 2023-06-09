@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../libft.h"
+#include "../libft.h"
 
 char	ft_doublefree(char **table)
 {
 	unsigned int	line;
 
 	line = 0;
-	while(table[line])
+	while (table[line])
 		free(table[line++]);
 	free(table);
 	return (0);
