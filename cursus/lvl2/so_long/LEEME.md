@@ -1,4 +1,4 @@
-# SoLong : ¡Y gracias por todo el pescado!
+# SoLong
 ***Oficialmente terminado el xx/12/2023 / Nota xxx de 100 / [English](README.md) version***
 
 Este proyecto es un pequeño juego en 2D. Está diseñado para hacerte trabajar con texturas y sprites y algunos otros elementos básicos de jugabilidad. Te ayudará a mejorar tus habilidades en estas áreas: ventanas, colores, eventos, texturas, etc.
@@ -21,12 +21,12 @@ Se va a usar la librería gráfica del campus **MiniLibX**. Esta librería se ha
     - El programa mostrará la imagen en una ventana.
     - La gestión de tu ventana debe ser limpia (cambiar de ventana, minimizar, etc).
     - Pulsar la tecla ESC o pulsar la X de la ventana debe cerrar la ventana y el programa.
-    - El uso de images de la miniLibX es obligatorio
+    - El uso de imágenes de la miniLibX es obligatorio
   - El mapa
     - Consta de 5 componentes (representados por caracteres ASCII):
       - Espacio abierto (0), Paredes (1) y objetos (C).
       - Salida del mapa (E) y posición inicial del jugador (P).
-    - Obligatorio que el mapa tenga al menos un objeto y unicamente una salida y una posición inicial.
+    - Obligatorio que el mapa tenga al menos un objeto y únicamente una salida y una posición inicial.
     -  Debe ser rectangular
     -  Debe estar cerrado/rodeado de muros.
     -  Debe haber un camino válido para poder recolectar los objetos y salir.
