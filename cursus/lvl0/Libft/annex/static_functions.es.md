@@ -1,0 +1,1 @@
+when use static functions
