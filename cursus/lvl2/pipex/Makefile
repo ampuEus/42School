@@ -12,8 +12,7 @@
 
 ########## VARIABLES ##########
 BIN_PATH	:= ./bin
-#NAME		:= $(BIN_PATH)/pipex
-NAME		:= pipex
+NAME		:= $(BIN_PATH)/pipex
 INCLUDE		:= ./include
 
 CC			:= gcc
@@ -27,6 +26,7 @@ SRC			:= main.c \
 				$(SRC_INPUT_PATH)/input.c \
 				$(SRC_INPUT_PATH)/checking.c \
 				$(SRC_INPUT_PATH)/path_parsing.c \
+				$(SRC_CMD_PATH)/cmd_split.c \
 				$(SRC_CMD_PATH)/cmdexec.c \
 				$(SRC_CMD_PATH)/redirect.c \
 				$(SRC_FILES_PATH)/filein.c \

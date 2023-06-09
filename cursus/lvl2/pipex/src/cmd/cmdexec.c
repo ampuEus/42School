@@ -15,10 +15,10 @@
 
 void	cmdexec(char *cmd, char **env)
 {
-	char	**cmd_split;
+	char	**cmd_args;
 
-	cmd_split = ft_split(cmd, ' ');
-	execve(cmd_split[0], cmd_split, env);
+	cmd_args = cmd_split(cmd, ' ');
+	execve(cmd_args[0], cmd_args, env);
 	perror("ERROR can`t execute the command");
-	ft_doublefree(cmd_split);
+	ft_doublefree(cmd_args);
 }
