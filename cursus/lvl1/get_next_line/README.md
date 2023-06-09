@@ -300,5 +300,9 @@ void	foo(void)
 }
 ```
 
+## Things that can be improved
+   - There are functions that could be set as static
+   - Better performance would be achieved if the line break was searched before reading the file
+
 ---
 Made by daampuru | LinkedIn: [David Ampurua](https://www.linkedin.com/in/david-ampurua)

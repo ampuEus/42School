@@ -298,5 +298,9 @@ void	foo(void)
 }
 ```
 
+## Cosas que se pueden mejorar
+  - Hay funciones que podrían ponerse como estáticas
+  - Se conseguiría un mejor rendimiento si se buscase el salto de línea antes de leer el archivo
+
 ---
 Hecho por daampuru | LinkedIn: [David Ampurua](https://www.linkedin.com/in/david-ampurua)
