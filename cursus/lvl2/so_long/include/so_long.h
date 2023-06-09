@@ -8,6 +8,8 @@ typedef struct	s_gui {
 	int		width;
 	void	*mlx;
 	void	*win;
+	void	*player_img;
+	void	*exit_img;
 }			t_gui;
 
 
@@ -42,6 +44,9 @@ typedef struct	s_gui {
 # define GND4 "./assets_80x80/grass_4.xpm"
 
 # define PLAYER "./assets_80x80/Twelve_test.xpm"
+# define PEACH "./assets_80x80/peach_test.xpm"
+# define QUIT "./assets_80x80/q_test.xpm"
+# define ENEMY "./assets_80x80/grass_4.xpm"
 
 // Assets size = 80x80 px
 # define ASSETS_SIZE 80
@@ -60,7 +65,8 @@ char			**get_map(char *filepath);
 
 // GUI
 
-char			render_img(t_gui *gui, char *filepath, int x, int y);
+void			*render_img(t_gui *gui, char *filepath, int x, int y);
+int				delete_img(t_gui *gui, void *img);
 char			render_map(t_gui *gui);
 int				key_hook(int keycode, t_gui *gui);
 char			end_gui(t_gui	*gui);

@@ -2,7 +2,24 @@
 #include "so_long.h"
 #include "mlx.h"
 
-char	render_img(t_gui *gui, char *filepath, int x, int y)
+#include <stdio.h>
+
+int	delete_img(t_gui *gui, void *img)
+{
+	int		done;
+
+	done = mlx_destroy_image(gui->mlx, img);
+	if (!done)
+	{
+		ft_putstr_fd("ERROR: Can't delete image\n", 2);
+		printf("img = %p", img);
+		end_gui(gui);
+		return (done);
+	}
+	return (done);
+}
+
+void	*render_img(t_gui *gui, char *filepath, int x, int y)
 {
 	void	*img;
 	int		img_width;
@@ -13,8 +30,8 @@ char	render_img(t_gui *gui, char *filepath, int x, int y)
 	{
 		ft_putstr_fd("ERROR: See .xpm file\n", 2);
 		end_gui(gui);
-		return (-1);
+		return (img);
 	}
 	mlx_put_image_to_window(gui->mlx, gui->win, img, x, y);
-	return (0);
+	return (img);
 }
