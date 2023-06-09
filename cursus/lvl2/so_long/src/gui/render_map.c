@@ -1,14 +1,17 @@
-
 #include "so_long.h"
 
 static char	render_texture(t_gui *gui, char c, unsigned x, unsigned y)
 {
-	if (c == FREE_SPACE)
-		render_img(gui, GND1, x, y);
-	else if (c == WALL)
+	if (c == WALL)
 		render_img(gui, WALL1, x, y);
-	else if (c == START_POS)
+	else
+		render_img(gui, GND1, x, y);
+	if (c == START_POS)
 		render_img(gui, PLAYER, x, y);
+	else if (c == COLLECTABLE)
+		render_img(gui, PEACH, x, y);
+	else if (c == EXIT)
+		render_img(gui, QUIT, x, y);
 	else
 		return (-1);
 	return (0);
