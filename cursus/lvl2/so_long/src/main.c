@@ -2,7 +2,7 @@
 
 static void get_resolution(t_gui *gui)
 {
-	gui->height = ft_strlen(gui->map[0]) * ASSETS_SIZE;
+	gui->height = (ft_strlen(gui->map[0]) - 1) * ASSETS_SIZE;
 	gui->width = ft_tablerows(gui->map) * ASSETS_SIZE;
 }
 

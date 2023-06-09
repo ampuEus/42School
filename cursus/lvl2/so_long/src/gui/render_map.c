@@ -23,7 +23,7 @@ char	render_map(t_gui *gui)
 
 	line = 0;
 	y = 0;
-	while (!gui->map[line])
+	while (gui->map[line])
 	{
 		c = 0;
 		x = 0;
