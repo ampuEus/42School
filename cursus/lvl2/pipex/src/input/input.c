@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:27:27 by daampuru          #+#    #+#             */
-/*   Updated: 2023/05/21 11:58:49 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/06/09 19:16:33 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	**input(int argc, char *argv[], char **env)
 	delimeter = ishere_doc(argv);
 	isheredoc = delimeter != NULL;
 	free(delimeter);
-	if (check_files(argc, argv, isheredoc) < 0)
+	if (check_filein(argc, argv, isheredoc) < 0)
 		return (NULL);
 	path = path_parsing(env);
 	if (!path)

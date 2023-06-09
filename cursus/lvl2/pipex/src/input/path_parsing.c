@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 11:31:00 by daampuru          #+#    #+#             */
-/*   Updated: 2023/05/23 00:47:22 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/06/09 18:49:19 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ char	**path_parsing(char **env)
 	char			**path_line;
 	char			**paths;
 	char			*temp;
-	int		index;
+	int				index;
 
 	index = 0;
-	while(ft_strncmp(env[index], "PATH=", 5) != 0)
+	while (ft_strncmp(env[index], "PATH=", 5) != 0)
 		index++;
 	path_line = ft_split(env[index], '=');
 	if (!path_line)

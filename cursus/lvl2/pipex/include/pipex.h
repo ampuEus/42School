@@ -6,16 +6,15 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:18:30 by daampuru          #+#    #+#             */
-/*   Updated: 2023/06/08 18:00:49 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/06/09 19:16:40 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef PIPEX_H
 
-#include "libft.h"
-#include <stdio.h>
-#include <unistd.h>
+# include "libft.h"
+# include <stdio.h>
+# include <unistd.h>
 # include <sys/types.h>
 
 /* ---------- Constants ---------- */
@@ -28,17 +27,17 @@
 /* ---------- Functions ---------- */
 char	pipex(char *filein, char *fileout, char **cmds, char **env);
 char	*ishere_doc(char *argv[]);
-void	here_doc(char *delimeter, char *fileout, char **cmds, char **env);
+char	here_doc(char *delimeter, char *fileout, char **cmds, char **env);
 
 //input
-char	check_files(int argc, char *argv[], char isHereDoc);
+char	check_filein(int argc, char *argv[], char isHereDoc);
 char	**check_cmds(int argc, char *argv[], char **path);
 char	**path_parsing(char **env);
 char	**input(int argc, char *argv[], char **env);
 
 //files
 int		open_filein(char *pathname);
-int		open_fileout(char *pathname);
+int		open_fileout(char *pathname, char here_doc);
 
 //cmd
 char	**cmd_split(char const *cmd, char c);

@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 08:03:22 by daampuru          #+#    #+#             */
-/*   Updated: 2023/05/27 19:24:36 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/06/09 19:05:48 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,18 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 
-/* TODO
-Padre redirecciona y espera hijo ejecuta comando*/
+/* The parent process creates a child element to execute the command.
+Then, when the command ends, the child automatically finishes */
 char	redirect(char *cmd, char **env)
 {
 	pid_t	pid;
 	int		fd[2];
 
 	if (pipe(fd) == -1)
-	{
-		perror("ERROR pipe creation failed");
-		return (1);
-	}
+		return (perror("ERROR pipe creation failed"), 1);
 	pid = fork();
 	if (pid < 0)
-	{
-		perror("ERROR fork failed");
-		return (1);
-	}
+		return (perror("ERROR fork failed"), 1);
 	else if (pid > 0)
 	{
 		close(fd[STDOUT]);

@@ -6,13 +6,13 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 08:04:31 by daampuru          #+#    #+#             */
-/*   Updated: 2023/05/25 08:04:31 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/06/09 18:47:19 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int main (int argc, char *argv[], char **env)
+int	main(int argc, char *argv[], char **env)
 {
 	char	**cmds;
 	char	*delimeter;

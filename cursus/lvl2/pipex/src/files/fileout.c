@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 19:22:47 by daampuru          #+#    #+#             */
-/*   Updated: 2023/06/08 17:54:46 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/06/09 18:48:03 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	open_fileout(char *pathname, char here_doc)
 	if (fdout < 0)
 		return (perror("ERROR opening output file"), fdout);
 	if (dup2(fdout, STDOUT) < 0)
-		return (perror("ERROR refering (dup2) ouput file's fie descriptor to stdin"), -1);
+		return (perror(\
+			"ERROR refering (dup2) ouput file's fie descriptor to stdin"), -1);
 	if (close(fdout) < 0)
 		return (perror("ERROR closing output file"), -1);
 	return (fdout);
