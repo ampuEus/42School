@@ -8,10 +8,10 @@ unsigned int	total_char(char **map, char c)
 
 	total = 0;
 	line = 0;
-	while (!map[line])
+	while (map[line])
 	{
 		character = 0;
-		while (!map[line][character])
+		while (map[line][character])
 		{
 			if (map[line][character] == c)
 				total++;

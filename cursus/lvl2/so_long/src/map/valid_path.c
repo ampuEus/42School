@@ -2,17 +2,17 @@
 
 static char	find_paths(char **map, int x, int y)
 {
-	if (map[y][x] == WALL || map[y][x] == FREE_SPACE_AUX || map[y][x] == EXIT_AUX)
+	if (map[x][y] == WALL || map[x][y] == FREE_SPACE_AUX || map[x][y] == EXIT_AUX)
 		return (0);
-	if (map[y][x] == EXIT)
+	if (map[x][y] == EXIT)
 	{
-		map[y][x] = EXIT_AUX;
+		map[x][y] = EXIT_AUX;
 		return (0);
 	}
-	if (map[y][x] == COLLECTABLE)
-		map[y][x] = COLLECTABLE_AUX;
-	if (map[y][x] == FREE_SPACE)
-		map[y][x] = FREE_SPACE_AUX;
+	if (map[x][y] == COLLECTABLE)
+		map[x][y] = COLLECTABLE_AUX;
+	if (map[x][y] == FREE_SPACE)
+		map[x][y] = FREE_SPACE_AUX;
 	find_paths(map, x + 1, y);
 	find_paths(map, x - 1, y);
 	find_paths(map, x, y + 1);
@@ -26,10 +26,10 @@ static char	find_paths(char **map, int x, int y)
 static char	find_coor(char **map, unsigned int *x, unsigned int *y, char c)
 {
 	*x = 0;
-	while (!map[*x])
+	while (map[*x])
 	{
 		*y = 0;
-		while (!map[*x][*y])
+		while (map[*x][*y])
 		{
 			if (map[*x][*y] == c)
 				return (1);
@@ -52,7 +52,7 @@ char	valid_path(char **map)
 	if (!find_coor(map, &x, &y, START_POS))
 		return (ft_putstr_fd("Can't find the coordenates of the character\n", 2), 0);
 	find_paths(map_cpy, x, y);
-	if (!total_char(map, EXIT_AUX))
+	if (!total_char(map_cpy, EXIT_AUX))
 		return (ft_putstr_fd("Can't find the path to exit\n", 2), 0);
 	if (total_char(map_cpy, COLLECTABLE_AUX) != total_char(map, COLLECTABLE))
 		return (ft_putstr_fd("Can't find the path to all collectables\n", 2), 0);
