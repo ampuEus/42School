@@ -15,8 +15,22 @@ Este proyecto trata sobre el manejo de pipes. Este proyecto te permitirá descub
 
 
 ## Índice
-**TODO**
-
+- [Pipex](#pipex)
+	- [Índice](#índice)
+	- [Enunciado del ejercicio](#enunciado-del-ejercicio)
+		- [Bonus](#bonus)
+	- [Conceptos básicos a interiorizar en esta práctica](#conceptos-básicos-a-interiorizar-en-esta-práctica)
+		- [1. Las pipes y fork](#1-las-pipes-y-fork)
+			- [1.1. Pipe](#11-pipe)
+			- [1.2. Fork](#12-fork)
+			- [1.3. Ejemplo de aplicación con pipe() y fork(): Comunicación entre el proceso padre e hijo](#13-ejemplo-de-aplicación-con-pipe-y-fork-comunicación-entre-el-proceso-padre-e-hijo)
+			- [1.4. Otras funciones de utilidad](#14-otras-funciones-de-utilidad)
+		- [2. Redirecciones (Para el bonus)](#2-redirecciones-para-el-bonus)
+			- [2.1. Redirecciones en C](#21-redirecciones-en-c)
+			- [2.2. dup() y dup2()](#22-dup-y-dup2)
+		- [3. execve: Ejecuta un programa](#3-execve-ejecuta-un-programa)
+		- [4. access()](#4-access)
+	- [Referencias](#referencias)
 
 
 ## Enunciado del ejercicio
@@ -26,7 +40,7 @@ Donde,
   - `file1` y `file2` son nombres de ficheros
   - `cmd1` y `cmd2` son comandos de shell con sus parámetros
 
-> La gestion de errores debe ser como el comando equivalente de shell.
+> La gestión de errores debe ser como el comando equivalente de shell.
 
 Ejemplo de comando de entrada:
 
@@ -36,57 +50,17 @@ Ejemplo de comando de entrada:
   - Gesniona multiples pipes:
     - Formato en C; `./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2`
     - Equivalente en shell; `< file1 cmd1 | cmd2 | cmd3 ... | cmdn > file2`
-  - Implementa `<<` y `>>` cuando el primer parametro sea un *here_doc*:
+  - Implementa '`<<`' y '`>>`' cuando el primer parámetro sea un *here_doc*:
     - Formato en C; `./pipex here_doc LIMITER cmd cmd1 file`
     - Equivalente en shell; `cmd << LIMITER | cmd1 >> file`
 
 
 ## Conceptos básicos a interiorizar en esta práctica
-Una de las cosas básicas que tienes que saber y yo no me voy a detener a explicar son los *file descriptors* (`fd`) y las funciones para gestionar archivos (como `open()` o `read()`), ya tienes que saber lo elemental gracias al [get_next_line](../../lvl1/get_next_line/LEEME.md).
-
-### ¿Qué son los PIDs y para que sirven?
-Este apartado esta dedicado a conocer y saber gestionar los procesos en un sistema Unix de forma MUY MUY superficial.
-
-Cuando se crea un nuevo proceso en un sistema Unix se le **relaciona a un ID** (**id**entifier). **Para** diferenciarlo y **gestionar** los **procesos** corriendo en el sistema, llamado PID (**p**rocess **ID**).
-A parate del PID, el proceso también tiene:
-  - PPID (**P**arent **PID**). Es el PID del proceso que lo ha creado (llamado *proceso padre o madre*).\*
-  - TTY (**T**ele **TY**pewriter). Es el ID de la terminal donde se lanzó el proceso.\*\*
-  - UID (**U**ser **ID**). Es el ID del usuario que lanzó el proceso.
-> NOTA:
->
-> \*El primer proceso que ejecuta Linux se llama `systemd` (su PID es el 0). Todos los demás procesos se generan como hijos de `systemd`.
->
-> \*\*Cuando a un proceso le falta el TTY es llamado *daemon*. Proceso que está ejecutandose en segundo plano que no pose una terminal que lo controle.
-
-#### Comandos útiles
-Para **visualizar**los yo recomiendo:
-| ps                 | htop                       |
-| ------------------ | -------------------------- |
-| Para cosas simples | Más amigable e interactivo |
-| ![Ejemplo de la ejecución del comando "ps2](annex/img/ps_example.png) | ![ejemplo de la ejecución del comando "htop"](annex/img/htop_example.png) |
-
-Y para forzar el **parar** un proceso en concreto se puede usar `kill`, aunque obianente no es la forma más ortodoxa de hacerlo.
-```shell
-# Puedes usar el PID del proceso
-$ sudo kill 668
-# o puedes terminar con todos los procesos con un mismo nombre
-$ sudo killall ps
-```
-Ten en cuenta que cuando un proceso acaba, deja libre el PID que estaba utilizando para que otro proceso lo pueda usar. Y es posible que cuando vuelvar a ejecutar ese proceso tenga un PID diferente.
-
-> NOTA: En linux es una buena practica usar el comando `service` para la gestión de los procesos. Por ejemplo `killall <nombre del proceso>` = `service <nombre del proceso> stop`.
-
-#### Archivos PID
-Son una forma de hacer saber a los demás procesos cual es su PID actual.
-
-Debido a que en cada ejecución un proceso puede tener diferentes PIDs, los archivos PID son creados por el proceso escribiendo en su interior su PID actual. Después el resto de procesos puede leer ese archivo y relacionas el proceso y el PID.
-
-> Normalmente estos archivos se encuentran en `/var/run/`.
+Una de las cosas básicas que tienes que saber y yo no me voy a detener a explicar son los *file descriptors* (`fd`) y las funciones para gestionar archivos (como `open()` o `read()`), ya tienes que saber lo elemental gracias al [get_next_line](../../lvl1/get_next_line/LEEME.md). También es recomendable saber lo básico sobre [como se gestionan los procesos en un sistema UNIX](annex/theory/PID.es.md), para irse familiarizando se con la terminología.
 
 
-
-### Las pipes y fork
-#### Pipe
+### 1. Las pipes y fork
+#### 1.1. Pipe
 ```c
 // Prototype
 int pipe(int fd[2]);
@@ -100,9 +74,9 @@ int pipe(int fd[2]);
 
 Las pipes (tubería, en español) sirven para comunicar procesos entre ellos, estableciendo una cadena de pipes (llamada *pipeline*) entre la salida de uno y la entrada del siguiente.
 
-Son datos/transmisiones almacenadas en un búfer, que está asociado con dos file descripsors que están configurados para que el primero pueda leer los datos que se escriben en el segundo.
+Son datos/transmisiones almacenadas en un búfer, que está asociado con dos file descriptors que están configurados para que el primero pueda leer los datos que se escriben en el segundo.
 
-Caracteristicas básicas de una pipe:
+Características básicas de una pipe:
   - Comunicación **unidireccional**. Para hacerla birireccional usa 2 pipes una para cada dirección.
   - Sí la pipe es creada por el proceso padre antes de hacer un `fork()` y crear al **proceso hijo**, este también **puede utilizarla**.
   - Si un **proceso intenta leer estando la pipe vacía**, el proceso **se suspende** hasta que se escriba algo en ella.
@@ -114,18 +88,18 @@ sort | grep ai
 ```
 ![Pileline de los comandos sort y grep](annex/img/pipeline.png)
 
-El programa `sort` lee por su *stdin* (0) una serie de palabras que ordena y escribe en el su file descriptor (3) de salida proporcionado por la `pipe()`. Esta a su vez transmite esa información a el file descriptor de lectura (4) de lectura de `grep`, el cual trata los datos para despues escribirlos en su *stdout* (1).
+El programa `sort` lee por su *stdin* (0) una serie de palabras que ordena y escribe en su file descriptor (3) de salida proporcionado por la `pipe()`. Esta a su vez transmite esa información al file descriptor de lectura (4) de lectura de `grep`, el cual trata los datos para después escribirlos en su *stdout* (1).
 
 
-#### Fork
+#### 1.2. Fork
 ```c
 // Prototype
 pid_t fork(void);
 
 // Return:
 // <0 -> Fallo
-// =0 -> (Al proceso hijo) Exito
-// >0 -> (Al proceso padre) Exito. Devuelva el PID del proceso hijo creado
+// =0 -> (Al proceso hijo) Éxito
+// >0 -> (Al proceso padre) Éxito. Devuelva el PID del proceso hijo creado
 ```
 
 En los sistemas operativos basados en Unix, los nuevos procesos son creados por la llamada al sistema `fork()`. El PID del proceso hijo creado se devuelve al proceso padre, lo que le permite referirse al hijo en futuras llamadas a funciones. El padre puede, esperar a que el hijo termine con la función `waitpid()`, o terminar el proceso con `kill()`.
@@ -182,14 +156,14 @@ Hello from Child! My PID is 156</pre>
 </tbody>
 </table>
 
->NOTA: Ten cuidado a la hora de usar funciones con buffer como `printf` la cual mete en un buffer el texto hasta levar a un salto de línea `\n`. A la hora de hacer el fork, copia el proceso padre tal y como está y esto incluye entre otras cosas el buffer de salida.
+>NOTA: Ten cuidado a la hora de usar funciones con buffer como `printf`, la cual mete en un buffer el texto hasta levar a un salto de línea `\n`. A la hora de hacer el fork copia el proceso padre tal y como está y esto incluye entre otras cosas el buffer de salida.
 >
 >Aquí te dejo unos casos donde el buffer ha causado problemas:
 >  - https://stackoverflow.com/questions/20252964/fork-and-n
 >  - https://unix.stackexchange.com/questions/447898/why-does-a-program-with-fork-sometimes-print-its-output-multiple-times
 
-#### Ejemplo de aplicación con pipe() y fork(): Comunicación entre el proceso padre e hijo
-Para este ejemplo se han creado 2 procesos, padre  e hijo. El padre genera un string y se lo envia al hijo mediante la pipe y este lo lee y lo escribe en la terminal. Abajo se puede ver un esquema del proceso y el código de prueba.
+#### 1.3. Ejemplo de aplicación con pipe() y fork(): Comunicación entre el proceso padre e hijo
+Para este ejemplo se han creado 2 procesos, padre e hijo. El padre genera un string y se lo envía al hijo mediante la pipe y este lo lee y lo escribe en la terminal. Abajo se puede ver un esquema del proceso y el código de prueba.
 
 ![Ejemplo de la ejecución de una pipe y un fork](annex/img/pipe_fork.png)
 
@@ -262,7 +236,7 @@ Output:
 (Child) Finished
 ```
 
-#### Otras funciones de utilidad
+#### 1.4. Otras funciones de utilidad
 <table>
 <thead>
   <tr>
@@ -291,8 +265,8 @@ Output:
 </table>
 
 
-### Redirecciones (Para el bonus)
-Las redirecciones permiten utilizar como fuente de entrada archivos existentes y/o enviar la salida a un archivo además a parte de archivos tambien se pueden usar files descriptors. De este modo no se depende unicamente del input del teclado o utilizar como output la terminal. Para hacer estar redirecciones en bash se usan los siguientes simbolos:
+### 2. Redirecciones (Para el bonus)
+Las redirecciones permiten utilizar como fuente de entrada archivos existentes y/o enviar la salida a un archivo además a parte de archivos también se pueden usar files descriptors. De este modo no se depende únicamente del input del teclado o utilizar como output la terminal. Para hacer estar redirecciones en bash se usan los siguientes símbolos:
 
 <table>
 <thead>
@@ -322,13 +296,13 @@ Las redirecciones permiten utilizar como fuente de entrada archivos existentes y
     <td><code>[n]&lt;&lt;[-]word<br></t>here-document<br>delimiter<code></td>
     <td>Le indica al shell que lea la entrada de la fuente actual hasta que se vea<br>
     una línea que tenga solo una palabra (sin espacios al final).<br>
-    Las líneas leidas hasta ese punto se utilizan como entrada estandar.</td>
+    Las líneas leídas hasta ese punto se utilizan como entrada estándar.</td>
   </tr>
   <tr>
     <td><code>>></code></td>
-    <td>Agrega la salida redirecionada</td>
+    <td>Agrega la salida redireccionada</td>
     <td><code>[n]&gt;&gt;word</code></td>
-    <td>Añade lo leido en el fd n al archivo word.</td>
+    <td>Añade lo leído en el fd n al archivo word.</td>
   </tr>
   <tr>
     <td><code><<<</code></td>
@@ -339,14 +313,14 @@ Las redirecciones permiten utilizar como fuente de entrada archivos existentes y
 </tbody>
 </table>
 
-> NOTA: Si el primer caracter de la redirección es `<`, la redirección usa el *sdtin*. En cambio si es `>`, la redirección hace referencia al *stdout*.
-> *Lo que esta entre "[]" son argumentos opcionales
+> NOTA: Si el primer carácter de la redirección es `<`, la redirección usa el *sdtin*. En cambio, si es `>`, la redirección hace referencia al *stdout*.
+> *Lo que está entre "[]" son argumentos opcionales
 
-#### Redirecciones en C
+#### 2.1. Redirecciones en C
 
-Hay muchas formas de hacer redirecciones en C, pero devido a las restricciones que pone el ejercicio, es necesario conocer las funciones `dup()` y/o `dup2()`. Y recomendable saber la función `execve()`. Más abajo tienes 2 apartados explicandolas.
+Hay muchas formas de hacer redirecciones en C, pero debido a las restricciones que pone el ejercicio, es necesario conocer las funciones `dup()` y/o `dup2()`. Y recomendable saber la función `execve()`. Más abajo tienes 2 apartados explicándolas.
 
-Con el código de ejemplo de abajo, hace una redirección y ejecuta un comando:
+El código de ejemplo de abajo, hace una redirección y ejecuta un comando:
 ```c
 #include <stdio.h>
 #include <unistd.h>
@@ -377,7 +351,7 @@ int main(int argc, char *argv[])
 ```
 Si se le hace un fork-and-exec, el proceso hijo aún tendrá su salida redirigida a un archivo (incluso después del exec).
 
-Aquí te pongo otro ejemplo más trabajado para verlo mejor, el algoritmo coje como argumento el filtro que le quieras poner a la salida de `ls` (es el equivalente a hacer el comando de terminal `ls | <el filtro que quieras>`). Por ejemplo si haces `gcc main.c && ./a.out grep a` equivale a `ls | grep a`. Para ello, el proceso padre crea 2 hijos; uno para ejecutar el comando `ls` y pasar su output al segundo, para que este segundo hijo ejecute el *filtro* que le has pasado a la función.
+Aquí te pongo otro ejemplo más trabajado para verlo mejor, el algoritmo coje como argumento el filtro que le quieras poner a la salida de `ls` (es el equivalente a hacer el comando de terminal `ls | <el filtro que quieras>`). Por ejemplo, si haces `gcc main.c && ./a.out grep a` equivale a `ls | grep a`. Para ello, el proceso padre crea 2 hijos; uno para ejecutar el comando `ls` y pasar su output al segundo, para que este segundo hijo ejecute el *filtro* que le has pasado a la función.
 
 ![Ejemplo de la ejecución de una redirección + ejecución de comando](annex/img/pipe_fork-exec.png)
 
@@ -428,7 +402,7 @@ int main (int argc, char *argv[]) {
 ```
 
 
-#### dup() y dup2()
+#### 2.2. dup() y dup2()
 ```c
 // Prototype
 int dup(int oldfd);
@@ -436,15 +410,13 @@ int dup2(int oldfd, int newfd);
 
 // Return:
 // Fallo -> -1
-// Exito -> El valor del fd que se ha utilizado para copiar oldfd
+// Éxito -> El valor del fd que se ha utilizado para copiar oldfd
 ```
-`dup()` usa un nuevo file descriptor para referenciar\* el file descriptor abierto en *oldfd*. La diferencia entre `dup()` y `dup2()` se side en que con `dup2()` puedes elegir en file descriptor donde se va ha copiar *oldfd* con el argumento *newfd*\*\*, mientras que `dup()` usará el menor file descriptor que haya libre.
+`dup()` usa un nuevo file descriptor para referenciar\* el file descriptor abierto en *oldfd*. La diferencia entre `dup()` y `dup2()` reside en que con `dup2()` puedes elegir en file descriptor donde se va a copiar *oldfd* con el argumento *newfd*\*\*, mientras que `dup()` usará el menor file descriptor que haya libre.
 
 > \*¡OJO! que no es lo mismo que copiar, al referenciar en nuevo file descriptor queda atado al primero, si el primero cambia el nuevo también. Aunque por comodidad a partir de ahora diré copiar.
 >
 > \*\*Si el file descriptor seleccionado en *newfd* estaba abierto de antemano se cerrará y se volverá ha abrir.
-
-En cuanto al *return*, si fallan devolverán -1 y si tienen exito devolveran el valor del nuevo file descriptor.
 
 En este ejemplo veras como al abrir en archivo "dup.txt" y copiar el fd dado por open se pueden usar los dos fd indistintamente.
 ```c
@@ -469,7 +441,7 @@ int main()
 ```
 
 
-### execve: Ejecuta un programa
+### 3. execve: Ejecuta un programa
 ```c
 // Prototype
 int execve(const char *pathname, char *const argv[], char *const envp[]);
@@ -481,13 +453,15 @@ int execve(const char *pathname, char *const argv[], char *const envp[]);
 
 `execve()` ejecuta el programa al que hace referencia *pathname*.
 
+`execve()` reemplaza al proceso que lo ha llamado, por lo que si todo funciona correctamente y `execve()` finaliza el programa que se le ha dicho correctamente, también se finaliza el programa que invocó a `execve()`.
+
 > `execve()` se basa en la familia de funciones **exec** la cual sirve para reemplazar en proceso actual por otro nuevo proceso. Las letras del prefijo indican lo siguiente:
 >   - l – Utiliza la variable `const char *arg` para pasar los argumentos de la línea de comandos a la función en forma de lista (arg0, arg1, ..., argn). Es una función variadrica.
->   - v – En contraste con las funciones 'l', las funciones 'v'  especifican los argumentos de la línea de comandos del programa ejecutado como `char *const argv[]`. Por combención el primer argumento (arg0) es el propio nombre del ejecutable.
+>   - v – En contraste con las funciones 'l', las funciones 'v'  especifican los argumentos de la línea de comandos del programa ejecutado como `char *const argv[]`. Por convención el primer argumento (arg0) es el propio nombre del ejecutable.
 >   - e – El entorno de la nueva imagen del proceso se especifica mediante el argumento *envp*.
 >   - p – Gracias a la variable de entorno *PATH* encuentra el archivo nombrado en el argumento del archivo que se va a ejecutar.
 
-Ejemplo de como hacer el comando de shell `sort < file_with_lines.txt` en C:
+Ejemplo de cómo hacer el comando de shell `sort < file_with_lines.txt` en C:
 ```c
 #include <stdio.h>
 #include <unistd.h>
@@ -506,7 +480,7 @@ int main(int argc, char *argv[])
 Compilando el código de arriba `gcc main.c` y ejecutando el programa resultante de este modo; `./a.out < file_with_lines.txt` se consigue el mismo resultado.
 
 
-### access()
+### 4. access()
 ```c
 // Prototype
 int access(const char *pathname, int mode);
@@ -515,7 +489,7 @@ int access(const char *pathname, int mode);
 // -1 -> Fallo
 //  0 -> Exito
 ```
-En los sistemas POSIX en comando `access()` se usa para verificar si el programa que llama tiene acceso a un archivo específico. En este caso puede utilizar para comprobar si un archivo y/o un comando existe.
+En los sistemas POSIX el comando `access()` se usa para verificar si el programa que llama tiene acceso a un archivo específico. En este caso es MUY útil para comprobar si un archivo y/o un comando existe.
 
 Modos:
   - F_OK : Se utiliza para verificar la existencia del archivo.
@@ -525,7 +499,6 @@ Modos:
 
 
 ## Referencias
-  - https://www.howtogeek.com/devops/what-are-unix-pids-and-how-do-they-work/
   - https://www.rozmichelle.com/pipes-forks-dups/
   - https://www.geeksforgeeks.org/c-program-demonstrate-fork-and-pipe/
   - https://www.geeksforgeeks.org/pipe-system-call/
@@ -538,9 +511,7 @@ Modos:
   - https://www.cs.utexas.edu/~theksong/posts/2020-08-30-using-dup2-to-redirect-output/
   - https://stackoverflow.com/questions/2423628/whats-the-difference-between-a-file-descriptor-and-a-file-pointer
   - https://www.geeksforgeeks.org/access-command-in-linux-with-examples/
-
-
-https://stackoverflow.com/questions/597311/why-does-the-child-process-here-not-print-anything
+  - https://stackoverflow.com/questions/597311/why-does-the-child-process-here-not-print-anything
 
 ---
 Hecho por daampuru | LinkedIn: [David Ampurua](https://www.linkedin.com/in/david-ampurua)
