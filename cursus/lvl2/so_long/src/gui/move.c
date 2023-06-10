@@ -22,6 +22,15 @@ static char	get_newpos(\
 	return (*direction);
 }
 
+// /* on wall -> can't move
+// on enemy -> dead
+// on exit -> go
+// on free space -> move */
+// static char	whatis()
+// {
+
+// }
+
 static void	delete_player(t_gui *gui, char direction, int x, int y)
 {
 	mlx_put_image_to_window(gui->mlx, gui->win, gui->gnd1_img, x, y);
@@ -55,6 +64,7 @@ char	move(int keycode, t_gui *gui)
 		direction = 0;
 	delete_player(gui, direction, x, y);
 	get_newpos(keycode, &x, &y, &direction);
+	//make_action();
 	render_player(gui, direction, x, y);
 	return (1);
 }

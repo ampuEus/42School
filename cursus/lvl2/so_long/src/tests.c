@@ -2,6 +2,23 @@
 #include "../lib/minilibx/minilibx_opengl/mlx.h"
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
+
+# define GND1 "./assets_80x80/grass_1.xpm"
+# define GND2 "./assets_80x80/grass_2.xpm"
+# define GND3 "./assets_80x80/grass_3.xpm"
+# define GND4 "./assets_80x80/grass_4.xpm"
+
+# define PUT 100
+
+typedef struct s_gui {
+	void	*mlx;
+	void	*win;
+	void	*gnd1_img;
+	void	*gnd2_img;
+	void	*gnd3_img;
+	void	*gnd4_img;
+}			t_gui;
 
 char	end_gui(void *mlx, void *win)
 {
@@ -10,32 +27,46 @@ char	end_gui(void *mlx, void *win)
 	exit (0);
 }
 
+static void	player_status(void *mlx, t_gui *gui)
+{
+	mlx_put_image_to_window(gui->mlx, gui->win, gui->gnd1_img, PUT, PUT);
+	// static unsigned int	cicle;
+
+	// cicle = 0;
+	// if (cicle <= 50)
+	// 	mlx_put_image_to_window(gui->mlx, gui->win, gui->gnd1_img, PUT, PUT);
+	// else if (50 < cicle && 100 <= cicle)
+	// 	mlx_put_image_to_window(gui->mlx, gui->win, gui->gnd2_img, PUT, PUT);
+	// else if (100 < cicle && 150 <= cicle)
+	// 	mlx_put_image_to_window(gui->mlx, gui->win, gui->gnd3_img, PUT, PUT);
+	// else
+	// {
+	// 	mlx_put_image_to_window(gui->mlx, gui->win, gui->gnd4_img, PUT, PUT);
+	// 	cicle = 0;
+	// }
+}
+
+static void	key_hook(int keycode, t_gui *gui)
+{
+	printf("\n---------- ---------- key_hook ---------- ----------\n");
+}
 
 int	main(int argc, char *argv[])
 {
-	void	*mlx;
-	void	*win;
-
-	void	*img;
+	t_gui	gui;
 	int		img_width;
 	int		img_height;
 
-	int		done;
+	gui.mlx = mlx_init();
+	gui.win = mlx_new_window(gui.mlx, 500, 500, "window");
 
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 500, 500, "window");
+	gui.gnd1_img = mlx_xpm_file_to_image(gui.mlx, GND1, &img_width, &img_height);
+	// gui.gnd2_img = mlx_xpm_file_to_image(gui.mlx, GND2, &img_width, &img_height);
+	// gui.gnd3_img = mlx_xpm_file_to_image(gui.mlx, GND3, &img_width, &img_height);
+	// gui.gnd4_img = mlx_xpm_file_to_image(gui.mlx, GND4, &img_width, &img_height);
 
-	img = mlx_xpm_file_to_image(mlx, argv[1], &img_width, &img_height);
-	if (!img)
-	{
-		write(1, "ERROR img\n", 10);
-		end_gui(mlx, win);
-	}
-
-	mlx_put_image_to_window(mlx, win, img, 160, 80);
-	mlx_destroy_image(mlx, img);
-	mlx_put_image_to_window(mlx, win, img, 160, 160);
-
-	mlx_loop(mlx);
+	mlx_loop_hook(gui.mlx, player_status, &gui);
+	mlx_key_hook(gui.win, key_hook, &gui);
+	mlx_loop(gui.mlx);
 	return (0);
 }
