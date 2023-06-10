@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/06/10 20:14:16 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/06/10 21:33:41 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ typedef struct s_gui {
 # define ASSETS_SIZE 80
 
 /* ---------- Functions ---------- */
+// Utils
+
+char			find_coor(char **map, unsigned int *x, unsigned int *y, char c);
+
 // Parsing map
 
 unsigned int	total_char(char **map, char c);
@@ -86,6 +90,7 @@ char			**get_map(char *filepath);
 
 void			init_imgs(t_gui *gui);
 char			render_map(t_gui *gui);
+char			move(int keycode, t_gui *gui);
 int				key_hook(int keycode, t_gui *gui);
 char			end_gui(t_gui	*gui);
 char			start_gui(t_gui *gui);

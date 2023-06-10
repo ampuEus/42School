@@ -22,26 +22,6 @@ static char	find_paths(char **map, int x, int y)
 	return (0);
 }
 
-/* Return:
-	1 - Coordinate found
-	0 - Coordinate not found */
-static char	find_coor(char **map, unsigned int *x, unsigned int *y, char c)
-{
-	*x = 0;
-	while (map[*x])
-	{
-		*y = 0;
-		while (map[*x][*y])
-		{
-			if (map[*x][*y] == c)
-				return (1);
-			(*y)++;
-		}
-		(*x)++;
-	}
-	return (0);
-}
-
 /* Find if there is a possible path from the starting position to the exit
 collecting all the collectables */
 char	valid_path(char **map)
