@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:26:14 by daampuru          #+#    #+#              #
-#    Updated: 2023/06/10 19:12:46 by daampuru         ###   ########.fr        #
+#    Updated: 2023/06/10 21:04:48 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRC			:= main.c \
 				$(SRC_MAP_PATH)/valid_path.c \
 				$(SRC_MAP_PATH)/is_valid_map.c \
 				$(SRC_MAP_PATH)/get_map.c \
-				$(SRC_GUI_PATH)/render_img.c \
+				$(SRC_GUI_PATH)/init_imgs.c \
 				$(SRC_GUI_PATH)/render_map.c \
 				$(SRC_GUI_PATH)/key_hook.c \
 				$(SRC_GUI_PATH)/end_gui.c \
@@ -89,7 +89,7 @@ no_flag: $(NAME)
 debug: CFLAGS := -g3 -g
 debug: $(NAME)
 
-fsanitize: CFLAGS := -g3 -fsanitize=address
+fsanitize: CFLAGS := -g3 -g -fsanitize=address
 fsanitize: $(NAME)
 
 leaks: CFLAGS := -D LEAKS=1 -g3

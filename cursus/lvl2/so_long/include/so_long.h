@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/06/10 19:02:27 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/06/10 20:14:16 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ typedef struct s_gui {
 	void	*gnd4_img;
 	void	*player_l_img;
 	void	*player_r_img;
-	void	*player_d_img;
-	void	*player_u_img;
 	void	*exit_img;
 	void	*collectable_img;
 }			t_gui;
@@ -64,8 +62,9 @@ typedef struct s_gui {
 # define GND3 "./assets_80x80/grass_3.xpm"
 # define GND4 "./assets_80x80/grass_4.xpm"
 
-# define PLAYER "./assets_80x80/Twelve_test.xpm"
-# define PEACH "./assets_80x80/peach_test.xpm"
+# define PLAYER_L "./assets_80x80/Twelve_test.xpm"
+# define PLAYER_R "./assets_80x80/Twelve_test.xpm"
+# define COLLECT "./assets_80x80/peach_test.xpm"
 # define QUIT "./assets_80x80/q_test.xpm"
 # define ENEMY "./assets_80x80/grass_4.xpm"
 
@@ -85,8 +84,7 @@ char			**get_map(char *filepath);
 
 // GUI
 
-void			*render_img(t_gui *gui, char *filepath, int x, int y);
-int				delete_img(t_gui *gui, void *img);
+void			init_imgs(t_gui *gui);
 char			render_map(t_gui *gui);
 int				key_hook(int keycode, t_gui *gui);
 char			end_gui(t_gui	*gui);

@@ -8,6 +8,7 @@ char	start_gui(t_gui *gui)
 		gui->height, \
 		gui->width, \
 		"Bicho Blanco");
+	init_imgs(gui);
 	render_map(gui);
 	mlx_key_hook(gui->win, key_hook, gui);
 	mlx_hook(gui->win, 17, 1L << 0, end_gui, gui);

@@ -1,4 +1,5 @@
 #include "so_long.h"
+#include "mlx.h"
 
 static void	init_walls(t_gui *gui)
 {
@@ -17,7 +18,6 @@ static void	init_walls(t_gui *gui)
 		ft_putstr_fd("ERROR: importing wall 2 .xpm file to image\n", 2);
 		end_gui(gui);
 	}
-	return (0);
 }
 
 static void	init_gnds(t_gui *gui)
@@ -42,14 +42,16 @@ static void	init_player(t_gui *gui)
 	int	w;
 	int	h;
 
-	gui->player_l_img = mlx_xpm_file_to_image(gui->mlx, PLAYER, &w, &h);
-	gui->player_r_img = mlx_xpm_file_to_image(gui->mlx, PLAYER, &w, &h);
-	gui->player_d_img = mlx_xpm_file_to_image(gui->mlx, PLAYER, &w, &h);
-	gui->player_u_img = mlx_xpm_file_to_image(gui->mlx, PLAYER, &w, &h);
-	if (!gui->player_u_img || !gui->player_u_img || \
-		!gui->player_u_img || !gui->player_u_img)
+	gui->player_l_img = mlx_xpm_file_to_image(gui->mlx, PLAYER_L, &w, &h);
+	if (!gui->player_l_img)
 	{
-		ft_putstr_fd("ERROR: importing player up pos .xpm file to img\n", 2);
+		ft_putstr_fd("ERROR: importing player left pos .xpm file to img\n", 2);
+		end_gui(gui);
+	}
+	gui->player_r_img = mlx_xpm_file_to_image(gui->mlx, PLAYER_R, &w, &h);
+	if (!gui->player_r_img)
+	{
+		ft_putstr_fd("ERROR: importing player right pos .xpm file to img\n", 2);
 		end_gui(gui);
 	}
 }
@@ -62,14 +64,14 @@ void	init_imgs(t_gui *gui)
 	init_walls(gui);
 	init_gnds(gui);
 	init_player(gui);
-	gui->exit_img = mlx_xpm_file_to_image(gui->mlx, EXIT, &width, &height);
+	gui->exit_img = mlx_xpm_file_to_image(gui->mlx, QUIT, &width, &height);
 	if (!gui->exit_img)
 	{
 		ft_putstr_fd("ERROR: importing exit .xpm file to image\n", 2);
 		end_gui(gui);
 	}
 	gui->collectable_img = mlx_xpm_file_to_image(gui->mlx, \
-		COLLECTABLE, &width, &height);
+		COLLECT, &width, &height);
 	if (!gui->collectable_img)
 	{
 		ft_putstr_fd("ERROR: importing collectable .xpm file to image\n", 2);

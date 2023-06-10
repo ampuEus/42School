@@ -1,17 +1,18 @@
 #include "so_long.h"
+#include "mlx.h"
 
 static char	render_texture(t_gui *gui, char c, unsigned x, unsigned y)
 {
 	if (c == WALL)
-		render_img(gui, WALL1, x, y);
+		mlx_put_image_to_window(gui->mlx, gui->win, gui->wall1_img, x, y);
 	else
-		render_img(gui, GND1, x, y);
+		mlx_put_image_to_window(gui->mlx, gui->win, gui->gnd1_img, x, y);
 	if (c == START_POS)
-		render_img(gui, PLAYER, x, y);
+		mlx_put_image_to_window(gui->mlx, gui->win, gui->player_r_img, x, y);
 	else if (c == COLLECTABLE)
-		render_img(gui, PEACH, x, y);
+		mlx_put_image_to_window(gui->mlx, gui->win, gui->collectable_img, x, y);
 	else if (c == EXIT)
-		render_img(gui, QUIT, x, y);
+		mlx_put_image_to_window(gui->mlx, gui->win, gui->exit_img, x, y);
 	else
 		return (-1);
 	return (0);
