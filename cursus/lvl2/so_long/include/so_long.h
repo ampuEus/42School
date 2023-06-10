@@ -1,17 +1,38 @@
-#ifndef PIPEX_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
+/*   Updated: 2023/06/10 19:02:27 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "libft.h"
+#ifndef SO_LONG_H
 
-typedef struct	s_gui {
+# include "libft.h"
+
+typedef struct s_gui {
 	char	**map;
 	int		height;
 	int		width;
 	void	*mlx;
 	void	*win;
-	void	*player_img;
+	void	*wall1_img;
+	void	*wall2_img;
+	void	*gnd1_img;
+	void	*gnd2_img;
+	void	*gnd3_img;
+	void	*gnd4_img;
+	void	*player_l_img;
+	void	*player_r_img;
+	void	*player_d_img;
+	void	*player_u_img;
 	void	*exit_img;
+	void	*collectable_img;
 }			t_gui;
-
 
 /* ---------- Constants ---------- */
 // keycodes
@@ -50,7 +71,6 @@ typedef struct	s_gui {
 
 // Assets size = 80x80 px
 # define ASSETS_SIZE 80
-
 
 /* ---------- Functions ---------- */
 // Parsing map

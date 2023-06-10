@@ -3,7 +3,7 @@
 
 /* If map is rectangular, the return value is the number of lines on the map,
 if it is not, 0 is returned. */
-static unsigned int	is_rectangular (int fd_map)
+static unsigned int	is_rectangular(int fd_map)
 {
 	unsigned int	tot_lines;
 	char			*line;
@@ -17,7 +17,7 @@ static unsigned int	is_rectangular (int fd_map)
 		if (line_len != (int)ft_strlen(line))
 		{
 			tot_lines = 0;
-			break;
+			break ;
 		}
 		free(line);
 		line = NULL;

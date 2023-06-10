@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-static char is_all_wall(char *map_line)
+static char	is_all_wall(char *map_line)
 {
 	unsigned int	c;
 

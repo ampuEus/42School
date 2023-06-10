@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:26:14 by daampuru          #+#    #+#              #
-#    Updated: 2023/06/03 18:09:51 by daampuru         ###   ########.fr        #
+#    Updated: 2023/06/10 19:12:46 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,6 +94,10 @@ fsanitize: $(NAME)
 
 leaks: CFLAGS := -D LEAKS=1 -g3
 leaks: $(NAME)
+
+# norminette
+norm:
+	norminette $(INCLUDE) $(SRC_PATH) | grep Error
 
 
 # tests

@@ -1,12 +1,12 @@
 #include "so_long.h"
 
-static void get_resolution(t_gui *gui)
+static void	get_resolution(t_gui *gui)
 {
 	gui->height = (ft_strlen(gui->map[0]) - 1) * ASSETS_SIZE;
 	gui->width = ft_tablerows(gui->map) * ASSETS_SIZE;
 }
 
-int	main (int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_gui	gui;
 

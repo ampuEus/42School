@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-static char move(int keycode, t_gui *gui, void *img)
+static char	move(int keycode, t_gui *gui, void *img)
 {
 	static unsigned int	x;
 	static unsigned int	y;
@@ -34,13 +34,13 @@ int	key_hook(int keycode, t_gui *gui)
 	if (keycode == KEY_ESC)
 		end_gui(gui);
 	else if (keycode == KEY_LEFT)
-		is_move = move(KEY_LEFT, gui, gui->player_img);
+		is_move = move(KEY_LEFT, gui, gui->player_l_img);
 	else if (keycode == KEY_RIGHT)
-		is_move = move(KEY_RIGHT, gui, gui->player_img);
+		is_move = move(KEY_RIGHT, gui, gui->player_r_img);
 	else if (keycode == KEY_DOWN)
-		is_move = move(KEY_DOWN, gui, gui->player_img);
+		is_move = move(KEY_DOWN, gui, gui->player_d_img);
 	else if (keycode == KEY_UP)
-		is_move = move(KEY_UP, gui, gui->player_img);
+		is_move = move(KEY_UP, gui, gui->player_u_img);
 	else
 		ft_printf("No Hooked key = %i\n", keycode);
 	if (!moves)

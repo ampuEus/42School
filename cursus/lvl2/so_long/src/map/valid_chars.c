@@ -27,7 +27,8 @@ static unsigned char	is_forbidden_char(char **map)
 char	valid_chars(char **map)
 {
 	if (is_forbidden_char(map))
-		return (ft_putstr_fd("There are prohibited characters on the map\n", 2), 0);
+		return (ft_putstr_fd(\
+				"There are prohibited characters on the map\n", 2), 0);
 	if (total_char(map, START_POS) != 1)
 		return (ft_putstr_fd("No starting position on the map\n", 2), 0);
 	if (total_char(map, EXIT) != 1)
