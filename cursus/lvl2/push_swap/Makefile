@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/29 20:45:38 by daampuru          #+#    #+#              #
-#    Updated: 2023/06/07 21:21:00 by daampuru         ###   ########.fr        #
+#    Updated: 2023/06/11 12:23:28 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ fclean:	clean
 	rm -rf $(BIN_PATH)
 	rm -rf *.out
 
-libft:
+libft: | $(LIB_PATH)
 	$(MAKE) -C ../../lvl0/Libft/src fclean
 	$(MAKE) -C ../../lvl0/Libft/src all
 	cp ../../lvl0/Libft/src/libft.a $(LIB_A)
@@ -155,6 +155,9 @@ $(OBJ_OTHER_PATHS):
 	mkdir -p $@
 
 $(BIN_PATH):
+	mkdir -p $@
+
+$(LIB_PATH):
 	mkdir -p $@
 
 .PHONY: clean fclean leaks
