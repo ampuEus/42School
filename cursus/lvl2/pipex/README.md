@@ -1,5 +1,5 @@
 # Pipex
-***Officially finished at 2022-12-xx / Grade: xxx of 100 / Versión en [español](LEEME.md)***
+***Officially finished at 2023-06-15 / Grade: 125 of 100 / Versión en [español](LEEME.md)***
 
 This project is about handling pipes. This project will allow you to discover, through the use in your program, the functioning of a UNIX mechanism that you already know.
 
