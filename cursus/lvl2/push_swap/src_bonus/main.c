@@ -75,7 +75,7 @@ static char	make_move(char *move, t_stack **stack_a, t_stack **stack_b)
 	return (0);
 }
 
-static char	read_line(t_stack	*stack_a, t_stack	*stack_b)
+static char	read_line(t_stack	**stack_a, t_stack	**stack_b)
 {
 	char	*line;
 	char	correct;
@@ -89,7 +89,7 @@ static char	read_line(t_stack	*stack_a, t_stack	*stack_b)
 		correct = is_correct(line);
 		if (!correct || !line)
 			break ;
-		make_move(line, &stack_a, &stack_b);
+		make_move(line, stack_a, stack_b);
 	}
 	free(line);
 	return (correct);
@@ -107,7 +107,7 @@ int	main(int argc, char **argv)
 	if (!stack_a)
 		return (ft_putstr_fd("Error\n", 2), 1);
 	ft_memset(&stack_b, '\0', sizeof(stack_b));
-	correct = read_line(stack_a, stack_b);
+	correct = read_line(&stack_a, &stack_b);
 	if (!correct)
 		ft_putstr_fd("Error\n", 2);
 	else if (stacklen(stack_b) || !is_sorted(stack_a))

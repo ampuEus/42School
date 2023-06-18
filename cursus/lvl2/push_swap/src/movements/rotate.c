@@ -21,6 +21,8 @@ char	rotate(t_stack **stack)
 
 	if (!(*stack))
 		return (1);
+	if (!(*stack)->next)
+		return (0);
 	second = (*stack)->next;
 	stacklast(*stack)->next = *stack;
 	(*stack)->next = NULL;

@@ -20,6 +20,8 @@ char	swap(t_stack **stack)
 
 	if (!(*stack))
 		return (1);
+	if (!(*stack)->next)
+		return (0);
 	first = *stack;
 	*stack = (*stack)->next;
 	first->next = (*stack)->next;
