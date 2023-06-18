@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/06/10 21:33:41 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/06/17 19:33:06 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,20 @@
 # include "libft.h"
 
 typedef struct s_gui {
-	char	**map;
-	int		height;
-	int		width;
-	void	*mlx;
-	void	*win;
-	void	*wall1_img;
-	void	*wall2_img;
-	void	*gnd1_img;
-	void	*gnd2_img;
-	void	*gnd3_img;
-	void	*gnd4_img;
-	void	*player_l_img;
-	void	*player_r_img;
-	void	*exit_img;
-	void	*collectable_img;
+	char			**map;
+	int				height;
+	int				width;
+	void			*mlx;
+	void			*win;
+	void			**wall_img[2];
+	void			**gnd_img[4];
+	void			**player_l_img[14];
+	void			**player_r_img[14];
+	unsigned int	player_pos_x;
+	unsigned int	player_pos_y;
+	char			player_direction;
+	void			**exit_img[27];
+	void			**collectable_img[32];
 }			t_gui;
 
 /* ---------- Constants ---------- */
@@ -55,12 +54,12 @@ typedef struct s_gui {
 
 // Assets relative paths
 
-# define WALL1 "./assets_80x80/border_1.xpm"
-# define WALL2 "./assets_80x80/border_2.xpm"
-# define GND1 "./assets_80x80/grass_1.xpm"
-# define GND2 "./assets_80x80/grass_2.xpm"
-# define GND3 "./assets_80x80/grass_3.xpm"
-# define GND4 "./assets_80x80/grass_4.xpm"
+# define WALL1 "./assets_80x80/wall/wall_1.xpm"
+# define WALL2 "./assets_80x80/wall/wall_2.xpm"
+# define GND1 "./assets_80x80/gnd/gnd_1.xpm"
+# define GND2 "./assets_80x80/gnd/gnd_2.xpm"
+# define GND3 "./assets_80x80/gnd/gnd_3.xpm"
+# define GND4 "./assets_80x80/gnd/gnd_4.xpm"
 
 # define PLAYER_L "./assets_80x80/Twelve_test.xpm"
 # define PLAYER_R "./assets_80x80/Twelve_test.xpm"

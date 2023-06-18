@@ -70,8 +70,8 @@ gnl
   - https://gontjarow.github.io/MiniLibX/mlx.html
 
 ## Anexo: Herramientas para editar imagenes
-  - https://ezgif.com/
-  - https://convertio.co/png-xpm/
+  - https://ezgif.com/split
+  - https://anyconv.com/png-to-xpm-converter/
 
 
 https://anyconv.com/png-to-xpm-converter/
