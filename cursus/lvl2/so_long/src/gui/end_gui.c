@@ -27,7 +27,7 @@ static void	free_imgs(t_gui *gui)
 
 /* This function need and "exit ()" intead of a "return ()", because if not
 when it return to the loop will make a segmentation fault" */
-char	end_gui(t_gui	*gui)
+int	end_gui(t_gui	*gui)
 {
 	ft_doublefree(gui->map);
 	free_imgs(gui);

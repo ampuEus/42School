@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/06/17 19:33:06 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/06/18 21:06:37 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,25 @@ typedef struct s_gui {
 	int				width;
 	void			*mlx;
 	void			*win;
+	void			*gnd1_img;
+	void			*gnd2_img;
+	void			*gnd3_img;
+	void			*gnd4_img;
+	void			*wall1_img;
+	void			*wall2_img;
+	void			*player_l_img;
+	void			*player_r_img;
+	void			*exit_img;
+	void			*collectable_img;
 	void			**wall_img[2];
 	void			**gnd_img[4];
-	void			**player_l_img[14];
-	void			**player_r_img[14];
+	//void			**player_l_img[14];
+	//void			**player_r_img[14];
 	unsigned int	player_pos_x;
 	unsigned int	player_pos_y;
 	char			player_direction;
-	void			**exit_img[27];
-	void			**collectable_img[32];
+	//void			**exit_img[27];
+	//void			**collectable_img[32];
 }			t_gui;
 
 /* ---------- Constants ---------- */
@@ -54,8 +64,11 @@ typedef struct s_gui {
 
 // Assets relative paths
 
+# define WALL_NBR 2
 # define WALL1 "./assets_80x80/wall/wall_1.xpm"
 # define WALL2 "./assets_80x80/wall/wall_2.xpm"
+
+# define GND_NBR 4
 # define GND1 "./assets_80x80/gnd/gnd_1.xpm"
 # define GND2 "./assets_80x80/gnd/gnd_2.xpm"
 # define GND3 "./assets_80x80/gnd/gnd_3.xpm"
@@ -63,8 +76,21 @@ typedef struct s_gui {
 
 # define PLAYER_L "./assets_80x80/Twelve_test.xpm"
 # define PLAYER_R "./assets_80x80/Twelve_test.xpm"
+
+# define PLAYER_IDLE_NBR 14
+# define PLAYER_IDLE_L "./assets_80x80/Twelve_test.xpm"
+# define PLAYER_IDLE_R "./assets_80x80/Twelve_test.xpm"
+# define PLAYER_DEAD_NBR 14
+# define PLAYER_DEAD_L "./assets_80x80/Twelve_test.xpm"
+# define PLAYER_DEAD_R "./assets_80x80/Twelve_test.xpm"
+# define COLLECT_NBR 32
 # define COLLECT "./assets_80x80/peach_test.xpm"
+# define Q_IDLE_NBR 27
+# define Q_BAD_NBR 27
+# define Q_GOOD_NBR 27
 # define QUIT "./assets_80x80/q_test.xpm"
+# define ENEMY_IDLE_NBR 27
+# define ENEMY_WALK_NBR 27
 # define ENEMY "./assets_80x80/grass_4.xpm"
 
 // Assets size = 80x80 px
@@ -91,6 +117,6 @@ void			init_imgs(t_gui *gui);
 char			render_map(t_gui *gui);
 char			move(int keycode, t_gui *gui);
 int				key_hook(int keycode, t_gui *gui);
-char			end_gui(t_gui	*gui);
+int				end_gui(t_gui	*gui);
 char			start_gui(t_gui *gui);
 #endif

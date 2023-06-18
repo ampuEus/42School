@@ -31,7 +31,7 @@ static char	get_newpos(\
 
 // }
 
-static void	delete_player(t_gui *gui, char direction, int x, int y)
+static void	delete_player(t_gui *gui, int x, int y)
 {
 	mlx_put_image_to_window(gui->mlx, gui->win, gui->gnd1_img, x, y);
 }
@@ -62,7 +62,7 @@ char	move(int keycode, t_gui *gui)
 	}
 	if (!direction)
 		direction = 0;
-	delete_player(gui, direction, x, y);
+	delete_player(gui, x, y);
 	get_newpos(keycode, &x, &y, &direction);
 	//make_action();
 	render_player(gui, direction, x, y);
