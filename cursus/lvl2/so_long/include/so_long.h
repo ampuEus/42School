@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/06/18 21:06:37 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/06/20 18:53:48 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,26 @@ typedef struct s_gui {
 	char			player_direction;
 	//void			**exit_img[27];
 	//void			**collectable_img[32];
+	unsigned int	collected;
+	unsigned int	total_moves;
 }			t_gui;
 
 /* ---------- Constants ---------- */
-// keycodes
+// keycodes MacOS
 
 # define KEY_ESC 53
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
 # define KEY_DOWN 125
 # define KEY_UP 126
+
+// keycode Debian
+
+# define KEY_ESC_L 65307
+# define KEY_LEFT_L 65361
+# define KEY_RIGHT_L 65363
+# define KEY_DOWN_L 65364
+# define KEY_UP_L 65362
 
 // Map components
 
