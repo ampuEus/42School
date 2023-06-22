@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/06/20 18:53:48 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/06/22 21:04:59 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_gui {
 	unsigned int	player_pos_y;
 	char			player_direction;
 	//void			**exit_img[27];
-	//void			**collectable_img[32];
+	void			**collectable_img_[32];
 	unsigned int	collected;
 	unsigned int	total_moves;
 }			t_gui;
@@ -95,6 +95,38 @@ typedef struct s_gui {
 # define PLAYER_DEAD_R "./assets_80x80/Twelve_test.xpm"
 # define COLLECT_NBR 32
 # define COLLECT "./assets_80x80/peach_test.xpm"
+# define COLLECT01 "./assets_80x80/peach/frame01.xpm"
+# define COLLECT02 "./assets_80x80/peach/frame02.xpm"
+# define COLLECT03 "./assets_80x80/peach/frame03.xpm"
+# define COLLECT04 "./assets_80x80/peach/frame04.xpm"
+# define COLLECT05 "./assets_80x80/peach/frame05.xpm"
+# define COLLECT06 "./assets_80x80/peach/frame06.xpm"
+# define COLLECT07 "./assets_80x80/peach/frame07.xpm"
+# define COLLECT08 "./assets_80x80/peach/frame08.xpm"
+# define COLLECT09 "./assets_80x80/peach/frame09.xpm"
+# define COLLECT10 "./assets_80x80/peach/frame10.xpm"
+# define COLLECT11 "./assets_80x80/peach/frame11.xpm"
+# define COLLECT12 "./assets_80x80/peach/frame12.xpm"
+# define COLLECT13 "./assets_80x80/peach/frame13.xpm"
+# define COLLECT14 "./assets_80x80/peach/frame14.xpm"
+# define COLLECT15 "./assets_80x80/peach/frame15.xpm"
+# define COLLECT16 "./assets_80x80/peach/frame16.xpm"
+# define COLLECT17 "./assets_80x80/peach/frame17.xpm"
+# define COLLECT18 "./assets_80x80/peach/frame18.xpm"
+# define COLLECT19 "./assets_80x80/peach/frame19.xpm"
+# define COLLECT20 "./assets_80x80/peach/frame20.xpm"
+# define COLLECT21 "./assets_80x80/peach/frame21.xpm"
+# define COLLECT22 "./assets_80x80/peach/frame22.xpm"
+# define COLLECT23 "./assets_80x80/peach/frame23.xpm"
+# define COLLECT24 "./assets_80x80/peach/frame24.xpm"
+# define COLLECT25 "./assets_80x80/peach/frame25.xpm"
+# define COLLECT26 "./assets_80x80/peach/frame26.xpm"
+# define COLLECT27 "./assets_80x80/peach/frame27.xpm"
+# define COLLECT28 "./assets_80x80/peach/frame28.xpm"
+# define COLLECT29 "./assets_80x80/peach/frame29.xpm"
+# define COLLECT30 "./assets_80x80/peach/frame30.xpm"
+# define COLLECT31 "./assets_80x80/peach/frame31.xpm"
+# define COLLECT32 "./assets_80x80/peach/frame32.xpm"
 # define Q_IDLE_NBR 27
 # define Q_BAD_NBR 27
 # define Q_GOOD_NBR 27
@@ -105,6 +137,9 @@ typedef struct s_gui {
 
 // Assets size = 80x80 px
 # define ASSETS_SIZE 80
+
+// Refresh rate
+# define REFRESH 700
 
 /* ---------- Functions ---------- */
 // Utils
