@@ -1,5 +1,5 @@
 # Pipex
-***Oficialmente terminado el xx/12/2023 / Nota xxx de 100 / [English](README.md) version***
+***Oficialmente terminado el 15/06/2023 / Nota 125 de 100 / [English](README.md) version***
 
 Este proyecto trata sobre el manejo de pipes. Este proyecto te permitirá descubrir, mediante el uso en tu programa, el funcionamiento de un mecanismo de UNIX que ya conoces.
 

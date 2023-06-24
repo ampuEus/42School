@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:26:14 by daampuru          #+#    #+#              #
-#    Updated: 2023/06/10 21:23:56 by daampuru         ###   ########.fr        #
+#    Updated: 2023/06/18 21:11:32 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@
 BIN_PATH	:= ./bin
 NAME		:= $(BIN_PATH)/so_long
 INCLUDE		:= ./include
+UNAME		:= $(shell uname)
 
 CC			:= gcc
 CFLAGS		:= -Wall -Wextra -Werror
@@ -44,13 +45,19 @@ LIB_PATH	:= ./lib
 LIB_H		:= $(LIB_PATH)/libft.h
 LIB_A		:= $(LIB_PATH)/libft.a
 
-MLX_PATH	:= $(LIB_PATH)/minilibx/minilibx_opengl
-MLX_LINK	:= -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
+MLX_PATH		:= $(LIB_PATH)/minilibx/minilibx_opengl
+MLX_LINK		:= -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
+MLX_PATH_LINUX	:= $(LIB_PATH)/minilibx/minilibx-linux
+MLX_LINK_LINUX	:= -L $(MLX_PATH_LINUX) -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 
 ########## IMPLICIT RULES ##########
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
+ifeq ($(UNAME), Linux)
+	$(CC) $(CFLAGS) -I $(INCLUDE) -I $(LIB_PATH) -I $(MLX_PATH_LINUX) -c $^ -o $@
+else
 	$(CC) $(CFLAGS) -I $(INCLUDE) -I $(LIB_PATH) -I $(MLX_PATH) -c $^ -o $@
+endif
 
 
 ########## EXPLICIT RULES ##########
@@ -81,8 +88,13 @@ so_long: $(NAME)
 bonus: $(NAME)
 
 $(NAME) : $(OBJ) | $(BIN_PATH)
+ifeq ($(UNAME), Linux)
+	$(MAKE) -C $(MLX_PATH_LINUX)
+	$(CC) $(CFLAGS) $(OBJ) $(MLX_LINK_LINUX) -o $@ $(LIB_A)
+else
 	$(MAKE) -C $(MLX_PATH)
 	$(CC) $(CFLAGS) $(OBJ) $(MLX_LINK) -o $@ $(LIB_A)
+endif
 
 
 # Debug
