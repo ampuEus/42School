@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="thread_states.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#111111"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.0595392"
+     inkscape:cx="362.17473"
+     inkscape:cy="274.03061"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect55824"
+       is_visible="true"
+       lpeversion="1" />
+    <marker
+       style="overflow:visible;"
+       id="Arrow2Mend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.6) rotate(180) translate(0,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path32004" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect32901"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect32831"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect32554"
+       is_visible="true"
+       lpeversion="1" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path31977" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path31980" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect31895"
+       is_visible="true"
+       lpeversion="1" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-3"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path31980-6" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect31895-5"
+       is_visible="true"
+       lpeversion="1" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-0"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path31980-4" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect31895-4"
+       is_visible="true"
+       lpeversion="1" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-37"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path31980-8" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect31895-3"
+       is_visible="true"
+       lpeversion="1" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-7"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path31980-0" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect31895-7"
+       is_visible="true"
+       lpeversion="1" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-8"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path31980-89" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect31895-8"
+       is_visible="true"
+       lpeversion="1" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-1"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path31980-3" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect32554-2"
+       is_visible="true"
+       lpeversion="1" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-4"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path31980-5" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect55824-7"
+       is_visible="true"
+       lpeversion="1" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-3-4"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path31980-6-2" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect31895-5-3"
+       is_visible="true"
+       lpeversion="1" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lstart-6"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path31977-0" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect31895-4-0"
+       is_visible="true"
+       lpeversion="1" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-16"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path31980-1" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect55824-6"
+       is_visible="true"
+       lpeversion="1" />
+  </defs>
+  <g
+     inkscape:label="Capa 1"
+     id="layer1"
+     transform="matrix(0.41749036,0,0,0.41749036,64.221981,113.95598)">
+    <g
+       id="g31840"
+       transform="translate(-33.156911,-151.689)"
+       inkscape:label="gDead"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101">
+      <rect
+         style="fill:#1689ff;fill-opacity:0.237624;stroke:#a2a2a2;stroke-width:0.322001;stroke-linecap:round;stroke-linejoin:round"
+         id="rect846-9"
+         width="51.560047"
+         height="21.895363"
+         x="123.64087"
+         y="112.49439"
+         ry="1.1237197" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="136.28702"
+         y="127.4108"
+         id="text20277"><tspan
+           sodipodi:role="line"
+           id="tspan20275"
+           style="stroke-width:0.264583"
+           x="136.28702"
+           y="127.4108">Dead</tspan></text>
+    </g>
+    <g
+       id="g31845"
+       transform="translate(-39.552913,-164.57825)"
+       inkscape:label="gWaiting"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101">
+      <rect
+         style="fill:#1689ff;fill-opacity:0.237624;stroke:#a2a2a2;stroke-width:0.322001;stroke-linecap:round;stroke-linejoin:round"
+         id="rect846-6"
+         width="51.560047"
+         height="21.895363"
+         x="274.86353"
+         y="31.577461"
+         ry="1.1237197" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="282.08044"
+         y="46.493877"
+         id="text18023"><tspan
+           sodipodi:role="line"
+           id="tspan18021"
+           style="stroke-width:0.264583"
+           x="282.08044"
+           y="46.493877">Waiting</tspan></text>
+    </g>
+    <g
+       id="g31845-4"
+       transform="translate(-184.37957,-250.41888)"
+       inkscape:label="gBlocked"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101">
+      <rect
+         style="fill:#1689ff;fill-opacity:0.237624;stroke:#a2a2a2;stroke-width:0.322001;stroke-linecap:round;stroke-linejoin:round"
+         id="rect846-6-7"
+         width="51.560047"
+         height="21.895363"
+         x="274.86353"
+         y="21.523285"
+         ry="1.1237197" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="280.96921"
+         y="36.439701"
+         id="text18023-1"><tspan
+           sodipodi:role="line"
+           id="tspan18021-1"
+           style="stroke-width:0.264583"
+           x="280.96921"
+           y="36.439701">Blocked</tspan></text>
+    </g>
+    <g
+       id="g31853"
+       inkscape:label="gRun"
+       transform="translate(-39.552913,-161.74316)"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101">
+      <rect
+         style="fill:#1689ff;fill-opacity:0.237624;stroke:#a2a2a2;stroke-width:0.322001;stroke-linecap:round;stroke-linejoin:round"
+         id="rect846-7"
+         width="92.878723"
+         height="57.916767"
+         x="109.37753"
+         y="10.731675"
+         ry="1.1237197" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="111.43306"
+         y="21.412516"
+         id="text2690-8"><tspan
+           sodipodi:role="line"
+           style="stroke-width:0.264583"
+           x="111.43306"
+           y="21.412516"
+           id="tspan4422-4">Runneable</tspan></text>
+      <rect
+         style="fill:#1651ff;fill-opacity:0.577558;stroke:#a2a2a2;stroke-width:0.322001;stroke-linecap:round;stroke-linejoin:round"
+         id="rect846-72"
+         width="51.560047"
+         height="21.895363"
+         x="130.03687"
+         y="42.891087"
+         ry="1.1237197" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="134.76143"
+         y="56.468716"
+         id="text14455"><tspan
+           sodipodi:role="line"
+           id="tspan14453"
+           style="stroke-width:0.264583"
+           x="134.76143"
+           y="56.468716">Running</tspan></text>
+    </g>
+    <g
+       id="g31858"
+       transform="translate(-39.552913,-160.76729)"
+       inkscape:label="gNew"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101">
+      <rect
+         style="fill:#1689ff;fill-opacity:0.237624;stroke:#a2a2a2;stroke-width:0.322001;stroke-linecap:round;stroke-linejoin:round"
+         id="rect846"
+         width="71.954514"
+         height="23.749407"
+         x="-32.896282"
+         y="26.839478"
+         ry="1.1237197" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="-26.917377"
+         y="42.682919"
+         id="text2690"><tspan
+           sodipodi:role="line"
+           style="stroke-width:0.264583"
+           x="-26.917377"
+           y="42.682919"
+           id="tspan4422">New Thread</tspan></text>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend-1)"
+       d="M 256.94635,-102.76694 149.36128,-40.652673"
+       id="path32552-6"
+       inkscape:label="path_Waiting2Dead"
+       inkscape:original-d="m 256.94635,-102.76694 c -35.86196,20.705017 -71.72365,41.409777 -107.58507,62.114267"
+       inkscape:path-effect="#path-effect32554-2"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 116.26398,-87.2283 v 43.084417"
+       id="path55822"
+       inkscape:path-effect="#path-effect55824"
+       inkscape:original-d="m 116.26398,-87.2283 c 2.7e-4,14.361739 2.7e-4,28.723217 0,43.084417"
+       inkscape:label="path_Run2Dead"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart)"
+       d="m 170.53682,-115.83353 h 57.21046"
+       id="path31893-2"
+       inkscape:label="path_Waiting2Run"
+       inkscape:original-d="m 170.53682,-115.83353 c 19.07042,2.6e-4 38.14057,2.6e-4 57.21046,0"
+       inkscape:path-effect="#path-effect31895-4"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend-3)"
+       d="m 169.83052,-127.84067 h 57.21046"
+       id="path31893-6"
+       inkscape:label="path_Run2Waiting"
+       inkscape:original-d="m 169.83052,-127.84067 c 19.07042,2.7e-4 38.14057,2.7e-4 57.21046,0"
+       inkscape:path-effect="#path-effect31895-5"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-6)"
+       d="m 122.02874,-157.5411 v -42.90737"
+       id="path31893-2-3"
+       inkscape:label="path_Blocked2Run"
+       sodipodi:nodetypes="cc"
+       inkscape:original-d="m 122.02874,-157.5411 c -2.6e-4,-19.07042 -2.6e-4,-23.83748 0,-42.90737"
+       inkscape:path-effect="#path-effect31895-4-0"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend-3-4)"
+       d="m 110.0216,-156.83607 v -44.3187"
+       id="path31893-6-8"
+       inkscape:label="path_Run2Blocked"
+       sodipodi:nodetypes="cc"
+       inkscape:original-d="m 110.0216,-156.83607 c -2.7e-4,-19.07042 -2.7e-4,-25.24881 0,-44.3187"
+       inkscape:path-effect="#path-effect31895-5-3"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
+       d="m 127.45489,-120.78043 c -1.1925,-1.21806 -1.88009,-2.91612 -1.87106,-4.62072 0.009,-1.70459 0.7146,-3.39527 1.91995,-4.60061 1.20534,-1.20535 2.89602,-1.91091 4.60062,-1.91994 1.70459,-0.009 3.40265,0.67856 4.62071,1.87106 1.19742,1.1723 1.91787,2.81837 1.96665,4.4934 0.0488,1.67503 -0.57463,3.36024 -1.70179,4.60024"
+       id="path32899"
+       inkscape:label="path_Running"
+       inkscape:original-d="m 127.45489,-120.78043 c 3.09034,-3.08981 6.18041,-6.17988 9.27022,-9.27021 3.0898,-3.09034 0.17684,6.06269 0.26486,9.09364"
+       inkscape:path-effect="#path-effect32901"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="M 4.9441128,-122.19025 H 62.154577"
+       id="path31893"
+       inkscape:label="path_New2Run"
+       inkscape:original-d="m 4.9441128,-122.19025 c 19.0704212,2.7e-4 38.1405742,2.7e-4 57.2104642,0"
+       inkscape:path-effect="#path-effect31895"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend-4)"
+       d="m -36.471939,-156.12787 v 22.60166"
+       id="path55822-9"
+       sodipodi:nodetypes="cc"
+       inkscape:label="path_New"
+       inkscape:original-d="m -36.471939,-156.12787 c 2.7e-4,14.36174 2.7e-4,8.24046 0,22.60166"
+       inkscape:path-effect="#path-effect55824-7"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.29167px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="-71.768822"
+       y="-32.695751"
+       id="text34071-5-6"
+       inkscape:label="text_Note"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101"><tspan
+         sodipodi:role="line"
+         id="tspan34069-4-3"
+         style="font-size:5.29167px;stroke-width:0.264583"
+         x="-71.768822"
+         y="-32.695751">NOTE: When the main program ends all threads</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.29167px;stroke-width:0.264583"
+         x="-71.768822"
+         y="-26.081163"
+         id="tspan190148">also end unless you use &quot;pthread_join()&quot;</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.29167px;stroke-width:0.264583"
+         x="-71.768822"
+         y="-19.466576"
+         id="tspan140593">*&quot;pthread_yield()&quot; is deprecated</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="65.915268"
+       y="-71.930046"
+       id="text34071-3-6"
+       inkscape:label="text_funtion2dead"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101"><tspan
+         sodipodi:role="line"
+         style="font-size:7.05556px;stroke-width:0.264583"
+         x="65.915268"
+         y="-71.930046"
+         id="tspan120680">pthread_exit()</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:7.05556px;stroke-width:0.264583"
+         x="65.915268"
+         y="-63.110596"
+         id="tspan195304">or thread ends</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="190.45509"
+       y="-57.557644"
+       id="text34071-3-6-1"
+       inkscape:label="text_pthread_exit()"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101"><tspan
+         sodipodi:role="line"
+         style="font-size:7.05556px;stroke-width:0.264583"
+         x="190.45509"
+         y="-57.557644"
+         id="tspan195304-1">pthread_exit()</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="165.18344"
+       y="-107.51648"
+       id="text34071-0"
+       inkscape:label="text_eventEndWait"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101"><tspan
+         sodipodi:role="line"
+         id="tspan34069-1"
+         style="font-size:7.05556px;stroke-width:0.264583"
+         x="165.18344"
+         y="-107.51648">sleep counter end</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:7.05556px;stroke-width:0.264583"
+         x="165.18344"
+         y="-98.697029"
+         id="tspan107149">pthread_cond_signal()</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="166.22412"
+       y="-141.06358"
+       id="text34071-28"
+       inkscape:label="text_funtion2wait"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101"><tspan
+         sodipodi:role="line"
+         id="tspan34069-02"
+         style="font-size:7.05556px;stroke-width:0.264583"
+         x="166.22412"
+         y="-141.06358">usleep() or sleep()</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:7.05556px;stroke-width:0.264583"
+         x="166.22412"
+         y="-132.24414"
+         id="tspan98853">pthread_cond_wait()</tspan></text>
+    <g
+       id="g219629"
+       inkscape:label="g_text_unlock"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:5.29167px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="127.17074"
+         y="-177.15002"
+         id="text34071-5-6-5-3"
+         inkscape:label="text_unlock_info"><tspan
+           sodipodi:role="line"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29167px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';stroke-width:0.264583"
+           x="127.17074"
+           y="-177.15002"
+           id="tspan140593-0-8">The resource has been released</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="126.62394"
+         y="-186.01579"
+         id="text34071-2-3-5"
+         inkscape:label="text_pthread_mutex_unlock()"><tspan
+           sodipodi:role="line"
+           id="tspan34069-9-1-1"
+           style="font-size:7.05556px;stroke-width:0.264583"
+           x="126.62394"
+           y="-186.01579">pthread_mutex_unlock()</tspan></text>
+    </g>
+    <g
+       id="g219636"
+       inkscape:label="g_text_lock"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:5.29167px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="35.217247"
+         y="-177.45724"
+         id="text34071-5-6-5"
+         inkscape:label="text_lock_info"><tspan
+           sodipodi:role="line"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29167px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';stroke-width:0.264583"
+           x="35.217247"
+           y="-177.45724"
+           id="tspan140593-0">The resource needed</tspan><tspan
+           sodipodi:role="line"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29167px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';stroke-width:0.264583"
+           x="35.217247"
+           y="-170.84265"
+           id="tspan209698">to continue is locked</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="34.670441"
+         y="-186.01579"
+         id="text34071-2-3-3"
+         inkscape:label="text_pthread_mutex_lock()"><tspan
+           sodipodi:role="line"
+           id="tspan34069-9-1-7"
+           style="font-size:7.05556px;stroke-width:0.264583"
+           x="34.670441"
+           y="-186.01579">pthread_mutex_lock()</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="77.800049"
+       y="-125.35796"
+       id="text34071-5"
+       inkscape:label="text_sched_yield()"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101"><tspan
+         sodipodi:role="line"
+         id="tspan34069-4"
+         style="font-size:7.05556px;stroke-width:0.264583"
+         x="77.800049"
+         y="-125.35796">sched_yield()*</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="6.636137"
+       y="-125.89999"
+       id="text34071-2-3"
+       inkscape:label="text_pthread_create()"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101"><tspan
+         sodipodi:role="line"
+         id="tspan34069-9-1"
+         style="font-size:7.05556px;stroke-width:0.264583"
+         x="6.636137"
+         y="-125.89999">pthread_create()</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="-72.709297"
+       y="-159.42857"
+       id="text34071-2"
+       inkscape:label="text_declare"
+       inkscape:export-filename="C:\Users\david.ampurua\Desktop\thread_states.png"
+       inkscape:export-xdpi="92.121101"
+       inkscape:export-ydpi="92.121101"><tspan
+         sodipodi:role="line"
+         id="tspan34069-9"
+         style="font-size:7.05556px;stroke-width:0.264583"
+         x="-72.709297"
+         y="-159.42857">pthread_t &lt;varName&gt;</tspan></text>
+  </g>
+</svg>
