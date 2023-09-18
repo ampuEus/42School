@@ -61,6 +61,7 @@ void	init_imgs(t_gui *gui)
 	int	width;
 	int	height;
 
+	init_collect_imgs(gui);
 	init_walls(gui);
 	init_gnds(gui);
 	init_player(gui);

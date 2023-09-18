@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:26:14 by daampuru          #+#    #+#              #
-#    Updated: 2023/06/18 21:11:32 by daampuru         ###   ########.fr        #
+#    Updated: 2023/09/18 18:19:21 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ CFLAGS		:= -Wall -Wextra -Werror
 SRC_PATH	:= ./src
 SRC_MAP_PATH := map
 SRC_GUI_PATH := gui
+SRC_IMG_PATH := init_imgs
 SRC_UTILS_PATH := utils
 SRC			:= main.c \
 				$(SRC_MAP_PATH)/map_utils.c \
@@ -36,7 +37,9 @@ SRC			:= main.c \
 				$(SRC_GUI_PATH)/key_hook.c \
 				$(SRC_GUI_PATH)/end_gui.c \
 				$(SRC_GUI_PATH)/start_gui.c \
+				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_collect_imgs.c \
 				$(SRC_UTILS_PATH)/find_coordenates.c
+
 
 OBJ_PATH	:= ./obj
 OBJ			:= $(addprefix $(OBJ_PATH)/, $(SRC:.c=.o))
@@ -117,7 +120,7 @@ norm:
 
 # tests
 run: $(NAME)
-	./bin/so_long
+	./bin/so_long ./maps/map.ber
 
 
 # Create dirs
@@ -125,6 +128,7 @@ $(OBJ_PATH):
 	mkdir -p $@
 	mkdir -p $@/$(SRC_MAP_PATH)
 	mkdir -p $@/$(SRC_GUI_PATH)
+	mkdir -p $@/$(SRC_GUI_PATH)/$(SRC_IMG_PATH)
 	mkdir -p $@/$(SRC_UTILS_PATH)
 
 $(BIN_PATH):
