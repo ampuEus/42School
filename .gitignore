@@ -1,4 +1,4 @@
-#MacOS
+# MacOS
 .DS_Store
 
 # Vim
@@ -49,6 +49,13 @@ bin/
 *.su
 *.idb
 *.pdb
+
+# Temporaly files
+tmp/
+*.tmp
+temp/
+*.temp
+
 
 # Kernel Module Compile Results
 *.mod*
