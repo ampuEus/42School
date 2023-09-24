@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/07/02 19:39:57 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/09/18 18:27:24 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_gui {
 	unsigned int	player_pos_y;
 	char			player_direction;
 	//void			**exit_img[27];
-	//void			**collectable_img_[32];
+	void			**collectable_img_;
 	unsigned int	collected;
 	unsigned int	total_moves;
 }			t_gui;
@@ -73,50 +73,6 @@ typedef struct s_gui {
 # define COLLECTABLE_AUX 'c'
 
 // Assets relative paths
-/* TODO faltan las siguientes imagenes:
-
-# define COLLECT04 "./assets_80x80/peach/frame04.xpm"
-# define COLLECT06 "./assets_80x80/peach/frame06.xpm"
-# define COLLECT08 "./assets_80x80/peach/frame08.xpm"
-# define COLLECT11 "./assets_80x80/peach/frame11.xpm"
-# define COLLECT12 "./assets_80x80/peach/frame12.xpm"
-# define COLLECT19 "./assets_80x80/peach/frame19.xpm"
-# define COLLECT20 "./assets_80x80/peach/frame20.xpm"
-# define COLLECT21 "./assets_80x80/peach/frame21.xpm"
-# define COLLECT22 "./assets_80x80/peach/frame22.xpm"
-# define COLLECT23 "./assets_80x80/peach/frame23.xpm"
-# define COLLECT24 "./assets_80x80/peach/frame24.xpm"
-# define COLLECT25 "./assets_80x80/peach/frame25.xpm"
-# define COLLECT26 "./assets_80x80/peach/frame26.xpm"
-# define COLLECT27 "./assets_80x80/peach/frame27.xpm"
-# define COLLECT28 "./assets_80x80/peach/frame28.xpm"
-# define COLLECT29 "./assets_80x80/peach/frame29.xpm"
-# define COLLECT30 "./assets_80x80/peach/frame30.xpm"
-# define COLLECT31 "./assets_80x80/peach/frame31.xpm"
-# define COLLECT32 "./assets_80x80/peach/frame32.xpm"
-
-# define PLAYER_DEAD_L21 "./assets_80x80/twelve/dead/frame21.xpm"
-# define PLAYER_DEAD_L22 "./assets_80x80/twelve/dead/frame22.xpm"
-# define PLAYER_DEAD_L24 "./assets_80x80/twelve/dead/frame24.xpm"
-# define PLAYER_DEAD_L25 "./assets_80x80/twelve/dead/frame25.xpm"
-
-# define Q_GOOD10 "./assets_80x80/q/good/frame10.xpm"
-# define Q_GOOD11 "./assets_80x80/q/good/frame11.xpm"
-
-# define Q_IDLE13 "./assets_80x80/q/idle/frame13.xpm"
-# define Q_IDLE14 "./assets_80x80/q/idle/frame14.xpm"
-# define Q_IDLE16 "./assets_80x80/q/idle/frame16.xpm"
-# define Q_IDLE17 "./assets_80x80/q/idle/frame17.xpm"
-# define Q_IDLE18 "./assets_80x80/q/idle/frame18.xpm"
-# define Q_IDLE19 "./assets_80x80/q/idle/frame19.xpm"
-# define Q_IDLE20 "./assets_80x80/q/idle/frame20.xpm"
-# define Q_IDLE21 "./assets_80x80/q/idle/frame21.xpm"
-
-# define Q_BAD21 "./assets_80x80/q/bad/frame21.xpm"
-# define Q_BAD22 "./assets_80x80/q/bad/frame22.xpm"
-# define Q_BAD24 "./assets_80x80/q/bad/frame24.xpm"
-# define Q_BAD25 "./assets_80x80/q/bad/frame25.xpm"
-*/
 
 # define WALL_NBR 2
 # define WALL1 "./assets_80x80/wall/wall_1.xpm"
@@ -131,7 +87,7 @@ typedef struct s_gui {
 # define PLAYER_L "./assets_80x80/Twelve_test.xpm"
 # define PLAYER_R "./assets_80x80/Twelve_test.xpm"
 
-# define PLAYER_IDLE_NBR 13
+# define PLAYER_IDLE_NBR 14
 # define PLAYER_IDLE_L00 "./assets_80x80/twelve/idle/frame00.xpm"
 # define PLAYER_IDLE_L01 "./assets_80x80/twelve/idle/frame01.xpm"
 # define PLAYER_IDLE_L02 "./assets_80x80/twelve/idle/frame02.xpm"
@@ -148,7 +104,7 @@ typedef struct s_gui {
 # define PLAYER_IDLE_L13 "./assets_80x80/twelve/idle/frame13.xpm"
 # define PLAYER_IDLE_L "./assets_80x80/Twelve_test.xpm"
 # define PLAYER_IDLE_R "./assets_80x80/Twelve_test.xpm"
-# define PLAYER_DEAD_NBR 26
+# define PLAYER_DEAD_NBR 27
 # define PLAYER_DEAD_L00 "./assets_80x80/twelve/dead/frame00.xpm"
 # define PLAYER_DEAD_L01 "./assets_80x80/twelve/dead/frame01.xpm"
 # define PLAYER_DEAD_L02 "./assets_80x80/twelve/dead/frame02.xpm"
@@ -179,7 +135,7 @@ typedef struct s_gui {
 # define PLAYER_DEAD_L "./assets_80x80/Twelve_test.xpm"
 # define PLAYER_DEAD_R "./assets_80x80/Twelve_test.xpm"
 
-# define COLLECT_NBR 32
+# define COLLECT_NBR 33
 # define COLLECT "./assets_80x80/peach_test.xpm"
 # define COLLECT00 "./assets_80x80/peach/frame00.xpm"
 # define COLLECT01 "./assets_80x80/peach/frame01.xpm"
@@ -215,7 +171,7 @@ typedef struct s_gui {
 # define COLLECT31 "./assets_80x80/peach/frame31.xpm"
 # define COLLECT32 "./assets_80x80/peach/frame32.xpm"
 
-# define Q_IDLE_NBR 21
+# define Q_IDLE_NBR 22
 # define Q_IDLE00 "./assets_80x80/q/idle/frame00.xpm"
 # define Q_IDLE01 "./assets_80x80/q/idle/frame01.xpm"
 # define Q_IDLE02 "./assets_80x80/q/idle/frame02.xpm"
@@ -238,7 +194,7 @@ typedef struct s_gui {
 # define Q_IDLE19 "./assets_80x80/q/idle/frame19.xpm"
 # define Q_IDLE20 "./assets_80x80/q/idle/frame20.xpm"
 # define Q_IDLE21 "./assets_80x80/q/idle/frame21.xpm"
-# define Q_BAD_NBR 26
+# define Q_BAD_NBR 27
 # define Q_BAD00 "./assets_80x80/q/bad/frame00.xpm"
 # define Q_BAD01 "./assets_80x80/q/bad/frame01.xpm"
 # define Q_BAD02 "./assets_80x80/q/bad/frame02.xpm"
@@ -266,7 +222,7 @@ typedef struct s_gui {
 # define Q_BAD24 "./assets_80x80/q/bad/frame24.xpm"
 # define Q_BAD25 "./assets_80x80/q/bad/frame25.xpm"
 # define Q_BAD26 "./assets_80x80/q/bad/frame26.xpm"
-# define Q_GOOD_NBR 16
+# define Q_GOOD_NBR 17
 # define Q_GOOD00 "./assets_80x80/q/good/frame00.xpm"
 # define Q_GOOD01 "./assets_80x80/q/good/frame01.xpm"
 # define Q_GOOD02 "./assets_80x80/q/good/frame02.xpm"
@@ -286,7 +242,7 @@ typedef struct s_gui {
 # define Q_GOOD16 "./assets_80x80/q/good/frame16.xpm"
 # define QUIT "./assets_80x80/q_test.xpm"
 
-# define ENEMY_IDLE_NBR 13
+# define ENEMY_IDLE_NBR 14
 # define ENEMY_IDLE00 "./assets_80x80/hugo_idle/frame00.xpm"
 # define ENEMY_IDLE01 "./assets_80x80/hugo_idle/frame01.xpm"
 # define ENEMY_IDLE02 "./assets_80x80/hugo_idle/frame02.xpm"
@@ -301,7 +257,7 @@ typedef struct s_gui {
 # define ENEMY_IDLE11 "./assets_80x80/hugo_idle/frame11.xpm"
 # define ENEMY_IDLE12 "./assets_80x80/hugo_idle/frame12.xpm"
 # define ENEMY_IDLE13 "./assets_80x80/hugo_idle/frame13.xpm"
-# define ENEMY_WALK_NBR 57
+# define ENEMY_WALK_NBR 58
 # define ENEMY_WALK00 "./assets_80x80/elena_idle/frame00.xpm"
 # define ENEMY_WALK01 "./assets_80x80/elena_idle/frame01.xpm"
 # define ENEMY_WALK02 "./assets_80x80/elena_idle/frame02.xpm"
@@ -391,4 +347,6 @@ char			move(int keycode, t_gui *gui);
 int				key_hook(int keycode, t_gui *gui);
 int				end_gui(t_gui	*gui);
 char			start_gui(t_gui *gui);
+
+void			init_collect_imgs(t_gui *gui);
 #endif

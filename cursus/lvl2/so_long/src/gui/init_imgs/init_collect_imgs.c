@@ -1,4 +1,5 @@
 #include "so_long.h"
+#include "mlx.h"
 
 static void	init_00(t_gui *gui)
 {
@@ -94,6 +95,7 @@ static void	init_30(t_gui *gui)
 
 void	init_collect_imgs(t_gui *gui)
 {
+	gui->collectable_img_ = malloc(COLLECT_NBR * sizeof(*gui->collectable_img_));
 	init_00(gui);
 	init_10(gui);
 	init_20(gui);
