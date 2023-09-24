@@ -1,5 +1,5 @@
 # Push_swap : Porque Swap_push no suena tan natural
-***Oficialmente terminado el xx/12/2022 / Nota xxx de 100 / [English](README.md) version***
+***Oficialmente terminado el 20/09/2023 / Nota 125 de 100 / [English](README.md) version***
 
 En este proyecto se aprenderá a ordenar datos en un stack, con un conjunto limitado de instrucciones, y utilizando el menor número de instrucciones posibles. Para tener éxito, se deberá trastear con algunos de los diversos algoritmos y elegir, entre todos, el más apropiado para un ordenamiento óptimo.
 
