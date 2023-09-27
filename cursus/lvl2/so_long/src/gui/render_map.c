@@ -8,7 +8,7 @@ static char	render_texture(t_gui *gui, char c, unsigned x, unsigned y)
 	else
 		mlx_put_image_to_window(gui->mlx, gui->win, gui->gnd1_img, x, y);
 	if (c == START_POS)
-		mlx_put_image_to_window(gui->mlx, gui->win, gui->player_r_img, x, y);
+		mlx_put_image_to_window(gui->mlx, gui->win, gui->player_l_img[0], x, y);
 	else if (c == COLLECTABLE)
 		mlx_put_image_to_window(gui->mlx, gui->win, gui->collectable_img, x, y);
 	else if (c == EXIT)

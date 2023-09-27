@@ -37,35 +37,15 @@ static void	init_gnds(t_gui *gui)
 	}
 }
 
-static void	init_player(t_gui *gui)
-{
-	int	w;
-	int	h;
-
-	gui->player_l_img = mlx_xpm_file_to_image(gui->mlx, PLAYER_L, &w, &h);
-	if (!gui->player_l_img)
-	{
-		ft_putstr_fd("ERROR: importing player left pos .xpm file to img\n", 2);
-		end_gui(gui);
-	}
-	gui->player_r_img = mlx_xpm_file_to_image(gui->mlx, PLAYER_R, &w, &h);
-	if (!gui->player_r_img)
-	{
-		ft_putstr_fd("ERROR: importing player right pos .xpm file to img\n", 2);
-		end_gui(gui);
-	}
-}
-
 void	init_imgs(t_gui *gui)
 {
 	int	width;
 	int	height;
 
-	init_collect_imgs(gui);
+	//init_collect_imgs(gui);
 	init_playerl_imgs(gui);
 	init_walls(gui);
 	init_gnds(gui);
-	init_player(gui);
 	gui->exit_img = mlx_xpm_file_to_image(gui->mlx, QUIT, &width, &height);
 	if (!gui->exit_img)
 	{

@@ -15,8 +15,8 @@ static void	free_imgs(t_gui *gui)
 		mlx_destroy_image(gui->mlx, gui->gnd3_img);
 	if (gui->gnd4_img)
 		mlx_destroy_image(gui->mlx, gui->gnd4_img);
-	if (gui->player_l_img)
-		mlx_destroy_image(gui->mlx, gui->player_l_img);
+	while (gui->player_l_img)
+		mlx_destroy_image(gui->mlx, gui->player_l_img++);
 	if (gui->player_r_img)
 		mlx_destroy_image(gui->mlx, gui->player_r_img);
 	if (gui->exit_img)
