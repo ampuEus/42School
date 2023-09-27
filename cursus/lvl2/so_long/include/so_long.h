@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/09/18 18:27:24 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/09/24 20:13:00 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ typedef struct s_gui {
 	void			*gnd4_img;
 	void			*wall1_img;
 	void			*wall2_img;
-	void			*player_l_img;
+	//void			*player_l_img;
+	void			**player_l_img;
 	void			*player_r_img;
 	void			*exit_img;
 	void			*collectable_img;
@@ -87,7 +88,7 @@ typedef struct s_gui {
 # define PLAYER_L "./assets_80x80/Twelve_test.xpm"
 # define PLAYER_R "./assets_80x80/Twelve_test.xpm"
 
-# define PLAYER_IDLE_NBR 14
+# define PLAYER_IDLE_NBR 13
 # define PLAYER_IDLE_L00 "./assets_80x80/twelve/idle/frame00.xpm"
 # define PLAYER_IDLE_L01 "./assets_80x80/twelve/idle/frame01.xpm"
 # define PLAYER_IDLE_L02 "./assets_80x80/twelve/idle/frame02.xpm"
@@ -135,7 +136,7 @@ typedef struct s_gui {
 # define PLAYER_DEAD_L "./assets_80x80/Twelve_test.xpm"
 # define PLAYER_DEAD_R "./assets_80x80/Twelve_test.xpm"
 
-# define COLLECT_NBR 33
+# define COLLECT_NBR 32
 # define COLLECT "./assets_80x80/peach_test.xpm"
 # define COLLECT00 "./assets_80x80/peach/frame00.xpm"
 # define COLLECT01 "./assets_80x80/peach/frame01.xpm"
@@ -341,6 +342,7 @@ char			**get_map(char *filepath);
 
 // GUI
 
+int			frame(t_gui *gui);
 void			init_imgs(t_gui *gui);
 char			render_map(t_gui *gui);
 char			move(int keycode, t_gui *gui);
@@ -349,4 +351,5 @@ int				end_gui(t_gui	*gui);
 char			start_gui(t_gui *gui);
 
 void			init_collect_imgs(t_gui *gui);
+void			init_playerl_imgs(t_gui *gui);
 #endif

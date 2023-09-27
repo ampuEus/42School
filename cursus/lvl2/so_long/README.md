@@ -1,4 +1,4 @@
-# SoLong
+# [SoLong](https://www.youtube.com/watch?v=N_dUmDBfp6k)
 ***Officially finished at 2022-12-xx / Grade: xxx of 100 / Versión en [español](LEEME.md)***
 
 This project is a small 2D game. It's designed to make you work with textures and sprites and some other basic gameplay elements. It will help you improve your skills in these areas: windows, colors, events, textures, etc.
