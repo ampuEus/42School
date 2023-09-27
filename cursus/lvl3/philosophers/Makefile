@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:26:14 by daampuru          #+#    #+#              #
-#    Updated: 2023/05/28 00:25:33 by daampuru         ###   ########.fr        #
+#    Updated: 2023/09/27 19:00:01 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME		:= $(BIN_PATH)/philo
 NAME_BONUS	:= $(BIN_PATH)/philo_bonus
 INCLUDE		:= ./inc
 CC			:= gcc
-CFLAGS		:= -Wall -Wextra -Werror
+CFLAGS		:= -Wall -Wextra -Werror -pthread
 
 # Sources dir
 STATEMACHINE_PATH := statemachine
@@ -78,12 +78,12 @@ fclean:	clean
 philo: $(NAME)
 
 $(NAME) : $(OBJ) | $(BIN_PATH)
-	$(CC) -pthread $(CFLAGS) $(OBJ) -o $@
+	$(CC) $(CFLAGS) $(OBJ) -o $@
 
 bonus: $(NAME_BONUS)
 
 $(NAME_BONUS) : $(OBJ_BONUS) | $(BIN_PATH)
-	$(CC) -pthread $(CFLAGS) $(OBJ_BONUS) -o $@
+	$(CC) $(CFLAGS) $(OBJ_BONUS) -o $@
 
 
 # Debug
