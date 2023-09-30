@@ -1,6 +1,9 @@
 #include "so_long.h"
 #include "mlx.h"
 
+/* TODO
+Sería recomendable chequear si se ha cargado bien la imagen*/
+
 static void	init_00(t_gui *gui)
 {
 	int	img_width;

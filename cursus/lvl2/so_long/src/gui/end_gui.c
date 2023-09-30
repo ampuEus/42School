@@ -17,12 +17,12 @@ static void	free_imgs(t_gui *gui)
 		mlx_destroy_image(gui->mlx, gui->gnd4_img);
 	while (gui->player_l_img)
 		mlx_destroy_image(gui->mlx, gui->player_l_img++);
-	if (gui->player_r_img)
-		mlx_destroy_image(gui->mlx, gui->player_r_img);
+	while (gui->player_r_img)
+		mlx_destroy_image(gui->mlx, gui->player_r_img++);
 	if (gui->exit_img)
 		mlx_destroy_image(gui->mlx, gui->exit_img);
-	if (gui->collectable_img)
-		mlx_destroy_image(gui->mlx, gui->collectable_img);
+	while (gui->collectable_img)
+		mlx_destroy_image(gui->mlx, gui->collectable_img++);
 }
 
 /* This function need and "exit ()" intead of a "return ()", because if not

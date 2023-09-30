@@ -7,10 +7,15 @@ static char	render_texture(t_gui *gui, char c, unsigned x, unsigned y)
 		mlx_put_image_to_window(gui->mlx, gui->win, gui->wall1_img, x, y);
 	else
 		mlx_put_image_to_window(gui->mlx, gui->win, gui->gnd1_img, x, y);
-	if (c == START_POS)
-		mlx_put_image_to_window(gui->mlx, gui->win, gui->player_l_img[0], x, y);
+	 if (c == START_POS)
+	 {
+		gui->player_pos_x = x;
+		gui->player_pos_y = y;
+		gui->player_prepos_x = x;
+		gui->player_prepos_y = y;
+	 }
 	else if (c == COLLECTABLE)
-		mlx_put_image_to_window(gui->mlx, gui->win, gui->collectable_img, x, y);
+		mlx_put_image_to_window(gui->mlx, gui->win, gui->collectable_img[0], x, y);
 	else if (c == EXIT)
 		mlx_put_image_to_window(gui->mlx, gui->win, gui->exit_img, x, y);
 	else

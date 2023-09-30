@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/09/27 19:44:26 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/09/30 23:01:36 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ typedef struct s_gui {
 	void			*wall1_img;
 	void			*wall2_img;
 	void			**player_l_img;
-	void			*player_r_img;
+	void			**player_r_img;
 	void			*exit_img;
-	void			*collectable_img;
+	void			**collectable_img;
 	//void			**wall_img[2];
 	//void			**gnd_img[4];
-	//void			**player_r_img[14];
+	//void			**exit_img[27];
 	unsigned int	player_pos_x;
 	unsigned int	player_pos_y;
+	unsigned int	player_prepos_x;
+	unsigned int	player_prepos_y;
 	char			player_direction;
-	//void			**exit_img[27];
-	void			**collectable_img_;
 	unsigned int	collected;
 	unsigned int	total_moves;
 }			t_gui;
@@ -135,7 +135,6 @@ typedef struct s_gui {
 # define PLAYER_DEAD_R "./assets_80x80/Twelve_test.xpm"
 
 # define COLLECT_NBR 33
-# define COLLECT "./assets_80x80/peach_test.xpm"
 # define COLLECT00 "./assets_80x80/peach/frame00.xpm"
 # define COLLECT01 "./assets_80x80/peach/frame01.xpm"
 # define COLLECT02 "./assets_80x80/peach/frame02.xpm"
@@ -321,7 +320,7 @@ typedef struct s_gui {
 # define ASSETS_SIZE 80
 
 // Refresh rate
-# define REFRESH 700
+# define REFRESH 2000
 
 /* ---------- Functions ---------- */
 // Utils
@@ -343,7 +342,7 @@ char			**get_map(char *filepath);
 int				frame(t_gui *gui);
 void			init_imgs(t_gui *gui);
 char			render_map(t_gui *gui);
-char			move(int keycode, t_gui *gui);
+char			calc_move(int keycode, t_gui *gui);
 int				key_hook(int keycode, t_gui *gui);
 int				end_gui(t_gui	*gui);
 char			start_gui(t_gui *gui);

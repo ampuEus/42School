@@ -42,7 +42,7 @@ void	init_imgs(t_gui *gui)
 	int	width;
 	int	height;
 
-	//init_collect_imgs(gui);
+	init_collect_imgs(gui);
 	init_playerl_imgs(gui);
 	init_walls(gui);
 	init_gnds(gui);
@@ -50,13 +50,6 @@ void	init_imgs(t_gui *gui)
 	if (!gui->exit_img)
 	{
 		ft_putstr_fd("ERROR: importing exit .xpm file to image\n", 2);
-		end_gui(gui);
-	}
-	gui->collectable_img = mlx_xpm_file_to_image(gui->mlx, \
-		COLLECT, &width, &height);
-	if (!gui->collectable_img)
-	{
-		ft_putstr_fd("ERROR: importing collectable .xpm file to image\n", 2);
 		end_gui(gui);
 	}
 }
