@@ -1,29 +1,37 @@
 #include "so_long.h"
 #include "mlx.h"
 
-static char	render_texture(t_gui *gui, char c, unsigned x, unsigned y)
+static char	init_item(t_gui *gui, char c, unsigned x, unsigned y)
 {
 	if (c == WALL)
 		mlx_put_image_to_window(gui->mlx, gui->win, gui->wall1_img, x, y);
 	else
 		mlx_put_image_to_window(gui->mlx, gui->win, gui->gnd1_img, x, y);
-	 if (c == START_POS)
-	 {
-		gui->player_pos_x = x;
-		gui->player_pos_y = y;
-		gui->player_prepos_x = x;
-		gui->player_prepos_y = y;
-	 }
+	if (c == START_POS)
+	{
+		gui->player->pos_x = x;
+		gui->player->pos_y = y;
+		gui->player->pre_pos_x = x;
+		gui->player->pre_pos_y = y;
+	}
 	else if (c == COLLECTABLE)
-		mlx_put_image_to_window(gui->mlx, gui->win, gui->collectable_img[0], x, y);
+	{
+		// if (!gui->collectables)
+		// 	gui->collectables = listnew(x, y, gui->collectable_imgs);
+		// else
+			listadd(&gui->collectables, listnew(x, y, gui->collectable_imgs));
+	}
 	else if (c == EXIT)
-		mlx_put_image_to_window(gui->mlx, gui->win, gui->exit_img, x, y);
+	{
+		gui->exit->pos_x = x;
+		gui->exit->pos_y = y;
+	}
 	else
 		return (-1);
 	return (0);
 }
 
-char	render_map(t_gui *gui)
+char	init_map(t_gui *gui)
 {
 	unsigned int	line;
 	unsigned int	c;
@@ -38,7 +46,7 @@ char	render_map(t_gui *gui)
 		x = 0;
 		while (gui->map[line][c])
 		{
-			render_texture(gui, gui->map[line][c], x, y);
+			init_item(gui, gui->map[line][c], x, y);
 			x += ASSETS_SIZE;
 			c++;
 		}

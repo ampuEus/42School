@@ -6,41 +6,13 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/09/30 23:01:36 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/09 20:41:10 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 
 # include "libft.h"
-
-typedef struct s_gui {
-	char			**map;
-	int				height;
-	int				width;
-	void			*mlx;
-	void			*win;
-	void			*gnd1_img;
-	void			*gnd2_img;
-	void			*gnd3_img;
-	void			*gnd4_img;
-	void			*wall1_img;
-	void			*wall2_img;
-	void			**player_l_img;
-	void			**player_r_img;
-	void			*exit_img;
-	void			**collectable_img;
-	//void			**wall_img[2];
-	//void			**gnd_img[4];
-	//void			**exit_img[27];
-	unsigned int	player_pos_x;
-	unsigned int	player_pos_y;
-	unsigned int	player_prepos_x;
-	unsigned int	player_prepos_y;
-	char			player_direction;
-	unsigned int	collected;
-	unsigned int	total_moves;
-}			t_gui;
 
 /* ---------- Constants ---------- */
 // keycodes MacOS
@@ -58,6 +30,14 @@ typedef struct s_gui {
 # define KEY_RIGHT_L 65363
 # define KEY_DOWN_L 65364
 # define KEY_UP_L 65362
+
+// X11 events
+
+# define DESTROY_NOTIFY 17
+
+// X11 mask
+
+# define KEY_PRESS_MASK (1L << 0)
 
 // Map components
 
@@ -320,12 +300,70 @@ typedef struct s_gui {
 # define ASSETS_SIZE 80
 
 // Refresh rate
-# define REFRESH 2000
+# define REFRESH 700
+
+/* ---------- Structs ---------- */
+typedef struct s_dinamicItem {
+	void			**left_imgs;
+	void			**right_imgs;
+	unsigned int	pos_x;
+	unsigned int	pos_y;
+	unsigned int	pre_pos_x;
+	unsigned int	pre_pos_y;
+	char			direction;
+}			t_dinamicItem;
+
+typedef struct s_listItem {
+	void				**imgs;
+	unsigned int		pos_x;
+	unsigned int		pos_y;
+	struct s_listItem	*next;
+}			t_listItem;
+
+typedef struct s_exit {
+	void			**idle_imgs;
+	void			**bad_imgs;
+	void			**good_imgs;
+	unsigned int	pos_x;
+	unsigned int	pos_y;
+}			t_exit;
+
+typedef struct s_gui {
+	char			**map;
+	int				height;
+	int				width;
+	void			*mlx;
+	void			*win;
+	void			*gnd1_img;
+	void			*gnd2_img;
+	void			*gnd3_img;
+	void			*gnd4_img;
+	void			*wall1_img;
+	void			*wall2_img;
+	void			*exit_img;
+	void			**collectable_imgs;
+	t_listItem		*collectables;
+	t_dinamicItem	*player;
+	t_exit			*exit;
+	unsigned int	total_collectables;
+	unsigned int	collected_collectables;
+	unsigned int	moved;
+	unsigned int	total_moves;
+}			t_gui;
+
 
 /* ---------- Functions ---------- */
 // Utils
 
 char			find_coor(char **map, unsigned int *x, unsigned int *y, char c);
+
+// List
+
+t_listItem		*listnew(unsigned int	pos_x, unsigned int	pos_y, void	**imgs);
+t_listItem		*listdel(t_listItem **lst, unsigned int	pos_x, unsigned int	pos_y);
+unsigned int	listlen(t_listItem *lst);
+void			listadd(t_listItem **lst, t_listItem *new);
+void			listfree(t_listItem **lst);
 
 // Parsing map
 
@@ -341,7 +379,7 @@ char			**get_map(char *filepath);
 
 int				frame(t_gui *gui);
 void			init_imgs(t_gui *gui);
-char			render_map(t_gui *gui);
+char			init_map(t_gui *gui);
 char			calc_move(int keycode, t_gui *gui);
 int				key_hook(int keycode, t_gui *gui);
 int				end_gui(t_gui	*gui);
@@ -349,4 +387,5 @@ char			start_gui(t_gui *gui);
 
 void			init_collect_imgs(t_gui *gui);
 void			init_playerl_imgs(t_gui *gui);
+void			init_exit_imgs(t_gui *gui);
 #endif

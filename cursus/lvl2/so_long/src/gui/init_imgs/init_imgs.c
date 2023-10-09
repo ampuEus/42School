@@ -44,6 +44,7 @@ void	init_imgs(t_gui *gui)
 
 	init_collect_imgs(gui);
 	init_playerl_imgs(gui);
+	init_exit_imgs(gui);
 	init_walls(gui);
 	init_gnds(gui);
 	gui->exit_img = mlx_xpm_file_to_image(gui->mlx, QUIT, &width, &height);

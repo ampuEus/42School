@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:26:14 by daampuru          #+#    #+#              #
-#    Updated: 2023/09/30 22:26:35 by daampuru         ###   ########.fr        #
+#    Updated: 2023/10/07 18:05:19 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,16 +31,18 @@ SRC			:= main.c \
 				$(SRC_MAP_PATH)/valid_path.c \
 				$(SRC_MAP_PATH)/is_valid_map.c \
 				$(SRC_MAP_PATH)/get_map.c \
-				$(SRC_GUI_PATH)/init_imgs.c \
-				$(SRC_GUI_PATH)/render_map.c \
+				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_imgs.c \
+				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_collect_imgs.c \
+				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_playerl_imgs.c \
+				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_exit_imgs.c \
+				$(SRC_GUI_PATH)/init_map.c \
 				$(SRC_GUI_PATH)/calc_move.c \
 				$(SRC_GUI_PATH)/key_hook.c \
 				$(SRC_GUI_PATH)/end_gui.c \
 				$(SRC_GUI_PATH)/start_gui.c \
-				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_collect_imgs.c \
-				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_playerl_imgs.c \
 				$(SRC_GUI_PATH)/frame.c \
-				$(SRC_UTILS_PATH)/find_coordenates.c
+				$(SRC_UTILS_PATH)/find_coordenates.c \
+				$(SRC_UTILS_PATH)/lists.c
 
 
 OBJ_PATH	:= ./obj

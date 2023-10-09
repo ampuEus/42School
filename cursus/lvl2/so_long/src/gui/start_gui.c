@@ -9,10 +9,11 @@ char	start_gui(t_gui *gui)
 		gui->width, \
 		"Bicho Blanco");
 	init_imgs(gui);
-	render_map(gui);
-	mlx_loop_hook(gui->mlx, frame, gui);
+	init_map(gui);
 	mlx_key_hook(gui->win, key_hook, gui);
-	mlx_hook(gui->win, 17, 1L << 0, end_gui, gui);
+	mlx_loop_hook(gui->mlx, frame, gui);
+	mlx_hook(gui->win, DESTROY_NOTIFY, KEY_PRESS_MASK, end_gui, gui);
+	//mlx_hook(gui->win, EXPOSE, EXPOSURE_MASK, init_map, gui);
 	mlx_loop(gui->mlx);
 	return (0);
 }

@@ -6,6 +6,9 @@ int	key_hook(int keycode, t_gui *gui)
 	static unsigned int	moves;
 	int					is_move;
 
+	if (!gui->moved)
+		return (0);
+	gui->moved = 0;
 	is_move = 0;
 	if (keycode == KEY_ESC || keycode == KEY_ESC_L)
 		end_gui(gui);
