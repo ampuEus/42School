@@ -51,6 +51,7 @@ static char make_action(t_gui *gui, unsigned int x, unsigned int y)
 	if (gui->collectables == NULL)
 		gui->exit->state = BAD;
 	// TODO if enemy -> player dead
+	ft_printf("Peaches collected: %u | ", gui->collected_collectables);
 	return (0);
 }
 
