@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:26:14 by daampuru          #+#    #+#              #
-#    Updated: 2023/10/12 14:16:58 by daampuru         ###   ########.fr        #
+#    Updated: 2023/10/12 18:45:48 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CC			:= gcc
 CFLAGS		:= -Wall -Wextra -Werror
 
 SRC_PATH	:= ./src
-SRC_MAP_PATH := map
+SRC_MAP_PATH := input_map_file
 SRC_GUI_PATH := gui
 SRC_IMG_PATH := init_imgs
 SRC_UTILS_PATH := utils
