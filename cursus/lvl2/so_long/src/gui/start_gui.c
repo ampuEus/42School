@@ -13,7 +13,7 @@ char	start_gui(t_gui *gui)
 	mlx_key_hook(gui->win, key_hook, gui);
 	mlx_loop_hook(gui->mlx, frame, gui);
 	mlx_hook(gui->win, DESTROY_NOTIFY, KEY_PRESS_MASK, end_gui, gui);
-	//mlx_hook(gui->win, EXPOSE, EXPOSURE_MASK, init_map, gui);
+	mlx_hook(gui->win, EXPOSE, EXPOSURE_MASK, render_map, gui);
 	mlx_loop(gui->mlx);
 	return (0);
 }

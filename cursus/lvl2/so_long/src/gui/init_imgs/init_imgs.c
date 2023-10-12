@@ -43,8 +43,16 @@ void	init_imgs(t_gui *gui)
 	int	height;
 
 	init_collect_imgs(gui);
+
 	init_playerl_imgs(gui);
-	init_exit_imgs(gui);
+	gui->player->state = 0;
+
+	gui->exit = malloc(sizeof(*gui->exit));
+	init_exit_idle_imgs(gui);
+	init_exit_bad_imgs(gui);
+	init_exit_good_imgs(gui);
+	gui->exit->state = 0;
+
 	init_walls(gui);
 	init_gnds(gui);
 }

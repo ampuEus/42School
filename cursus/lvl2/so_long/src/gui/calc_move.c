@@ -24,15 +24,6 @@ static char	get_newpos(\
 	return (*direction);
 }
 
-// /* on wall -> can't move
-// on enemy -> dead
-// on exit -> go
-// on free space -> move */
-// static char	whatis()
-// {
-
-// }
-
 /* Look which is the player's next action.
 Return:
 	0 - Can move
@@ -48,10 +39,18 @@ static char make_action(t_gui *gui, unsigned int x, unsigned int y)
 		gui->map[y][x] = FREE_SPACE;
 		gui->collected_collectables++;
 	}
-	if (gui->map[y][x] == EXIT)
+	if (gui->exit->state == GOOD)
+		end_gui(gui);
+	if (gui->map[y][x] == EXIT && gui->exit->state == IDLE)
 		return (2);
-	// if exit + all C -> end
-	// if enemy -> player dead
+	if (gui->map[y][x] == EXIT && gui->exit->state != IDLE)
+	{
+		gui->exit->state = GOOD;
+		return (3);
+	}
+	if (gui->collectables == NULL)
+		gui->exit->state = BAD;
+	// TODO if enemy -> player dead
 	return (0);
 }
 

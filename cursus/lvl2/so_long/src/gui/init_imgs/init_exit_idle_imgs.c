@@ -1,9 +1,6 @@
 #include "so_long.h"
 #include "mlx.h"
 
-/* TODO
-Sería recomendable chequear si se ha cargado bien la imagen*/
-
 static void	init_00(t_gui *gui)
 {
 	int	img_width;
@@ -69,9 +66,8 @@ static void	init_20(t_gui *gui)
 		gui->mlx, Q_IDLE21, &img_width, &img_height);
 }
 
-void	init_exit_imgs(t_gui *gui)
+void	init_exit_idle_imgs(t_gui *gui)
 {
-	gui->exit = malloc(sizeof(*gui->exit));
 	gui->exit->idle_imgs = malloc(Q_IDLE_NBR * sizeof(*gui->exit->idle_imgs));
 	init_00(gui);
 	init_10(gui);

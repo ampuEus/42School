@@ -31,6 +31,14 @@ static void	free_imgs(t_gui *gui)
 		mlx_destroy_image(gui->mlx, gui->exit->idle_imgs[i++]);
 	free(gui->exit->idle_imgs);
 	i = 0;
+	while (i < Q_BAD_NBR)
+		mlx_destroy_image(gui->mlx, gui->exit->bad_imgs[i++]);
+	free(gui->exit->bad_imgs);
+	i = 0;
+	while (i < Q_GOOD_NBR)
+		mlx_destroy_image(gui->mlx, gui->exit->good_imgs[i++]);
+	free(gui->exit->good_imgs);
+	i = 0;
 	while (i < COLLECT_NBR)
 		mlx_destroy_image(gui->mlx, gui->collectable_imgs[i++]);
 	free(gui->collectable_imgs);
@@ -38,7 +46,7 @@ static void	free_imgs(t_gui *gui)
 
 /* This function need and "exit ()" intead of a "return ()", because if not
 when it return to the loop will make a segmentation fault" */
-int	end_gui(t_gui	*gui)
+int	end_gui(t_gui *gui)
 {
 	ft_doublefree(gui->map);
 	free_imgs(gui);

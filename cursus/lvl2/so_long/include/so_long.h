@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 09:37:11 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/12 12:12:06 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@
 
 // X11 events
 
+# define EXPOSE 12
 # define DESTROY_NOTIFY 17
 
 // X11 mask
 
 # define KEY_PRESS_MASK (1L << 0)
+# define EXPOSURE_MASK (1L << 15)
 
 // Map components
 
@@ -53,10 +55,10 @@
 
 // Characters' states
 
-# define IDLE 1
-# define DEAD 2
-# define BAD 3
-# define GOOD 4
+# define IDLE 0
+# define DEAD 1
+# define BAD 2
+# define GOOD 3
 
 // Assets relative paths
 
@@ -211,8 +213,8 @@
 # define Q_GOOD07 "./assets_80x80/q/good/frame07.xpm"
 # define Q_GOOD08 "./assets_80x80/q/good/frame08.xpm"
 # define Q_GOOD09 "./assets_80x80/q/good/frame09.xpm"
-# define Q_GOOD10 "./assets_80x80/q/good/frame10.xpm"
-# define Q_GOOD11 "./assets_80x80/q/good/frame11.xpm"
+# define Q_GOOD10 "./assets_80x80/q/good/frame12.xpm" // TODO falta
+# define Q_GOOD11 "./assets_80x80/q/good/frame12.xpm" // TODO falta
 # define Q_GOOD12 "./assets_80x80/q/good/frame12.xpm"
 # define Q_GOOD13 "./assets_80x80/q/good/frame13.xpm"
 # define Q_GOOD14 "./assets_80x80/q/good/frame14.xpm"
@@ -304,6 +306,7 @@
 typedef struct s_dinamicItem {
 	void			**left_imgs;
 	void			**right_imgs;
+	char			state;
 	unsigned int	pos_x;
 	unsigned int	pos_y;
 	unsigned int	pre_pos_x;
@@ -378,7 +381,8 @@ char			**get_map(char *filepath);
 
 int				frame(t_gui *gui);
 void			init_imgs(t_gui *gui);
-char			init_map(t_gui *gui);
+int				init_map(t_gui *gui);
+int				render_map(t_gui *gui);
 char			calc_move(int keycode, t_gui *gui);
 int				key_hook(int keycode, t_gui *gui);
 int				end_gui(t_gui	*gui);
@@ -386,5 +390,7 @@ char			start_gui(t_gui *gui);
 
 void			init_collect_imgs(t_gui *gui);
 void			init_playerl_imgs(t_gui *gui);
-void			init_exit_imgs(t_gui *gui);
+void			init_exit_idle_imgs(t_gui *gui);
+void			init_exit_bad_imgs(t_gui *gui);
+void			init_exit_good_imgs(t_gui *gui);
 #endif
