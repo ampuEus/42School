@@ -1,6 +1,5 @@
 #include "so_long.h"
 #include "mlx.h"
-#include <stdio.h>
 
 static void	free_imgs(t_gui *gui)
 {

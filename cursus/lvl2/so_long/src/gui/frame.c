@@ -1,6 +1,5 @@
 #include "so_long.h"
 #include "mlx.h"
-#include <stdio.h>
 
 static void	delete_item(t_gui *gui, int x, int y)
 {
@@ -50,7 +49,7 @@ static void	render_exit(t_gui *gui)
 			gui->exit->pos_x, gui->exit->pos_y);
 	}
 	else
-		printf("WARNING: No state defined. State = %i\n", gui->exit->state);
+		ft_printf("WARNING: No state defined. State = %i\n", gui->exit->state);
 }
 
 static void	render_collectable(t_gui *gui)
