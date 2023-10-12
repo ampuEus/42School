@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 14:35:11 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/12 18:35:06 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,8 +213,8 @@
 # define Q_GOOD07 "./assets_80x80/q/good/frame07.xpm"
 # define Q_GOOD08 "./assets_80x80/q/good/frame08.xpm"
 # define Q_GOOD09 "./assets_80x80/q/good/frame09.xpm"
-# define Q_GOOD10 "./assets_80x80/q/good/frame12.xpm" // TODO falta
-# define Q_GOOD11 "./assets_80x80/q/good/frame12.xpm" // TODO falta
+# define Q_GOOD10 "./assets_80x80/q/good/frame10.xpm"
+# define Q_GOOD11 "./assets_80x80/q/good/frame11.xpm"
 # define Q_GOOD12 "./assets_80x80/q/good/frame12.xpm"
 # define Q_GOOD13 "./assets_80x80/q/good/frame13.xpm"
 # define Q_GOOD14 "./assets_80x80/q/good/frame14.xpm"
