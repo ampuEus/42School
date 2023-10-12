@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 18:35:06 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/12 19:13:45 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,34 @@
 # define GND4 "./assets_80x80/gnd/gnd_4.xpm"
 
 # define PLAYER_IDLE_NBR 14
-# define PLAYER_IDLE_L00 "./assets_80x80/twelve/idle/frame00.xpm"
-# define PLAYER_IDLE_L01 "./assets_80x80/twelve/idle/frame01.xpm"
-# define PLAYER_IDLE_L02 "./assets_80x80/twelve/idle/frame02.xpm"
-# define PLAYER_IDLE_L03 "./assets_80x80/twelve/idle/frame03.xpm"
-# define PLAYER_IDLE_L04 "./assets_80x80/twelve/idle/frame04.xpm"
-# define PLAYER_IDLE_L05 "./assets_80x80/twelve/idle/frame05.xpm"
-# define PLAYER_IDLE_L06 "./assets_80x80/twelve/idle/frame06.xpm"
-# define PLAYER_IDLE_L07 "./assets_80x80/twelve/idle/frame07.xpm"
-# define PLAYER_IDLE_L08 "./assets_80x80/twelve/idle/frame08.xpm"
-# define PLAYER_IDLE_L09 "./assets_80x80/twelve/idle/frame09.xpm"
-# define PLAYER_IDLE_L10 "./assets_80x80/twelve/idle/frame10.xpm"
-# define PLAYER_IDLE_L11 "./assets_80x80/twelve/idle/frame11.xpm"
-# define PLAYER_IDLE_L12 "./assets_80x80/twelve/idle/frame12.xpm"
-# define PLAYER_IDLE_L13 "./assets_80x80/twelve/idle/frame13.xpm"
+# define PLAYER_IDLE_L00 "./assets_80x80/twelve/idle/left/frame00.xpm"
+# define PLAYER_IDLE_L01 "./assets_80x80/twelve/idle/left/frame01.xpm"
+# define PLAYER_IDLE_L02 "./assets_80x80/twelve/idle/left/frame02.xpm"
+# define PLAYER_IDLE_L03 "./assets_80x80/twelve/idle/left/frame03.xpm"
+# define PLAYER_IDLE_L04 "./assets_80x80/twelve/idle/left/frame04.xpm"
+# define PLAYER_IDLE_L05 "./assets_80x80/twelve/idle/left/frame05.xpm"
+# define PLAYER_IDLE_L06 "./assets_80x80/twelve/idle/left/frame06.xpm"
+# define PLAYER_IDLE_L07 "./assets_80x80/twelve/idle/left/frame07.xpm"
+# define PLAYER_IDLE_L08 "./assets_80x80/twelve/idle/left/frame08.xpm"
+# define PLAYER_IDLE_L09 "./assets_80x80/twelve/idle/left/frame09.xpm"
+# define PLAYER_IDLE_L10 "./assets_80x80/twelve/idle/left/frame10.xpm"
+# define PLAYER_IDLE_L11 "./assets_80x80/twelve/idle/left/frame11.xpm"
+# define PLAYER_IDLE_L12 "./assets_80x80/twelve/idle/left/frame12.xpm"
+# define PLAYER_IDLE_L13 "./assets_80x80/twelve/idle/left/frame13.xpm"
+# define PLAYER_IDLE_R00 "./assets_80x80/twelve/idle/right/frame00.xpm"
+# define PLAYER_IDLE_R01 "./assets_80x80/twelve/idle/right/frame01.xpm"
+# define PLAYER_IDLE_R02 "./assets_80x80/twelve/idle/right/frame02.xpm"
+# define PLAYER_IDLE_R03 "./assets_80x80/twelve/idle/right/frame03.xpm"
+# define PLAYER_IDLE_R04 "./assets_80x80/twelve/idle/right/frame04.xpm"
+# define PLAYER_IDLE_R05 "./assets_80x80/twelve/idle/right/frame05.xpm"
+# define PLAYER_IDLE_R06 "./assets_80x80/twelve/idle/right/frame06.xpm"
+# define PLAYER_IDLE_R07 "./assets_80x80/twelve/idle/right/frame07.xpm"
+# define PLAYER_IDLE_R08 "./assets_80x80/twelve/idle/right/frame08.xpm"
+# define PLAYER_IDLE_R09 "./assets_80x80/twelve/idle/right/frame09.xpm"
+# define PLAYER_IDLE_R10 "./assets_80x80/twelve/idle/right/frame10.xpm"
+# define PLAYER_IDLE_R11 "./assets_80x80/twelve/idle/right/frame11.xpm"
+# define PLAYER_IDLE_R12 "./assets_80x80/twelve/idle/right/frame12.xpm"
+# define PLAYER_IDLE_R13 "./assets_80x80/twelve/idle/right/frame13.xpm"
 # define PLAYER_DEAD_NBR 27
 # define PLAYER_DEAD_L00 "./assets_80x80/twelve/dead/frame00.xpm"
 # define PLAYER_DEAD_L01 "./assets_80x80/twelve/dead/frame01.xpm"
@@ -389,6 +403,7 @@ char			start_gui(t_gui *gui);
 
 void			init_collect_imgs(t_gui *gui);
 void			init_playerl_imgs(t_gui *gui);
+void			init_playerr_imgs(t_gui *gui);
 void			init_exit_idle_imgs(t_gui *gui);
 void			init_exit_bad_imgs(t_gui *gui);
 void			init_exit_good_imgs(t_gui *gui);

@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:36:26 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 14:36:55 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/12 18:53:35 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ void	init_imgs(t_gui *gui)
 	int	height;
 
 	init_collect_imgs(gui);
+	gui->player = malloc(sizeof(*gui->player));
 	init_playerl_imgs(gui);
+	init_playerr_imgs(gui);
 	gui->player->state = 0;
 	gui->exit = malloc(sizeof(*gui->exit));
 	init_exit_idle_imgs(gui);

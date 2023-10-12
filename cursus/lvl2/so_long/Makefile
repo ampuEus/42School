@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:26:14 by daampuru          #+#    #+#              #
-#    Updated: 2023/10/12 18:45:48 by daampuru         ###   ########.fr        #
+#    Updated: 2023/10/12 19:12:24 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC			:= main.c \
 				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_imgs.c \
 				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_collect_imgs.c \
 				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_playerl_imgs.c \
+				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_playerr_imgs.c \
 				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_exit_idle_imgs.c \
 				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_exit_bad_imgs.c \
 				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_exit_good_imgs.c \

@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:49:34 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 14:54:11 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/12 19:13:58 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ static void	free_player_imgs(t_gui *gui)
 	while (i < PLAYER_IDLE_NBR)
 		mlx_destroy_image(gui->mlx, gui->player->left_imgs[i++]);
 	free(gui->player->left_imgs);
+	i = 0;
+	while (i < PLAYER_IDLE_NBR)
+		mlx_destroy_image(gui->mlx, gui->player->right_imgs[i++]);
+	free(gui->player->right_imgs);
 }
 
 static void	free_exit_imgs(t_gui *gui)

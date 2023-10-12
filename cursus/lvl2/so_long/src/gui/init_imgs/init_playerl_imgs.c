@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:37:39 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 14:39:23 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/12 18:53:19 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ static void	init_10(t_gui *gui)
 
 void	init_playerl_imgs(t_gui *gui)
 {
-	gui->player = malloc(sizeof(*gui->player));
 	gui->player->left_imgs = ft_calloc(\
 		PLAYER_IDLE_NBR, sizeof(*gui->player->left_imgs));
 	init_00(gui);

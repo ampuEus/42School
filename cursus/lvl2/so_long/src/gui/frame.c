@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:39:50 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 14:53:52 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/12 19:22:38 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	render_player(t_gui *gui)
 		gui->player->left_imgs[frame], gui->player->pos_x, gui->player->pos_y);
 	else
 		mlx_put_image_to_window(gui->mlx, gui->win, \
-		gui->player->left_imgs[frame], gui->player->pos_x, gui->player->pos_y);
+		gui->player->right_imgs[frame], gui->player->pos_x, gui->player->pos_y);
 }
 
 static void	render_exit(t_gui *gui)

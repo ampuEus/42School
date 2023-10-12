@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:44:36 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 14:46:37 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/12 19:20:45 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ int	init_map(t_gui *gui)
 {
 	iterate_map(gui, render_background);
 	iterate_map(gui, init_positions);
+	gui->player->direction = 0;
 	return (0);
 }
