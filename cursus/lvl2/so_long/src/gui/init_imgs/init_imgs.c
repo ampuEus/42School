@@ -47,10 +47,4 @@ void	init_imgs(t_gui *gui)
 	init_exit_imgs(gui);
 	init_walls(gui);
 	init_gnds(gui);
-	gui->exit_img = mlx_xpm_file_to_image(gui->mlx, QUIT, &width, &height);
-	if (!gui->exit_img)
-	{
-		ft_putstr_fd("ERROR: importing exit .xpm file to image\n", 2);
-		end_gui(gui);
-	}
 }

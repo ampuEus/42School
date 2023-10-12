@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/09 20:41:10 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/12 09:37:11 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,13 @@
 # define EXIT_AUX 'e'
 # define COLLECTABLE_AUX 'c'
 
+// Characters' states
+
+# define IDLE 1
+# define DEAD 2
+# define BAD 3
+# define GOOD 4
+
 // Assets relative paths
 
 # define WALL_NBR 2
@@ -62,9 +69,6 @@
 # define GND2 "./assets_80x80/gnd/gnd_2.xpm"
 # define GND3 "./assets_80x80/gnd/gnd_3.xpm"
 # define GND4 "./assets_80x80/gnd/gnd_4.xpm"
-
-# define PLAYER_L "./assets_80x80/Twelve_test.xpm"
-# define PLAYER_R "./assets_80x80/Twelve_test.xpm"
 
 # define PLAYER_IDLE_NBR 14
 # define PLAYER_IDLE_L00 "./assets_80x80/twelve/idle/frame00.xpm"
@@ -81,8 +85,6 @@
 # define PLAYER_IDLE_L11 "./assets_80x80/twelve/idle/frame11.xpm"
 # define PLAYER_IDLE_L12 "./assets_80x80/twelve/idle/frame12.xpm"
 # define PLAYER_IDLE_L13 "./assets_80x80/twelve/idle/frame13.xpm"
-# define PLAYER_IDLE_L "./assets_80x80/Twelve_test.xpm"
-# define PLAYER_IDLE_R "./assets_80x80/Twelve_test.xpm"
 # define PLAYER_DEAD_NBR 27
 # define PLAYER_DEAD_L00 "./assets_80x80/twelve/dead/frame00.xpm"
 # define PLAYER_DEAD_L01 "./assets_80x80/twelve/dead/frame01.xpm"
@@ -111,8 +113,6 @@
 # define PLAYER_DEAD_L24 "./assets_80x80/twelve/dead/frame24.xpm"
 # define PLAYER_DEAD_L25 "./assets_80x80/twelve/dead/frame25.xpm"
 # define PLAYER_DEAD_L26 "./assets_80x80/twelve/dead/frame26.xpm"
-# define PLAYER_DEAD_L "./assets_80x80/Twelve_test.xpm"
-# define PLAYER_DEAD_R "./assets_80x80/Twelve_test.xpm"
 
 # define COLLECT_NBR 33
 # define COLLECT00 "./assets_80x80/peach/frame00.xpm"
@@ -218,7 +218,6 @@
 # define Q_GOOD14 "./assets_80x80/q/good/frame14.xpm"
 # define Q_GOOD15 "./assets_80x80/q/good/frame15.xpm"
 # define Q_GOOD16 "./assets_80x80/q/good/frame16.xpm"
-# define QUIT "./assets_80x80/q_test.xpm"
 
 # define ENEMY_IDLE_NBR 14
 # define ENEMY_IDLE00 "./assets_80x80/hugo_idle/frame00.xpm"
@@ -294,7 +293,6 @@
 # define ENEMY_WALK55 "./assets_80x80/elena_idle/frame55.xpm"
 # define ENEMY_WALK56 "./assets_80x80/elena_idle/frame56.xpm"
 # define ENEMY_WALK57 "./assets_80x80/elena_idle/frame57.xpm"
-# define ENEMY "./assets_80x80/hugo_idle/frame00.xpm"
 
 // Assets size = 80x80 px
 # define ASSETS_SIZE 80
@@ -324,6 +322,7 @@ typedef struct s_exit {
 	void			**idle_imgs;
 	void			**bad_imgs;
 	void			**good_imgs;
+	char			state;
 	unsigned int	pos_x;
 	unsigned int	pos_y;
 }			t_exit;
