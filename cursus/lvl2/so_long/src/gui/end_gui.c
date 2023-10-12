@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:49:34 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 19:13:58 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/12 20:29:35 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,7 @@ int	end_gui(t_gui *gui)
 	listfree(&gui->collectables);
 	mlx_destroy_window(gui->mlx, gui->win);
 	free(gui->mlx);
+	free(gui->moves);
+	free(gui->collected);
 	exit (0);
 }

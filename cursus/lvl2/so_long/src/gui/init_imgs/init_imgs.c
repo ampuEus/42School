@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:36:26 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 18:53:35 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/12 20:40:41 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,26 @@ static void	init_gnds(t_gui *gui)
 	if (!gui->gnd1_img || !gui->gnd4_img \
 		|| !gui->gnd3_img || !gui->gnd4_img)
 	{
-		ft_putstr_fd("ERROR: importing a ground .xpm file to image\n", 2);
+		ft_putstr_fd("ERROR: importing a ground .xpm file to image.\n", 2);
+		end_gui(gui);
+	}
+}
+
+static void	init_score(t_gui *gui)
+{
+	int	width;
+	int	height;
+
+	gui->moves_score_img = mlx_xpm_file_to_image(gui->mlx, PLAYER_SCORE, &width, &height);
+	if (!gui->moves_score_img)
+	{
+		ft_putstr_fd("ERROR: importing a move score .xpm file to image.\n", 2);
+		end_gui(gui);
+	}
+	gui->collectables_score_img = mlx_xpm_file_to_image(gui->mlx, COLLECT_SCORE, &width, &height);
+	if (!gui->collectables_score_img)
+	{
+		ft_putstr_fd("ERROR: importing a collectable score .xpm file to image.\n", 2);
 		end_gui(gui);
 	}
 }
@@ -66,4 +85,5 @@ void	init_imgs(t_gui *gui)
 	gui->exit->state = 0;
 	init_walls(gui);
 	init_gnds(gui);
+	init_score(gui);
 }

@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:26:14 by daampuru          #+#    #+#              #
-#    Updated: 2023/10/12 19:12:24 by daampuru         ###   ########.fr        #
+#    Updated: 2023/10/12 20:44:41 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC			:= main.c \
 				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_exit_bad_imgs.c \
 				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_exit_good_imgs.c \
 				$(SRC_GUI_PATH)/map.c \
+				$(SRC_GUI_PATH)/render_score.c \
 				$(SRC_GUI_PATH)/move.c \
 				$(SRC_GUI_PATH)/key_hook.c \
 				$(SRC_GUI_PATH)/end_gui.c \

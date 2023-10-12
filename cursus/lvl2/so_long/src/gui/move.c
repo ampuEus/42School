@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:46:56 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 14:53:05 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/12 20:48:11 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ static char	make_action(t_gui *gui, unsigned int x, unsigned int y)
 		gui->collectables = listdel(&gui->collectables, x, y);
 		gui->map[y][x] = FREE_SPACE;
 		gui->collected_collectables++;
+		free(gui->collected);
+		gui->collected = ft_itoa(gui->collected_collectables);
+		render_score(gui);
 	}
 	if (gui->exit->state == GOOD)
 		end_gui(gui);

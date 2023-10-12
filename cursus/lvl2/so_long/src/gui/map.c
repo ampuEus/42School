@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:44:36 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 19:20:45 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/12 20:46:45 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static char	render_background(\
 	else
 		mlx_put_image_to_window(\
 			gui->mlx, gui->win, gui->gnd1_img, pos_x, pos_y);
+	if (pos_x == 0 && pos_y == 0)
+		render_score(gui);
 	return (0);
 }
 

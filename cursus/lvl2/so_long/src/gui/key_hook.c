@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:51:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 14:51:52 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/12 20:49:03 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 int	key_hook(int keycode, t_gui *gui)
 {
-	static unsigned int	moves;
-	int					is_move;
+	int	is_move;
 
 	if (!gui->moved)
 		return (0);
@@ -34,9 +33,14 @@ int	key_hook(int keycode, t_gui *gui)
 		is_move = move(KEY_UP, gui);
 	else
 		ft_printf("No Hooked key = %i\n", keycode);
-	if (!moves)
-		moves = 0;
+	if (!gui->total_moves)
+		gui->total_moves = 0;
 	if (is_move)
-		ft_printf("Total moves: %i\n", ++moves);
+	{
+		ft_printf("Total moves: %i\n", ++gui->total_moves);
+		free(gui->moves);
+		gui->moves = ft_itoa(gui->total_moves);
+		render_score(gui);
+	}
 	return (keycode);
 }

@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:52:31 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 14:54:24 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/12 20:31:44 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /* TODO:
 - Poner en un array los assets del suelo y pared
-- [import, put, free] Usar las imagenes del player desde la derecha
 - [on move file] if enemy position -> player dead*/
 
 static void	get_resolution(t_gui *gui)
@@ -30,6 +29,8 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 		return (ft_putstr_fd("ERROR: There isn't a single argument\n", 2), 1);
 	ft_memset(&gui, '\0', sizeof(gui));
+	gui.moves = ft_itoa(0);
+	gui.collected = ft_itoa(0);
 	gui.map = get_map(argv[1]);
 	if (!gui.map)
 		return (ft_putstr_fd("ERROR: Unable to load map\n", 2), 1);

@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 19:13:45 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/12 20:45:19 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@
 # define GND3 "./assets_80x80/gnd/gnd_3.xpm"
 # define GND4 "./assets_80x80/gnd/gnd_4.xpm"
 
+# define PLAYER_SCORE "./assets_80x80/twelve/idle/twelve_20x20.xpm"
 # define PLAYER_IDLE_NBR 14
 # define PLAYER_IDLE_L00 "./assets_80x80/twelve/idle/left/frame00.xpm"
 # define PLAYER_IDLE_L01 "./assets_80x80/twelve/idle/left/frame01.xpm"
@@ -130,6 +131,7 @@
 # define PLAYER_DEAD_L25 "./assets_80x80/twelve/dead/frame25.xpm"
 # define PLAYER_DEAD_L26 "./assets_80x80/twelve/dead/frame26.xpm"
 
+# define COLLECT_SCORE "./assets_80x80/peach/peach_30x30.xpm"
 # define COLLECT_NBR 33
 # define COLLECT00 "./assets_80x80/peach/frame00.xpm"
 # define COLLECT01 "./assets_80x80/peach/frame01.xpm"
@@ -361,10 +363,14 @@ typedef struct s_gui {
 	t_listItem		*collectables;
 	t_dinamicItem	*player;
 	t_exit			*exit;
+	void			*collectables_score_img;
 	unsigned int	total_collectables;
-	unsigned int	collected_collectables;
+	int				collected_collectables;
+	char			*collected;
+	void			*moves_score_img;
 	unsigned int	moved;
-	unsigned int	total_moves;
+	int				total_moves;
+	char			*moves;
 }			t_gui;
 
 
@@ -400,6 +406,7 @@ char			move(int keycode, t_gui *gui);
 int				key_hook(int keycode, t_gui *gui);
 int				end_gui(t_gui	*gui);
 char			start_gui(t_gui *gui);
+char			render_score(t_gui *gui);
 
 void			init_collect_imgs(t_gui *gui);
 void			init_playerl_imgs(t_gui *gui);
