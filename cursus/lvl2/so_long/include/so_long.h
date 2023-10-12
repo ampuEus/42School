@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 14:16:48 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:35:11 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -363,7 +363,6 @@ char			find_coor(char **map, unsigned int *x, unsigned int *y, char c);
 
 t_listItem		*listnew(unsigned int	pos_x, unsigned int	pos_y, void	**imgs);
 t_listItem		*listdel(t_listItem **lst, unsigned int	pos_x, unsigned int	pos_y);
-unsigned int	listlen(t_listItem *lst);
 void			listadd(t_listItem **lst, t_listItem *new);
 void			listfree(t_listItem **lst);
 

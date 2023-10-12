@@ -1,16 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/12 14:44:36 by daampuru          #+#    #+#             */
+/*   Updated: 2023/10/12 14:46:37 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 #include "mlx.h"
 
-static char	render_background(t_gui *gui, char c, unsigned int pos_x, unsigned int pos_y)
+static char	render_background(\
+	t_gui *gui, char c, unsigned int pos_x, unsigned int pos_y)
 {
 	if (c == WALL)
-		mlx_put_image_to_window(gui->mlx, gui->win, gui->wall1_img, pos_x, pos_y);
+		mlx_put_image_to_window(\
+			gui->mlx, gui->win, gui->wall1_img, pos_x, pos_y);
 	else
-		mlx_put_image_to_window(gui->mlx, gui->win, gui->gnd1_img, pos_x, pos_y);
+		mlx_put_image_to_window(\
+			gui->mlx, gui->win, gui->gnd1_img, pos_x, pos_y);
 	return (0);
 }
 
-static char	init_positions(t_gui *gui, char c, unsigned int pos_x, unsigned int pos_y)
+static char	init_positions(\
+	t_gui *gui, char c, unsigned int pos_x, unsigned int pos_y)
 {
 	if (c == START_POS)
 	{
@@ -20,7 +36,8 @@ static char	init_positions(t_gui *gui, char c, unsigned int pos_x, unsigned int 
 		gui->player->pre_pos_y = pos_y;
 	}
 	else if (c == COLLECTABLE)
-		listadd(&gui->collectables, listnew(pos_x, pos_y, gui->collectable_imgs));
+		listadd(&gui->collectables, \
+			listnew(pos_x, pos_y, gui->collectable_imgs));
 	else if (c == EXIT)
 	{
 		gui->exit->pos_x = pos_x;
@@ -31,7 +48,8 @@ static char	init_positions(t_gui *gui, char c, unsigned int pos_x, unsigned int 
 	return (0);
 }
 
-static int	iterate_map(t_gui *gui, char (*func)(t_gui *,char, unsigned int, unsigned int))
+static int	iterate_map(\
+	t_gui *gui, char (*func)(t_gui *, char, unsigned int, unsigned int))
 {
 	unsigned int	line;
 	unsigned int	c;

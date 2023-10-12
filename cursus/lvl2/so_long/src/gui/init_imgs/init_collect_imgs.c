@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_collect_imgs.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/12 14:37:34 by daampuru          #+#    #+#             */
+/*   Updated: 2023/10/12 14:39:40 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 #include "mlx.h"
 
@@ -97,7 +109,8 @@ static void	init_30(t_gui *gui)
 
 void	init_collect_imgs(t_gui *gui)
 {
-	gui->collectable_imgs = malloc(COLLECT_NBR * sizeof(*gui->collectable_imgs));
+	gui->collectable_imgs = malloc(\
+		COLLECT_NBR * sizeof(*gui->collectable_imgs));
 	init_00(gui);
 	init_10(gui);
 	init_20(gui);

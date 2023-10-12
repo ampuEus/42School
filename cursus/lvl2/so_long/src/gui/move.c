@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/12 14:46:56 by daampuru          #+#    #+#             */
+/*   Updated: 2023/10/12 14:53:05 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 #include "mlx.h"
 
@@ -29,7 +41,7 @@ Return:
 	0 - Can move
 	1 - There is a wall can't move
 	2 - The player has reached the end */
-static char make_action(t_gui *gui, unsigned int x, unsigned int y)
+static char	make_action(t_gui *gui, unsigned int x, unsigned int y)
 {
 	if (gui->map[y][x] == WALL)
 		return (1);
@@ -50,7 +62,6 @@ static char make_action(t_gui *gui, unsigned int x, unsigned int y)
 	}
 	if (gui->collectables == NULL)
 		gui->exit->state = BAD;
-	// TODO if enemy -> player dead
 	ft_printf("Peaches collected: %u | ", gui->collected_collectables);
 	return (0);
 }
@@ -66,11 +77,12 @@ Return:
 1 - Player moved*/
 char	move(int keycode, t_gui *gui)
 {
-	char			action;
+	char	action;
 
 	if (!gui->player->pos_x && !gui->player->pos_y)
 	{
-		find_coor(gui->map, &gui->player->pos_x, &gui->player->pos_y, START_POS);
+		find_coor(gui->map, \
+			&gui->player->pos_x, &gui->player->pos_y, START_POS);
 		gui->player->pos_x *= ASSETS_SIZE;
 		gui->player->pos_y *= ASSETS_SIZE;
 		gui->player->pre_pos_x *= gui->player->pos_x;
@@ -78,8 +90,10 @@ char	move(int keycode, t_gui *gui)
 	}
 	gui->player->pre_pos_x = gui->player->pos_x;
 	gui->player->pre_pos_y = gui->player->pos_y;
-	get_newpos(keycode, &gui->player->pos_x, &gui->player->pos_y, &gui->player->direction);
-	action = make_action(gui, gui->player->pos_x/ASSETS_SIZE, gui->player->pos_y/ASSETS_SIZE);
+	get_newpos(keycode, \
+		&gui->player->pos_x, &gui->player->pos_y, &gui->player->direction);
+	action = make_action(gui, \
+		gui->player->pos_x / ASSETS_SIZE, gui->player->pos_y / ASSETS_SIZE);
 	if (action != 0)
 	{
 		gui->player->pos_x = gui->player->pre_pos_x;

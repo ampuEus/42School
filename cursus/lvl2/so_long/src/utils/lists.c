@@ -6,13 +6,13 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 20:32:53 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/09 18:36:01 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:36:01 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_listItem	*listnew(unsigned int	pos_x, unsigned int	pos_y, void	**imgs)
+t_listItem	*listnew(unsigned int pos_x, unsigned int pos_y, void **imgs)
 {
 	t_listItem	*element;
 
@@ -26,16 +26,7 @@ t_listItem	*listnew(unsigned int	pos_x, unsigned int	pos_y, void	**imgs)
 	return (element);
 }
 
-t_listItem	*listlast(t_listItem *lst)
-{
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
-}
-
-t_listItem	*listdel(t_listItem **lst, unsigned int	x, unsigned int	y)
+t_listItem	*listdel(t_listItem **lst, unsigned int x, unsigned int y)
 {
 	t_listItem	*head;
 	t_listItem	*previous;
@@ -46,7 +37,7 @@ t_listItem	*listdel(t_listItem **lst, unsigned int	x, unsigned int	y)
 	while (*lst)
 	{
 		if ((*lst)->pos_x == x * ASSETS_SIZE
-		&& (*lst)->pos_y == y * ASSETS_SIZE)
+			&& (*lst)->pos_y == y * ASSETS_SIZE)
 		{
 			if (head == *lst)
 				head = (*lst)->next;
@@ -61,17 +52,13 @@ t_listItem	*listdel(t_listItem **lst, unsigned int	x, unsigned int	y)
 	return (head);
 }
 
-unsigned int	listlen(t_listItem *lst)
+static t_listItem	*listlast(t_listItem *lst)
 {
-	unsigned int	len;
-
-	len = 0;
-	while (lst)
-	{
-		len++;
+	if (!lst)
+		return (NULL);
+	while (lst->next)
 		lst = lst->next;
-	}
-	return (len);
+	return (lst);
 }
 
 void	listadd(t_listItem **lst, t_listItem *new)

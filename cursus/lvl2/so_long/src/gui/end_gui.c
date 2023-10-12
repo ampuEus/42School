@@ -1,5 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   end_gui.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/12 14:49:34 by daampuru          #+#    #+#             */
+/*   Updated: 2023/10/12 14:54:11 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 #include "mlx.h"
+
+static void	free_player_imgs(t_gui *gui)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < PLAYER_IDLE_NBR)
+		mlx_destroy_image(gui->mlx, gui->player->left_imgs[i++]);
+	free(gui->player->left_imgs);
+}
+
+static void	free_exit_imgs(t_gui *gui)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < Q_IDLE_NBR)
+		mlx_destroy_image(gui->mlx, gui->exit->idle_imgs[i++]);
+	free(gui->exit->idle_imgs);
+	i = 0;
+	while (i < Q_BAD_NBR)
+		mlx_destroy_image(gui->mlx, gui->exit->bad_imgs[i++]);
+	free(gui->exit->bad_imgs);
+	i = 0;
+	while (i < Q_GOOD_NBR)
+		mlx_destroy_image(gui->mlx, gui->exit->good_imgs[i++]);
+	free(gui->exit->good_imgs);
+}
 
 static void	free_imgs(t_gui *gui)
 {
@@ -18,29 +58,11 @@ static void	free_imgs(t_gui *gui)
 	if (gui->gnd4_img)
 		mlx_destroy_image(gui->mlx, gui->gnd4_img);
 	i = 0;
-	while (i < PLAYER_IDLE_NBR)
-		mlx_destroy_image(gui->mlx, gui->player->left_imgs[i++]);
-	free(gui->player->left_imgs);
-	// i = 0;
-	// while (i < PLAYER_IDLE_NBR)
-	// 	mlx_destroy_image(gui->mlx, gui->player->right_imgs[i++]);
-	// free(gui->player->right_imgs);
-	i = 0;
-	while (i < Q_IDLE_NBR)
-		mlx_destroy_image(gui->mlx, gui->exit->idle_imgs[i++]);
-	free(gui->exit->idle_imgs);
-	i = 0;
-	while (i < Q_BAD_NBR)
-		mlx_destroy_image(gui->mlx, gui->exit->bad_imgs[i++]);
-	free(gui->exit->bad_imgs);
-	i = 0;
-	while (i < Q_GOOD_NBR)
-		mlx_destroy_image(gui->mlx, gui->exit->good_imgs[i++]);
-	free(gui->exit->good_imgs);
-	i = 0;
 	while (i < COLLECT_NBR)
 		mlx_destroy_image(gui->mlx, gui->collectable_imgs[i++]);
 	free(gui->collectable_imgs);
+	free_player_imgs(gui);
+	free_exit_imgs(gui);
 }
 
 /* This function need and "exit ()" intead of a "return ()", because if not

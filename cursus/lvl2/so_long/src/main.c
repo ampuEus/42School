@@ -1,4 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/12 14:52:31 by daampuru          #+#    #+#             */
+/*   Updated: 2023/10/12 14:54:24 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
+
+/* TODO:
+- Poner en un array los assets del suelo y pared
+- [import, put, free] Usar las imagenes del player desde la derecha
+- [on move file] if enemy position -> player dead*/
 
 static void	get_resolution(t_gui *gui)
 {
