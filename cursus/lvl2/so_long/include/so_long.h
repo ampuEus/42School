@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 12:12:06 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:16:48 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -383,7 +383,7 @@ int				frame(t_gui *gui);
 void			init_imgs(t_gui *gui);
 int				init_map(t_gui *gui);
 int				render_map(t_gui *gui);
-char			calc_move(int keycode, t_gui *gui);
+char			move(int keycode, t_gui *gui);
 int				key_hook(int keycode, t_gui *gui);
 int				end_gui(t_gui	*gui);
 char			start_gui(t_gui *gui);

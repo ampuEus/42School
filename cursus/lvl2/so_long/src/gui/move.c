@@ -55,10 +55,15 @@ static char make_action(t_gui *gui, unsigned int x, unsigned int y)
 }
 
 /* Calculate the position and action of the next input's move.
+
 NOTE:
 direction = 0 -> the player look to the right
-direction = 1 -> the player look to the left */
-char	calc_move(int keycode, t_gui *gui)
+direction = 1 -> the player look to the left
+
+Return:
+0 - Player can not move
+1 - Player moved*/
+char	move(int keycode, t_gui *gui)
 {
 	char			action;
 
@@ -78,7 +83,7 @@ char	calc_move(int keycode, t_gui *gui)
 	{
 		gui->player->pos_x = gui->player->pre_pos_x;
 		gui->player->pos_y = gui->player->pre_pos_y;
+		return (0);
 	}
-	ft_printf("x=%i, y=%i, letter=%c ", gui->player->pos_x/ASSETS_SIZE, gui->player->pos_y/ASSETS_SIZE, gui->map[gui->player->pos_y/ASSETS_SIZE][gui->player->pos_x/ASSETS_SIZE]);
 	return (1);
 }
