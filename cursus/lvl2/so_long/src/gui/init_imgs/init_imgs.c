@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:36:26 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 20:40:41 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/13 14:45:34 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,13 @@ void	init_imgs(t_gui *gui)
 	gui->player = malloc(sizeof(*gui->player));
 	init_playerl_imgs(gui);
 	init_playerr_imgs(gui);
-	gui->player->state = 0;
+	init_player_dead_imgs(gui);
+	gui->player->state = IDLE;
 	gui->exit = malloc(sizeof(*gui->exit));
 	init_exit_idle_imgs(gui);
 	init_exit_bad_imgs(gui);
 	init_exit_good_imgs(gui);
-	gui->exit->state = 0;
+	gui->exit->state = IDLE;
 	init_walls(gui);
 	init_gnds(gui);
 	init_score(gui);

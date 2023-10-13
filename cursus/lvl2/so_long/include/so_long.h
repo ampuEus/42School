@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 20:45:19 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/13 14:44:07 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # define START_POS 'P'
 # define EXIT 'E'
 # define COLLECTABLE 'C'
+# define ENEMY 'N'
 
 # define FREE_SPACE_AUX '-'
 # define EXIT_AUX 'e'
@@ -103,33 +104,33 @@
 # define PLAYER_IDLE_R12 "./assets_80x80/twelve/idle/right/frame12.xpm"
 # define PLAYER_IDLE_R13 "./assets_80x80/twelve/idle/right/frame13.xpm"
 # define PLAYER_DEAD_NBR 27
-# define PLAYER_DEAD_L00 "./assets_80x80/twelve/dead/frame00.xpm"
-# define PLAYER_DEAD_L01 "./assets_80x80/twelve/dead/frame01.xpm"
-# define PLAYER_DEAD_L02 "./assets_80x80/twelve/dead/frame02.xpm"
-# define PLAYER_DEAD_L03 "./assets_80x80/twelve/dead/frame03.xpm"
-# define PLAYER_DEAD_L04 "./assets_80x80/twelve/dead/frame04.xpm"
-# define PLAYER_DEAD_L05 "./assets_80x80/twelve/dead/frame05.xpm"
-# define PLAYER_DEAD_L06 "./assets_80x80/twelve/dead/frame06.xpm"
-# define PLAYER_DEAD_L07 "./assets_80x80/twelve/dead/frame07.xpm"
-# define PLAYER_DEAD_L08 "./assets_80x80/twelve/dead/frame08.xpm"
-# define PLAYER_DEAD_L09 "./assets_80x80/twelve/dead/frame09.xpm"
-# define PLAYER_DEAD_L10 "./assets_80x80/twelve/dead/frame10.xpm"
-# define PLAYER_DEAD_L11 "./assets_80x80/twelve/dead/frame11.xpm"
-# define PLAYER_DEAD_L12 "./assets_80x80/twelve/dead/frame12.xpm"
-# define PLAYER_DEAD_L13 "./assets_80x80/twelve/dead/frame13.xpm"
-# define PLAYER_DEAD_L14 "./assets_80x80/twelve/dead/frame14.xpm"
-# define PLAYER_DEAD_L15 "./assets_80x80/twelve/dead/frame15.xpm"
-# define PLAYER_DEAD_L16 "./assets_80x80/twelve/dead/frame16.xpm"
-# define PLAYER_DEAD_L17 "./assets_80x80/twelve/dead/frame17.xpm"
-# define PLAYER_DEAD_L18 "./assets_80x80/twelve/dead/frame18.xpm"
-# define PLAYER_DEAD_L19 "./assets_80x80/twelve/dead/frame19.xpm"
-# define PLAYER_DEAD_L20 "./assets_80x80/twelve/dead/frame20.xpm"
-# define PLAYER_DEAD_L21 "./assets_80x80/twelve/dead/frame21.xpm"
-# define PLAYER_DEAD_L22 "./assets_80x80/twelve/dead/frame22.xpm"
-# define PLAYER_DEAD_L23 "./assets_80x80/twelve/dead/frame23.xpm"
-# define PLAYER_DEAD_L24 "./assets_80x80/twelve/dead/frame24.xpm"
-# define PLAYER_DEAD_L25 "./assets_80x80/twelve/dead/frame25.xpm"
-# define PLAYER_DEAD_L26 "./assets_80x80/twelve/dead/frame26.xpm"
+# define PLAYER_DEAD00 "./assets_80x80/twelve/dead/frame00.xpm"
+# define PLAYER_DEAD01 "./assets_80x80/twelve/dead/frame01.xpm"
+# define PLAYER_DEAD02 "./assets_80x80/twelve/dead/frame02.xpm"
+# define PLAYER_DEAD03 "./assets_80x80/twelve/dead/frame03.xpm"
+# define PLAYER_DEAD04 "./assets_80x80/twelve/dead/frame04.xpm"
+# define PLAYER_DEAD05 "./assets_80x80/twelve/dead/frame05.xpm"
+# define PLAYER_DEAD06 "./assets_80x80/twelve/dead/frame06.xpm"
+# define PLAYER_DEAD07 "./assets_80x80/twelve/dead/frame07.xpm"
+# define PLAYER_DEAD08 "./assets_80x80/twelve/dead/frame08.xpm"
+# define PLAYER_DEAD09 "./assets_80x80/twelve/dead/frame09.xpm"
+# define PLAYER_DEAD10 "./assets_80x80/twelve/dead/frame10.xpm"
+# define PLAYER_DEAD11 "./assets_80x80/twelve/dead/frame11.xpm"
+# define PLAYER_DEAD12 "./assets_80x80/twelve/dead/frame12.xpm"
+# define PLAYER_DEAD13 "./assets_80x80/twelve/dead/frame13.xpm"
+# define PLAYER_DEAD14 "./assets_80x80/twelve/dead/frame14.xpm"
+# define PLAYER_DEAD15 "./assets_80x80/twelve/dead/frame15.xpm"
+# define PLAYER_DEAD16 "./assets_80x80/twelve/dead/frame16.xpm"
+# define PLAYER_DEAD17 "./assets_80x80/twelve/dead/frame17.xpm"
+# define PLAYER_DEAD18 "./assets_80x80/twelve/dead/frame18.xpm"
+# define PLAYER_DEAD19 "./assets_80x80/twelve/dead/frame19.xpm"
+# define PLAYER_DEAD20 "./assets_80x80/twelve/dead/frame20.xpm"
+# define PLAYER_DEAD21 "./assets_80x80/twelve/dead/frame21.xpm"
+# define PLAYER_DEAD22 "./assets_80x80/twelve/dead/frame22.xpm"
+# define PLAYER_DEAD23 "./assets_80x80/twelve/dead/frame23.xpm"
+# define PLAYER_DEAD24 "./assets_80x80/twelve/dead/frame24.xpm"
+# define PLAYER_DEAD25 "./assets_80x80/twelve/dead/frame25.xpm"
+# define PLAYER_DEAD26 "./assets_80x80/twelve/dead/frame26.xpm"
 
 # define COLLECT_SCORE "./assets_80x80/peach/peach_30x30.xpm"
 # define COLLECT_NBR 33
@@ -322,6 +323,7 @@
 typedef struct s_dinamicItem {
 	void			**left_imgs;
 	void			**right_imgs;
+	void			**dead_imgs;
 	char			state;
 	unsigned int	pos_x;
 	unsigned int	pos_y;
@@ -411,6 +413,7 @@ char			render_score(t_gui *gui);
 void			init_collect_imgs(t_gui *gui);
 void			init_playerl_imgs(t_gui *gui);
 void			init_playerr_imgs(t_gui *gui);
+void			init_player_dead_imgs(t_gui *gui);
 void			init_exit_idle_imgs(t_gui *gui);
 void			init_exit_bad_imgs(t_gui *gui);
 void			init_exit_good_imgs(t_gui *gui);

@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:46:56 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 20:48:11 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/13 15:59:25 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,17 @@ static char	get_newpos(\
 Return:
 	0 - Can move
 	1 - There is a wall can't move
-	2 - The player has reached the end */
+	2 - The player has reached the end
+	4 - The player touchs an enemy and dead
+	5 - The player is dead so It can not move */
 static char	make_action(t_gui *gui, unsigned int x, unsigned int y)
 {
+	if (gui->player->state == DEAD)
+		return (5);
 	if (gui->map[y][x] == WALL)
 		return (1);
+	if (gui->map[y][x] == ENEMY)
+		return (gui->exit->state = GOOD, 4);
 	if (gui->map[y][x] == COLLECTABLE)
 	{
 		gui->collectables = listdel(&gui->collectables, x, y);
@@ -59,10 +65,7 @@ static char	make_action(t_gui *gui, unsigned int x, unsigned int y)
 	if (gui->map[y][x] == EXIT && gui->exit->state == IDLE)
 		return (2);
 	if (gui->map[y][x] == EXIT && gui->exit->state != IDLE)
-	{
-		gui->exit->state = GOOD;
-		return (3);
-	}
+		return (gui->exit->state = GOOD, 3);
 	if (gui->collectables == NULL)
 		gui->exit->state = BAD;
 	ft_printf("Peaches collected: %u | ", gui->collected_collectables);
