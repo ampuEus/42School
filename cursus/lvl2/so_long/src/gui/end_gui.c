@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:49:34 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/14 11:27:19 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/14 19:20:00 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,14 @@ static void	free_imgs(t_gui *gui)
 {
 	unsigned int	i;
 
-	if (gui->wall1_img)
-		mlx_destroy_image(gui->mlx, gui->wall1_img);
-	if (gui->wall2_img)
-		mlx_destroy_image(gui->mlx, gui->wall2_img);
-	if (gui->gnd1_img)
-		mlx_destroy_image(gui->mlx, gui->gnd1_img);
-	if (gui->gnd2_img)
-		mlx_destroy_image(gui->mlx, gui->gnd2_img);
-	if (gui->gnd3_img)
-		mlx_destroy_image(gui->mlx, gui->gnd3_img);
-	if (gui->gnd4_img)
-		mlx_destroy_image(gui->mlx, gui->gnd4_img);
+	i = 0;
+	while (i < GND_NBR)
+		mlx_destroy_image(gui->mlx, gui->gnd_imgs[i++]);
+	free(gui->gnd_imgs);
+	i = 0;
+	while (i < WALL_NBR)
+		mlx_destroy_image(gui->mlx, gui->wall_imgs[i++]);
+	free(gui->wall_imgs);
 	i = 0;
 	while (i < COLLECT_NBR)
 		mlx_destroy_image(gui->mlx, gui->collectable_imgs[i++]);

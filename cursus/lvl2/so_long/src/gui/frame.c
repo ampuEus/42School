@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:39:50 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/13 14:44:10 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/14 19:42:59 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,32 @@
 
 static void	delete_item(t_gui *gui, int x, int y)
 {
-	mlx_put_image_to_window(gui->mlx, gui->win, gui->gnd1_img, x, y);
+	mlx_put_image_to_window(gui->mlx, gui->win, gui->gnd_imgs[0], x, y);
 }
 
 static void	render_player(t_gui *gui)
 {
-	static unsigned int	frame;
+	static unsigned int	f;
 
 	delete_item(gui, gui->player->pre_pos_x, gui->player->pre_pos_y);
 	delete_item(gui, gui->player->pos_x, gui->player->pos_y);
 	if (gui->player->state == IDLE)
 	{
-		if (frame++ >= PLAYER_IDLE_NBR - 1)
-			frame = 0;
+		if (f++ >= PLAYER_IDLE_NBR - 1)
+			f = 0;
 		if (gui->player->direction)
 			mlx_put_image_to_window(gui->mlx, gui->win, \
-			gui->player->left_imgs[frame], gui->player->pos_x, gui->player->pos_y);
+			gui->player->left_imgs[f], gui->player->pos_x, gui->player->pos_y);
 		else
 			mlx_put_image_to_window(gui->mlx, gui->win, \
-			gui->player->right_imgs[frame], gui->player->pos_x, gui->player->pos_y);
+			gui->player->right_imgs[f], gui->player->pos_x, gui->player->pos_y);
 	}
 	else if (gui->player->state == DEAD)
 	{
-		if (frame++ >= PLAYER_DEAD_NBR - 1)
+		if (f++ >= PLAYER_DEAD_NBR - 1)
 			end_gui(gui);
 		mlx_put_image_to_window(gui->mlx, gui->win, \
-		gui->player->dead_imgs[frame], gui->player->pos_x, gui->player->pos_y);
+		gui->player->dead_imgs[f], gui->player->pos_x, gui->player->pos_y);
 	}
 }
 

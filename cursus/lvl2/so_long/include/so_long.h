@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/13 14:44:07 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/14 19:20:23 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,15 @@
 
 // Assets relative paths
 
-# define WALL_NBR 2
-# define WALL1 "./assets_80x80/wall/wall_1.xpm"
-# define WALL2 "./assets_80x80/wall/wall_2.xpm"
-
 # define GND_NBR 4
-# define GND1 "./assets_80x80/gnd/gnd_1.xpm"
-# define GND2 "./assets_80x80/gnd/gnd_2.xpm"
-# define GND3 "./assets_80x80/gnd/gnd_3.xpm"
-# define GND4 "./assets_80x80/gnd/gnd_4.xpm"
+# define GND01 "./assets_80x80/gnd/gnd_1.xpm"
+# define GND02 "./assets_80x80/gnd/gnd_2.xpm"
+# define GND03 "./assets_80x80/gnd/gnd_3.xpm"
+# define GND04 "./assets_80x80/gnd/gnd_4.xpm"
+
+# define WALL_NBR 2
+# define WALL01 "./assets_80x80/wall/wall_1.xpm"
+# define WALL02 "./assets_80x80/wall/wall_2.xpm"
 
 # define PLAYER_SCORE "./assets_80x80/twelve/idle/twelve_20x20.xpm"
 # define PLAYER_IDLE_NBR 14
@@ -354,12 +354,8 @@ typedef struct s_gui {
 	int				width;
 	void			*mlx;
 	void			*win;
-	void			*gnd1_img;
-	void			*gnd2_img;
-	void			*gnd3_img;
-	void			*gnd4_img;
-	void			*wall1_img;
-	void			*wall2_img;
+	void			**gnd_imgs;
+	void			**wall_imgs;
 	void			*exit_img;
 	void			**collectable_imgs;
 	t_listItem		*collectables;
@@ -410,6 +406,8 @@ int				end_gui(t_gui	*gui);
 char			start_gui(t_gui *gui);
 char			render_score(t_gui *gui);
 
+void			init_gnd_imgs(t_gui *gui);
+void			init_wall_imgs(t_gui *gui);
 void			init_collect_imgs(t_gui *gui);
 void			init_playerl_imgs(t_gui *gui);
 void			init_playerr_imgs(t_gui *gui);

@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:26:14 by daampuru          #+#    #+#              #
-#    Updated: 2023/10/13 14:41:22 by daampuru         ###   ########.fr        #
+#    Updated: 2023/10/14 19:32:48 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ SRC			:= main.c \
 				$(SRC_MAP_PATH)/is_valid_map.c \
 				$(SRC_MAP_PATH)/get_map.c \
 				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_imgs.c \
+				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_gnd_imgs.c \
+				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_wall_imgs.c \
 				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_collect_imgs.c \
 				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_playerl_imgs.c \
 				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_playerr_imgs.c \

@@ -6,15 +6,11 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:52:31 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 20:31:44 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/14 19:33:42 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-/* TODO:
-- Poner en un array los assets del suelo y pared
-- [on move file] if enemy position -> player dead*/
 
 static void	get_resolution(t_gui *gui)
 {

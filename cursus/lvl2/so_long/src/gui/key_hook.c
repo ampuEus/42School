@@ -6,20 +6,22 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:51:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 20:49:03 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/14 19:40:59 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "mlx.h"
 
-int	key_hook(int keycode, t_gui *gui)
-{
-	int	is_move;
+/* Depending on user input make one action or other
 
-	if (!gui->moved)
-		return (0);
-	gui->moved = 0;
+Return:
+ 0 - No action done
+ 1 - Player has made an action */
+char	keycode_action(int keycode, t_gui *gui)
+{
+	char	is_move;
+
 	is_move = 0;
 	if (keycode == KEY_ESC || keycode == KEY_ESC_L)
 		end_gui(gui);
@@ -33,9 +35,20 @@ int	key_hook(int keycode, t_gui *gui)
 		is_move = move(KEY_UP, gui);
 	else
 		ft_printf("No Hooked key = %i\n", keycode);
+	return (is_move);
+}
+
+int	key_hook(int keycode, t_gui *gui)
+{
+	int	action_done;
+
+	if (!gui->moved)
+		return (0);
+	gui->moved = 0;
+	action_done = keycode_action(keycode, gui);
 	if (!gui->total_moves)
 		gui->total_moves = 0;
-	if (is_move)
+	if (action_done)
 	{
 		ft_printf("Total moves: %i\n", ++gui->total_moves);
 		free(gui->moves);
