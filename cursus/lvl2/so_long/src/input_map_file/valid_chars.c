@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:52:06 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/15 20:02:03 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/15 20:33:33 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ static unsigned char	is_forbidden_char(char **map)
 	while (map[line])
 	{
 		character = 0;
-		while (map[line][character])
+		while (map[line][character] != '\n')
 		{
 			if (map[line][character] != FREE_SPACE \
-			|| map[line][character] != WALL \
-			|| map[line][character] != START_POS \
-			|| map[line][character] != EXIT \
-			|| map[line][character] != COLLECTABLE \
-			|| map[line][character] != ENEMY) // TODO poner en BONUS
+			&& map[line][character] != WALL \
+			&& map[line][character] != START_POS \
+			&& map[line][character] != EXIT \
+			&& map[line][character] != COLLECTABLE \
+			&& map[line][character] != ENEMY) // TODO poner en BONUS
 				return (1);
 			character++;
 		}
