@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:52:31 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/14 19:33:42 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/15 11:26:42 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 		return (ft_putstr_fd("ERROR: There isn't a single argument\n", 2), 1);
 	ft_memset(&gui, '\0', sizeof(gui));
-	gui.moves = ft_itoa(0);
-	gui.collected = ft_itoa(0);
 	gui.map = get_map(argv[1]);
 	if (!gui.map)
 		return (ft_putstr_fd("ERROR: Unable to load map\n", 2), 1);
 	get_resolution(&gui);
+	gui.moves = ft_itoa(0);
+	gui.collected = ft_itoa(0);
 	start_gui(&gui);
 	return (0);
 }

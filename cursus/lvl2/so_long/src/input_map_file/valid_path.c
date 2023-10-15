@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:51:57 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/14 20:49:57 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/15 11:23:43 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,21 @@ char	valid_path(char **map)
 
 	map_cpy = ft_tablecpy(map);
 	if (!find_coor(map, &x, &y, START_POS))
-		return (ft_putstr_fd(\
-			"Can't find the coordenates of the character\n", 2), 0);
+	{
+		ft_putstr_fd("Can't find the coordenates of the character\n", 2);
+		return (ft_doublefree(map_cpy), 0);
+	}
 	find_paths(map_cpy, x, y);
 	if (!total_char(map_cpy, EXIT_AUX))
-		return (ft_putstr_fd("Can't find the path to exit\n", 2), 0);
+	{
+		ft_putstr_fd("Can't find the path to exit\n", 2);
+		return (ft_doublefree(map_cpy), 0);
+	}
 	if (total_char(map_cpy, COLLECTABLE_AUX) != total_char(map, COLLECTABLE))
-		return (ft_putstr_fd("Can't find the path to all collectables\n", 2), 0);
+	{
+		ft_putstr_fd("Can't find the path to all collectables\n", 2);
+		return (ft_doublefree(map_cpy), 0);
+	}
 	ft_doublefree(map_cpy);
 	return (1);
 }
