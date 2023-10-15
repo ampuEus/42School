@@ -6,12 +6,35 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:52:28 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 14:52:29 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/15 13:16:09 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <fcntl.h>
+
+/* Check if the map file extension is ".ber" */
+static char	valid_extension(char *filepath)
+{
+	char			**file;
+	unsigned int	extension;
+
+	if (!filepath)
+		return (0);
+	file = ft_split(filepath, '.');
+	if (!file[1])
+	{
+		ft_putstr_fd("ERROR: No extension o ninput map file.\n", 2);
+		return (ft_doublefree(file), 0);
+	}
+	extension = 1;
+	while (file[extension])
+		extension++;
+	if (!ft_strncmp(file[--extension], "ber", 4))
+		return (ft_doublefree(file), 1);
+	ft_putstr_fd("ERROR: The map must have a \".ber\" extension.\n", 2);
+	return (ft_doublefree(file), 0);
+}
 
 /* If map is rectangular, the return value is the number of lines on the map,
 if it is not, 0 is returned. */
@@ -71,15 +94,19 @@ char	**get_map(char *filepath)
 	int				fd;
 	unsigned int	lines;
 
-	fd = open (filepath, O_RDONLY);
+	if (!valid_extension(filepath))
+		return (NULL);
+	fd = open(filepath, O_RDONLY);
+	if (fd == -1)
+		return (ft_putstr_fd("ERROR: File doesn't exit or the program can't open it.\n", 2), NULL);
 	lines = is_rectangular(fd);
 	close(fd);
 	if (!lines)
-		return (ft_putstr_fd("ERROR: The map must be rectangular\n", 2), NULL);
-	fd = open (filepath, O_RDONLY);
+		return (ft_putstr_fd("ERROR: The map must be rectangular.\n", 2), NULL);
+	fd = open(filepath, O_RDONLY);
 	map = parse_map(lines, fd);
 	if (!map)
-		return (ft_putstr_fd("ERROR: Can't parse the map\n", 2), NULL);
+		return (ft_putstr_fd("ERROR: Can't parse the map.\n", 2), NULL);
 	close(fd);
 	if (!is_valid_map(map))
 	{
