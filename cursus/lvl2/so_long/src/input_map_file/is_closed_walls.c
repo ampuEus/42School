@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:52:22 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 14:52:23 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/15 19:45:33 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char	is_all_wall(char *map_line)
 	unsigned int	c;
 
 	c = 0;
-	while (!map_line[c])
+	while (map_line && map_line[c] != '\n')
 	{
 		if (map_line[c] != WALL)
 			return (0);
@@ -35,10 +35,10 @@ char	is_closed_walls(char **map)
 	int				line_len;
 
 	line = 0;
-	line_len = ft_strlen(map[line]) - 1;
+	line_len = ft_strlen(map[line]) - 2;
 	if (!is_all_wall(map[line++]))
 		return (0);
-	while (!map[line + 1])
+	while (map[line + 1])
 	{
 		if (map[line][0] != WALL || map[line][line_len] != WALL)
 			return (0);
