@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:36:26 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/14 19:59:41 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/15 13:17:47 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ static void	init_score(t_gui *gui)
 
 void	init_imgs(t_gui *gui)
 {
-	int	width;
-	int	height;
-
 	init_gnd_imgs(gui);
 	init_wall_imgs(gui);
 	init_enemy_imgs(gui);
