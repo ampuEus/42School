@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:52:28 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/15 13:16:09 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/15 13:19:47 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	valid_extension(char *filepath)
 	file = ft_split(filepath, '.');
 	if (!file[1])
 	{
-		ft_putstr_fd("ERROR: No extension o ninput map file.\n", 2);
+		ft_putstr_fd("ERROR: No extension on input map file.\n", 2);
 		return (ft_doublefree(file), 0);
 	}
 	extension = 1;
