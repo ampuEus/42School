@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/14 19:20:23 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/14 20:00:07 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -356,9 +356,10 @@ typedef struct s_gui {
 	void			*win;
 	void			**gnd_imgs;
 	void			**wall_imgs;
-	void			*exit_img;
 	void			**collectable_imgs;
 	t_listItem		*collectables;
+	void			**enemy_imgs;
+	t_listItem		*enemies;
 	t_dinamicItem	*player;
 	t_exit			*exit;
 	void			*collectables_score_img;
@@ -415,4 +416,5 @@ void			init_player_dead_imgs(t_gui *gui);
 void			init_exit_idle_imgs(t_gui *gui);
 void			init_exit_bad_imgs(t_gui *gui);
 void			init_exit_good_imgs(t_gui *gui);
+void			init_enemy_imgs(t_gui *gui);
 #endif

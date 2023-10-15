@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:36:26 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/14 19:35:18 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/14 19:59:41 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	init_imgs(t_gui *gui)
 
 	init_gnd_imgs(gui);
 	init_wall_imgs(gui);
+	init_enemy_imgs(gui);
 	init_collect_imgs(gui);
 	gui->player = malloc(sizeof(*gui->player));
 	init_playerl_imgs(gui);

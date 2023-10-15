@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:49:34 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/14 19:20:00 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/14 20:07:43 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,9 @@ static void	free_imgs(t_gui *gui)
 	i = 0;
 	while (i < COLLECT_NBR)
 		mlx_destroy_image(gui->mlx, gui->collectable_imgs[i++]);
+	i = 0;
+	while (i < ENEMY_IDLE_NBR)
+		mlx_destroy_image(gui->mlx, gui->enemy_imgs[i++]);
 	free(gui->collectable_imgs);
 	free_player_imgs(gui);
 	free_exit_imgs(gui);

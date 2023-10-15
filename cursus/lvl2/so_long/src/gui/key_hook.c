@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:51:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/14 19:40:59 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/14 20:27:54 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 Return:
  0 - No action done
  1 - Player has made an action */
-char	keycode_action(int keycode, t_gui *gui)
+static char	keycode_action(int keycode, t_gui *gui)
 {
 	char	is_move;
 

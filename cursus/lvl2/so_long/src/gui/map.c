@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:44:36 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/14 19:21:11 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/14 20:06:06 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ static char	init_positions(\
 	else if (c == COLLECTABLE)
 		listadd(&gui->collectables, \
 			listnew(pos_x, pos_y, gui->collectable_imgs));
+	else if (c == ENEMY)
+		listadd(&gui->enemies, \
+			listnew(pos_x, pos_y, gui->enemy_imgs));
 	else if (c == EXIT)
 	{
 		gui->exit->pos_x = pos_x;

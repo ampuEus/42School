@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:46:56 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/13 15:59:25 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/14 20:33:57 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static char	make_action(t_gui *gui, unsigned int x, unsigned int y)
 	if (gui->map[y][x] == WALL)
 		return (1);
 	if (gui->map[y][x] == ENEMY)
-		return (gui->exit->state = GOOD, 4);
+		return (gui->player->state = DEAD, 4);
 	if (gui->map[y][x] == COLLECTABLE)
 	{
 		gui->collectables = listdel(&gui->collectables, x, y);

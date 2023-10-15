@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:51:57 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/12 14:51:58 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/14 20:49:57 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static char	find_paths(char **map, int x, int y)
 {
 	if (map[x][y] == WALL \
+		|| map[x][y] == ENEMY \
 		|| map[x][y] == FREE_SPACE_AUX \
 		|| map[x][y] == EXIT_AUX)
 		return (0);

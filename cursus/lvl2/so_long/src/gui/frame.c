@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:39:50 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/14 19:42:59 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/14 20:09:39 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,23 @@ static void	render_collectable(t_gui *gui)
 	}
 }
 
+static void	render_enemy(t_gui *gui)
+{
+	static unsigned int	frame;
+	t_listItem			*lst;
+
+	lst = gui->enemies;
+	while (lst)
+	{
+		if (frame++ >= ENEMY_IDLE_NBR - 1)
+			frame = 0;
+		delete_item(gui, lst->pos_x, lst->pos_y);
+		mlx_put_image_to_window(gui->mlx, gui->win, lst->imgs[frame], \
+			lst->pos_x, lst->pos_y);
+		lst = lst->next;
+	}
+}
+
 int	frame(t_gui *gui)
 {
 	static unsigned int	cicle;
@@ -98,6 +115,7 @@ int	frame(t_gui *gui)
 		render_player(gui);
 		render_exit(gui);
 		render_collectable(gui);
+		render_enemy(gui);
 		gui->moved = 1;
 	}
 	cicle++;
