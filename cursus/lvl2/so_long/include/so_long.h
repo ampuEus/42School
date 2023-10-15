@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/14 20:00:07 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/15 22:08:42 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -397,6 +397,7 @@ char			**get_map(char *filepath);
 
 // GUI
 
+void			delete_item(t_gui *gui, int x, int y);
 int				frame(t_gui *gui);
 void			init_imgs(t_gui *gui);
 int				init_map(t_gui *gui);

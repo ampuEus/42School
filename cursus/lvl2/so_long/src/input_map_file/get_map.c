@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:52:28 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/15 21:34:47 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/15 22:07:07 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,21 @@ static char	valid_extension(char *filepath)
 	return (ft_doublefree(file), 0);
 }
 
+static unsigned int	skip_break_lines(int fd_map, char **line, int *line_len)
+{
+	while (1)
+	{
+		*line = get_next_line(fd_map);
+		if (!*line)
+			return (0);
+		*line_len = (int)ft_strlen(*line);
+		if (!(!ft_strncmp(*line, "\n", 1) && *line_len == 1))
+			break ;
+		free(*line);
+	}
+	return (1);
+}
+
 /* If map is rectangular, the return value is the number of lines on the map,
 if it is not, 0 is returned. */
 static unsigned int	is_rectangular(int fd_map)
@@ -44,19 +59,13 @@ static unsigned int	is_rectangular(int fd_map)
 	char			*line;
 	int				line_len;
 
-	while (1)
-	{
-		line = get_next_line(fd_map);
-		line_len = (int)ft_strlen(line);
-		if (!(!ft_strncmp(line, "\n", 1) && line_len == 1))
-			break;
-		free(line);
-	}
+	skip_break_lines(fd_map, &line, &line_len);
 	tot_lines = 0;
 	while (line && ft_strncmp(line, "\n", 1))
 	{
-		if (line_len != (int)ft_strlen(line)
-		&& !(line_len == (int)ft_strlen(line) + 1 && line[ft_strlen(line) - 1] == '1'))
+		if (line_len != (int)ft_strlen(line) \
+		&& !(line_len == (int)ft_strlen(line) + 1 \
+			&& line[ft_strlen(line) - 1] == '1'))
 		{
 			tot_lines = 0;
 			break ;
@@ -81,14 +90,7 @@ static char	**parse_map(unsigned int lines, int fd_map)
 	if (!map)
 		return (NULL);
 	index = 0;
-	while (1)
-	{
-		map[index] = get_next_line(fd_map);
-		line_len = (int)ft_strlen(map[index]);
-		if (!(!ft_strncmp(map[index], "\n", 1) && line_len == 1))
-			break;
-		free(map[index]);
-	}
+	skip_break_lines(fd_map, &map[index], &line_len);
 	map[index][line_len - 1] = '\0';
 	index++;
 	while (index < lines)
@@ -117,7 +119,8 @@ char	**get_map(char *filepath)
 		return (NULL);
 	fd = open(filepath, O_RDONLY);
 	if (fd == -1)
-		return (ft_putstr_fd("ERROR: File doesn't exit or the program can't open it.\n", 2), NULL);
+		return (ft_putstr_fd(\
+		"ERROR: File doesn't exit or the program can't open it.\n", 2), NULL);
 	lines = is_rectangular(fd);
 	close(fd);
 	if (!lines)

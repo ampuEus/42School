@@ -6,23 +6,19 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:39:50 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/14 20:09:39 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/15 22:13:54 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "mlx.h"
 
-static void	delete_item(t_gui *gui, int x, int y)
-{
-	mlx_put_image_to_window(gui->mlx, gui->win, gui->gnd_imgs[0], x, y);
-}
-
 static void	render_player(t_gui *gui)
 {
 	static unsigned int	f;
 
-	delete_item(gui, gui->player->pre_pos_x, gui->player->pre_pos_y);
+	mlx_put_image_to_window(gui->mlx, gui->win, gui->gnd_imgs[1], \
+		gui->player->pre_pos_x, gui->player->pre_pos_y);
 	delete_item(gui, gui->player->pos_x, gui->player->pos_y);
 	if (gui->player->state == IDLE)
 	{
