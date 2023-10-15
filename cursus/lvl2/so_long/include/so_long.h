@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:55:51 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/15 22:08:42 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/15 22:21:28 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -418,4 +418,11 @@ void			init_exit_idle_imgs(t_gui *gui);
 void			init_exit_bad_imgs(t_gui *gui);
 void			init_exit_good_imgs(t_gui *gui);
 void			init_enemy_imgs(t_gui *gui);
+
+// BONUS
+
+char			valid_chars_bonus(char **map);
+char			is_valid_map_bonus(char **map);
+char			**get_map_bonus(char *filepath);
+
 #endif

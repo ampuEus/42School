@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valid_chars.c                                      :+:      :+:    :+:   */
+/*   valid_chars_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:52:06 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/15 22:21:36 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/15 22:21:43 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static unsigned char	is_forbidden_char(char **map)
 			&& map[line][character] != WALL \
 			&& map[line][character] != START_POS \
 			&& map[line][character] != EXIT \
-			&& map[line][character] != COLLECTABLE)
+			&& map[line][character] != COLLECTABLE \
+			&& map[line][character] != ENEMY)
 				return (1);
 			character++;
 		}
@@ -36,7 +37,7 @@ static unsigned char	is_forbidden_char(char **map)
 	return (0);
 }
 
-char	valid_chars(char **map)
+char	valid_chars_bonus(char **map)
 {
 	if (is_forbidden_char(map))
 		return (ft_putstr_fd(\

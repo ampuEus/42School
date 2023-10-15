@@ -6,13 +6,14 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:26:14 by daampuru          #+#    #+#              #
-#    Updated: 2023/10/15 22:10:02 by daampuru         ###   ########.fr        #
+#    Updated: 2023/10/15 22:32:49 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ########## VARIABLES ##########
 BIN_PATH	:= ./bin
 NAME		:= $(BIN_PATH)/so_long
+NAME_BONUS	:= $(BIN_PATH)/so_long_bonus
 INCLUDE		:= ./include
 UNAME		:= $(shell uname)
 
@@ -25,12 +26,13 @@ SRC_GUI_PATH := gui
 SRC_IMG_PATH := init_imgs
 SRC_UTILS_PATH := utils
 SRC			:= main.c \
-				$(SRC_MAP_PATH)/map_utils.c \
-				$(SRC_MAP_PATH)/is_closed_walls.c \
 				$(SRC_MAP_PATH)/valid_chars.c \
-				$(SRC_MAP_PATH)/valid_path.c \
 				$(SRC_MAP_PATH)/is_valid_map.c \
 				$(SRC_MAP_PATH)/get_map.c \
+
+COMMON		:=	$(SRC_MAP_PATH)/map_utils.c \
+				$(SRC_MAP_PATH)/is_closed_walls.c \
+				$(SRC_MAP_PATH)/valid_path.c \
 				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_imgs.c \
 				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_gnd_imgs.c \
 				$(SRC_GUI_PATH)/$(SRC_IMG_PATH)/init_wall_imgs.c \
@@ -53,9 +55,19 @@ SRC			:= main.c \
 				$(SRC_UTILS_PATH)/find_coordenates.c \
 				$(SRC_UTILS_PATH)/lists.c
 
-
 OBJ_PATH	:= ./obj
 OBJ			:= $(addprefix $(OBJ_PATH)/, $(SRC:.c=.o))
+OBJ_COMMON	:= $(addprefix $(OBJ_PATH)/, $(COMMON:.c=.o))
+
+
+SRC_PATH_BONUS	:= ./src_bonus
+SRC_BONUS	:= main_bonus.c \
+				valid_chars_bonus.c \
+				is_valid_map_bonus.c \
+				get_map_bonus.c \
+
+OBJ_BONUS	:= $(addprefix $(OBJ_PATH)/, $(SRC_BONUS:.c=.o))
+
 
 LIB_PATH	:= ./lib
 LIB_H		:= $(LIB_PATH)/libft.h
@@ -75,9 +87,23 @@ else
 	$(CC) $(CFLAGS) -I $(INCLUDE) -I $(LIB_PATH) -I $(MLX_PATH) -c $^ -o $@
 endif
 
+$(OBJ_PATH)/%.o: $(SRC_PATH_BONUS)/%.c | $(OBJ_PATH)
+ifeq ($(UNAME), Linux)
+	$(CC) $(CFLAGS) -I $(INCLUDE) -I $(LIB_PATH) -I $(MLX_PATH_LINUX) -c $^ -o $@
+else
+	$(CC) $(CFLAGS) -I $(INCLUDE) -I $(LIB_PATH) -I $(MLX_PATH) -c $^ -o $@
+endif
+
+$(OBJ_PATH)/%.o: $(SRC_PATH_BONUS)/%.c | $(OBJ_PATH)
+ifeq ($(UNAME), Linux)
+	$(CC) $(CFLAGS) -I $(INCLUDE) -I $(LIB_PATH) -I $(MLX_PATH_LINUX) -c $^ -o $@
+else
+	$(CC) $(CFLAGS) -I $(INCLUDE) -I $(LIB_PATH) -I $(MLX_PATH) -c $^ -o $@
+endif
+
 
 ########## EXPLICIT RULES ##########
-all: so_long bonus
+all: so_long
 
 re: fclean all
 
@@ -101,15 +127,24 @@ libft: | $(LIB_PATH)
 # Binaries
 so_long: $(NAME)
 
-bonus: $(NAME)
+bonus: $(NAME_BONUS)
 
-$(NAME) : $(OBJ) | $(BIN_PATH)
+$(NAME) : $(OBJ) $(OBJ_COMMON)  | $(BIN_PATH)
 ifeq ($(UNAME), Linux)
 	$(MAKE) -C $(MLX_PATH_LINUX)
-	$(CC) $(CFLAGS) $(OBJ) $(MLX_LINK_LINUX) -o $@ $(LIB_A)
+	$(CC) $(CFLAGS) $(OBJ) $(OBJ_COMMON)  $(MLX_LINK_LINUX) -o $@ $(LIB_A)
 else
 	$(MAKE) -C $(MLX_PATH)
-	$(CC) $(CFLAGS) $(OBJ) $(MLX_LINK) -o $@ $(LIB_A)
+	$(CC) $(CFLAGS) $(OBJ) $(OBJ_COMMON)  $(MLX_LINK) -o $@ $(LIB_A)
+endif
+
+$(NAME_BONUS) : $(OBJ_BONUS) $(OBJ_COMMON) | $(BIN_PATH)
+ifeq ($(UNAME), Linux)
+	$(MAKE) -C $(MLX_PATH_LINUX)
+	$(CC) $(CFLAGS) $(OBJ_BONUS) $(OBJ_COMMON) $(MLX_LINK_LINUX) -o $@ $(LIB_A)
+else
+	$(MAKE) -C $(MLX_PATH)
+	$(CC) $(CFLAGS) $(OBJ_BONUS) $(OBJ_COMMON) $(MLX_LINK) -o $@ $(LIB_A)
 endif
 
 
@@ -133,6 +168,9 @@ norm:
 
 # tests
 run: $(NAME)
+	./bin/so_long ./maps/basic_1.ber
+
+run_bonus: $(NAME)
 	./bin/so_long ./maps/enemy_1.ber
 
 
