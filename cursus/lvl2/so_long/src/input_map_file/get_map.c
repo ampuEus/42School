@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:52:28 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/15 13:19:47 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/15 21:34:47 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,19 @@ static unsigned int	is_rectangular(int fd_map)
 	char			*line;
 	int				line_len;
 
-	tot_lines = 0;
-	line = get_next_line(fd_map);
-	line_len = ft_strlen(line);
-	while (line)
+	while (1)
 	{
-		if (line_len != (int)ft_strlen(line))
+		line = get_next_line(fd_map);
+		line_len = (int)ft_strlen(line);
+		if (!(!ft_strncmp(line, "\n", 1) && line_len == 1))
+			break;
+		free(line);
+	}
+	tot_lines = 0;
+	while (line && ft_strncmp(line, "\n", 1))
+	{
+		if (line_len != (int)ft_strlen(line)
+		&& !(line_len == (int)ft_strlen(line) + 1 && line[ft_strlen(line) - 1] == '1'))
 		{
 			tot_lines = 0;
 			break ;
@@ -63,19 +70,31 @@ static unsigned int	is_rectangular(int fd_map)
 	return (tot_lines);
 }
 
+/* Only return the rectangular map without '\n' at the end. */
 static char	**parse_map(unsigned int lines, int fd_map)
 {
 	char			**map;
 	unsigned int	index;
+	int				line_len;
 
 	map = ft_calloc(lines + 1, sizeof(*map));
 	if (!map)
 		return (NULL);
 	index = 0;
+	while (1)
+	{
+		map[index] = get_next_line(fd_map);
+		line_len = (int)ft_strlen(map[index]);
+		if (!(!ft_strncmp(map[index], "\n", 1) && line_len == 1))
+			break;
+		free(map[index]);
+	}
+	map[index][line_len - 1] = '\0';
+	index++;
 	while (index < lines)
 	{
 		map[index] = get_next_line(fd_map);
-		map[index][ft_strlen(map[index])] = '\0';
+		map[index][line_len - 1] = '\0';
 		index++;
 	}
 	map[index] = NULL;

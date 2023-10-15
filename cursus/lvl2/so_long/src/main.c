@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:52:31 by daampuru          #+#    #+#             */
-/*   Updated: 2023/10/15 11:26:42 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/10/15 21:46:40 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	get_resolution(t_gui *gui)
 {
-	gui->height = (ft_strlen(gui->map[0]) - 1) * ASSETS_SIZE;
+	gui->height = (ft_strlen(gui->map[0])) * ASSETS_SIZE;
 	gui->width = ft_tablerows(gui->map) * ASSETS_SIZE;
 }
 
