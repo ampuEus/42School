@@ -3,7 +3,9 @@
 
 In this project you will learn to sort data on a stack, with a limited set of instructions, using the lowest possible number of actions. To be successful, you will have to manipulate various types of algorithms and choose the most appropriate solution (out of many) for an optimized data sorting.
 
-![Example of running the sort algorithm](annex/img/execution_example.gif)
+<div align="center">
+<img width="600px" id="Example of running the sort algorithm" src="./annex/img/execution_example.gif" />
+</div>
 
 ## Table of Contents
 - [Push\_swap : Because Swap\_push isn’t as natural](#push_swap--because-swap_push-isnt-as-natural)
@@ -76,7 +78,9 @@ A sorting algorithm serves to rearrange a given array or list of elements accord
 
 A sorting algorithm **is stable if it preserves the original order of elements with equal key values** (where the key is the value by which the algorithm sorts). For example:
 
-<img style="max-width:250px" id="Example of stability in sorting algorithms" src="annex/img/Sorting_stability_playing_cards.png" />
+<div align="center">
+<img width="400px" id="Example of stability in sorting algorithms" src="./annex/img/Sorting_stability_playing_cards.png" />
+</div>
 
 When the cards are sorted by value with a stable rank, the two 5's must remain in the same order in the sorted output they were originally in. When sorted with a non-stable ranking, the 5's may end up in the opposite order.
 
@@ -115,8 +119,9 @@ To ignore implementation differences, their **asymptotic growth rate** is used. 
 | O(n!) | Algorithms which check every permutation of an array, in which there are n! of them | Traveling salesperson |
 | O(n^n) | Orden potencial exponencial |  |
 
-<img style="max-width:400px" id="Example of some common growth rates" src="annex/img/Comparison_computational_complexity.png" />
-
+<div align="center">
+<img width="400px" id="Example of some common growth rates" src="./annex/img/Comparison_computational_complexity.png" />
+</div>
 
 ### Linked Lists *vs* Integer Arrays
 Taking into account the qualities that lists have, they can be increased and decreased at runtime due to their **dynamic organization** performed by allocating and not allocating memory. This makes it **not** necessary to preallocate memory** when defining it. Unlike an array that does need to know its dimensions from the beginning.
@@ -138,7 +143,9 @@ I have used this sorting algorithm as it seemed the most intuitive and easy to i
 
 **The values of the unordered list are selected one by one and placed in their correct position in the ordered list.** In the example below, the numbers with the black box would be the ordered list and those without a box would be the unordered list:
 
-![Graphic example of insertion sort](./annex/img/Insertion-sort-example-300px.gif)
+<div align="center">
+<img width="300px" id="Graphic example of insertion sort" src="./annex/img/Insertion-sort-example-300px.gif" />
+</div>
 
 In order for this to be done in the most efficient way possible, in each new iteration the cost of moving each value to its correct position in the ordered list must be calculated and moving the one that involves the least cost.
 
@@ -172,8 +179,9 @@ I have faced this section in 2 stages:
    1. I had to modify my makefile to be able to compile the `push_swap` binary on the one hand and the `checker` binary on the other
    2. Based on the `main` function of the `push_swap` I have changed the logic of `sort` for the checks that the statement requests following this flow:
 
-![Flow for checking push_swap orders](annex/img/CheckerFlow.en.png)
-
+<div align="center">
+<img width="300px" id="Flow for checking push_swap orders" src="./annex/img/CheckerFlow.en.png" />
+</div>
 
 ## References
   - https://www.geeksforgeeks.org/sorting-algorithms/

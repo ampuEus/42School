@@ -143,7 +143,7 @@ He usado este algoritmo de ordenación ya que me ha parecido el más intuitivo y
 **Los valores de la lista no ordenada se van seleccionando uno por uno y colocando en su posición correcta en la lista ordenada.** En el ejemplo de abajo los números con el recuadro negro serían la lista ordenada y los que no tienen recuadro la lista desordenada:
 
 <div align="center">
-<img width="400px" id="Ejemplo grafico del insertion sort" src="./annex/img/Insertion-sort-example-300px.gif" />
+<img width="300px" id="Ejemplo grafico del insertion sort" src="./annex/img/Insertion-sort-example-300px.gif" />
 </div>
 
 Para que esto se haga de la forma más eficiente posible, en cada nueva iteración hay que calcular el coste de mover cada valor a su posición correcta de la lista ordenada y mover el que menos coste suponga.
@@ -179,9 +179,8 @@ Este apartado yo lo he afrontado en 2 etapas:
   2. Basandome en la función `main` del `push_swap` he cambiado la logica de `sort` por el checkeo que pide el enunciado siguiendo este flujo:
 
 <div align="center">
-<img width="400px" id="Flujo para el checkeo de las ordenes del push_swap" src="./annex/img/CheckerFlow.es.png" />
+<img width="300px" id="Flujo para el checkeo de las ordenes del push_swap" src="./annex/img/CheckerFlow.es.png" />
 </div>
-
 
 ## Referencias
   - https://www.geeksforgeeks.org/sorting-algorithms/
