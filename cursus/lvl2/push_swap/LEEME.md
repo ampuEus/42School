@@ -3,7 +3,9 @@
 
 En este proyecto se aprenderá a ordenar datos en un stack, con un conjunto limitado de instrucciones, y utilizando el menor número de instrucciones posibles. Para tener éxito, se deberá trastear con algunos de los diversos algoritmos y elegir, entre todos, el más apropiado para un ordenamiento óptimo.
 
-![Ejemplo de la ejecución del algoritmo de ordenación](annex/img/execution_example.gif)
+<div align="center">
+<img width="600px" id="Ejemplo de estabilidad en los algoritmos de ordenación" src="./annex/img/execution_example.gif" />
+</div>
 
 ## Índice
 - [Push\_swap : Porque Swap\_push no suena tan natural](#push_swap--porque-swap_push-no-suena-tan-natural)
@@ -76,8 +78,9 @@ Un algoritmo de ordenación sirve para reorganizar una matriz o lista de element
 
 Un algoritmo de ordenación **es estable si conserva el orden original de los elementos con valores clave iguales** (donde la clave es el valor por el que ordena el algoritmo). Por ejemplo:
 
-
-<img max-width="40%" align="middle" id="Ejemplo de estabilidad en los algoritmos de ordenación" src="annex/img/Sorting_stability_playing_cards.png" />
+<div align="center">
+<img width="400px" id="Ejemplo de estabilidad en los algoritmos de ordenación" src="annex/img/Sorting_stability_playing_cards.png" />
+</div>
 
 Cuando las cartas se clasifican por valor con una clasificación estable, los dos 5 deben permanecer en el mismo orden en la salida clasificada en la que estaban originalmente. Cuando se clasifican con una clasificación no estable, los 5 pueden terminar en el orden opuesto.
 
@@ -115,8 +118,9 @@ Para ignorar las diferencias en la implementación, se utiliza su **tasa de crec
 | O(n!) | Algoritmos que verifican cada permutación de una matriz, en la que hay n! de ellos | Traveling salesperson |
 | O(n^n) | Orden potencial exponencial |  |
 
-<img style="max-width:400px" id="Ejemplo de algunas tasas de crecimiento comunes" src="annex/img/Comparison_computational_complexity.png" />
-
+<div align="center">
+<img width="400px" id="Ejemplo de algunas tasas de crecimiento comunes" src="annex/img/Comparison_computational_complexity.png" />
+</div>
 
 ### Listas link-adas *vs* Array de enteros
 Teniendo en cuenta las cualidades que tienen las listas pudiendo aumentarse y reducirse en el tiempo de ejecución debido a su **organización dinámica** realizada al asignar y no asignar memoria. Esto hace que **no** sea **necesario preasignar memoria** a la hora de definirla. A diferencia de un array que sí se necesita saber sus dimensiones desde el inicio.
@@ -138,7 +142,9 @@ He usado este algoritmo de ordenación ya que me ha parecido el más intuitivo y
 
 **Los valores de la lista no ordenada se van seleccionando uno por uno y colocando en su posición correcta en la lista ordenada.** En el ejemplo de abajo los números con el recuadro negro serían la lista ordenada y los que no tienen recuadro la lista desordenada:
 
-![Ejemplo grafico del insertion sort](./annex/img/Insertion-sort-example-300px.gif)
+<div align="center">
+<img width="400px" id="Ejemplo grafico del insertion sort" src="./annex/img/Insertion-sort-example-300px.gif" />
+</div>
 
 Para que esto se haga de la forma más eficiente posible, en cada nueva iteración hay que calcular el coste de mover cada valor a su posición correcta de la lista ordenada y mover el que menos coste suponga.
 
@@ -172,7 +178,9 @@ Este apartado yo lo he afrontado en 2 etapas:
   1. He tenido que modificar mi makefile para poder compilar por un lado el binario del `push_swap` y por otro el del `checker`
   2. Basandome en la función `main` del `push_swap` he cambiado la logica de `sort` por el checkeo que pide el enunciado siguiendo este flujo:
 
-![Flujo para el checkeo de las ordenes del push_swap](annex/img/CheckerFlow.es.png)
+<div align="center">
+<img width="400px" id="Flujo para el checkeo de las ordenes del push_swap" src="./annex/img/CheckerFlow.es.png" />
+</div>
 
 
 ## Referencias
