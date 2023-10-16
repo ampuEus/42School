@@ -76,7 +76,8 @@ Un algoritmo de ordenación sirve para reorganizar una matriz o lista de element
 
 Un algoritmo de ordenación **es estable si conserva el orden original de los elementos con valores clave iguales** (donde la clave es el valor por el que ordena el algoritmo). Por ejemplo:
 
-<img style="max-width:250px" id="Ejemplo de estabilidad en los algoritmos de ordenación" src="annex/img/Sorting_stability_playing_cards.png" />
+
+<img max-width="40%" align="middle" id="Ejemplo de estabilidad en los algoritmos de ordenación" src="annex/img/Sorting_stability_playing_cards.png" />
 
 Cuando las cartas se clasifican por valor con una clasificación estable, los dos 5 deben permanecer en el mismo orden en la salida clasificada en la que estaban originalmente. Cuando se clasifican con una clasificación no estable, los 5 pueden terminar en el orden opuesto.
 
