@@ -63,7 +63,9 @@ Los programas están formados por procesos e hilos.
    - Un **proceso** es una **instancia de un programa en ejecución**
    - **Thread** (también llamado hilo o subproceso) es la **unidad ejecutable más pequeña de un proceso**. Un proceso puede tener múltiples subprocesos con un subproceso principal
 
-![Desglose de un programa](./annex/img/program-process-thread.png)
+<div align="center">
+<img id="Desglose de un programa" src="./annex/img/program-process-thread.png" />
+</div>
 
 Los **procesos** están **aislados entre ellos** y **no interrumpen la ejecución de los demás** procesos. Linux los identifica mediante el PID (como ya se vio en la práctica [pipex](../../lvl2/pipex/LEEME.md)).
 
@@ -122,12 +124,16 @@ Teniendo en cuenta que muchos procesos se están ejecutando a la vez en un PC, e
 </tbody>
 </table>
 
-![Proceso vs Thread](./annex/img/thread_vs_process.png)
+<div align="center">
+<img id="Proceso vs Thread" src="./annex/img/thread_vs_process.png" />
+</div>
 
 #### Estados de un thread
 Los estados de un thread y un hilo son bastante parecidos y pueden varias dependiendo de la plataforma donde se esté ejecutando. El esquema de abajo es un diagrama de estados genérico.
 
-![Estados de un thread](./annex/img/thread_states.png)
+<div align="center">
+<img id="Estados de un thread" src="./annex/img/thread_states.png" />
+</div>
 
 #### Existen 2 niveles de implementación de threads: nivel usuario y nivel kernel
 <table>
@@ -152,34 +158,46 @@ Un programa es **concurrente** si puede soportar dos o más acciones **en progre
 
 Mientras que, un programa es **paralelo** si puede soportar dos o más acciones **ejecutándose simultáneamente**. No solo debe ser concurrente, sino que también debe estar diseñado para correr en un medio con hardware paralelo (GPU's, procesadores multi-core, etc).
 
-![Ejecución concurrente vs Ejecución paralela](./annex/img/concurrency-parallelism.png)
+<div align="center">
+<img width="600px" id="Ejecución concurrente vs Ejecución paralela" src="./annex/img/concurrency-parallelism.png"/>
+</div>
 
 > Otra opción que en vez de tener una CPU con diferentes cores, directamente tener más de una CPU y tener un multiproceso[^1].
 
 En la imagen de abajo se utiliza un ejemplo más apegado a la realidad cotidiana:
 
-![Concurrencia vs Paralelismo en máquina de cafe](./annex/img/concurrency_parallelism_coffe.png)
+<div align="center">
+<img width="400px" id="Concurrencia vs Paralelismo en máquina de cafe" src="./annex/img/concurrency_parallelism_coffe.png"/>
+</div>
 
 Otra forma de verlo es pensar que la concurrencia es la propiedad de un programa, mientras que el paralelismo es la forma en la que se ejecuta un programa concurrente.
 
 ##### Ejemplo paso a paso
 Imagina que tenemos una persona (equivalente a un thread) que tiene que llevar una pila de libros a un incinerador. Para llevar los libros al incinerador usa una carretilla y luego vuelve a la pila de libros para volver a llenar la carretilla.
 
-![Paso 1](./annex/img/Gopher1.png)
+<div align="center">
+<img width="500px" id="Paso 1" src="./annex/img/Gopher1.png"/>
+</div>
 
 Si se añade otra persona al ejemplo esta no podrá hacer nada porque las herramientas estarán ocupadas por su compañero.
 
-![Paso 2](./annex/img/Gopher2.png)
+<div align="center">
+<img width="500px" id="Paso 2" src="./annex/img/Gopher2.png"/>
+</div>
 
 Para poder hacer que la nueva persona tenga algo que hacer y aporte hay 2 opciones; una concurrente y la otra paralela.
 
 La **solución concurrente** es añadir otra carretilla, sin embargo, esto ocasiona que se necesite una sincronización entre las personas porque si las dos llegan al incinerador al mismo tiempo una tendrá que esperar a la otra, provocando una pérdida de efectividad.
 
-![Paso 3.1](./annex/img/Gopher3-1.png)
+<div align="center">
+<img width="500px" id="Paso 3.1" src="./annex/img/Gopher3-1.png"/>
+</div>
 
 La **solución paralela** es duplicar los recursos, usando dos pilas de libros, dos carretillas y dos incineradores. Esto hace que no se necesite gestionar la sincronización entre las personas y que ambos puedan trabajar todo el tiempo.
 
-![Paso 3.2](./annex/img/Gopher3-2.png)
+<div align="center">
+<img width="500px" id="Paso 3.2" src="./annex/img/Gopher3-2.png"/>
+</div>
 
 Para complicar el ejemplo ahora vamos a usar 4 personas (en este caso los hilos pasan a ser *corrutinas*[^2]). Usando una solución concurrente podemos gestionar a las personas para que hagan tareas diferentes y completamente independientes:
   - Persona 1: Lena la carretilla con libros
@@ -187,11 +205,15 @@ Para complicar el ejemplo ahora vamos a usar 4 personas (en este caso los hilos 
   - Persona 3: Arroja los libros de la carretilla al incinerador
   - Persona 4: Devuelve la carretilla a la pila de libros
 
-![Paso 4](./annex/img/Gopher4.png)
+<div align="center">
+<img width="500px" id="Paso 4" src="./annex/img/Gopher4.png"/>
+</div>
 
 Además de esto, una solución concurrente puede ser fácilmente paralelizable, lo único que se necesita es duplicar todo y que todo se haga simultáneamente.
 
-![Paso 5](./annex/img/Gopher5.png)
+<div align="center">
+<img width="500px" id="Paso 5" src="./annex/img/Gopher5.png"/>
+</div>
 
 #### Multithreading: Ventajas y desventajas
 La principal ventaja del multithreading es tener la capacidad de hacer programas concurrentes y más ligeros, pero que no están aislados entre ellos. A diferencia del multiproceso (ver en la práctica [pipex](../../lvl2/pipex/LEEME.md), la función `fork()`) el cual puede ser concurrente pero manteniendo el aislamiento que proporciona el trabajar con procesos.
