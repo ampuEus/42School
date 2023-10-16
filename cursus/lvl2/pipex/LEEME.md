@@ -86,7 +86,10 @@ Ejemplo del uso de una pipe en bash:
 ```shell
 sort | grep ai
 ```
-![Pileline de los comandos sort y grep](annex/img/pipeline.png)
+
+<div align="center">
+<img id="Pileline de los comandos sort y grep" src="./annex/img/pipeline.png" />
+</div>
 
 El programa `sort` lee por su *stdin* (0) una serie de palabras que ordena y escribe en su file descriptor (3) de salida proporcionado por la `pipe()`. Esta a su vez transmite esa información al file descriptor de lectura (4) de lectura de `grep`, el cual trata los datos para después escribirlos en su *stdout* (1).
 
@@ -165,7 +168,9 @@ Hello from Child! My PID is 156</pre>
 #### 1.3. Ejemplo de aplicación con pipe() y fork(): Comunicación entre el proceso padre e hijo
 Para este ejemplo se han creado 2 procesos, padre e hijo. El padre genera un string y se lo envía al hijo mediante la pipe y este lo lee y lo escribe en la terminal. Abajo se puede ver un esquema del proceso y el código de prueba.
 
-![Ejemplo de la ejecución de una pipe y un fork](annex/img/pipe_fork.png)
+<div align="center">
+<img id="Ejemplo de la ejecución de una pipe y un fork" src="./annex/img/pipe_fork.png" />
+</div>
 
 ```c
 #include <stdlib.h>
@@ -353,7 +358,9 @@ Si se le hace un fork-and-exec, el proceso hijo aún tendrá su salida redirigid
 
 Aquí te pongo otro ejemplo más trabajado para verlo mejor, el algoritmo coje como argumento el filtro que le quieras poner a la salida de `ls` (es el equivalente a hacer el comando de terminal `ls | <el filtro que quieras>`). Por ejemplo, si haces `gcc main.c && ./a.out grep a` equivale a `ls | grep a`. Para ello, el proceso padre crea 2 hijos; uno para ejecutar el comando `ls` y pasar su output al segundo, para que este segundo hijo ejecute el *filtro* que le has pasado a la función.
 
-![Ejemplo de la ejecución de una redirección + ejecución de comando](annex/img/pipe_fork-exec.png)
+<div align="center">
+<img id="Ejemplo de la ejecución de una redirección + ejecución de comando" src="./annex/img/pipe_fork-exec.png" />
+</div>
 
 ```c
 #include <stdio.h>

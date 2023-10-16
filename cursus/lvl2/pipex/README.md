@@ -86,7 +86,10 @@ Example of using a pipe in bash:
 ```shell
 sort | grep ai
 ```
-![Pileline of sort and grep commands](annex/img/pipeline.png)
+
+<div align="center">
+<img id="Pileline of sort and grep commands" src="./annex/img/pipeline.png" />
+</div>
 
 The `sort` program reads through its *stdin* (0) a series of words which it sorts and writes to its file descriptor (3) output provided by the `pipe()`. This in turn transmits that information to the `grep` read file descriptor (4), which processes the data and then writes it to its *stdout* (1).
 
@@ -164,7 +167,9 @@ Hello from Child! My PID is 156</pre>
 #### 1.3. Example application with pipe() and fork(): Communication between parent and child process
 For this example 2 processes have been created, parent and child. The parent generates a string and sends it to the child via the pipe, which reads it and writes it to the terminal. Below you can see a schematic of the process and the test code.
 
-![Example of the execution of a pipe and a fork](annex/img/pipe_fork.png)
+<div align="center">
+<img id="Example of the execution of a pipe and a fork" src="./annex/img/pipe_fork.png"/>
+</div>
 
 ```c
 #include <stdlib.h>
@@ -352,7 +357,9 @@ If it is fork-and-execed, the child process will still have its output redirecte
 
 Here I give you another more worked example to see it better, the algorithm takes as argument the filter that you want to put on the output of `ls` (it is the equivalent of doing the terminal command `ls | <the filter that you want>`) . For example, doing `gcc main.c && ./a.out grep a` is equivalent to `ls | grep a`. To do this, the parent process creates 2 children; one to execute the `ls` command and pass its output to the second, so that this second child executes the *filter* you passed to the function.
 
-![Example of executing a redirection + command execution](annex/img/pipe_fork-exec.png)
+<div align="center">
+<img id="Example of executing a redirection + command execution" src="./annex/img/pipe_fork-exec.png" />
+</div>
 
 ```c
 #include <stdio.h>
