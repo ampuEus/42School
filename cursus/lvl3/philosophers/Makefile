@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:26:14 by daampuru          #+#    #+#              #
-#    Updated: 2023/09/27 19:00:01 by daampuru         ###   ########.fr        #
+#    Updated: 2023/10/17 21:31:09 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,11 +27,11 @@ SRC			:= main.c \
 				locks.c \
 				threads.c \
 				routine.c \
+				utils.c \
 				$(STATEMACHINE_PATH)/thinking.c \
 				$(STATEMACHINE_PATH)/eating.c \
 				$(STATEMACHINE_PATH)/sleeping.c \
-				$(STATEMACHINE_PATH)/dead.c \
-				utils.c
+				$(STATEMACHINE_PATH)/dead.c
 
 SRC_BONUS_PATH	:= ./src_bonus
 SRC_BONUS	:= main.c \
@@ -39,11 +39,11 @@ SRC_BONUS	:= main.c \
 				semaphores.c \
 				threads.c \
 				routine.c \
+				utils.c \
 				$(STATEMACHINE_PATH)/thinking.c \
 				$(STATEMACHINE_PATH)/eating.c \
 				$(STATEMACHINE_PATH)/sleeping.c \
-				$(STATEMACHINE_PATH)/dead.c \
-				utils.c
+				$(STATEMACHINE_PATH)/dead.c
 
 # Objects dir
 OBJ_PATH	:= ./obj
@@ -97,15 +97,15 @@ debug_bonus: CFLAGS := -g3 -g -D DEBUG=1
 debug: $(NAME)
 debug_bonus: $(NAME_BONUS)
 
-fsanitize: CFLAGS := -g3 -fsanitize=address
-fsanitize_bonus: CFLAGS := -g3 -fsanitize=address
-fsanitize: $(NAME)
-fsanitize_bonus: $(NAME_BONUS)
+faddress: CFLAGS := -g3 -fsanitize=address
+faddress_bonus: CFLAGS := -g3 -fsanitize=address
+faddress: $(NAME)
+faddress_bonus: $(NAME_BONUS)
 
-leaks: CFLAGS := -g3 -D LEAKS=1
-leaks_bonus: CFLAGS := -g3 -D LEAKS=1
-leaks: $(NAME)
-leaks_bonus: $(NAME_BONUS)
+fthread: CFLAGS := -g3 -fsanitize=thread
+fthread_bonus: CFLAGS := -g3 -fsanitize=thread
+fthread: $(NAME)
+fthread_bonus: $(NAME_BONUS)
 
 
 # tests

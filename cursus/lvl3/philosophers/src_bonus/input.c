@@ -1,4 +1,4 @@
-#include "philo.h"
+#include "philo_bonus.h"
 #include <unistd.h>
 
 /* NOTE: Only one '+' is allowed in front of numbers */
