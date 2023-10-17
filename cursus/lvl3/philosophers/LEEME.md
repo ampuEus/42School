@@ -21,14 +21,15 @@ En este proyecto, aprenderás los principios básicos de *hilar* un proceso. Vas
   - Los filósofos no se pueden comunicarse entre ellos
 
 ### Reglas generales
-  - No se pueden utilizar variables globales
-  - El programa tiene los siguientes argumentos de entrada
+  - **No** se pueden utilizar **variables globales**
+  - El programa tiene los siguientes **argumentos de entrada**
     - El *número de filósofos* (y de tenedores). Mínimo tiene que haber un filósofo
     - El *tiempo que tarda en comer* un filósofo (en milisegundos). Durante este tiempo el filósofo estará utilizando 2 tenedores
     - El *tiempo* que puede estar un filósofo *sin comer antes de morir* (en milisegundos). La cuenta atrás empieza desde el inicio de su última comida (o desde el inicio del programa, cuando todavía no ha comido por primera vez)
     - El *tiempo que está durmiendo* un filósofo (en milisegundos)
     - \[Opcional\] El número mínimo de veces que tienen que comer para que termine el programa. Si no está definido el programa termina con la muerte de un filósofo
-  - El filósofo número 1 se sienta junto al último filósofo. Cualquier otro filósofo número N se sienta entre el filósofo número N - 1 y el filósofo número N + 1
+  - El **filósofo** número **1** se **sienta junto al último filósofo**. Cualquier otro filósofo número N se sienta entre el filósofo número N - 1 y el filósofo número N + 1
+  - No puedes tener más de **10ms entre la muerte de un filósofo y el momento en el que imprimes su muerte**.
 
 ### logs
   - El programa debe mostrar los siguientes logs durante su ejecución:
@@ -410,8 +411,32 @@ Semaphore successfully unlinked
 > Otra prueba que puedes hacer es quitar la función `sem_unlink()` y ver como al hacer `sem_close()` y cambiar el valor inicial en `sem_open()` este no cambia ya que el semáforo sigue activo a nivel de kernel.
 
 ### La función `gettimeofday()`
+```c
+Propotipo:
+int gettimeofday(struct timeval *restrict tv,
+	struct timezone *_Nullable restrict tz)
+```
+Para obtener tiempo, se lee en el formato de la estructura:
+```c
+	struct timeval {
+	time_t		tv_sec;		// seconds
+	suseconds_t	tv_usec;	// microseconds
+	};
+```
+Ejemplo:
+```c
+/* Get the actual time value in miliseconds */
+unsigned int	get_msec(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+```
 
 ### La función `sleep()`
+
 
 ### Explicar como funciona el tester que he hecho
 
@@ -419,6 +444,8 @@ Semaphore successfully unlinked
 Cosas a comentar
 - piensa bien como vas a crear y repartir los tenedores en tu estructura del filosofo
 - piensa cual va ha ser la estrategia para avisar a los demás filosofos (threads) de que uno a muerto y hay que para la ejecucion
+- Utiliza el flag `fsanitize=thread` para detectar los finales de carrera
+- Para poder detertar leaks con valgrind utiliza muertes cortas de los filosofos
 
 
 ## Referencias
