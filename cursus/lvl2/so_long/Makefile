@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:26:14 by daampuru          #+#    #+#              #
-#    Updated: 2023/10/15 22:32:49 by daampuru         ###   ########.fr        #
+#    Updated: 2023/10/19 17:52:10 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -171,7 +171,7 @@ run: $(NAME)
 	./bin/so_long ./maps/basic_1.ber
 
 run_bonus: $(NAME)
-	./bin/so_long ./maps/enemy_1.ber
+	./bin/so_long_bonus ./maps/enemy_1.ber
 
 
 # Create dirs
