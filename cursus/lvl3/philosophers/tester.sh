@@ -17,19 +17,18 @@ USAGE=$(cat <<'EOF'
  OPTIONS
    -m, --mandatory
 
-   Execute the tests for the requirements of the mandatory part. Default option.
+   Default option. Execute the tests for the requirements of the mandatory part.
+   The tests have been taken form philosopher correction.
    If you want to run it together with the bonus tests, use both options at
    the same time (-m -b).
+
+   -c, --custom        Run tests to verify the mandatory performance.
 
    -b, --bonus         Execute the tests for the requirements of the bonus part.
 
    -l, --leaks         Check leaks of the program
 
    -a, --arguments     Run tests to verify input arguments.
-
-   -s, --simple        Run simple tests to verify the basic performance.
-
-   -h, --hard
 
      Run harder tests to verify program performance in different situations.
 
@@ -76,8 +75,8 @@ bonus=
 segment=
 time=60
 
-TEMP=$(getopt -o 'hmblasdt:' \
-		--long 'help,mandatory,bonus, leaks,arguments,simple,hard,log,time:' \
+TEMP=$(getopt -o 'hmcblat:' \
+		--long 'help,mandatory,custom,bonus,leaks,arguments,log,time:' \
 		-n "$progname" -- ${1+"$@"})
 [ $? -eq 0 ] || { echo "$progname use -h for help" >&2; exit 1; }
 eval set -- "$TEMP" ; unset TEMP
@@ -86,11 +85,10 @@ while true ; do
 	case "$1" in
 	--)										shift; break ;;
 	-m|--mandatory)	mandatory=yes;			shift ;;
+	-c|--custom)	segment=${segment}s;	shift ;;
 	-b|--bonus)		bonus=yes;				shift ;;
 	-l|--leaks)		segment=${segment}l;	shift ;;
 	-a|--arguments)	segment=${segment}a;	shift ;;
-	-s|--simple)	segment=${segment}s;	shift ;;
-	-d|--hard)		segment=${segment}d;	shift ;;
 	-t|--time)		time=$2;				shift; shift ;;
 	-h|--help)		[ -t 1 ] || PAGER=cat; echo "$USAGE" | ${PAGER:-more} ; exit 0 ;;
 	*) echo "[ERROR] Internal error!" >&2; exit 99 ;;
@@ -473,30 +471,27 @@ if { [ "$mandatory" = "" ] && [ "$bonus" = "" ]; } \
 	# 		muchos filos y que la CPU pete
 	# ¿las pruebas del bonus son iguales al mandatory?
 
-	if [ "$segment" = "" ] || [ $(echo $segment | grep -c 's') -gt 0 ];then
-		echo "$BLUE[+] Simple tests running $NORMAL"
-		echo $MSG_TIMES
-		test_live "Test 001" $target "4 1000 200 200"
-		test_eat  "Test 002" $target "4 1000 200 200 3"
-		test_live "Test 003" $target "7 800 200 200"
-		test_eat  "Test 004" $target "7 800 200 200 7"
-		test_live "Test 003" $target "6 800 200 200"
-		test_eat  "Test 004" $target "6 800 200 200 7"
-		test_live "Test 005" $target "5 800 200 200"
-		test_eat  "Test 006" $target "5 800 200 200 7"
-		test_live "Test 005" $target "4 800 200 200"
-		test_eat  "Test 006" $target "4 800 200 200 7"
-		test_live "Test 005" $target "3 800 200 200"
-		test_eat  "Test 006" $target "3 800 200 200 7"
-		test_live "Test 007" $target "4 410 200 200"
-		test_die  "Test 008" $target "4 310 200 100"
-		test_die  "Test 009" $target "1 800 200 200"
-	fi
+	echo "$BLUE[+] Correction tests running $NORMAL"
+	#Test 1 800 200 200. The philosopher should not eat and should die.
+	test_live "Correction test 001" $target "5 800 200 200"
+	test_eat  "Correction test 002" $target "5 800 200 200 7"
+	test_live "Correction test 003" $target "4 410 200 200"
+	test_die  "Correction test 004" $target "4 310 200 100"
 
-	if [ "$segment" = "" ] || [ $(echo $segment | grep -c 'd') -gt 0 ];then
-		echo "$BLUE[+] Hard tests running $NORMAL"
+	if [ "$segment" = "" ] || [ $(echo $segment | grep -c 'c') -gt 0 ];then
+		echo "$BLUE[+] Custom tests running $NORMAL"
 		echo $MSG_TIMES
-		#test_five $target
+		test_live "Simple test 001" $target "4 1000 200 200"
+		test_eat  "Simple test 002" $target "4 1000 200 200 3"
+		test_live "Simple test 003" $target "7 800 200 200"
+		test_eat  "Simple test 004" $target "7 800 200 200 7"
+		test_live "Simple test 005" $target "6 800 200 200"
+		test_eat  "Simple test 006" $target "6 800 200 200 7"
+		test_live "Simple test 007" $target "4 800 200 200"
+		test_eat  "Simple test 008" $target "4 800 200 200 7"
+		test_live "Simple test 009" $target "3 800 200 200"
+		test_eat  "Simple test 010" $target "3 800 200 200 7"
+		test_die  "Simple test 011" $target "1 800 200 200"
 	fi
 
 fi

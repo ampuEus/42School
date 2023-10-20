@@ -449,7 +449,6 @@ Cosas a comentar
 
 
 ## Referencias
-  - https://nafuka11.github.io/philosophers-visualizer/
   - https://ferestrepoca.github.io/paradigmas-de-programacion/progconcurrente/concurrente_teoria/index.html#historia
   - https://stackoverflow.com/questions/1050222/what-is-the-difference-between-concurrency-and-parallelism
   - https://start-concurrent.github.io/
@@ -469,6 +468,9 @@ Cosas a comentar
   - https://blog.bearcats.nl/accurate-sleep-function/
   - https://blog.bearcats.nl/perfect-sleep-function/
   - [[Youtube video list] Programming with Threads](https://www.youtube.com/playlist?list=PL9IEJIKnBJjFZxuqyJ9JqVYmuFZHr7CFM)
+
+## Annex: Tools for debug
+  - [philosophers-visualizer](https://nafuka11.github.io/philosophers-visualizer/)
 
 [^1] Multiproceso: Técnica en la cual se hace uso de 2 o más CPUs del PC para ejecutar uno o varios procesos.
 
