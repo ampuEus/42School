@@ -9,22 +9,25 @@ Se va a usar la librería gráfica del campus **MiniLibX**. Esta librería se ha
 Hacer gif del juego
 > Contexto: Basado en el meme ["Bicho blanco"](https://www.youtube.com/watch?v=3FsFJ5a1k7I). Eres Twelve, el personaje de Street Fighter, en una Rave. Tienes que recolectar todos los melocotones y salvar a tu bro Q de la borrachera.
 >
->Nota: Al ser un *ser de luz* como eres, flores brotarán hayá por donde pises.
+> Nota: Al ser un *ser de luz* como eres, flores brotarán allá por donde pises.
 
 
 ## Índice
-- [Enunciado del ejercicio](#enunciado-del-ejercicio)
-- [Bonus](#bonus)
-- [¿Qué es la MiniLibX?](#-qu--es-la-minilibx-)
-  * [Funciones utilies para el proyecto](#funciones-utilies-para-el-proyecto)
-- [Pasos que yo he seguido para hacer el programa](#pasos-que-yo-he-seguido-para-hacer-el-programa)
-  * [1. Gestión de errores](#1-gesti-n-de-errores)
-  * [3. Cargar todas las imagenes necesarias](#3-cargar-todas-las-imagenes-necesarias)
-  * [2. Mostrar el mapa en una ventaja](#2-mostrar-el-mapa-en-una-ventaja)
-  * [4. Mover al personaje](#4-mover-al-personaje)
-  * [5. Animar los sprites](#5-animar-los-sprites)
-- [Referencias](#referencias)
-- [Anexo: Herramientas para editar imagenes](#anexo--herramientas-para-editar-imagenes)
+- [SoLong](#solong)
+- [TODO](#todo)
+  - [Índice](#índice)
+  - [Enunciado del ejercicio](#enunciado-del-ejercicio)
+  - [Bonus](#bonus)
+  - [¿Qué es la MiniLibX?](#qué-es-la-minilibx)
+    - [Funciones útiles  para el proyecto](#funciones-útiles--para-el-proyecto)
+  - [Pasos que yo he seguido para hacer el programa](#pasos-que-yo-he-seguido-para-hacer-el-programa)
+    - [1. Gestión de errores](#1-gestión-de-errores)
+    - [2. Cargar todas las imagenes necesarias](#2-cargar-todas-las-imagenes-necesarias)
+    - [3. Mostrar el mapa en una ventana](#3-mostrar-el-mapa-en-una-ventana)
+    - [4. Mover al personaje](#4-mover-al-personaje)
+    - [5. Animar los sprites](#5-animar-los-sprites)
+  - [Referencias](#referencias)
+  - [Anexo: Herramientas para editar imagenes](#anexo-herramientas-para-editar-imagenes)
 
 
 ## Enunciado del ejercicio
@@ -63,13 +66,13 @@ Se consiguen puntos extra si:
 ## ¿Qué es la MiniLibX?
 > Para una documentación completa ve a al github de [harm-smits](https://harm-smits.github.io/42docs/libs/minilibx) o [gontjarow](https://gontjarow.github.io/MiniLibX/).
 
-MiniLibX es una biblioteca gráficas basica que permite renderizar cosas en la pantalla sin ningún conocimiento de [X-Window](https://www.x.org/wiki/) y [Cocoa](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html). Permite crear ventanas, proporciona una herramienta de dibujo y imágenes y la gestión básica de eventos.
+MiniLibX es una biblioteca gráfica básica que permite renderizar cosas en la pantalla sin ningún conocimiento de [X-Window](https://www.x.org/wiki/) y [Cocoa](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html). Permite crear ventanas, proporciona una herramienta de dibujo y imágenes y la gestión básica de eventos.
 
-### Funciones utilies para el proyecto
+### Funciones útiles  para el proyecto
 <table>
 <thead>
   <tr>
-    <th>Protopito</th>
+    <th>Prototipo</th>
     <th>Descripción</th>
     <th>Return</th>
   </tr>
@@ -83,7 +86,7 @@ MiniLibX es una biblioteca gráficas basica que permite renderizar cosas en la p
   <tr>
     <td><code>void *mlx_new_window(void *mlx_ptr, int size_x, int size_y, char *title)</code></td>
     <td>Crea una nueva ventana, definida en <code>mlx_ptr</code>. De las dimensiones <code>size_x</code> y <code>size_y</code> con el titulo <code>title</code> en la barra superior de la ventana.</td>
-    <td><br>Exito al crear la ventana: <code>mlx_ptr != NULL</code></br>
+    <td><br>Éxito al crear la ventana: <code>mlx_ptr != NULL</code></br>
         <br>Error al crear la ventana: <code>mlx_ptr = NULL</code></br></td>
   </tr>
   <tr>
@@ -94,7 +97,7 @@ MiniLibX es una biblioteca gráficas basica que permite renderizar cosas en la p
   <tr>
     <td><code>int mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, int y)</code></td>
     <td>Pinta la imagen en la ventana elegida, en la coordenada seleccionada</td>
-    <td><br>Exito: <code>img_ptr = NULL</code></br>
+    <td><br>Éxito: <code>img_ptr = NULL</code></br>
         <br>Error: <code>img_ptr != NULL</code></br></td>
   </tr>
   <tr>
@@ -114,7 +117,7 @@ MiniLibX es una biblioteca gráficas basica que permite renderizar cosas en la p
   </tr>
   <tr>
     <td><code>int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param)</code></td>
-    <td>Es la función generica para "atrapar" los eventos y ejecutar la función asocidad.</td>
+    <td>Es la función genérica para "atrapar" los eventos y ejecutar la función asociada.</td>
     <td>-</td>
   </tr>
   <tr>
@@ -141,33 +144,33 @@ MiniLibX es una biblioteca gráficas basica que permite renderizar cosas en la p
 </table>
 
 Donde:
-  - `mlx_ptr` es el puntoro identificador del display
-  - `win_ptr` es la ventana donde se va ha dibujar
+  - `mlx_ptr` es el puntero identificador del display
+  - `win_ptr` es la ventana donde se va a dibujar
   - `img_ptr` es la imagen a dibujar
 
 
 ## Pasos que yo he seguido para hacer el programa
 ### 1. Gestión de errores
-Basicamente se han comprobado 3 cosas
+Básicamente se han comprobado 3 cosas:
   - Que **el archivo existe**.
-  - Que tiene la **extension adecuada**, `.ber`.
+  - Que tiene la **extensión adecuada**, `.ber`.
   - Que el **mapa cumple** con **los requisitos** marcados por el ejercicio.
 
-Para comprobar el mapa, lo he leido mediante la función `get_next_line` y la he guardado en una variable `char **` dentro de la estructura de datos que usaré en todo el juego.
+Para comprobar el mapa, lo he leído mediante la función `get_next_line` y la he guardado en una variable `char **` dentro de la estructura de datos que usaré en todo el juego.
 
-### 3. Cargar todas las imagenes necesarias
-Utilizando la función `mlx_xpm_file_to_image` se han cargado las imagenes necesarias para la parte gráfica del juego. Cada sprite se ha ubicado en su array correspondiente a la espera de ser utilizado en las diferentes fases del juego.
+### 2. Cargar todas las imagenes necesarias
+Utilizando la función `mlx_xpm_file_to_image` se han cargado las imágenes necesarias para la parte gráfica del juego. Cada sprite se ha ubicado en su array correspondiente a la espera de ser utilizado en las diferentes fases del juego.
 
-NOTA: Una vez terminado el juego, recuerda que hay que liberar el espacio de memoria utilizado por estas imagenes mediante la función `mlx_destroy_image`.
+> NOTA: Una vez terminado el juego, recuerda que hay que liberar el espacio de memoria utilizado por estas imágenes mediante la función `mlx_destroy_image`.
 
-### 2. Mostrar el mapa en una ventaja
-Una vez volcado el mapa y las imagenes, se ha calculado las dimensiones necesarias de la ventana del juego para poder mostrarlo. Creada la ventana, se ha recorrido el mapa para pintar las texturas básicas (pared y suelo) y obtener las posiciones iniciales de cada item.
+### 3. Mostrar el mapa en una ventana
+Una vez volcado el mapa y las imágenes, se ha calculado las dimensiones necesarias de la ventana del juego para poder mostrarlo. Iniciada una conecxión con la pantalla usando `mlx_init` y creada la ventana con `mlx_new_window`, se ha recorrido el mapa para pintar las texturas básicas (pared y suelo) y obtener las posiciones iniciales de cada item para ser renderizados más adelante.
 
 ### 4. Mover al personaje
 Para mover al personaje se ha utilizado la función `mlx_key_hook` que ejecuta una función cada vez que el evento de "input detectado" se activa. Después, dicha función se encarga de calcular cual será la siguiente acción del personaje dependiendo del estado actual del juego y la casilla a la que se quiere ir.
 
 ### 5. Animar los sprites
-Para darle viva a los item, se ha utilizado la función `mlx_loop_hook` que cada X segundos ejecuta la función encargada de ir modificando los sprites del buffer que se a cargado para cada item.
+Para darle "viva" a los item, se ha utilizado la función `mlx_loop_hook` que cada X segundos ejecuta la función encargada de ir modificando los sprites del buffer que se a cargado para cada item.
 
 
 ## Referencias
@@ -175,7 +178,7 @@ Para darle viva a los item, se ha utilizado la función `mlx_loop_hook` que cada
   - https://gontjarow.github.io/MiniLibX/
 
 ## Anexo: Herramientas para editar imagenes
-  - [Editor básico de imagenes online](https://ezgif.com)
+  - [Editor básico de imágenes online](https://ezgif.com)
   - [Para separar por frames los gifs](https://ezgif.com/split)
   - [Para pasar de PNG a XPM](https://anyconv.com/png-to-xpm-converter/)
 
