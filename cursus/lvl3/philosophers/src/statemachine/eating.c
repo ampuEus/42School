@@ -11,7 +11,7 @@ RETURN:
 static char	start_eating(t_philo *philo)
 {
 	philo->time_last_eat = get_msec();
-	usleep(philo->rules->time_eat * 1000);
+	split_usleep(philo, philo->rules->time_eat);
 	pthread_mutex_unlock(philo->fork_1);
 	pthread_mutex_unlock(philo->fork_2);
 	philo->nbr_eat += 1;

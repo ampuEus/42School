@@ -79,5 +79,6 @@ void			dead(t_philo *philo);
 char			free_philos(t_philo	**philos);
 unsigned int	get_msec(void);
 t_rules			*arr_to_struct(unsigned int *data);
+char			split_usleep(t_philo *philo, unsigned int msec);
 
 #endif
