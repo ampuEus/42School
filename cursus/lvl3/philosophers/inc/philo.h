@@ -1,6 +1,7 @@
 #ifndef PHILO_H
 
 # include <stdlib.h>
+#include <pthread.h>
 
 /* ---------- Constants ---------- */
 
