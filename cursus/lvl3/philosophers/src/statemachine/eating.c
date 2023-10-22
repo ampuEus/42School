@@ -12,8 +12,6 @@ static char	start_eating(t_philo *philo)
 {
 	philo->time_last_eat = get_msec();
 	split_usleep(philo, philo->rules->time_eat);
-	pthread_mutex_unlock(philo->fork_1);
-	pthread_mutex_unlock(philo->fork_2);
 	philo->nbr_eat += 1;
 	if (philo->rules->nbr_min_eat >= 1 && philo->nbr_eat == philo->rules->nbr_min_eat)
 	{

@@ -1,6 +1,7 @@
 #include "philo.h"
 #include <sys/time.h>
 #include <unistd.h>
+#include <stdio.h>
 #include <string.h>
 
 /* NOTE: The destruction of the fork has to go according to
@@ -40,10 +41,16 @@ t_rules	*arr_to_struct(unsigned int *data)
 	rules->time_die = data[1];
 	rules->time_eat = data[2];
 	rules->time_sleep = data[3];
-	if (data[4])
+	if (data[4] == 0)
 		rules->nbr_min_eat = data[4];
 	else
 		rules->nbr_min_eat = 0;
+
+		printf("data[%i] = %u\n", 0, data[0]);
+		printf("data[%i] = %u\n", 1, data[1]);
+		printf("data[%i] = %u\n", 2, data[2]);
+		printf("data[%i] = %u\n", 3, data[3]);
+		printf("data[%i] = %u\n", 4, data[4]);
 	return (rules);
 }
 

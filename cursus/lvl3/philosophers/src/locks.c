@@ -67,22 +67,14 @@ void	assing_forks(t_philo **philos, unsigned int tot_philos)
 	while (i < tot_philos)
 	{
 		philo = philos[i++];
-		if (philo->pos_table % 2)
-			init_lock(&(philo->fork_1));
-		else
-			init_lock(&(philo->fork_2));
+		init_lock(&(philo->fork_1));
 	}
 	i = 0;
 	while (i < tot_philos)
 	{
 		philo = philos[i++];
-		if (philo->pos_table % 2)
-			philo->fork_2 = philos[i % tot_philos]->fork_2;
-		else
-			philo->fork_1 = philos[i % tot_philos]->fork_1;
+		philo->fork_2 = philos[i % tot_philos]->fork_1;
 	}
-	if (!(philo->pos_table % 2))
-		philo->fork_1 = philos[i % tot_philos]->fork_2;
 }
 
 /* NOTE: The destruction of the fork has to go according to
@@ -97,10 +89,7 @@ void	desassing_forks(t_philo **philos)
 	while (philos[i])
 	{
 		philo = philos[i];
-		if (philo->pos_table % 2)
-			destroy_lock(&(philo->fork_2));
-		else
-			destroy_lock(&(philo->fork_1));
+		destroy_lock(&(philo->fork_1));
 		i++;
 	}
 }

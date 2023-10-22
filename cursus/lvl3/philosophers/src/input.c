@@ -1,5 +1,6 @@
 #include "philo.h"
 #include <unistd.h>
+#include <stdio.h>
 
 /* NOTE: Only one '+' is allowed in front of numbers */
 static char	only_digits(char *str)
@@ -114,8 +115,10 @@ unsigned int	*input(int argc, char *argv[])
 			return (write(2, \
 			"ERROR: The input do not fit on uint datatype\n", 45), NULL);
 		data[word - 1] = str2uint(argv[word]);
+		printf("data[%i] = %u\n", word-1, data[word - 1]);
 		word++;
 	}
+		printf("data[%i] = %u\n", 4, data[4]);
 	if (data[0] == 0)
 		return (write(2, \
 		"ERROR: There must be at least one philosopher\n", 46), NULL);

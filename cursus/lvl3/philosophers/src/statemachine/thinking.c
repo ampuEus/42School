@@ -18,8 +18,8 @@ static char	take_forks(t_philo *philo)
 	pthread_mutex_lock(philo->fork_1);
 	if (is_dead(philo))
 		return (0);
-	printf("%u %u has taken a fork\n", \
-		get_msec() - philo->time_start, philo->pos_table);
+	printf("%u %u has taken a fork %p\n", \
+		get_msec() - philo->time_start, philo->pos_table, philo->fork_1);
 	while (philo->fork_1 == philo->fork_2)
 		if (is_dead(philo))
 			return (0);
@@ -31,8 +31,8 @@ static char	take_forks(t_philo *philo)
 	pthread_mutex_lock(philo->fork_2);
 	if (is_dead(philo))
 		return (0);
-	printf("%u %u has taken a fork\n", \
-		get_msec() - philo->time_start, philo->pos_table);
+	printf("%u %u has taken a fork %p\n", \
+		get_msec() - philo->time_start, philo->pos_table, philo->fork_2);
 	return (1);
 }
 
