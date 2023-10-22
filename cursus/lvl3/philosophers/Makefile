@@ -6,7 +6,7 @@
 #    By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:26:14 by daampuru          #+#    #+#              #
-#    Updated: 2023/10/17 21:31:09 by daampuru         ###   ########.fr        #
+#    Updated: 2023/10/20 21:36:50 by daampuru         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,7 +110,7 @@ fthread_bonus: $(NAME_BONUS)
 
 # tests
 run: $(NAME)
-	$(NAME) 3 10 10 10
+	$(NAME) 5 800 200 200
 
 run_opt: $(NAME)
 	$(NAME) 3 10 10 10 5
