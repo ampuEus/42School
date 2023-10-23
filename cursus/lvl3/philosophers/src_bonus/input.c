@@ -104,8 +104,8 @@ unsigned int	*input(int argc, char *argv[])
 	if (!data)
 		return (write(2, \
 		"ERROR: Can´t allocate memory for input data\n", 44), NULL);
-	word = 1;
-	while (word < argc)
+	word = 0;
+	while (++word < argc)
 	{
 		if (!only_digits(argv[word]))
 			return (write(2, \
@@ -114,7 +114,6 @@ unsigned int	*input(int argc, char *argv[])
 			return (write(2, \
 			"ERROR: The input do not fit on uint datatype\n", 45), NULL);
 		data[word - 1] = str2uint(argv[word]);
-		word++;
 	}
 	if (data[0] == 0)
 		return (write(2, \

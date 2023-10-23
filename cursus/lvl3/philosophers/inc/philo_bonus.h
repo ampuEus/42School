@@ -1,7 +1,7 @@
-#ifndef PHILO_H
+#ifndef PHILO_BONUS_H
 
 # include <semaphore.h>
-
+# include <stdlib.h>
 
 /* ---------- Constants ---------- */
 
@@ -20,7 +20,6 @@
 # define SEM_FORKS_NAME "/forks"
 # define SEM_SIGNALS_NAME "/signals"
 
-
 /* ---------- Structure of values ---------- */
 
 typedef struct s_rules {
@@ -28,7 +27,7 @@ typedef struct s_rules {
 	unsigned int	time_die;
 	unsigned int	time_eat;
 	unsigned int	time_sleep;
-	unsigned int	nbr_min_eat;
+	int				nbr_min_eat;
 }	t_rules;
 
 // Struct to comunicate with all thread at the same time
@@ -41,7 +40,6 @@ typedef struct s_general {
 }	t_general;
 
 typedef struct s_philo {
-	pthread_t		*th;
 	unsigned int	got_forks;
 	unsigned int	time_start;
 	short int		state;
@@ -52,8 +50,9 @@ typedef struct s_philo {
 	t_general		*data;
 }	t_philo;
 
-
 /* ---------- Functions ---------- */
+
+// input.c
 
 unsigned int	*input(int argc, char *argv[]);
 
@@ -64,25 +63,31 @@ void			*routine(void *philosopher);
 
 // semaphores.c
 
-char			init_sem(sem_t **semaphore, char *name, unsigned int nbr);
-char			destroy_sem(sem_t **semaphore, char *name);
+char			init_sem(t_general *general_data, unsigned int tot_philos);
+char			destroy_sem(t_general *general_data);
+char			take_one_fork(t_philo *philos);
+char			drop_fork(t_philo *philos);
 
-// threads.c
+// process.c
 
 t_philo			**create_philos(t_rules *rules, t_general *general_data);
-char			start_threads(t_philo **philos);
+char			free_philos(t_philo	**philos);
+char			start_process(t_philo **philos);
 
 // statemachine
 
 short int		thinking(t_philo *philo);
 short int		eating(t_philo *philo);
 short int		sleeping(t_philo *philo);
-void			dead(t_philo *philo);
+char			dead(t_philo *philo);
+
+// get_rules.c
+
+t_rules			*get_rules(unsigned int *data, unsigned int total_rules);
 
 //utils.c
 
-char			free_philos(t_philo	**philos);
 unsigned int	get_msec(void);
-t_rules			*arr_to_struct(unsigned int *data);
+char			split_usleep(t_philo *philo, unsigned int msec);
 
 #endif

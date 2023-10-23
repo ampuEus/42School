@@ -1,7 +1,6 @@
 #include "philo.h"
 #include <stdio.h>
 #include <pthread.h>
-#include <errno.h>
 
 /*
 When philo has 2 fork can start eating
@@ -17,22 +16,17 @@ static char	take_forks(t_philo *philo)
 {
 	pthread_mutex_lock(philo->fork_1);
 	if (is_dead(philo))
-		return (0);
-	printf("%u %u has taken a fork %p\n", \
-		get_msec() - philo->time_start, philo->pos_table, philo->fork_1);
-	while (philo->fork_1 == philo->fork_2)
+			return (pthread_mutex_unlock(philo->fork_1), 0);
+	printf("%u %u has taken a fork\n", \
+		get_msec() - philo->time_start, philo->pos_table);
+	while (philo->rules->nbr_philo == 1)
 		if (is_dead(philo))
-			return (0);
-	// const int ret = pthread_mutex_lock(philo->fork_1);
-	// if (ret != 0) {
-	// 	perror("mutex lock: ");
-	// 	return (0);
-	// }
+			return (pthread_mutex_unlock(philo->fork_1), 0);
 	pthread_mutex_lock(philo->fork_2);
 	if (is_dead(philo))
-		return (0);
-	printf("%u %u has taken a fork %p\n", \
-		get_msec() - philo->time_start, philo->pos_table, philo->fork_2);
+		return (unlock_forks(philo));
+	printf("%u %u has taken a fork\n", \
+		get_msec() - philo->time_start, philo->pos_table);
 	return (1);
 }
 

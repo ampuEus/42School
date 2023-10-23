@@ -15,23 +15,15 @@ RETURN:
 */
 static char	take_forks(t_philo *philo)
 {
-	sem_wait(philo->data->sem_forks);
-	philo->got_forks++;
+	take_one_fork(philo);
 	if (is_dead(philo))
 		return (0);
 	printf("%u %u has taken a fork\n", \
 		get_msec() - philo->time_start, philo->pos_table);
-	// TODO hay que cambiar la forma de ver cuando es solo un filosofo
-	// while (philo->fork_1 == philo->fork_2)
-	// 	if (is_dead(philo))
-	// 		return (0);
-	// const int ret = pthread_mutex_lock(philo->fork_1);
-	// if (ret != 0) {
-	// 	perror("mutex lock: ");
-	// 	return (0);
-	// }
-	sem_wait(philo->data->sem_forks);
-	philo->got_forks++;
+	while (philo->rules->nbr_philo == 1)
+		if (is_dead(philo))
+			return (0);
+	take_one_fork(philo);
 	if (is_dead(philo))
 		return (0);
 	printf("%u %u has taken a fork\n", \

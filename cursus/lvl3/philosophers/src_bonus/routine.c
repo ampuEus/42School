@@ -1,6 +1,6 @@
 #include "philo_bonus.h"
-#include <stdio.h>
 #include <pthread.h>
+#include <unistd.h>
 
 /*
 NOTE: The countdown starts from the start of your last meal
@@ -24,7 +24,8 @@ static char	statemachine(t_philo *philo)
 {
 	while (1)
 	{
-		if (philo->data->signal_died || philo->data->signal_eat >= philo->rules->nbr_philo) // TODO se podría hacer con variables ya sacadas
+		if (philo->data->signal_died \
+		|| philo->data->signal_eat >= philo->rules->nbr_philo)
 			break ;
 		is_dead(philo);
 		if (philo->state == THINKING)
@@ -41,18 +42,17 @@ static char	statemachine(t_philo *philo)
 		else
 			return (1);
 	}
-	while (philo->got_forks){
-		sem_post(philo->data->sem_forks);
-		philo->got_forks--;
-	}
+	drop_fork(philo);
 	return (0);
 }
 
 void	*routine(void *philosopher)
 {
-	t_philo			*philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)philosopher;
+	if (philo->pos_table % 2)
+		usleep((philo->rules->time_eat / 2) * 1000);
 	philo->time_start = get_msec();
 	philo->time_last_eat = get_msec();
 	statemachine(philo);

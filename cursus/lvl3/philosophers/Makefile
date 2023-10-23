@@ -27,6 +27,7 @@ SRC			:= main.c \
 				locks.c \
 				threads.c \
 				routine.c \
+				get_rules.c \
 				utils.c \
 				$(STATEMACHINE_PATH)/thinking.c \
 				$(STATEMACHINE_PATH)/eating.c \
@@ -37,8 +38,9 @@ SRC_BONUS_PATH	:= ./src_bonus
 SRC_BONUS	:= main.c \
 				input.c \
 				semaphores.c \
-				threads.c \
+				process.c \
 				routine.c \
+				get_rules.c \
 				utils.c \
 				$(STATEMACHINE_PATH)/thinking.c \
 				$(STATEMACHINE_PATH)/eating.c \
@@ -87,23 +89,23 @@ $(NAME_BONUS) : $(OBJ_BONUS) | $(BIN_PATH)
 
 
 # Debug
-no_flag: CFLAGS :=
-no_flag_bonus: CFLAGS :=
+no_flag: CFLAGS := -pthread
+no_flag_bonus: CFLAGS := -pthread
 no_flag: $(NAME)
 no_flag_bonus: $(NAME_BONUS)
 
-debug: CFLAGS := -g3 -g -D DEBUG=1
-debug_bonus: CFLAGS := -g3 -g -D DEBUG=1
+debug: CFLAGS := -g3 -g -D DEBUG=1 -pthread
+debug_bonus: CFLAGS := -g3 -g -D DEBUG=1 -pthread
 debug: $(NAME)
 debug_bonus: $(NAME_BONUS)
 
-faddress: CFLAGS := -g3 -fsanitize=address
-faddress_bonus: CFLAGS := -g3 -fsanitize=address
+faddress: CFLAGS := -g3 -fsanitize=address -pthread
+faddress_bonus: CFLAGS := -g3 -fsanitize=address -pthread
 faddress: $(NAME)
 faddress_bonus: $(NAME_BONUS)
 
-fthread: CFLAGS := -g3 -fsanitize=thread
-fthread_bonus: CFLAGS := -g3 -fsanitize=thread
+fthread: CFLAGS := -g3 -fsanitize=thread -pthread
+fthread_bonus: CFLAGS := -g3 -fsanitize=thread -pthread
 fthread: $(NAME)
 fthread_bonus: $(NAME_BONUS)
 

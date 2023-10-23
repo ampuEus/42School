@@ -3,6 +3,8 @@
 
 En este proyecto, aprenderás los principios básicos de *hilar* un proceso. Vas a aprender a como crear hilos y descubrirás los mutex.
 
+> Basado en [el problema de la cena de los filósofos](https://es.wikipedia.org/wiki/Problema_de_la_cena_de_los_fil%C3%B3sofos)
+
 ## Índice
 ***TODO***
 
@@ -446,6 +448,38 @@ Cosas a comentar
 - piensa cual va ha ser la estrategia para avisar a los demás filosofos (threads) de que uno a muerto y hay que para la ejecucion
 - Utiliza el flag `fsanitize=thread` para detectar los finales de carrera
 - Para poder detertar leaks con valgrind utiliza muertes cortas de los filosofos
+
+/*
+Although all the philosophers will have their fork assigned and that of
+the philosopher to their right, to avoid deadlock, the order in which
+the philosophers will take the forks will be modified.
+The even philosophers will take their fork first and then the one on their right,
+while the odd philosophers will take their right first and then theirs.
+
+DEADLOCK example:
+	Philo 0 will take fork 0 and then fork 1
+	Philo 1 will take fork 1 and then fork 2
+	Philo 2 will take fork 2 and then fork 3
+	[...]
+	Philo n will take fork n and then fork 0
+If Philo 0 takes fork 0, Philo 1 takes fork 1, Philo 3 takes fork 2, [...]
+and Philo n takes fork n. Each of then will be waiting for the second fork for
+ever because it will be in use by another philo.
+
+Wanted behavior:
+	Philo 0 will take fork 1 and then fork 0
+	Philo 1 will take fork 1 and then fork 2
+	Philo 2 will take fork 3 and then fork 2
+	Philo 3 will take fork 3 and then fork 4
+	[...]
+	IF n is ODD number -> Philo n will take fork 0 and then fork n
+	IF n is EVEN number -> Philo n will take fork n and then fork 0
+Philo 0 takes fork 1, Philo 1 wait for fork 1 (so don`t take fork 2), Philo 2
+takes fork 2 and fork 3 and Philo n (like Philo 1) will wait to Philo n-1 and
+Philo 0 end eating.
+So fork 2 is free for Philo 2 to take, so he can eats. When Philo 2 is done
+Philo 0 can take fork 0 and eat. And so on.
+*/
 
 
 ## Referencias

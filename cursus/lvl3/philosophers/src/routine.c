@@ -1,5 +1,4 @@
 #include "philo.h"
-#include <stdio.h>
 #include <pthread.h>
 #include <unistd.h>
 
@@ -23,13 +22,21 @@ char	is_dead(t_philo *philo)
 
 static char	statemachine(t_philo *philo)
 {
+	char	end;
+
+	end = 0;
 	while (1)
 	{
-		if (philo->data->signal_died || philo->data->signal_eat >= philo->rules->nbr_min_eat) // TODO se podría hacer con variables ya sacadas
+		pthread_mutex_lock(philo->data->mutex);
+		if (philo->data->signal_died \
+		|| philo->data->signal_eat >= philo->rules->nbr_philo)
+			end = 1;
+		pthread_mutex_unlock(philo->data->mutex);
+		if (end)
 		{
-			printf("died = %i, signal_eat = %i, nbr_philo = %i\n",
-			philo->data->signal_died, philo->data->signal_eat, philo->rules->nbr_min_eat);
-			break ;
+			if (philo->state == EATING)
+				unlock_forks(philo);
+			return (0);
 		}
 		is_dead(philo);
 		if (philo->state == THINKING)
@@ -39,16 +46,8 @@ static char	statemachine(t_philo *philo)
 		else if (philo->state == SLEEPING)
 			philo->state = sleeping(philo);
 		else if (philo->state == DEAD)
-		{
-			dead(philo);
-			break ;
-		}
-		else
-			return (1);
+			end = dead(philo);
 	}
-	pthread_mutex_unlock(philo->fork_1);
-	pthread_mutex_unlock(philo->fork_2);
-	return (0);
 }
 
 void	*routine(void *philosopher)
@@ -57,7 +56,7 @@ void	*routine(void *philosopher)
 
 	philo = (t_philo *)philosopher;
 	if (philo->pos_table % 2)
-		usleep(100);
+		usleep((philo->rules->time_eat / 2) * 1000);
 	philo->time_start = get_msec();
 	philo->time_last_eat = get_msec();
 	statemachine(philo);

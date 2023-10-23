@@ -1,5 +1,4 @@
 #include "philo.h"
-#include <unistd.h>
 #include <stdio.h>
 #include <pthread.h>
 
@@ -11,16 +10,18 @@ RETURN:
 static char	start_eating(t_philo *philo)
 {
 	philo->time_last_eat = get_msec();
-	split_usleep(philo, philo->rules->time_eat);
-	philo->nbr_eat += 1;
-	if (philo->rules->nbr_min_eat >= 1 && philo->nbr_eat == philo->rules->nbr_min_eat)
+	if (split_usleep(philo, philo->rules->time_eat) == DEAD)
+		return (unlock_forks(philo));
+	philo->nbr_eat++;
+	if (philo->rules->nbr_min_eat >= 0 \
+	&& philo->nbr_eat == (unsigned int)philo->rules->nbr_min_eat)
 	{
 		pthread_mutex_lock(philo->data->mutex);
-		philo->data->signal_eat += 1;
+		philo->data->signal_eat++;
 		pthread_mutex_unlock(philo->data->mutex);
 	}
 	if (is_dead(philo))
-		return (0);
+		return (unlock_forks(philo));
 	return (1);
 }
 
