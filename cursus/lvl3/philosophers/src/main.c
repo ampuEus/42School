@@ -20,11 +20,11 @@ int	main(int argc, char *argv[])
 
 	args = input(argc, argv);
 	if (!args)
-		return (free(args), 1);
+		return (1);
 	rules = get_rules(args, argc - 1);
 	free(args);
 	if (!rules)
-		return (free(rules), 2);
+		return (2);
 	memset(&general_signal, '\0', sizeof(general_signal));
 	init_lock(&general_signal.mutex);
 	philos = create_philos(rules, &general_signal);

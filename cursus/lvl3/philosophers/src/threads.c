@@ -3,8 +3,6 @@
 #include <string.h>
 #include <pthread.h>
 
-#include <stdio.h>
-
 /*Return:
   0 - Fail
   1 - Success*/
@@ -14,7 +12,6 @@ t_philo **philos, t_rules *rules, t_signals *general_signals)
 	t_philo			*philo;
 	unsigned int	i;
 
-	memset(philos, '\0', sizeof(**philos));
 	i = 0;
 	while (i < rules->nbr_philo)
 	{
@@ -47,6 +44,7 @@ t_philo	**create_philos(t_rules *rules, t_signals *general_signals)
 	philos = malloc((rules->nbr_philo + 1) * sizeof(**philos));
 	if (!philos)
 		return (write(2, "ERROR: No memory for philo array\n", 33), NULL);
+	memset(philos, '\0', sizeof(**philos));
 	if (!init_philos(philos, rules, general_signals))
 		return (write(2, "ERROR: Can not initialize philos\n", 33), NULL);
 	assing_forks(philos, rules->nbr_philo);

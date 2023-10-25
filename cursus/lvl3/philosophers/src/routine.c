@@ -21,7 +21,7 @@ static char	statemachine(t_philo *philo)
 
 void	*routine(void *philosopher)
 {
-	t_philo			*philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)philosopher;
 	// if (philo->pos_table % 2)
