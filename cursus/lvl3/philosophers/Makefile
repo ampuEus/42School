@@ -28,6 +28,7 @@ SRC			:= main.c \
 				threads.c \
 				routine.c \
 				get_rules.c \
+				end.c \
 				utils.c \
 				$(STATEMACHINE_PATH)/thinking.c \
 				$(STATEMACHINE_PATH)/eating.c \
@@ -104,8 +105,8 @@ faddress_bonus: CFLAGS := -g3 -fsanitize=address -pthread
 faddress: $(NAME)
 faddress_bonus: $(NAME_BONUS)
 
-fthread: CFLAGS := -g3 -fsanitize=thread -pthread
-fthread_bonus: CFLAGS := -g3 -fsanitize=thread -pthread
+fthread: CFLAGS := -g3 -pthread -fsanitize=thread
+fthread_bonus: CFLAGS := -g3 -pthread -fsanitize=thread
 fthread: $(NAME)
 fthread_bonus: $(NAME_BONUS)
 

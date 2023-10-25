@@ -14,6 +14,7 @@
 # define EATING 1
 # define SLEEPING 2
 # define DEAD 3
+# define END 4
 
 /* ---------- Structure of values ---------- */
 
@@ -26,11 +27,11 @@ typedef struct s_rules {
 }	t_rules;
 
 // Struct to comunicate with all thread at the same time
-typedef struct s_general {
+typedef struct s_signals {
 	pthread_mutex_t	*mutex;
 	char			signal_died;
 	unsigned int	signal_eat;
-}	t_general;
+}	t_signals;
 
 typedef struct s_philo {
 	pthread_t		*th;
@@ -42,7 +43,7 @@ typedef struct s_philo {
 	unsigned int	time_last_eat;
 	unsigned int	nbr_eat;
 	t_rules			*rules;
-	t_general		*data;
+	t_signals		*signal;
 }	t_philo;
 
 /* ---------- Functions ---------- */
@@ -53,7 +54,6 @@ unsigned int	*input(int argc, char *argv[]);
 
 // routine.c
 
-char			is_dead(t_philo *philo);
 void			*routine(void *philosopher);
 
 // locks.c
@@ -66,7 +66,7 @@ char			unlock_forks(t_philo *philo);
 
 // threads.c
 
-t_philo			**create_philos(t_rules *rules, t_general *general_data);
+t_philo			**create_philos(t_rules *rules, t_signals *general_data);
 char			free_philos(t_philo	**philos);
 char			start_threads(t_philo **philos);
 
@@ -80,6 +80,10 @@ char			dead(t_philo *philo);
 // get_rules.c
 
 t_rules			*get_rules(unsigned int *data, unsigned int total_rules);
+
+// end.c
+
+char			end(t_philo *philo);
 
 //utils.c
 

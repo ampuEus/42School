@@ -12,17 +12,21 @@ unsigned int	get_msec(void)
 }
 
 /* Split the usleep function in 0,5 milisecond.
-This way the philo now if it is dead before 10 ms. */
+This way the philo now if it is dead before 10 ms.
+
+Return:
+  0 - No events happen in the sleep time
+  1 - Must end execution */
 char	split_usleep(t_philo *philo, unsigned int msec)
 {
 	long int	time_start;
 
 	time_start = get_msec();
-	while (!is_dead(philo))
+	while (!end(philo))
 	{
 		if (get_msec() - time_start > msec)
 			return (0);
 		usleep(50);
 	}
-	return (DEAD);
+	return (1);
 }
