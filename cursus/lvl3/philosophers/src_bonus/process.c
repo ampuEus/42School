@@ -4,33 +4,48 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 
-/*
-NOTE: All philosophers start in state thinking
-*/
-t_philo	**create_philos(t_rules *rules, t_general *general_data)
+/*Return:
+  0 - Fail
+  1 - Success*/
+static char	init_philos(\
+t_philo **philos, t_rules *rules, t_signals *general_signals)
 {
-	t_philo			**philos;
 	t_philo			*philo;
-	unsigned int	tot_philos;
 	unsigned int	i;
 
-	tot_philos = rules->nbr_philo;
-	philos = malloc(tot_philos * sizeof(**philos));
-	if (!philos)
-		return (write(2, "ERROR: No memory  for philos array\n", 35), NULL);
+	memset(philos, '\0', sizeof(**philos));
 	i = 0;
-	while (i < tot_philos)
+	while (i < rules->nbr_philo)
 	{
 		philo = malloc(sizeof(*philo));
 		if (!philo)
-			return (write(2, \
-			"ERROR: No memory for a philo in the array\n", 42), NULL);
-		memset(philo, '\0', sizeof(philos));
+			return (write(2, "ERROR: No memory philo in array\n", 32), 0);
+		memset(philo, '\0', sizeof(*philo));
 		philo->pos_table = i;
 		philo->rules = rules;
-		philo->data = general_data;
+		philo->signal = general_signals;
+		philo->state = THINKING;
 		philos[i++] = philo;
 	}
+	philos[i] = NULL;
+	return (1);
+}
+
+/*
+NOTE: All philosophers start in state thinking
+*/
+t_philo	**create_philos(t_rules *rules, t_signals *general_signals)
+{
+	t_philo			**philos;
+	t_philo			*philo;
+	unsigned int	i;
+
+	philos = malloc((rules->nbr_philo + 1) * sizeof(**philos));
+	if (!philos)
+		return (write(2, "ERROR: No memory for philos array\n", 35), NULL);
+	memset(philos, '\0', sizeof(**philos));
+	if (!init_philos(philos, rules, general_signals))
+		return (write(2, "ERROR: Can not initialize philos\n", 33), NULL);
 	return (philos);
 }
 
@@ -48,29 +63,41 @@ char	free_philos(t_philo	**philos)
 	return (0);
 }
 
-char	start_process(t_philo **philos)
+static char	init_routine(t_philo **philos, pid_t *pid)
 {
 	unsigned int	i;
-	pid_t			*pid;
+	unsigned int	start_time;
 
-	pid = malloc(philos[0]->rules->nbr_philo * sizeof(*pid));
-	if (!pid)
-		return (write(2, "ERROR: No memory for the fork array\n", 36), 1);
 	i = 0;
+	start_time = get_msec();
 	while (philos[i])
 	{
 		pid[i] = fork();
 		if (pid[i] < 0)
-			return (write(2, "ERROR: fork failed\n", 19), 1);
+		{
+			write(2, "Warning: One fork failed\n", 25);
+			break ;
+		}
 		else if (pid[i] == 0)
 		{
+			philos[i]->time_start = start_time;
 			routine(philos[i]);
 			exit(1);
 		}
 		i++;
 	}
 	while (i)
-		waitpid(pid[i--], NULL, 0);
+		waitpid(pid[--i], NULL, 0);
+}
+
+char	start_process(t_philo **philos)
+{
+	pid_t	*pid;
+
+	pid = malloc(philos[0]->rules->nbr_philo * sizeof(*pid));
+	if (!pid)
+		return (write(2, "ERROR: No memory for the fork array\n", 36), 1);
+	init_routine(philos, pid);
 	free(pid);
 	return (0);
 }

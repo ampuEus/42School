@@ -14,6 +14,7 @@
 # define EATING 1
 # define SLEEPING 2
 # define DEAD 3
+# define END 4
 
 // semaphore names (the name should begin with a '/' character)
 
@@ -31,13 +32,13 @@ typedef struct s_rules {
 }	t_rules;
 
 // Struct to comunicate with all thread at the same time
-typedef struct s_general {
+typedef struct s_signals {
 	sem_t			*sem_forks;
 	unsigned int	nbr_forks;
 	sem_t			*sem_signals;
 	char			signal_died;
 	unsigned int	signal_eat;
-}	t_general;
+}	t_signals;
 
 typedef struct s_philo {
 	unsigned int	got_forks;
@@ -47,7 +48,7 @@ typedef struct s_philo {
 	unsigned int	time_last_eat;
 	unsigned int	nbr_eat;
 	t_rules			*rules;
-	t_general		*data;
+	t_signals		*signal;
 }	t_philo;
 
 /* ---------- Functions ---------- */
@@ -58,19 +59,18 @@ unsigned int	*input(int argc, char *argv[]);
 
 // routine.c
 
-char			is_dead(t_philo *philo);
 void			*routine(void *philosopher);
 
 // semaphores.c
 
-char			init_sem(t_general *general_data, unsigned int tot_philos);
-char			destroy_sem(t_general *general_data);
+char			init_sem(t_signals *general_data, unsigned int tot_philos);
+char			destroy_sem(t_signals *general_data);
 char			take_one_fork(t_philo *philos);
-char			drop_fork(t_philo *philos);
+char			drop_forks(t_philo *philos);
 
 // process.c
 
-t_philo			**create_philos(t_rules *rules, t_general *general_data);
+t_philo			**create_philos(t_rules *rules, t_signals *general_signals);
 char			free_philos(t_philo	**philos);
 char			start_process(t_philo **philos);
 
@@ -84,6 +84,10 @@ char			dead(t_philo *philo);
 // get_rules.c
 
 t_rules			*get_rules(unsigned int *data, unsigned int total_rules);
+
+// end.c
+
+char			end(t_philo *philo);
 
 //utils.c
 

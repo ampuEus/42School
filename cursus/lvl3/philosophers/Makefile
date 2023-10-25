@@ -42,6 +42,7 @@ SRC_BONUS	:= main.c \
 				process.c \
 				routine.c \
 				get_rules.c \
+				end.c \
 				utils.c \
 				$(STATEMACHINE_PATH)/thinking.c \
 				$(STATEMACHINE_PATH)/eating.c \
