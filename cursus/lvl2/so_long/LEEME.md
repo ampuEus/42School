@@ -1,5 +1,5 @@
 # [SoLong](https://www.youtube.com/watch?v=N_dUmDBfp6k)
-***Oficialmente terminado el xx/12/2023 / Nota xxx de 100 / [English](README.md) version***
+***Oficialmente terminado el 24/10/2023 / Nota 125 de 100 / [English](README.md) version***
 
 Este proyecto es un pequeño juego en 2D. Está diseñado para hacerte trabajar con texturas y sprites y algunos otros elementos básicos de jugabilidad. Te ayudará a mejorar tus habilidades en estas áreas: ventanas, colores, eventos, texturas, etc.
 
