@@ -3,6 +3,8 @@
 ## Table of content
 [Exam Rank 02](rank02/README.md) - 4 Preguntas de la piscina
 
+Exam Rank 03 - [ft_printf](rank03/ft_printf/README.md) o [get_next_line](rank03/get_next_line/README.md)
+
 ## Exam details
 ### Norminette
 No hay Norminette en los examenes.
