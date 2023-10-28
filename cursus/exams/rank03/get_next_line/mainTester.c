@@ -1,4 +1,4 @@
-//gcc mainTester.c get_next_line.c -D BUFFER_SIZE=10 && ./a.out ./testFiles/basicTest
+//gcc mainTester.c get_next_line.c -D BUFFER_SIZE=10 && ./a.out ./testFiles/basic1
 #include "get_next_line.h"
 #include <fcntl.h>
 #include <stdio.h>
