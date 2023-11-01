@@ -16,6 +16,14 @@
 # define DEAD 3
 # define END 4
 
+// philo states menssages
+
+# define THINKING_MSG "%u %u is thinking\n"
+# define FORK_MSG "%u %u has taken a fork\n"
+# define EATING_MSG "%u %u is eating\n"
+# define SLEEPING_MSG "%u %u is sleeping\n"
+# define DEAD_MSG "%u %u died\n"
+
 /* ---------- Structure of values ---------- */
 
 typedef struct s_rules {
@@ -31,6 +39,7 @@ typedef struct s_signals {
 	pthread_mutex_t	*mutex;
 	char			signal_died;
 	unsigned int	signal_eat;
+	unsigned int	signal_start;
 }	t_signals;
 
 typedef struct s_philo {
@@ -89,5 +98,6 @@ char			end(t_philo *philo);
 
 unsigned int	get_msec(void);
 char			split_usleep(t_philo *philo, unsigned int msec);
+void			print(t_philo *philo, char *msg);
 
 #endif

@@ -1,10 +1,8 @@
 #include "philo.h"
-#include <stdio.h>
 
 short int	sleeping(t_philo *philo)
 {
-	printf("%u %u is sleeping\n", \
-	get_msec() - philo->time_start, philo->pos_table);
+	print(philo, SLEEPING_MSG);
 	pthread_mutex_unlock(philo->fork_1);
 	pthread_mutex_unlock(philo->fork_2);
 	if (split_usleep(philo, philo->rules->time_sleep))

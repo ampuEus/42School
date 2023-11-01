@@ -72,7 +72,6 @@ char	free_philos(t_philo	**philos)
 char	start_threads(t_philo **philos)
 {
 	unsigned int	i;
-	unsigned int	start_time;
 
 	// i = 0;
 	// while (philos[i])
@@ -83,10 +82,8 @@ char	start_threads(t_philo **philos)
 	// }
 
 	i = 0;
-	start_time = get_msec();
 	while (philos[i])
 	{
-		philos[i]->time_start = start_time;
 		if (pthread_create(\
 		philos[i]->th, NULL, &routine, (void *)philos[i]) != 0)
 			return (write(2, \

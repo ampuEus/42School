@@ -24,8 +24,19 @@ void	*routine(void *philosopher)
 	t_philo	*philo;
 
 	philo = (t_philo *)philosopher;
-	// if (philo->pos_table % 2)
-	// 	usleep((philo->rules->time_eat / 2) * 1000);
+	while (1)
+	{
+		pthread_mutex_lock(philo->signal->mutex);
+		if (philo->signal->signal_start)
+		{
+			pthread_mutex_unlock(philo->signal->mutex);
+			break;
+		}
+		pthread_mutex_unlock(philo->signal->mutex);
+	}
+	philo->time_start = get_msec();
+	if (philo->pos_table % 2)
+		usleep((philo->rules->time_eat / 2) * 1000);
 	philo->time_last_eat = philo->time_start;
 	statemachine(philo);
 	return (NULL);

@@ -1,6 +1,7 @@
 #include "philo.h"
 #include <sys/time.h>
 #include <unistd.h>
+#include <stdio.h>
 
 /* Get the actual time value in miliseconds */
 unsigned int	get_msec(void)
@@ -26,7 +27,16 @@ char	split_usleep(t_philo *philo, unsigned int msec)
 	{
 		if (get_msec() - time_start > msec)
 			return (0);
-		usleep(50);
+		usleep(500);
 	}
 	return (1);
+}
+
+/* If there is a philo dead not print anything in console. */
+void	print(t_philo *philo, char *msg)
+{
+	if (end(philo))
+		return ;
+	printf(msg, \
+		get_msec() - philo->time_start, philo->pos_table);
 }

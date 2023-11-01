@@ -31,6 +31,9 @@ int	main(int argc, char *argv[])
 	if (!philos)
 		return (free(rules), 3);
 	start_threads(philos);
+	pthread_mutex_lock(philos[0]->signal->mutex);
+	philos[0]->signal->signal_start = 1;
+	pthread_mutex_unlock(philos[0]->signal->mutex);
 	join_thread(philos);
 	free(rules);
 	destroy_lock(&general_signal.mutex);
