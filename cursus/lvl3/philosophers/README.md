@@ -1,16 +1,16 @@
 # Philosophers
-***Oficialmente terminado el xx/06/2023 / Nota xxx de 100 / [English](README.md) version***
+***Officially finished at 2023-06-XX / Grade: XXX of 100 / Versión en [español](LEEME.md)***
 
-En este proyecto, aprenderás los principios básicos de *hilar* un proceso. Vas a aprender a como crear hilos y descubrirás los mutex.
+In this project, you will learn the basics of threading a process. You will see how to create threads and you will discover mutexes.
 
-> Basado en [el problema de la cena de los filósofos](https://es.wikipedia.org/wiki/Problema_de_la_cena_de_los_fil%C3%B3sofos)
+> Based on [Dining philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem)
 
 ## Índice
 - [Philosophers](#philosophers)
   - [Índice](#índice)
-  - [Enunciado del ejercicio](#enunciado-del-ejercicio)
-    - [Contexto](#contexto)
-    - [Reglas generales](#reglas-generales)
+  - [Excercise statement](#excercise-statement)
+    - [Context](#context)
+    - [General rules](#general-rules)
     - [logs](#logs)
     - [Reglas del programa Obligatorio](#reglas-del-programa-obligatorio)
     - [Reglas del programa Bonus](#reglas-del-programa-bonus)
@@ -30,25 +30,25 @@ En este proyecto, aprenderás los principios básicos de *hilar* un proceso. Vas
   - [Annex: Tools for debug](#annex-tools-for-debug)
 
 
-## Enunciado del ejercicio
-### Contexto
-  - En una mesa redonda con un bol de spaghetti en medio
-  - Los comensales son 1 o más filósofos sentados alrededor de la mesa
-  - Hay un tenedor por cada filósofo
-  - Al ser necesarios 2 tenedores para comer los espaguetis correctamente, los filósofos utilizaran su tenedor de la derecha e izquierda para comer
-  - Los filósofos pueden ir cambiando entre sus 3 estados:
-    - Comiendo
-    - Pensando
-    - Durmiendo
-  - Cuando un filósofo termina de comer, empieza a dormir. Cuando termina de dormir, empieza a pensar hasta poder empezar a comer de nuevo
-  - El programa termina cuando uno de los filósofos muere de hambre
-  - Los filósofos no se pueden comunicarse entre ellos
+## Excercise statement
+### Context
+  - On a round table with a bowl of spaghetti in the middle
+  - The diners are 1 or more philosophers sitting around the table
+  - There is a fork for every philosopher
+  - Since 2 forks are necessary to eat spaghetti correctly, philosophers will use their right and left forks to eat
+  - Philosophers can change between their 3 states:
+    - Eating
+    - Thinking
+    - Sleeping
+  - When a philosopher finishes eating, he begins to sleep. When he finishes sleeping, he starts thinking until he can start eating again.
+  - The program ends when one of the philosophers dies of hunger
+  - Philosophers cannot communicate with each other
 
-### Reglas generales
-  - **No** se pueden utilizar **variables globales**
-  - El programa tiene los siguientes **argumentos de entrada**
-    - El *número de filósofos* (y de tenedores). Mínimo tiene que haber un filósofo
-    - El *tiempo que tarda en comer* un filósofo (en milisegundos). Durante este tiempo el filósofo estará utilizando 2 tenedores
+### General rules
+  - **Global variables** can**not** be used
+  - The program has the following **input arguments**
+    - The *number of philosophers* (and forks). There must be at least one philosopher
+    - The *time it takes a philosopher to eat* (in milliseconds). During this time the philosopher will be using 2 forks
     - El *tiempo* que puede estar un filósofo *sin comer antes de morir* (en milisegundos). La cuenta atrás empieza desde el inicio de su última comida (o desde el inicio del programa, cuando todavía no ha comido por primera vez)
     - El *tiempo que está durmiendo* un filósofo (en milisegundos)
     - \[Opcional\] El número mínimo de veces que tienen que comer para que termine el programa. Si no está definido el programa termina con la muerte de un filósofo
