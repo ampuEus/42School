@@ -494,6 +494,8 @@ if { [ "$mandatory" = "" ] && [ "$bonus" = "" ]; } \
 		test_live "Simple test 009" $target "3 800 200 200"
 		test_eat  "Simple test 010" $target "3 800 200 200 7"
 		test_die  "Simple test 011" $target "1 800 200 200"
+		test_live "Simple test 012" $target "6 410 200 200"
+		test_die  "Simple test 013" $target "5 410 200 200"
 	fi
 
 fi
