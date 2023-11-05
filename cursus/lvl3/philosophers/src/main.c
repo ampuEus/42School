@@ -1,6 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/05 14:44:47 by daampuru          #+#    #+#             */
+/*   Updated: 2023/11/05 14:44:47 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 #include <pthread.h>
 #include <string.h>
+
+#include <stdio.h>
+#include <unistd.h>
+
+static void	check_end(t_philo **philos)
+{
+	unsigned int	i;
+
+	usleep(1000);
+	i = 0;
+	while (!end(philos[i]))
+	{
+		i++;
+		if (i >= philos[0]->rules->nbr_philo)
+			i = 0;
+	}
+}
+
+static void	init_general_vars(t_common *vars)
+{
+	memset(vars, '\0', sizeof(*vars));
+	init_lock(&vars->print);
+	init_lock(&vars->signal);
+}
+
+static void	destroy_general_locks(t_common *vars)
+{
+	destroy_lock(&vars->print);
+	destroy_lock(&vars->signal);
+}
 
 static void	join_thread(t_philo **philos)
 {
@@ -16,7 +58,7 @@ int	main(int argc, char *argv[])
 	unsigned int	*args;
 	t_rules			*rules;
 	t_philo			**philos;
-	t_signals		general_signal;
+	t_common		common_vars;
 
 	args = input(argc, argv);
 	if (!args)
@@ -25,18 +67,15 @@ int	main(int argc, char *argv[])
 	free(args);
 	if (!rules)
 		return (2);
-	memset(&general_signal, '\0', sizeof(general_signal));
-	init_lock(&general_signal.mutex);
-	philos = create_philos(rules, &general_signal);
+	init_general_vars(&common_vars);
+	philos = create_philos(rules, &common_vars);
 	if (!philos)
 		return (free(rules), 3);
 	start_threads(philos);
-	pthread_mutex_lock(philos[0]->signal->mutex);
-	philos[0]->signal->signal_start = 1;
-	pthread_mutex_unlock(philos[0]->signal->mutex);
+	check_end(philos);
 	join_thread(philos);
+	destroy_general_locks(&common_vars);
 	free(rules);
-	destroy_lock(&general_signal.mutex);
 	free_philos(philos);
 	return (0);
 }

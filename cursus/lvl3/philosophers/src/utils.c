@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/05 14:44:56 by daampuru          #+#    #+#             */
+/*   Updated: 2023/11/05 14:44:56 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 #include <sys/time.h>
 #include <unistd.h>
@@ -35,8 +47,12 @@ char	split_usleep(t_philo *philo, unsigned int msec)
 /* If there is a philo dead not print anything in console. */
 void	print(t_philo *philo, char *msg)
 {
+	pthread_mutex_lock(philo->common->print);
 	if (end(philo))
+	{
+		pthread_mutex_unlock(philo->common->print);
 		return ;
-	printf(msg, \
-		get_msec() - philo->time_start, philo->pos_table);
+	}
+	printf(msg, get_msec() - philo->time_start, philo->pos_table);
+	pthread_mutex_unlock(philo->common->print);
 }

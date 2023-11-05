@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dead.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/05 14:44:59 by daampuru          #+#    #+#             */
+/*   Updated: 2023/11/05 14:44:59 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 #include <pthread.h>
 #include <stdio.h>
@@ -9,11 +21,11 @@ char	dead(t_philo *philo)
 	char			frist_dead;
 
 	frist_dead = 0;
-	pthread_mutex_lock(philo->signal->mutex);
-	if (!philo->signal->signal_died)
+	pthread_mutex_lock(philo->common->signal);
+	if (!philo->common->signal_died)
 		frist_dead = 1;
-	philo->signal->signal_died = 1;
-	pthread_mutex_unlock(philo->signal->mutex);
+	philo->common->signal_died = 1;
+	pthread_mutex_unlock(philo->common->signal);
 	dead_time = get_msec() - philo->time_start;
 	usleep(500);
 	if (frist_dead)

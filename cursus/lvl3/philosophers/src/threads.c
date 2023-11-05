@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   threads.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/05 14:44:53 by daampuru          #+#    #+#             */
+/*   Updated: 2023/11/05 14:44:53 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 #include <unistd.h>
 #include <string.h>
@@ -7,7 +19,7 @@
   0 - Fail
   1 - Success*/
 static char	init_philos(\
-t_philo **philos, t_rules *rules, t_signals *general_signals)
+t_philo **philos, t_rules *rules, t_common *vars)
 {
 	t_philo			*philo;
 	unsigned int	i;
@@ -23,9 +35,10 @@ t_philo **philos, t_rules *rules, t_signals *general_signals)
 		if (!philos)
 			return (write(2, \
 			"ERROR: No memory for philo thread\n", 34), 0);
+		init_lock(&philo->external_monitoring);
 		philo->pos_table = i;
 		philo->rules = rules;
-		philo->signal = general_signals;
+		philo->common = vars;
 		philo->state = THINKING;
 		philos[i++] = philo;
 	}
@@ -37,7 +50,7 @@ t_philo **philos, t_rules *rules, t_signals *general_signals)
 Each philosopher (thread) is initialized with its fork (mutex).
 NOTE: All philosophers start in state thinking
 */
-t_philo	**create_philos(t_rules *rules, t_signals *general_signals)
+t_philo	**create_philos(t_rules *rules, t_common *vars)
 {
 	t_philo			**philos;
 
@@ -45,7 +58,7 @@ t_philo	**create_philos(t_rules *rules, t_signals *general_signals)
 	if (!philos)
 		return (write(2, "ERROR: No memory for philo array\n", 33), NULL);
 	memset(philos, '\0', sizeof(**philos));
-	if (!init_philos(philos, rules, general_signals))
+	if (!init_philos(philos, rules, vars))
 		return (write(2, "ERROR: Can not initialize philos\n", 33), NULL);
 	assing_forks(philos, rules->nbr_philo);
 	return (philos);
@@ -62,8 +75,10 @@ char	free_philos(t_philo	**philos)
 	i = 0;
 	while (philos[i])
 	{
+		destroy_lock(&philos[i]->external_monitoring);
 		free(philos[i]->th);
-		free(philos[i++]);
+		free(philos[i]);
+		i++;
 	}
 	free(philos);
 	return (0);
@@ -72,14 +87,6 @@ char	free_philos(t_philo	**philos)
 char	start_threads(t_philo **philos)
 {
 	unsigned int	i;
-
-	// i = 0;
-	// while (philos[i])
-	// {
-	// 	printf("philo %i | fork 1 %p | fork 2 %p\n",\
-	// 	philos[i]->pos_table, philos[i]->fork_1, philos[i]->fork_2);
-	// 	i++;
-	// }
 
 	i = 0;
 	while (philos[i])
@@ -90,5 +97,9 @@ char	start_threads(t_philo **philos)
 			"ERROR: Can´t create philosopher thread\n", 39), 1);
 		i++;
 	}
+	pthread_mutex_lock(philos[0]->common->signal);
+	philos[0]->common->start_time = get_msec();
+	philos[0]->common->signal_start = 1;
+	pthread_mutex_unlock(philos[0]->common->signal);
 	return (0);
 }

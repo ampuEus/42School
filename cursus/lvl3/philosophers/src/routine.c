@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   routine.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/05 14:44:50 by daampuru          #+#    #+#             */
+/*   Updated: 2023/11/05 14:44:50 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 #include <pthread.h>
 #include <unistd.h>
@@ -26,18 +38,20 @@ void	*routine(void *philosopher)
 	philo = (t_philo *)philosopher;
 	while (1)
 	{
-		pthread_mutex_lock(philo->signal->mutex);
-		if (philo->signal->signal_start)
+		pthread_mutex_lock(philo->common->signal);
+		if (philo->common->signal_start)
 		{
-			pthread_mutex_unlock(philo->signal->mutex);
-			break;
+			pthread_mutex_unlock(philo->common->signal);
+			break ;
 		}
-		pthread_mutex_unlock(philo->signal->mutex);
+		pthread_mutex_unlock(philo->common->signal);
 	}
-	philo->time_start = get_msec();
+	philo->time_start = philo->common->start_time;
+	pthread_mutex_lock(philo->external_monitoring);
+	philo->time_last_eat = philo->time_start;
+	pthread_mutex_unlock(philo->external_monitoring);
 	if (philo->pos_table % 2)
 		usleep((philo->rules->time_eat / 2) * 1000);
-	philo->time_last_eat = philo->time_start;
 	statemachine(philo);
 	return (NULL);
 }

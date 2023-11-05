@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   locks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/05 14:44:43 by daampuru          #+#    #+#             */
+/*   Updated: 2023/11/05 14:44:43 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 #include <pthread.h>
 
@@ -58,25 +70,13 @@ void	assing_forks(t_philo **philos, unsigned int tot_philos)
 
 	i = 0;
 	while (philos[i])
-	{
-		// if (i % 2)
-			init_lock(&(philos[i]->fork_1));
-		// else
-		// 	init_lock(&(philos[i]->fork_2));
-		i++;
-	}
+		init_lock(&(philos[i++]->fork_1));
 	i = 0;
 	while (philos[i])
 	{
-		// if (i % 2)
-			philos[i]->fork_2 = philos[(i + 1) % tot_philos]->fork_1;
-		// else
-		// 	philos[i]->fork_1 = philos[(i + 1) % tot_philos]->fork_1;
-		// philos[i]->fork_2 = philos[(i + 1) % tot_philos]->fork_1;
+		philos[i]->fork_2 = philos[(i + 1) % tot_philos]->fork_1;
 		i++;
 	}
-	// if (!(philos[--i]->pos_table % 2))
-	// 	philos[i]->fork_1 = philos[(i + 1) % tot_philos]->fork_2;
 }
 
 /* NOTE: The destruction of the fork has to go according to
@@ -89,10 +89,7 @@ void	desassing_forks(t_philo **philos)
 	i = 0;
 	while (philos[i])
 	{
-		// if (philos[i]->pos_table % 2)
-		// 	destroy_lock(&(philos[i]->fork_2));
-		// else
-			destroy_lock(&(philos[i]->fork_1));
+		destroy_lock(&(philos[i]->fork_1));
 		i++;
 	}
 }

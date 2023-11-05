@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/05 14:45:39 by daampuru          #+#    #+#             */
+/*   Updated: 2023/11/05 14:45:39 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 
 # include <pthread.h>
@@ -35,24 +47,31 @@ typedef struct s_rules {
 }	t_rules;
 
 // Struct to comunicate with all thread at the same time
-typedef struct s_signals {
-	pthread_mutex_t	*mutex;
+typedef struct s_common {
+	pthread_mutex_t	*print;
+	pthread_mutex_t	*signal;
 	char			signal_died;
 	unsigned int	signal_eat;
 	unsigned int	signal_start;
-}	t_signals;
+	unsigned int	start_time;
+}	t_common;
 
+/*
+  NOTE: "external_monitoring" variable is neaded to check, from "main" proccess,
+  if any philo dead wait for the fork.
+ */
 typedef struct s_philo {
 	pthread_t		*th;
 	pthread_mutex_t	*fork_1;
 	pthread_mutex_t	*fork_2;
+	pthread_mutex_t	*external_monitoring;
 	unsigned int	time_start;
 	short int		state;
 	unsigned int	pos_table;
 	unsigned int	time_last_eat;
 	unsigned int	nbr_eat;
 	t_rules			*rules;
-	t_signals		*signal;
+	t_common		*common;
 }	t_philo;
 
 /* ---------- Functions ---------- */
@@ -75,7 +94,7 @@ char			unlock_forks(t_philo *philo);
 
 // threads.c
 
-t_philo			**create_philos(t_rules *rules, t_signals *general_data);
+t_philo			**create_philos(t_rules *rules, t_common *general_data);
 char			free_philos(t_philo	**philos);
 char			start_threads(t_philo **philos);
 
