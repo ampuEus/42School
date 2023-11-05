@@ -4,6 +4,8 @@
 ########## Contants ##########
 ##############################
 USAGE=$(cat <<'EOF'
+ DISCLAIMER: The tester is unfinished
+
  NAME
     Philosopher tester -- Tests for philosopher exercise
 
