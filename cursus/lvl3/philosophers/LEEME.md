@@ -502,6 +502,9 @@ Cosas a comentar
 - Utiliza el flag `fsanitize=thread` para detectar los finales de carrera
 - Para poder detertar leaks con valgrind utiliza muertes cortas de los filosofos
 
+- para mejorar el sleep -> es mejor tocearlo
+- para detectar una muerte de un philosofo antes de 10ms -> chequear en el main si alguno muere ya que si esta cojiendo un tenedor se da cuenta tarde
+
 /*
 Although all the philosophers will have their fork assigned and that of
 the philosopher to their right, to avoid deadlock, the order in which
