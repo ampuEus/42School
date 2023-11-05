@@ -504,12 +504,10 @@ fi
 #
 # 	echo "\n[============[Testing Philosopher bonus part]==============]\n"
 #
-# 	test_four $target 7 28 1
-# 	test_four $target 10 40 2
-# 	test_four $target 12 48 3
-# 	test_four $target 15 60 4
-# 	test_five $target
-# 	test_six $target
+# 	Test 5 800 200 200
+# 	Test 5 800 200 200 7
+# 	Test 4 410 200 200
+# 	Test 4 310 200 100
 # fi
 
 # Remove test files
