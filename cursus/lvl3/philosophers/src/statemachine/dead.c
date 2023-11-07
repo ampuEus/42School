@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <pthread.h>
 #include <stdio.h>
+#include <pthread.h>
 #include <unistd.h>
 
 char	dead(t_philo *philo)

@@ -20,6 +20,9 @@
 # define UINT_MIN "0"
 # define UINT_MAX "4294967295"
 
+// microseconds for split the sleep time
+# define SPLIT_TIME 500
+
 // philo states
 
 # define THINKING 0
@@ -94,7 +97,7 @@ char			unlock_forks(t_philo *philo);
 
 // threads.c
 
-t_philo			**create_philos(t_rules *rules, t_common *general_data);
+t_philo			**create_philos(t_rules *rules, t_common *vars);
 char			free_philos(t_philo	**philos);
 char			start_threads(t_philo **philos);
 

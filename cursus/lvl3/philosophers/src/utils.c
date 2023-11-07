@@ -39,7 +39,7 @@ char	split_usleep(t_philo *philo, unsigned int msec)
 	{
 		if (get_msec() - time_start > msec)
 			return (0);
-		usleep(500);
+		usleep(SPLIT_TIME);
 	}
 	return (1);
 }
