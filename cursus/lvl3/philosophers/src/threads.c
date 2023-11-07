@@ -6,7 +6,7 @@
 /*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 14:44:53 by daampuru          #+#    #+#             */
-/*   Updated: 2023/11/05 14:44:53 by daampuru         ###   ########.fr       */
+/*   Updated: 2023/11/07 19:51:44 by daampuru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_philo **philos, t_rules *rules, t_common *vars)
 			return (write(2, "ERROR: No memory philo in array\n", 32), 0);
 		memset(philo, '\0', sizeof(*philo));
 		philo->th = malloc(sizeof(*(philo->th)));
-		if (!philos->th)
+		if (!philo->th)
 			return (write(2, \
 			"ERROR: No memory for philo thread\n", 34), 0);
 		init_lock(&philo->external_monitoring);
