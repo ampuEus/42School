@@ -1,27 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   thinking.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/05 15:57:22 by daampuru          #+#    #+#             */
+/*   Updated: 2023/11/05 15:57:22 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_bonus.h"
-#include <stdio.h>
 #include <pthread.h>
 
 /* Stay thinking until the philo can take both forks.
 When a philo has 2 fork can start eating.*/
 short int	thinking(t_philo *philo)
 {
-	if (end(philo))
-		return (philo->state);
-	printf("%u %u is thinking\n", \
-	get_msec() - philo->time_start, philo->pos_table);
+	print(philo, THINKING_MSG);
 	take_one_fork(philo);
-	if (end(philo))
-		return (drop_forks(philo), philo->state);
-	printf("%u %u has taken a fork\n", \
-		get_msec() - philo->time_start, philo->pos_table);
+	print(philo, FORK_MSG);
 	while (philo->rules->nbr_philo == 1)
-		if (end(philo))
-			return (drop_forks(philo), philo->state);
+		continue;
 	take_one_fork(philo);
-	if (end(philo))
-		return (drop_forks(philo), philo->state);
-	printf("%u %u has taken a fork\n", \
-		get_msec() - philo->time_start, philo->pos_table);
+	print(philo, FORK_MSG);
 	return (EATING);
 }

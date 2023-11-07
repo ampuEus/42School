@@ -1,13 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dead.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/05 15:56:52 by daampuru          #+#    #+#             */
+/*   Updated: 2023/11/05 15:56:52 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_bonus.h"
 #include <stdio.h>
 #include <pthread.h>
 
 char	dead(t_philo *philo)
 {
-	printf("%u %u died\n", \
-	get_msec() - philo->time_start, philo->pos_table);
-	sem_wait(philo->signal->sem_signals);
-	philo->signal->signal_died = 1;
-	sem_post(philo->signal->sem_signals);
+	sem_post(philo->common->sem_dead);
+	printf(DEAD_MSG, get_msec() - philo->time_start, philo->pos_table);
 	return (END);
 }

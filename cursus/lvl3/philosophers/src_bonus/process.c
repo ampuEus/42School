@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   process.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/05 15:57:13 by daampuru          #+#    #+#             */
+/*   Updated: 2023/11/05 15:57:13 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_bonus.h"
 #include <unistd.h>
 #include <string.h>
@@ -8,7 +20,7 @@
   0 - Fail
   1 - Success*/
 static char	init_philos(\
-t_philo **philos, t_rules *rules, t_signals *general_signals)
+t_philo **philos, t_rules *rules, t_common *general_signals)
 {
 	t_philo			*philo;
 	unsigned int	i;
@@ -23,7 +35,7 @@ t_philo **philos, t_rules *rules, t_signals *general_signals)
 		memset(philo, '\0', sizeof(*philo));
 		philo->pos_table = i;
 		philo->rules = rules;
-		philo->signal = general_signals;
+		philo->common = general_signals;
 		philo->state = THINKING;
 		philos[i++] = philo;
 	}
@@ -34,11 +46,9 @@ t_philo **philos, t_rules *rules, t_signals *general_signals)
 /*
 NOTE: All philosophers start in state thinking
 */
-t_philo	**create_philos(t_rules *rules, t_signals *general_signals)
+t_philo	**create_philos(t_rules *rules, t_common *general_signals)
 {
 	t_philo			**philos;
-	t_philo			*philo;
-	unsigned int	i;
 
 	philos = malloc((rules->nbr_philo + 1) * sizeof(**philos));
 	if (!philos)
@@ -88,6 +98,7 @@ static char	init_routine(t_philo **philos, pid_t *pid)
 	}
 	while (i)
 		waitpid(pid[--i], NULL, 0);
+	return (0);
 }
 
 char	start_process(t_philo **philos)

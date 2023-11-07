@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/05 15:57:00 by daampuru          #+#    #+#             */
+/*   Updated: 2023/11/05 15:57:00 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_bonus.h"
 #include <sys/time.h>
 #include <unistd.h>
+#include <stdio.h>
 
 /* Get the actual time value in miliseconds */
 unsigned int	get_msec(void)
@@ -26,7 +39,20 @@ char	split_usleep(t_philo *philo, unsigned int msec)
 	{
 		if (get_msec() - time_start > msec)
 			return (0);
-		usleep(50);
+		usleep(SPLIT_TIME);
 	}
 	return (1);
+}
+
+/* If there is a philo dead not print anything in console. */
+void	print(t_philo *philo, char *msg)
+{
+	sem_wait(philo->common->sem_print);
+	if (end(philo))
+	{
+		sem_post(philo->common->sem_print);
+		return ;
+	}
+	printf(msg, get_msec() - philo->time_start, philo->pos_table);
+	sem_post(philo->common->sem_print);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_bonus.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/05 14:45:42 by daampuru          #+#    #+#             */
+/*   Updated: 2023/11/05 14:45:42 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_BONUS_H
 
 # include <semaphore.h>
@@ -8,6 +20,9 @@
 # define UINT_MIN "0"
 # define UINT_MAX "4294967295"
 
+// microseconds for split the sleep time
+# define SPLIT_TIME 500
+
 // philo states
 
 # define THINKING 0
@@ -16,10 +31,21 @@
 # define DEAD 3
 # define END 4
 
+// philo states menssages
+
+# define THINKING_MSG "%u %u is thinking\n"
+# define FORK_MSG "%u %u has taken a fork\n"
+# define EATING_MSG "%u %u is eating\n"
+# define SLEEPING_MSG "%u %u is sleeping\n"
+# define DEAD_MSG "%u %u died\n"
+
 // semaphore names (the name should begin with a '/' character)
 
 # define SEM_FORKS_NAME "/forks"
 # define SEM_SIGNALS_NAME "/signals"
+# define SEM_PRINT_NAME "/print"
+# define SEM_DEAD_NAME "/dead"
+# define SEM_EAT_NAME "/eat"
 
 /* ---------- Structure of values ---------- */
 
@@ -31,14 +57,15 @@ typedef struct s_rules {
 	int				nbr_min_eat;
 }	t_rules;
 
-// Struct to comunicate with all thread at the same time
-typedef struct s_signals {
+// Struct to comunicate with all process at the same time
+typedef struct s_common {
+	pthread_t		*th_dead;
+	pthread_t		*th_eat;
+	sem_t			*sem_print;
 	sem_t			*sem_forks;
-	unsigned int	nbr_forks;
-	sem_t			*sem_signals;
-	char			signal_died;
-	unsigned int	signal_eat;
-}	t_signals;
+	sem_t			*sem_dead;
+	sem_t			*sem_eat;
+}	t_common;
 
 typedef struct s_philo {
 	unsigned int	got_forks;
@@ -48,7 +75,7 @@ typedef struct s_philo {
 	unsigned int	time_last_eat;
 	unsigned int	nbr_eat;
 	t_rules			*rules;
-	t_signals		*signal;
+	t_common		*common;
 }	t_philo;
 
 /* ---------- Functions ---------- */
@@ -63,14 +90,14 @@ void			*routine(void *philosopher);
 
 // semaphores.c
 
-char			init_sem(t_signals *general_data, unsigned int tot_philos);
-char			destroy_sem(t_signals *general_data);
+char			init_sem(t_common *general_data, unsigned int tot_philos);
+char			destroy_sem(t_common *general_data);
 char			take_one_fork(t_philo *philos);
 char			drop_forks(t_philo *philos);
 
 // process.c
 
-t_philo			**create_philos(t_rules *rules, t_signals *general_signals);
+t_philo			**create_philos(t_rules *rules, t_common *vars);
 char			free_philos(t_philo	**philos);
 char			start_process(t_philo **philos);
 
@@ -93,5 +120,6 @@ char			end(t_philo *philo);
 
 unsigned int	get_msec(void);
 char			split_usleep(t_philo *philo, unsigned int msec);
+void			print(t_philo *philo, char *msg);
 
 #endif

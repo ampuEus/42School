@@ -1,58 +1,53 @@
-#include "philo_bonus.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   end.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daampuru <daampuru@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/05 14:44:24 by daampuru          #+#    #+#             */
+/*   Updated: 2023/11/05 14:44:24 by daampuru         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-/* The function change the philo state variable to DEAD,
-to end the execution, if the philo died.
+#include "philo.h"
 
-NOTE: The countdown starts from the start of your last meal
-(or from the start of the program, when you have not eaten for
-the first time yet) */
-static char	is_dead(t_philo *philo)
+static char is_philo_dead()
 {
-	unsigned int	time;
 
-	time = get_msec();
-	if (philo->rules->time_die < (time - philo->time_last_eat))
-	{
-		philo->state = DEAD;
-		return (1);
-	}
-	return (0);
+}
+static char all_philos_eats()
+{
+
 }
 
-/* The function change the philo state variable to END,
-to end the execution, if any external signal is triggered */
-static char	external_signals(t_philo *philo)
+/* Create 2 theads:
+	1- Check if all philos eat the minimun amount of times
+	2- Check if a philo is dead
+If one of both things happen all the child process
+will be killed and the program ends.
+
+RETURN:
+  0 - Fail creating threads
+  1 - The program will ends normally
+ */
+char	check_ends(t_common general)
 {
-	char	end;
-
-	end = 0;
-	sem_wait(philo->signal->sem_signals);
-	if (philo->signal->signal_died \
-	|| philo->signal->signal_eat >= philo->rules->nbr_philo)
-	end = 1;
-	sem_post(philo->signal->sem_signals);
-	return (end);
-}
-
-/* Check if the execution must continue.
-The function change the philo state variable
-  DEAD - If the philo died
-  END - If any external signal is triggered
-
-Return:
-  0 - No events
-  1 - An event trigger*/
-char	end(t_philo *philo)
-{
-	if (external_signals(philo))
-	{
-		philo->state = END;
-		return (1);
-	}
-	if (is_dead(philo))
-	{
-		philo->state = DEAD;
-		return (1);
-	}
-	return (0);
+	general->th_dead = malloc(sizeof(*(philo->th)));
+	if (!general->th_dead)
+		return (write(2, \
+		"ERROR: No memory for philo thread\n", 34), 0);
+	general->th_eat = malloc(sizeof(*(philo->th)));
+	if (!general->th_dead)
+		return (write(2, \
+		"ERROR: No memory for philo thread\n", 34), 0);
+	if (pthread_create(&general->th_dead, NULL, &is_philo_dead, general) != 0)
+		return (0);
+	if (pthread_create(&general->th_eat, NULL, &all_philos_eats, general) != 0)
+		return (0);
+	pthread_join(*(general->th_dead), NULL);
+	pthread_join(*(general->th_eat), NULL);
+	free(general->th_dead);
+	free(general->th_eat);
+	return (1);
 }
