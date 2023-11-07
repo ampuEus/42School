@@ -336,7 +336,7 @@ Las funciones que se usan en esta práctica son:
 </tbody>
 </table>
 
-> La Principal diferencia entre semáfores *unmaned* y *named* radica en que los *unnamed* solo se pueden usar en procesos que estén relacionados ya sea porque uno es hijo de otro o porqué comparten memoria ([más info](https://stackoverflow.com/questions/13145885/name-and-unnamed-semaphore)).
+> La Principal diferencia entre semáforos *unmaned* y *named* radica en que los *unnamed* solo se pueden usar en procesos que estén relacionados ya sea porque uno es hijo de otro o porqué comparten memoria ([más info](https://stackoverflow.com/questions/13145885/name-and-unnamed-semaphore)).
 
 Ejemplo simple de un programa con 2 thread y un recurso compartido protegido mediante un mutex (La ejecución en muuuuuy lenta debido a los cambios de contexto de los thread):
 ```c
