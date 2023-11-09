@@ -29,6 +29,10 @@ static void	check_end(t_philo **philos)
 		if (i >= philos[0]->rules->nbr_philo)
 			i = 0;
 	}
+	pthread_mutex_lock(philos[0]->common->signal);
+	philos[i]->common->signal_died = 1;
+	pthread_mutex_unlock(philos[0]->common->signal);
+	printf(DEAD_MSG, get_msec() - philos[i]->time_start, philos[i]->pos_table);
 }
 
 static void	init_general_vars(t_common *vars)

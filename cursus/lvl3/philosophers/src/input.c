@@ -120,15 +120,15 @@ unsigned int	*input(int argc, char *argv[])
 	while (++word < argc)
 	{
 		if (!only_digits(argv[word]))
-			return (write(2, \
+			return (free(data), write(2, \
 			"ERROR: The input is not only numbers\n", 37), NULL);
 		if (!in_uint_range(argv[word]))
-			return (write(2, \
+			return (free(data), write(2, \
 			"ERROR: The input do not fit on uint datatype\n", 45), NULL);
 		data[word - 1] = str2uint(argv[word]);
 	}
 	if (data[0] == 0)
-		return (write(2, \
+		return (free(data), write(2, \
 		"ERROR: There must be at least one philosopher\n", 46), NULL);
 	return (data);
 }
