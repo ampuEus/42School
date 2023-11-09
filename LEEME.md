@@ -15,6 +15,7 @@ Intranet: https://signin.intra.42.fr/users/sign_in
 - https://pool-sky-ed9.notion.site/FT_Cursus-0382f1442a0c43229c0723b3fae1e773
 - https://pythontutor.com/
 - https://rphlr.github.io/42-Evals/
+- [The GNU C Library](https://www.gnu.org/software/libc/manual/html_node/index.html#SEC_Contents)
 
 ## En caso de que quieras usar un ordenador propio te recomiendo instalar[^1]:
 Instalación del header de 42: https://github.com/42Paris/42header
